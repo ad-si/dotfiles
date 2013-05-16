@@ -15,7 +15,7 @@ bash bin/symlinkDotfiles.sh
 if [[ $(uname) == "Darwin" ]]
 then
 	#Homebrew
-	bash hombrew/setup.sh
+	bash homebrew/setup.sh
 
 	#TODO: Tweak OS X
 fi
