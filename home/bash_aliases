@@ -1,10 +1,10 @@
 alias mv="mv -i"
 
-alias ..="cd .."        #go to parent dir
-alias ...="cd ../.."    #go to grandparent dir
-alias ---="cd -"        #go to previous dir
-alias l.='ls -dG .*'    #list hidden files
-alias ll='ls -alhG'     #extra info compared to "l"
-alias lld='ls -lUdG */' #list directories
+alias ..="cd .."		#go to parent dir
+alias ...="cd ../.."	#go to grandparent dir
+alias -- -="cd -"		#go to previous dir
+alias l.='ls -dG .*'	#list hidden files
+alias ll='ls -alhG'		#extra info compared to "l"
+alias lld='ls -lUdG */'	#list directories
 
 alias branch='git branch'
