@@ -1,0 +1,9 @@
+[user]
+	name = adius
+	email = mail@adriansieber.com
+[color]
+	ui = true
+[credential]
+	helper = osxkeychain
+[format]
+	pretty = oneline

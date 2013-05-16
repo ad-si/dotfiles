@@ -1,0 +1,19 @@
+#! /bin/bash
+
+srcdir="$1"
+destdir="$2"
+
+mkdir "$destdir"
+
+#find "$srcdir" -name "*.png" \
+#	-exec filename={} \; \
+#	-exec echo "convert {} -resize 200% -colorspace gray  +dither  -colors 2  -normalize "$destdir"/${filename##*/}" \;
+
+for a in $(find "$srcdir" -name '*.png')
+do
+	filename="$(basename $a)"
+
+        convert "$a" -resize 200%  -colorspace gray  +dither  -colors 2  -normalize "$destdir/${filename}"
+done
+
+

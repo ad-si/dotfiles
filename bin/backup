@@ -1,0 +1,39 @@
+#! /bin/bash
+
+backupdir=/Volumes/Backup
+
+paths=(
+	~/.ssh
+	~/Desktop
+	~/Documents
+	~/Library/Application\ Support/Bitcoin/wallet.dat
+	~/Library/Preferences/WebIde50
+	~/Library/Fonts
+	~/Library/Keychains
+	~/Movies
+	~/Music
+	~/Sites
+)
+
+if [ -d "$backupdir" ]
+then
+	echo "Started backup to $backupdir"
+else
+	echo "$backupdir is not a directory!"
+	exit 1;
+fi
+
+for a in "${paths[@]}"
+do
+	if   [ -d "$a" ]
+	then
+		echo "Backuping directory $a"
+		tar -czvf "$backupdir/$(date +%Y-%m-%d_%H-%M)_$(basename $a).tar.gz" -C "$(dirname $a)" "$(basename $a)"
+	elif [ -f "$a" ]
+	then
+		cp -v "$a" "$backupdir"
+	else
+		echo "$a is not valid";
+		exit 1;
+	fi
+done
