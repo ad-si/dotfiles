@@ -27,8 +27,7 @@ do
 	link "$dotfiles/$location" "$HOME/.$file"
 done
 
-# Mac OS X specific
-if [[ `uname` == 'Darwin' ]]
-then
-	#TODO
-fi
+# TODO: Mac OS X specific
+# if [[ `uname` == 'Darwin' ]]
+# then
+# fi
