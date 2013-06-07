@@ -1,0 +1,9 @@
+#! /bin/bash
+
+brew update
+brew upgrade
+
+npm -g update
+
+rvm get latest
+gem update
