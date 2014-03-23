@@ -19,12 +19,12 @@ link() {
 	ln -s "$from" "$to"
 }
 
-for location in home/*
+for location in $dotfiles/home/*
 do
 	file="${location##*/}"
 	file="${file%.*}"
 	
-	link "$dotfiles/$location" "$HOME/.$file"
+	link "$location" "$HOME/.$file"
 done
 
 # TODO: Mac OS X specific

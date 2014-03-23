@@ -15,7 +15,14 @@ bash bin/symlinkDotfiles.sh
 if [[ $(uname) == "Darwin" ]]
 then
 	#Homebrew
-	bash homebrew/setup.sh
+	bash bin/setupHomebrew.sh
 
 	#TODO: Tweak OS X
+	#defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+	#defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+	#defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+	#defaults write com.apple.screencapture disable-shadow -bool true
+	#defaults write com.apple.screencapture location /Users/adrian/Desktop/Screenshots
+	#defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
+
 fi

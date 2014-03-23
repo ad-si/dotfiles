@@ -1,0 +1,8 @@
+#! /bin/bash
+
+find . -name "*.png" \
+	-exec convert {} -trim {} \; \
+	-exec optipng -silent {} \; \
+	-exec printf "." \;
+
+printf "\n"

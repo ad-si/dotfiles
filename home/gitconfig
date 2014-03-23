@@ -7,3 +7,7 @@
 	helper = osxkeychain
 [format]
 	pretty = oneline
+[core]
+	excludesfile = /Users/adrian/.gitignore
+[alias]
+	amend = commit --amend

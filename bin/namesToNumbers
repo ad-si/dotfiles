@@ -1,0 +1,10 @@
+#! /bin/bash
+
+counter=1
+
+for a in $(ls)
+do 	
+	mv $a $counter.png
+	counter=$((counter + 1))
+done
+

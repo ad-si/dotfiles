@@ -7,5 +7,5 @@
 /node_modules
 /npm-debug.log
 
-# Webstorm
+# IntelliJ
 .idea

@@ -1,11 +1,8 @@
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-# highlight $HOST:$PWD prompt
+# Highlight $HOST:$PWD prompt
 PS1='\[\e[1m\]\h:\w\$\[\e[0m\] '
 #export PS1='\e[0:36m\w/\e[m \e[0:33m`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`\e[m'
 
-# Tell less not to beep and also display colours.
+# Tell less not to beep and also display colors
 # Also don't wrap lines, as less supports horizontal scolling
 export LESS="-QRS"
 
@@ -19,10 +16,4 @@ then
     . ~/.bash_aliases
 fi
 
-PATH=/usr/local/sbin:$PATH
-
-# RVM executables
-PATH=$PATH:$HOME/.rvm/bin
-
-# NPM executables
-PATH=/usr/local/share/npm/bin:$PATH
+export PATH=/usr/local/sbin:$PATH

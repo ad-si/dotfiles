@@ -1,0 +1,7 @@
+export DIR_stegherr="$HOME/Sites/stegherr"
+export DIR_heinz="$HOME/Sites/heinz"
+export DIR_dotfiles="$HOME/dotfiles"
+export DIR_brands="$HOME/Sites/brands"
+export DIR_shaven="$HOME/Sites/shaven"
+export DIR_fakesome="$HOME/Sites/fakesome"
+export DIR_biwebsite="$HOME/Sites/biwebsite"

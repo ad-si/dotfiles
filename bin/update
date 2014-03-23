@@ -5,5 +5,5 @@ brew upgrade
 
 npm -g update
 
-rvm get latest
+rvm get stable
 gem update
