@@ -5,6 +5,7 @@ dotfiles="$HOME/dotfiles"
 if [[ -d "$dotfiles" ]]
 then
 	echo "Symlinking dotfiles from $dotfiles"
+    echo "Linking:"
 else
 	echo "$dotfiles does not exist"
 	exit 1
@@ -14,7 +15,7 @@ link() {
 	from="$1"
 	to="$2"
 
-	echo "Linking $from to $to"
+	echo "$from => $to"
 	rm -f "$to"
 	ln -s "$from" "$to"
 }

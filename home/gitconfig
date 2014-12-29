@@ -9,5 +9,18 @@
 	pretty = oneline
 [core]
 	excludesfile = /Users/adrian/.gitignore
+	ignorecase = false
+	pager = sed 's/\t/    /g' | less
 [alias]
 	amend = commit --amend
+	d = diff --color-words
+	full = log --format=full
+	fuller = log --format=fuller
+[push]
+	default = simple
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.0/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

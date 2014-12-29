@@ -3,7 +3,14 @@
 brew update
 brew upgrade
 
+for program in $(brew cask list)
+do
+	brew cask install $program
+done
+
+npm install -g npm
 npm -g update
 
-rvm get stable
 gem update
+
+tldr --update

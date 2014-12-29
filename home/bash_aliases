@@ -1,18 +1,25 @@
 alias mv="mv -i"
 
-alias ..="cd .."			#go to parent dir
-alias ...="cd ../.."		#go to grandparent dir
-alias l.='ls -dG .*'		#list hidden files
+alias ..="cd .."		#go to parent dir
+alias ...="cd ../.."	#go to grandparent dir
+alias l.='ls -dG .*'	#list hidden files
 alias ll='ls -alhG'		#extra info compared to "l"
 alias lld='ls -lUdG */'	#list directories
+alias copy='pbcopy'
+alias clipboard='pbpaste'
 
 alias branch='git branch'
 alias pull='git pull'
 alias push='git push'
 alias commit='git commit'
+alias status='git status'
 
-alias ij='open -a "IntelliJ IDEA 13"'
+alias ij='open -a "IntelliJ IDEA 14"'
 alias chrome='open -a "Google Chrome"'
 alias handbrake='open -a "HandBrake"'
+alias firefox='open -a "Firefox"'
 
 alias dropbox='~/Sites/Dropbox-Uploader/dropbox_uploader.sh'
+alias dark='screenbrightness 0'
+alias bright='screenbrightness 1'
+alias server='chrome http://localhost:8000 && python -m SimpleHTTPServer'

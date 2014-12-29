@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-find . -iregex '.*\.jpe*g' \
+find . -iregex '.*\.jpe?g' \
 	-exec jpegtran -optimize -outfile {} {} \; \
 	-exec printf "." \;
 

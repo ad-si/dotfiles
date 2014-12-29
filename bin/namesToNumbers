@@ -3,8 +3,9 @@
 counter=1
 
 for a in $(ls)
-do 	
-	mv $a $counter.png
+do
+    #echo "$a" $counter
+	mv "$a" $counter.png
 	counter=$((counter + 1))
 done
 

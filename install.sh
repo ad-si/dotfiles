@@ -18,11 +18,14 @@ then
 	bash bin/setupHomebrew.sh
 
 	#TODO: Tweak OS X
+	#defaults write com.apple.finder QLEnableTextSelection -bool true
 	#defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 	#defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 	#defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 	#defaults write com.apple.screencapture disable-shadow -bool true
 	#defaults write com.apple.screencapture location /Users/adrian/Desktop/Screenshots
 	#defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
+	
+	#killall Finder
 
 fi

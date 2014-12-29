@@ -6,7 +6,7 @@ which -s brew
 if [[ $? != 0 ]]
 then
 	echo 'Installing Homebrew…'
-	ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 fi
 
 #stop on error
@@ -55,24 +55,50 @@ echo "Install casks …"
 
 casks=(
 	alfred
+	#arduino
 	#atom
+	#automap-server MISSING
+	betterzipql		# Preview archives
 	blender
+	#calibre
 	cheatsheet
+	#cloudcompare MISSING
+	#dedrm MISSING
+	#electrum
+    #filezilla
 	firefox
+	#flux
+	fritzing
 	gimp
-	handbrake
 	google-chrome
-	iterm2
+	handbrake
+	#ichm
 	inkscape
+	iterm2
+	#kindle
+	#librecad
 	libreoffice
+	#mongohub
 	musescore
 	onyx
 	opera
+	qlstephen		# Preview plain text files without a file extension. Example: README, CHANGELOG, etc.
+	#quicksilver
 	shiftit
+	silverlight
+	#sketchup
+	#skype
+	#slic3r MISSING
+	#squeak MISSING
+	#sourcetree
+	#speedcrunch		# Calculator
 	spotify
 	textmate
-	tunnelblick
+	#tunnelblick BUGGY
+	#universal-control MISSING
+	#virtualbox
 	vlc
+	#vmware-fusion
 	xquartz
 )
 

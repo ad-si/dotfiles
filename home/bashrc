@@ -1,12 +1,16 @@
+export PATH="~/bin:$PATH"
 export PATH="$HOME/dotfiles/bin:$PATH"
+export PATH="/usr/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
-export PATH="$PATH:~/bin"
+export PATH="/usr/local/sbin:$PATH"
 
-# Add RVM to PATH for scripting
-export PATH=$PATH:$HOME/.rvm/bin
+# PHP 5.6
+export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 
 # NPM executables
 export PATH=/usr/local/share/npm/bin:$PATH
+
+export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Colors for Man Pages displayed with "Less"
 export LESS_TERMCAP_mb=$'\E[01;31m'         # begin blinking
@@ -20,5 +24,5 @@ export LESS_TERMCAP_us=$'\E[01;38;5;209m'   # begin underline
 # Bash bookmarks
 source ~/.local/bin/bashmarks.sh
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# 256 colors
+export TERM=xterm-256color

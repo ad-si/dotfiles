@@ -1,0 +1,54 @@
+#! /bin/bash
+
+rescale=true
+adaptiveThreshold=false
+
+srcdir="$1"
+destdir="$2"
+appendix=""
+
+if [[ "$srcdir" == "$destdir" ]]
+then
+    appendix="-binarized"
+fi
+
+mkdir "$destdir"
+    
+
+for a in $(find "$srcdir" -iname '*.png')
+do
+    baseName="$(basename $a .png)"
+    grayscalePath="$destdir/$baseName-gray.png"
+    binaryPath="$destdir/${baseName}-bw.png"
+    
+    printf "$a -> $grayscalePath "
+
+    if [[ "$rescale" == true ]]
+    then
+        convert "$a" \
+            -set colorspace sRGB \
+            -colorspace RGB \
+            -resize 200%  \
+            -colorspace sRGB \
+            -fx '(r+g+b)/3' \
+            "$grayscalePath"
+    else
+        convert "$a" \
+            -set colorspace sRGB \
+            -fx '(r+g+b)/3' \
+            "$grayscalePath"
+    fi
+    
+    echo "✔"
+    
+    
+    echo "$grayscalePath -> $binaryPath"
+
+    if [[ "$adaptiveThreshold" == true ]]
+    then
+        localthresh -n yes -r 80 "$grayscalePath" "$binaryPath"
+    else
+        otsuthresh "$grayscalePath" "$binaryPath"
+    fi
+    
+done

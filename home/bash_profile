@@ -1,2 +1,3 @@
-source ~/.bashrc
 source ~/.bash_login
+source ~/.bashrc
+source ~/.profile
