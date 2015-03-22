@@ -112,6 +112,3 @@ done
 
 # Remove outdated versions from the cellar
 brew cleanup
-
-# Add casks to alfred
-brew cask alfred link
