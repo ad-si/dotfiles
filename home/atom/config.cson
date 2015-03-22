@@ -1,0 +1,69 @@
+"*":
+  "exception-reporting":
+    userId: "ffe9d9ed-4665-9a32-2c23-b147ec4d9150"
+  "release-notes":
+    viewedVersion: "0.95.0"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "9052dee97f95990b0608d5c4e0b738922c76d7bf"
+  editor:
+    fontFamily: "Source Code Pro"
+    fontSize: 11
+    showIndentGuide: true
+    autoIndentOnPaste: false
+    tabLength: 4
+    softTabs: true
+    invisibles: {}
+  core:
+    disabledPackages: [
+      "language-smalltalk"
+      "terminal"
+      "atom-lint"
+      "terminal-panel"
+    ]
+  autosave:
+    enabled: true
+  "markdown-preview":
+    breakOnSingleNewline: true
+  linter:
+    lintDebug: true
+    statusBar: "Show error if the cursor is in range"
+  "atom-lint": {}
+  jsformat:
+    indent_with_tabs: true
+    eval_code: true
+  "autocomplete-plus": {}
+  "linter-jscs": {}
+  "terminal-panel": {}
+  "git-log":
+    fontScale: 0.6
+  "linter-coffeelint":
+    no_tabs: "ignore"
+  "tabs-to-spaces":
+    onSave: "tabify"
+  Zen: {}
+".js.source":
+  editor:
+    tabLength: 4
+".source.yaml":
+  editor:
+    autoIndentOnPaste: true
+    softWrap: false
+    tabLength: 2
+".jade.source":
+  editor:
+    autoIndent: true
+    showInvisibles: true
+    tabLength: 2
+".pyjade.source":
+  editor:
+    autoIndent: true
+    tabLength: 2
+".coffee.source":
+  editor:
+    autoIndent: true
+    tabLength: 4
+    softWrap: true
+"file-types":
+  jscsrc: "source.json"
