@@ -1,5 +1,5 @@
 [user]
-	name = adius
+	name = Adrian Sieber
 	email = mail@adriansieber.com
 [color]
 	ui = true
@@ -19,8 +19,24 @@
 [push]
 	default = simple
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	cmd = " "
 	path = 
 [mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.0/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[gui]
+	fontdiff = -family \"Source Code Pro\" -size 11 -weight normal -slant roman -underline 0 -overstrike 0
+	commitmsgwidth = 50
+	warndetachedcommit = true
+	diffopts = --color-words
+	newbranchtemplate = feature/
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[github]
+	user = adius
+[ghi]
+	token = !security find-internet-password -a  -s github.com -l 'ghi token' -w
+[merge]
+	conflictstyle = diff3

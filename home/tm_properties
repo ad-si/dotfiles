@@ -1,0 +1,147 @@
+fontName         = SourceCodePro-Regular
+fontSize         = 11
+lineEndings      = '\n'
+showInvisibles   = false
+showWrapColumn   = true
+softTabs         = true
+softWrap         = true
+spellChecking    = true
+spellingLanguage = de
+tabSize          = 4
+wrapColumn       = 80
+
+[ *.conf ]
+fileType         = source.nginx
+
+[ *.conf.default ]
+fileType         = source.nginx
+
+[ *.js ]
+fileType         = source.js
+
+[ *.md ]
+fileType         = text.html.markdown
+
+[ *.out ]
+fileType         = text.plain
+
+[ *.pl ]
+fileType         = source.prolog
+
+[ *.scad ]
+fileType         = source.scad
+
+[ *.sco ]
+fileType         = text.plain
+
+[ *.sh ]
+fileType         = source.shell
+
+[ *.st ]
+fileType         = source.smalltalk
+
+[ *.styl ]
+fileType         = source.stylus
+
+[ *.svg ]
+fileType         = text.xml.svg
+
+[ *.txt ]
+fileType         = source.c
+
+[ *.types ]
+fileType         = source.nginx
+
+[ *.types.default ]
+fileType         = text.plain
+
+[ *.vmx ]
+fileType         = text.plain
+
+
+[ searchAndReplace ]
+fileType         = source.js
+
+[ source ]
+showInvisibles   = false
+softTabs         = true
+softWrap         = false
+tabSize          = 4
+
+[ source.c ]
+showInvisibles   = false
+softWrap         = false
+
+[ source.c++ ]
+showInvisibles   = false
+softTabs         = true
+softWrap         = false
+tabSize          = 4
+
+[ source.css ]
+showInvisibles   = false
+
+[ source.java ]
+showInvisibles   = false
+
+[ source.js ]
+showInvisibles   = false
+
+[ source.nginx ]
+softTabs         = true
+
+[ source.scad ]
+showInvisibles   = false
+tabSize          = 4
+
+[ source.shell ]
+showInvisibles   = false
+softTabs         = true
+
+[ source.yaml ]
+showInvisibles   = true
+softTabs         = true
+tabSize          = 2
+
+[ text ]
+showInvisibles   = false
+softTabs         = false
+spellChecking    = true
+tabSize          = 4
+
+[ text.html ]
+showInvisibles   = false
+softWrap         = true
+spellChecking    = true
+tabSize          = 4
+
+[ text.html.basic ]
+showInvisibles   = false
+
+[ text.html.markdown ]
+showInvisibles   = true
+softWrap         = true
+spellChecking    = true
+tabSize          = 4
+
+[ text.plain ]
+showInvisibles   = true
+tabSize          = 4
+
+[ text.tabular ]
+showInvisibles   = false
+softTabs         = false
+tabSize          = 4
+
+[ text.tabular.tsv ]
+showInvisibles   = false
+softTabs         = false
+tabSize          = 4
+
+[ text.xml ]
+showInvisibles   = true
+softWrap         = false
+
+[ text.xml.svg ]
+showInvisibles   = true
+softWrap         = false

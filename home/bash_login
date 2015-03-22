@@ -9,9 +9,3 @@ export LESS="-QRS"
 # Adjust the less highlight colors
 export LESS_TERMCAP_so="$(printf 'rev\nbold\nsetaf 3\n' | tput -S)"
 export LESS_TERMCAP_se="$(tput sgr0)"
-
-# Include aliases
-if [ -f ~/.bash_aliases ]
-then
-    . ~/.bash_aliases
-fi
