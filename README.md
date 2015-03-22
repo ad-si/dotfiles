@@ -2,7 +2,9 @@
 
 Installation:
 
-`curl --silent https://raw.github.com/adius/dotfiles/master/install.sh | bash`
+```bash
+curl --silent https://raw.githubusercontent.com/adius/dotfiles/master/install.sh | bash
+```
 
 
 ## Structure
