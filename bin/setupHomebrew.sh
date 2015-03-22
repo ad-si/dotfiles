@@ -75,6 +75,10 @@ casks=(
 	google-chrome
 	handbrake
 	#ichm
+
+    caskroom/homebrew-versions/java6
+    intellij-idea
+
 	iterm2
 	#kindle
 	#librecad
@@ -101,7 +105,7 @@ casks=(
 	vlc
 	#vmware-fusion
 	xquartz
-    
+
     # XQuartz dependent casks:
 	inkscape
 )
