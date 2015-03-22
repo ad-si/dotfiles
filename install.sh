@@ -69,3 +69,6 @@ then
 
     killall Finder
 fi
+
+echo "Setup atom editor"
+./bin/setupAtom
