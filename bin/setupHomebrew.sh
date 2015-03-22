@@ -74,7 +74,6 @@ casks=(
 	google-chrome
 	handbrake
 	#ichm
-	inkscape
 	iterm2
 	#kindle
 	#librecad
@@ -101,6 +100,9 @@ casks=(
 	vlc
 	#vmware-fusion
 	xquartz
+    
+    # XQuartz dependent casks:
+	inkscape
 )
 
 for cask in ${casks[@]}
