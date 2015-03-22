@@ -63,6 +63,7 @@ casks=(
 	blender
 	#calibre
 	cheatsheet
+    chromium
 	#cloudcompare MISSING
 	#dedrm MISSING
 	electrum
