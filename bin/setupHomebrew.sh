@@ -22,7 +22,7 @@ brew upgrade
 
 # Install GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
-echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
+# echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 brew install findutils
@@ -56,7 +56,7 @@ echo "Install casks …"
 casks=(
 	alfred
 	#arduino
-	#atom
+	atom
 	#automap-server MISSING
 	betterzipql		# Preview archives
 	blender
@@ -64,11 +64,11 @@ casks=(
 	cheatsheet
 	#cloudcompare MISSING
 	#dedrm MISSING
-	#electrum
+	electrum
     #filezilla
 	firefox
 	#flux
-	fritzing
+	#fritzing
 	gimp
 	google-chrome
 	handbrake
@@ -80,17 +80,17 @@ casks=(
 	libreoffice
 	#mongohub
 	musescore
-	onyx
-	opera
-	qlstephen		# Preview plain text files without a file extension. Example: README, CHANGELOG, etc.
+	#onyx
+	#opera
+	qlstephen		# Preview plain text files without a file extension
 	#quicksilver
 	shiftit
 	silverlight
 	#sketchup
 	#skype
-	#slic3r
+	slic3r
 	#squeak MISSING
-	#sourcetree
+	sourcetree
 	#speedcrunch		# Calculator
 	spotify
 	textmate
@@ -110,5 +110,5 @@ done
 # Remove outdated versions from the cellar
 brew cleanup
 
-# Add casks to alfred TODO: Move to another file
+# Add casks to alfred
 brew cask alfred link
