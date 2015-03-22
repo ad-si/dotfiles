@@ -14,7 +14,7 @@ bash bin/symlinkDotfiles.sh
 # Mac OS X specific Code
 if [[ $(uname) == "Darwin" ]]
 then
-	#Homebrew
+	# Homebrew
 	bash bin/setupHomebrew.sh
     
     # TODO:
@@ -22,27 +22,49 @@ then
     # e.g. systemsetup -setnetworktimeserver us.pool.ntp.org
     
     
-    # Disable window animations
+    echo "Disable window animations"
     defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
     
-    # Disable auto-reopen for Quicktime
+    echo "Disable auto-reopen for Quicktime"
     defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
     
-    # Disable auto reopen for Preview
+    echo "Disable auto reopen for Preview"
     defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
     
-    # Remove dock slide-in delay
-    defaults write com.apple.Dock autohide-delay -float 0 && killall Dock
+    
+    echo "Configure the Dock"
+    
+    echo "Remove default app icons"
+    defaults write com.apple.dock persistent-apps -array
+    
+    echo "Set icon size to 48px"
+    defaults write com.apple.dock tilesize -int 48px
+    
+    echo "Remove slide-in delay"
+    defaults write com.apple.dock autohide-delay -float 0
+    
+    echo "Enable autohide"
+    defaults write com.apple.dock autohide -bool true
+    
+    echo "Set animation speed to 0.5s"
+    defaults write com.apple.dock autohide-time-modifier -float 0.5
+    
+    echo "Restart Dock"
+    killall Dock
    
-    # Disable startup chime
+   
+    echo "Disable startup chime"
     sudo nvram SystemAudioVolume=%80
     
 	defaults write com.apple.finder QLEnableTextSelection -bool true
 	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+    
 	defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 	defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+    
 	defaults write com.apple.screencapture disable-shadow -bool true
 	defaults write com.apple.screencapture location /Users/adrian/Desktop/Screenshots
+    
 	defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
 	
     killall Finder
