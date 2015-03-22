@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# TODO: Check if `rename --nows *.txt` is better
+
 for i in *\ *;
 do
 	mv "$i" "${i// /_}";

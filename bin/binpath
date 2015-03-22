@@ -1,0 +1,7 @@
+#! /bin/bash
+
+binPath=$(which "$1")
+binDirName=$(dirname "$binPath")
+linkPath=$(readlink "$binPath")
+
+echo "$binDirName${linkPath#..}"

@@ -8,9 +8,12 @@ do
 	brew cask install $program
 done
 
-npm install -g npm
+npm install -g npm@latest
 npm -g update
+
+tldr --update
 
 gem update
 
-tldr --update
+softwareupdate -i -a
+

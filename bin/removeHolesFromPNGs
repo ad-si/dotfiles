@@ -1,0 +1,7 @@
+#! /bin/bash
+
+find . -name "*.png" \
+	-exec convert {} -morphology open diamond {} \; \
+	-exec printf "." \;
+
+printf "\n"

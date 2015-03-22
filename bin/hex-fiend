@@ -1,0 +1,3 @@
+#! /bin/sh
+
+open -a ~/Applications/Hex\ Fiend.app $1

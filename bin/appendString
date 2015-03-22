@@ -1,0 +1,12 @@
+#! /bin/bash
+
+if [ -z ${1+x} ] || [ "$1" == "" ]
+then
+    echo "appendString <string>"
+    exit 1
+fi
+
+for a in *
+do
+	mv "$a" "${a}$1"
+done

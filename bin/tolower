@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# TODO: Check if `rename -c *.txt` is better suited
+
 for i in *[A-Z]*
 do
 	mv "$i" "$(echo $i | tr '[:upper:]' '[:lower:]')"

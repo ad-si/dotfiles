@@ -88,7 +88,7 @@ casks=(
 	silverlight
 	#sketchup
 	#skype
-	#slic3r MISSING
+	#slic3r
 	#squeak MISSING
 	#sourcetree
 	#speedcrunch		# Calculator

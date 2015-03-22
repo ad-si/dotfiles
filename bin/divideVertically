@@ -1,0 +1,122 @@
+#!/bin/bash
+#
+# divide_vert_bg [options]  image  multi_image
+#
+# Divide (segment) an image with a known pure a background color horizontally
+# into rows of images alternating images of blank background color images, and
+# those with non-background colors (the interesting parts).
+#
+# Options...
+#    -i        Don't output (delete) the white gaps between the rows.
+#    -b color  Background color to use (defaults to top-left pixel color)
+#    -f fuzz   color fuzz factor (percentage)
+#
+# This script is a faster version of the "divide_vert" script but only works
+# with a single background color.
+#
+# Examples...
+#
+# Expand the row spacing of some text by 4 pixels (must be a multiple of two)
+#
+#  convert -size 50x caption:'This is a word wrapped line of text' miff:- |\
+#    divide_vert_bg - miff:- |\
+#      convert - -splice 0x2 -append  gap_expansion.png
+#
+# This will remove all gaps between lines of text...
+#
+#  convert -size 50x caption:'This is a word wrapped line of text' miff:- |\
+#    divide_vert_bg -i - miff:- |\
+#       convert - -append  gaps-removed.png
+#
+# Replace all gaps by a fixed amount (5 pixels),
+# though this is not a good idea for normal text images.
+#
+#  convert -size 50x caption:'This is a word wrapped line of text' miff:- |\
+#    divide_vert_bg -i - miff:- |\
+#      convert - -splice 0x5 -append \
+#              -gravity south -splice 0x5  gaps_replaced.png
+#
+###
+#
+# Anthony Thyssen    7 September 2010     A.Thyssen_AT_griffith.edu.au
+#
+PROGNAME=`type $0 | awk '{print $3}'`  # search for executable on path
+PROGDIR=`dirname $PROGNAME`            # extract directory of program
+PROGNAME=`basename $PROGNAME`          # base name of program
+Usage() {                              # output the script comments as docs
+  echo >&2 "$PROGNAME:" "$@"
+  sed >&2 -n '/^###/q; /^#/!q; s/^#//; s/^ //; 3s/^/Usage: /; 2,$ p' \
+          "$PROGDIR/$PROGNAME"
+  exit 10;
+}
+
+IGNORE_GAPS=''  # don't ignore gaps by default.
+coords=0,0;     # where to get background color from
+fuzz=0;         # how pure is the background color.
+
+while [  $# -gt 0 ]; do
+  case "$1" in
+  --help|--doc*) Usage ;;
+
+  -i) IGNORE_GAPS=true ;;      # do not output blank gap images.
+  -b) shift; bg_color=$1 ;;    # background_color
+  -f) shift; fuzz=$1 ;;        # fuzz factor
+
+  --) shift; break ;;    # end of user options
+  -)  break ;;           # STDIN end of user options
+  -*) Usage "Unknown option \"$1\"" ;;
+  *)  break ;;           # end of user options
+  esac
+  shift   # next option
+done
+
+[ $# -ne 2 ] && Usage "Invalid number of Arguments"
+
+input="$1"  # Read from this IM input file format, may be a pipe
+output="$2" # Write to this IM input file format, may be a pipe
+
+umask 77
+tmpdir=`mktemp -d "${TMPDIR:-/tmp}/$PROGNAME-XXXXXXXXXX"` ||
+  { echo >&2 "$PROGNAME: Unable to create temporary directory"; exit 10;}
+trap 'rm -rf "$tmpdir"' 0   # remove when finished (on end or exit)
+trap 'exit 2' 1 2 3 15
+
+fuzz=`echo "$fuzz" | tr -cd '0-9'`  # $remove any '%' leaving just numbers
+
+# ----------------------------------------------------------------------
+# The problem is we need to know the height of the image to scale it!
+# If it wasn't for this we would not need any temporary files at all.
+
+# Read input image, once only as it may be pipelines, and save a MPC copy of it.
+height=`convert "$input" -format '%h' -identify $tmpdir/original.mpc`
+
+if [ "X$bg_color" = 'X' ]; then
+  bgcolor=`convert $tmpdir/original.mpc -format "%[pixel:u.p{$coords}]" info:`
+fi
+
+# Replace given background color with none, and scale down to a single column
+convert $tmpdir/original.mpc \
+        -fuzz ${fuzz}% -fill none -draw "matte $coords replace" \
+        -scale 1x$height\! \
+        -alpha extract -depth 16 txt:- |
+
+# Then use "sed" to define each row as being 'gap' or 'nogap' segments.
+sed '1d; s/.*(    0,.*/gap/; s/.....*/nogap/;' |
+
+# Finally use "uniq" to collect the number of rows in each segment.
+uniq -c |
+
+#cat; exit 0;
+#wc; exit 0;  # debugging - check results of counts
+
+# Divide the image basied on the number of colors (or change in gap color)
+while   read height gap;   do
+  if [ "$gap" = "nogap" -o ! "$IGNORE_GAPS" ]; then
+    convert $tmpdir/original.mpc -crop 0x$height+0+$top +repage miff:-
+  fi
+  top=`expr $top + $height`
+done |
+
+# Now ouput the pipeline of image segments the way the user wants it saved
+convert miff:- "$output"
+

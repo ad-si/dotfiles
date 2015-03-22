@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+user=$(whoami)
+ 
+soundFont="/Users/$user/dotfiles/misc/fluidR3.sf2"
+ 
+if [[ ! -f "$soundFont" ]]
+then
+    echo "Can't find the soundfont: $soundFont"
+    exit 1
+fi
+ 
+ 
+if [ "$#" -eq 0 ]
+then
+    echo "Usage: midi2mp3 <midi-file>"
+    exit 0
+else
+    filename="$1"
+    waveFile="${filename%.*}.wav"
+    mp3File="${filename%.*}.mp3"
+
+    fluidsynth \
+        --audio-file-type wav \
+        --gain 1 \
+        --fast-render "$waveFile" \
+        "$soundFont" \
+        "$filename"
+fi
+
+# Timidity
+# timidity <input-midi> -Ow -o <output-wave>
