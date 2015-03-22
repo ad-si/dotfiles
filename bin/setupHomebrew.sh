@@ -42,6 +42,7 @@ brews=(
 	node
 	optipng
 	tree
+    caskroom/cask/brew-cask
 )
 
 for brew in ${brews[@]}
