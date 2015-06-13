@@ -36,13 +36,17 @@ brew install bash
 
 # Miscellaneous
 brews=(
+	caskroom/cask/brew-cask
+	fdupes
 	git
+	git-extras
+	httpie
 	imagemagick
 	mongodb
 	node
 	optipng
 	tree
-    caskroom/cask/brew-cask
+	z
 )
 
 for brew in ${brews[@]}
