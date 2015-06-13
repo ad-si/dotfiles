@@ -17,5 +17,7 @@ tldr --update
 
 gem update
 
+pip install --upgrade pip
+
 softwareupdate -i -a
 
