@@ -1,23 +1,46 @@
-#! /bin/bash
+#! /usr/bin/env bash
+
+echo -e "===== Update Brew =====\n"
 
 brew update
 brew upgrade --all
+
+
+echo -e "\n\n===== Update Brew Cask =====\n"
 
 for program in $(brew cask list)
 do
 	brew cask install $program
 done
 
+
+echo -e "\n\n===== Update Npm =====\n"
+
 npm install -g npm@latest
 npm -g update
 
+
+echo -e "\n\n===== Update Apm =====\n"
+
 apm -c false update
+
+
+echo -e "\n\n===== Update Tldr =====\n"
 
 tldr --update
 
+
+echo -e "\n\n===== Update Gems =====\n"
+
 gem update
 
+
+echo -e "\n\n===== Update Pip =====\n"
+
 pip install --upgrade pip
+
+
+echo -e "\n\n===== Update Mac OS =====\n"
 
 softwareupdate -i -a
 
