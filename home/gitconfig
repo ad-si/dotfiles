@@ -26,13 +26,6 @@
 [push]
 	default = simple
 
-[difftool "sourcetree"]
-	cmd = " "
-	path = 
-[mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-
 [gui]
 	fontdiff = -family \"Source Code Pro\" -size 11 -weight normal -slant roman -underline 0 -overstrike 0
 	commitmsgwidth = 50
@@ -53,3 +46,4 @@
 
 [merge]
 	conflictstyle = diff3
+	tool = meld
