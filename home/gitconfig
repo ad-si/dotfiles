@@ -19,6 +19,7 @@
 [alias]
 	amend = commit --amend
 	d = diff --color-words
+	l = log --oneline
 	full = log --format=full
 	fuller = log --format=fuller
 
