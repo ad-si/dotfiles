@@ -1,10 +1,12 @@
 alias mv="mv -i"
 
-alias ..="cd .."		#go to parent dir
-alias ...="cd ../.."	#go to grandparent dir
-alias l.='ls -dG .*'	#list hidden files
-alias ll='ls -alhG'		#extra info compared to "l"
-alias lld='ls -lUdG */'	#list directories
+alias j="z"
+alias cd..="cd .."
+alias ..="cd .."		# go to parent dir
+alias ...="cd ../.."	# go to grandparent dir
+alias l.='ls -dG .*'	# list hidden files
+alias ll='ls -alhG'		# extra info compared to "l"
+alias lld='ls -lUdG */'	# list directories
 alias copy='pbcopy'
 alias clipboard='pbpaste'
 
@@ -23,3 +25,5 @@ alias dropbox='~/Sites/Dropbox-Uploader/dropbox_uploader.sh'
 alias dark='screenbrightness 0'
 alias bright='screenbrightness 1'
 alias server='chrome http://localhost:8000 && python -m SimpleHTTPServer'
+
+alias fuck='$(thefuck $(fc -ln -1))'
