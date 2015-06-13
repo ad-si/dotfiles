@@ -1,1 +1,2 @@
 syntax on
+:au FocusLost * :wa
