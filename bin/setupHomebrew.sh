@@ -67,21 +67,23 @@ casks=(
 	blender
 	#calibre
 	cheatsheet
-    chromium
+	chromium
 	#cloudcompare MISSING
 	#dedrm MISSING
+	duet
 	electrum
-    #filezilla
+	#filezilla
 	firefox
 	#flux
 	#fritzing
 	gimp
 	google-chrome
 	handbrake
+	hex-fiend
 	#ichm
 
-    caskroom/homebrew-versions/java6
-    intellij-idea
+	#caskroom/homebrew-versions/java6
+	#intellij-idea
 
 	iterm2
 	#kindle
@@ -110,7 +112,7 @@ casks=(
 	#vmware-fusion
 	xquartz
 
-    # XQuartz dependent casks:
+	# XQuartz dependent casks:
 	inkscape
 )
 
