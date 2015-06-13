@@ -11,6 +11,8 @@ done
 npm install -g npm@latest
 npm -g update
 
+apm -c false update
+
 tldr --update
 
 gem update
