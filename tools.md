@@ -53,10 +53,12 @@
 - **comm** - Select or reject lines common to two files
 - `diff <(xxd b1) <(xxd b2)`
 
+
 ## File System
 
 - **rename** - Rename multiple files
 - **seq** - Print sequences of numbers
+- **mkfile** - Create one or more zero padded files
 
 
 ## Internet
@@ -92,6 +94,23 @@
 - **atom**
 - **mate**
 - **fc** - (fix command) Edit last command with vi.
+- expand - Expand tabs to spaces
+- unexpand - Expand spaces to tabs
+
+
+## Search
+
+- grep - file pattern searcher
+- ack - 
+- ag - Recursively search for PATTERN in PATH. Like grep or ack, but faster.
+
+
+## Jumper
+
+- fasd
+- autojump
+- z
+- v
 
 
 ### Spell Cheking
@@ -100,6 +119,9 @@
 - hunspell - Spell checker, stemmer and morphological analyzer
 
 
+### Weather
+
+- wego - Weather app with ascii art (github.com/schachmat/wego)
 ## Links
 
 - http://shell-fu.org - All those little command line goodies that you come across and then can never find again when you need 
