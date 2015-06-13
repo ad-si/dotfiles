@@ -3,6 +3,7 @@
 packages=(
 	AtLilyPond
 	Stylus
+	atom-terminal
 	autocomplete-emojis
 	autocomplete-paths
 	autocomplete-plus
@@ -28,7 +29,6 @@ packages=(
 	preview-plus
 	sort-lines
 	tabs-to-spaces
-	terminal
 	terminal-panel
 	travis-ci-status
 )
