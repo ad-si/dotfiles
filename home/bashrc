@@ -13,6 +13,9 @@ export PATH=/usr/local/share/npm/bin:$PATH
 # Postgres
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
+# Ruby Gems
+export PATH=$(brew --prefix ruby)/bin:$PATH
+
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 # Colors for Man Pages displayed with "Less"
@@ -24,23 +27,21 @@ export LESS_TERMCAP_so=$'\E[38;5;246m'      # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'             # end underline
 export LESS_TERMCAP_us=$'\E[01;38;5;209m'   # begin underline
 
-# Bash bookmarks
-source ~/.local/bin/bashmarks.sh
-
 # 256 colors
 export TERM=xterm-256color
 
 # Include aliases
 if [ -f ~/.bash_aliases ]
 then
-    . ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
-# Autojump - A cd command that learns
-[[ -s $(brew --prefix)/etc/autojump.sh ]] && . $(brew --prefix)/etc/autojump.sh
+# Z
+. $(brew --prefix)/etc/profile.d/z.sh
 
-# Z - Fork of autojump
-$(brew --prefix)/etc/profile.d/z.sh
-
+# NVM
 export NVM_DIR="/Users/adrian/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# Grep
+export GREP_OPTIONS='--color=always'

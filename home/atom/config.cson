@@ -1,26 +1,29 @@
 "*":
-  "exception-reporting":
-    userId: "ffe9d9ed-4665-9a32-2c23-b147ec4d9150"
-  "release-notes":
-    viewedVersion: "0.95.0"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "9052dee97f95990b0608d5c4e0b738922c76d7bf"
   editor:
     fontFamily: "Source Code Pro"
     fontSize: 11
-    showIndentGuide: true
     autoIndentOnPaste: false
     tabLength: 4
-    softTabs: true
+    softTabs: false
+    softWrap: false
     invisibles: {}
+    showInvisibles: true
   core:
     disabledPackages: [
       "language-smalltalk"
       "terminal"
       "atom-lint"
       "terminal-panel"
+      "vim-mode"
+      "merge-conflicts"
+      "AtLilyPond"
+    ]
+    excludeVcsIgnoredPaths: true
+    followSymlinks: true
+    projectHome: "~/Projects"
+    themes: [
+      "one-dark-ui"
+      "atom-dark-syntax"
     ]
   autosave:
     enabled: true
@@ -29,20 +32,26 @@
   linter:
     lintDebug: true
     statusBar: "Show error if the cursor is in range"
-  "atom-lint": {}
   jsformat:
     indent_with_tabs: true
     eval_code: true
-  "autocomplete-plus": {}
-  "linter-jscs": {}
-  "terminal-panel": {}
   "git-log":
     fontScale: 0.6
   "linter-coffeelint":
     no_tabs: "ignore"
-  "tabs-to-spaces":
-    onSave: "tabify"
-  Zen: {}
+  "exception-reporting":
+    userId: "e1f4ef15-b72f-d1f8-3af5-8d0a66844b85"
+  welcome:
+    showOnStartup: false
+  "atom-beautify":
+    _analyticsUserId: "aabf2a1d-5bc2-4d2d-b153-bcf8fc366e55"
+  "one-dark-ui": {}
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+".json.source":
+  editor:
+    tabLength: 2
+    autoIndentOnPaste: true
 ".js.source":
   editor:
     tabLength: 4

@@ -1,42 +1,54 @@
 [user]
 	name = Adrian Sieber
 	email = mail@adriansieber.com
+
 [color]
 	ui = true
+
 [credential]
 	helper = osxkeychain
+
 [format]
 	pretty = oneline
+
 [core]
 	excludesfile = /Users/adrian/.gitignore
 	ignorecase = false
 	pager = sed 's/\t/    /g' | less
+
 [alias]
 	amend = commit --amend
 	d = diff --color-words
+	l = log --oneline
 	full = log --format=full
 	fuller = log --format=fuller
+
 [push]
 	default = simple
-[difftool "sourcetree"]
-	cmd = " "
-	path = 
-[mergetool "sourcetree"]
-	cmd = /opt/homebrew-cask/Caskroom/sourcetree/2.0.5.2/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+
 [gui]
 	fontdiff = -family \"Source Code Pro\" -size 11 -weight normal -slant roman -underline 0 -overstrike 0
 	commitmsgwidth = 50
 	warndetachedcommit = true
 	diffopts = --color-words
 	newbranchtemplate = feature/
+
 [filter "hawser"]
 	clean = git hawser clean %f
 	smudge = git hawser smudge %f
 	required = true
+
 [github]
 	user = adius
+
 [ghi]
 	token = !security find-internet-password -a  -s github.com -l 'ghi token' -w
+
 [merge]
 	conflictstyle = diff3
+	tool = meld
+
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true

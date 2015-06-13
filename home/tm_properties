@@ -9,6 +9,9 @@ spellChecking    = true
 spellingLanguage = de
 tabSize          = 4
 wrapColumn       = 80
+include          = "{$include,.*}"
+exclude          = "{$exclude,.git}"
+saveOnBlur       = true
 
 [ *.conf ]
 fileType         = source.nginx

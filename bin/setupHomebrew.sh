@@ -6,7 +6,7 @@ which -s brew
 if [[ $? != 0 ]]
 then
 	echo 'Installing Homebrew…'
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Stop on error
@@ -36,13 +36,17 @@ brew install bash
 
 # Miscellaneous
 brews=(
+	caskroom/cask/brew-cask
+	fdupes
 	git
+	git-extras
+	httpie
 	imagemagick
 	mongodb
 	node
 	optipng
 	tree
-    caskroom/cask/brew-cask
+	z
 )
 
 for brew in ${brews[@]}
@@ -63,18 +67,24 @@ casks=(
 	blender
 	#calibre
 	cheatsheet
-    chromium
+	chromium
 	#cloudcompare MISSING
 	#dedrm MISSING
+	duet
 	electrum
-    #filezilla
+	#filezilla
 	firefox
 	#flux
 	#fritzing
 	gimp
 	google-chrome
 	handbrake
+	hex-fiend
 	#ichm
+
+	#caskroom/homebrew-versions/java6
+	#intellij-idea
+
 	iterm2
 	#kindle
 	#librecad
@@ -101,8 +111,8 @@ casks=(
 	vlc
 	#vmware-fusion
 	xquartz
-    
-    # XQuartz dependent casks:
+
+	# XQuartz dependent casks:
 	inkscape
 )
 
