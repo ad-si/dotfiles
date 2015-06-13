@@ -56,6 +56,9 @@ then
     echo "Disable startup chime"
     sudo nvram SystemAudioVolume=%80
     
+    echo "Set default theme to dark (Restart your Mac to see changes)"
+    sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
+    
 	defaults write com.apple.finder QLEnableTextSelection -bool true
 	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
     
