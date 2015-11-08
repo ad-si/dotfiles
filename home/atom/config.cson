@@ -1,13 +1,14 @@
 "*":
   editor:
     fontFamily: "Source Code Pro"
-    fontSize: 11
-    autoIndentOnPaste: false
     tabLength: 4
     softTabs: false
-    softWrap: false
+    softWrap: true
     invisibles: {}
     showInvisibles: true
+    fontSize: 12
+    softWrapAtPreferredLineLength: true
+    autoIndentOnPaste: false
   core:
     disabledPackages: [
       "language-smalltalk"
@@ -15,10 +16,24 @@
       "atom-lint"
       "terminal-panel"
       "vim-mode"
-      "merge-conflicts"
       "AtLilyPond"
+      "linter-chktex"
+      "travis-ci-status"
+      "term2"
+      "deprecation-cop"
+      "about"
+      "background-tips"
+      "metrics"
+      "package-generator"
+      "release-notes"
+      "styleguide"
+      "update-package-dependencies"
+      "welcome"
+      "emmet"
+      "linter"
+      "npm-docs"
+      "coffee-compiler"
     ]
-    excludeVcsIgnoredPaths: true
     followSymlinks: true
     projectHome: "~/Projects"
     themes: [
@@ -30,8 +45,12 @@
   "markdown-preview":
     breakOnSingleNewline: true
   linter:
-    lintDebug: true
+    lintDebug: false
     statusBar: "Show error if the cursor is in range"
+    showErrorPanel: false
+    showErrorTabProject: false
+    showErrorTabFile: false
+    statusIconScope: "File"
   jsformat:
     indent_with_tabs: true
     eval_code: true
@@ -48,6 +67,53 @@
   "one-dark-ui": {}
   "linter-jshint":
     disableWhenNoJshintrcFileInPath: true
+    lintInlineJavaScript: true
+  "linter-jscs":
+    onlyConfig: true
+    verbose: true
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  latex:
+    alwaysOpenResultInAtom: true
+    enableShellEscape: true
+  "linter-chktex": {}
+  term2: {}
+  emmet: {}
+  "one-light-ui": {}
+  Hydrogen: {}
+  "preview-plus":
+    htmlp: true
+".latex.log.text":
+  editor:
+    softWrap: true
+".latex.tex.text":
+  editor:
+    softWrap: true
+".bibtex.text":
+  editor:
+    softWrap: true
+".coffee.source":
+  editor:
+    autoIndent: true
+    tabLength: 4
+    softWrap: true
+".pyjade.source":
+  editor:
+    autoIndent: true
+    tabLength: 2
+".jade.source":
+  editor:
+    autoIndent: true
+    showInvisibles: true
+    tabLength: 2
+".source.yaml":
+  editor:
+    autoIndentOnPaste: true
+    softWrap: false
+    tabLength: 2
+    softTabs: true
 ".json.source":
   editor:
     tabLength: 2
@@ -55,24 +121,5 @@
 ".js.source":
   editor:
     tabLength: 4
-".source.yaml":
-  editor:
-    autoIndentOnPaste: true
-    softWrap: false
-    tabLength: 2
-".jade.source":
-  editor:
-    autoIndent: true
-    showInvisibles: true
-    tabLength: 2
-".pyjade.source":
-  editor:
-    autoIndent: true
-    tabLength: 2
-".coffee.source":
-  editor:
-    autoIndent: true
-    tabLength: 4
-    softWrap: true
 "file-types":
   jscsrc: "source.json"
