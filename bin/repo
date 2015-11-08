@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+set -e
+
+mkdir "$1"
+cd "$1"
+touch readme.md
+git init
+printf "# ${1^}\n\n" > readme.md
+atom -n readme.md:3
