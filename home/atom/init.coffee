@@ -12,3 +12,13 @@
 #   editor = editorView.getEditor()
 #   if path.extname(editor.getPath()) is '.md'
 #     editor.setSoftWrap(true)
+
+
+atom.commands.add 'atom-text-editor', 'custom:now', ->
+  if editor = atom.workspace.getActiveTextEditor()
+    now = new Date()
+        .toISOString()
+        .replace(/.\d{3}Z$/, '')
+        .replace('T', ' ')
+
+    editor.insertText(now)
