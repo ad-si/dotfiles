@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+thefuck $(fc -ln -1)
