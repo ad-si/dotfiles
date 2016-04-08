@@ -1,3 +1,5 @@
 #! /bin/bash
 
-cat $HOME/dotfiles/tools.md
+filePath=$HOME/dotfiles/tools.md
+
+msee $filePath || hicat $filePath  || cat $filePath

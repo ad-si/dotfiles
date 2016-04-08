@@ -1,3 +1,4 @@
-#! /bin/sh
+#! /usr/bin/env sh
 
-~/Sites/tests/Dropbox-Uploader/dropbox_uploader.sh
+~/Projects/Dropbox-Uploader/dropbox_uploader.sh $1
+

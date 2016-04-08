@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+sourceDirectory=${1:-.}
+language=${2:-eng}
+
+for file in $(find "$sourceDirectory" -iname '*.png')
+do
+	tesseract "$file" "${file%.png}" -l "$language"
+done

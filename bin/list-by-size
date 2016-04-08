@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+gdu -s -h * | gsort -h -r

@@ -22,7 +22,7 @@ npm -g update
 
 echo -e "\n\n===== Update Apm =====\n"
 
-apm -c false update
+apm update --no-confirm
 
 
 echo -e "\n\n===== Update Tldr =====\n"

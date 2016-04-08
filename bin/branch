@@ -1,0 +1,3 @@
+#! /bin/branch
+
+git branch "$@"

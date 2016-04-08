@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+git log \
+	--decorate \
+	--date="short" \
+	--graph \
+	--pretty="format:%C(yellow)%h%C(reset) %ad%C(red)%d%C(reset) %C(bold normal)%s%C(reset)%C(cyan) [%cn]"

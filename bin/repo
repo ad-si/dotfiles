@@ -8,3 +8,5 @@ touch readme.md
 git init
 printf "# ${1^}\n\n" > readme.md
 atom -n readme.md:3
+
+set +e

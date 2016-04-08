@@ -1,18 +1,23 @@
 #! /bin/bash
 
-backupdir=/Volumes/Backup
+backupdir=/Volumes/Adrian\ 1\ TB
 
 paths=(
 	~/.ssh
+	~/Books
+	~/Contacts
 	~/Desktop
 	~/Documents
-	~/Library/Application\ Support/Bitcoin/wallet.dat
-	~/Library/Preferences/WebIde50
+	~/Events
 	~/Library/Fonts
 	~/Library/Keychains
 	~/Movies
 	~/Music
-	~/Sites
+	~/Photos
+	~/Pictures
+	~/Projects
+	~/Sheetmusic
+	~/Things
 )
 
 if [ -d "$backupdir" ]
@@ -23,13 +28,13 @@ else
 	exit 1;
 fi
 
-for a in "${paths[@]}"
+for directory in "${paths[@]}"
 do
-	if   [ -d "$a" ]
+	if [ -d "$directory" ]
 	then
-		echo "Backuping directory $a"
-		tar -czvf "$backupdir/$(date +%Y-%m-%d_%H-%M)_$(basename $a).tar.gz" -C "$(dirname $a)" "$(basename $a)"
-	elif [ -f "$a" ]
+		echo "Backuping directory $directory"
+		rsync -av "$directory" "$backupdir"
+	elif [ -f "$directory" ]
 	then
 		cp -v "$a" "$backupdir"
 	else

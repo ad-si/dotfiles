@@ -1,0 +1,4 @@
+#! /bin/bash
+
+vim ~/Notes/$(date -u "+%Y-%m-%dT%H:%M:%S").md
+
