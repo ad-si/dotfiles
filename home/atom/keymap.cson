@@ -3,3 +3,8 @@
 
 '.platform-darwin':
   'cmd-p': 'command-palette:toggle'
+
+  'cmd-k left':  'pane:split-left-and-move-active-item'
+  'cmd-k right': 'pane:split-right-and-move-active-item'
+  'cmd-k up':    'pane:split-up-and-move-active-item'
+  'cmd-k down':  'pane:split-down-and-move-active-item'
