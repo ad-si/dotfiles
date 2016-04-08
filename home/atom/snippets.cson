@@ -2,5 +2,71 @@
 
 '.source.js':
   'console.log':
-    'prefix': 'log'
-    'body': 'console.log(${1:\'test\'})$2'
+    prefix: 'log'
+    body: 'console.log(${1:\'test\'})\n$2'
+
+  # Requires
+  'require fs':
+    prefix: 'path'
+    body: 'const fs = require(\'fs\')\n$1'
+  'require path':
+    prefix: 'path'
+    body: 'const path = require(\'path\')\n$1'
+  'require assert':
+    prefix: 'assert'
+    body: 'const assert = require(\'assert\')\n$1'
+
+  import:
+    prefix: 'imp'
+    body: 'import $1 from \'$2\'\n$3'
+
+  'console.error':
+    prefix: 'error'
+    body: 'console.error(${1:error})\n$2'
+
+  require:
+    prefix: 'req'
+    body: 'const $1 = require(\'$2\')\n$3'
+
+  'use strict':
+    prefix: 'strict'
+    body: "'use strict'\n"
+
+  'console.inspect':
+    prefix: 'ins'
+    body: """
+    console.log(require(\'util\').inspect(
+    \t$1,
+    \t{depth: null, colors: true}
+    ))$2
+    """
+
+  'console.dir':
+    prefix: 'dir'
+    body: 'console.dir($1, {depth: null, colors: true})\n$2'
+
+  'arrow function':
+    prefix: 'af'
+    body: '(${1:argument}) => ${2:statement}'
+
+  'arrow function with body':
+    prefix: 'afb'
+    body: """
+    (${1:argument}) => {
+    \t${0}
+    }
+    """
+
+'.source.coffee':
+  'console.inspect':
+    prefix: 'ins'
+    body: """
+    console.log require(\'util\').inspect(
+    \t$1
+    \t{depth: null, colors: true}
+    )$2
+    """
+
+  'console.dir':
+    prefix: 'dir'
+    body: 'console.dir $1, depth: null, colors: true\n$2'
