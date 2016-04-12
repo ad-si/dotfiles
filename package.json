@@ -1,0 +1,22 @@
+{
+  "name": "dotfiles",
+  "version": "0.1.0",
+  "description": "My dotfiles, setup scripts and useful cli tools",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adius/dotfiles.git"
+  },
+  "keywords": [
+    "dotfiles"
+  ],
+  "author": "Adrian Sieber",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adius/dotfiles/issues"
+  },
+  "homepage": "https://github.com/adius/dotfiles#readme",
+  "dependencies": {
+    "csv": "^0.4.6",
+    "suncalc": "^1.7.0"
+  }
+}
