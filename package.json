@@ -1,7 +1,14 @@
 {
   "name": "dotfiles",
-  "version": "0.1.0",
   "description": "My dotfiles, setup scripts and useful cli tools",
+  "version": "0.1.0",
+  "scripts": {
+    "test": "eslint --ignore-path .gitignore ."
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "./node_modules/javascript-styleguide/.eslintrc.yaml"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adius/dotfiles.git"
@@ -24,6 +31,7 @@
     "user-home": "^2.0.0"
   },
   "devDependencies": {
-    "standard": "^6.0.8"
+    "eslint": "^2.9.0",
+    "javascript-styleguide": "^0.2.2"
   }
 }
