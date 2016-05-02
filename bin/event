@@ -1,0 +1,175 @@
+#! /usr/bin/env node
+
+'use strict'
+
+const path = require('path')
+
+const inquirer = require('inquirer')
+const fsp = require('fs-promise')
+const yaml = require('js-yaml')
+const userHome = require('user-home')
+
+const now = new Date()
+const startDate = new Date()
+startDate.setMinutes(0)
+
+const toIsoDate = date => date.toISOString().slice(0, 10)
+const toIsoTime = date => date.toISOString().slice(11, 16)
+const getDate = object => new Date(
+  object.year,
+  object.month,
+  object.day,
+  object.time.split(':')[0],
+  object.time.split(':')[1]
+)
+
+const validateYear = value => /\d{4}/.test(value)
+const validateMonth = value => /\d{1,2}/.test(value)
+const validateDay = value => /\d{1,2}/.test(value)
+const validateTime = value => /\d{2}:\d{2}/.test(value)
+
+const startTimeQuestions = [
+  {
+    type: 'input',
+    name: 'year',
+    message: 'Start Year',
+    default: now.getUTCFullYear(),
+    validate: validateYear,
+  },
+  {
+    type: 'input',
+    name: 'month',
+    message: 'Start Month',
+    default: now.getUTCMonth() + 1,
+    validate: validateMonth,
+  },
+  {
+    type: 'input',
+    name: 'day',
+    message: 'Start Day',
+    default: now.getUTCDate(),
+    validate: validateDay,
+  },
+  {
+    type: 'input',
+    name: 'time',
+    message: 'Start Time',
+    default: toIsoTime(startDate),
+    validate: validateTime,
+  },
+]
+
+const endTimeQuestions = [
+  {
+    type: 'input',
+    name: 'year',
+    message: 'End Year',
+    default: now.getUTCFullYear(),
+    validate: validateYear,
+  },
+  {
+    type: 'input',
+    name: 'month',
+    message: 'End Month',
+    default: now.getUTCMonth() + 1,
+    validate: validateMonth,
+  },
+  {
+    type: 'input',
+    name: 'day',
+    message: 'End Day',
+    default: now.getUTCDate(),
+    validate: validateDay,
+  },
+  {
+    type: 'input',
+    name: 'time',
+    message: 'End Time',
+    default: toIsoTime(now),
+    validate: validateTime,
+  },
+]
+
+const mainQuestions = [
+  {
+    type: 'list',
+    name: 'type',
+    message: 'Event Type',
+    choices: [
+      'Sleep',
+      'Nap',
+      'Meal',
+      'Oral Hygiene',
+      'Movie',
+      'TV Series',
+      'Meeting',
+    ],
+    default: 'Sleep',
+    filter: value => value.toLowerCase().replace(' ', '-'),
+  },
+  {
+    type: 'input',
+    name: 'title',
+    message: 'Event Title',
+    default: null,
+    when: answers => ['movie', 'tv-series'].includes(answers.type),
+  }
+]
+
+const results = {}
+
+function getFileName(object) {
+	const toIsoDateTime = date => date.toISOString().slice(0, 16)
+
+  const startDate = getDate(object.start)
+  const startTime = toIsoDateTime(startDate)
+
+  const endDate = getDate(object.end)
+  let endTime = toIsoDateTime(endDate)
+  let charsToSlice = 0
+
+  if (object.start.year === object.end.year) {
+  	charsToSlice += 5
+  	if (object.start.month === object.end.month) {
+    	charsToSlice += 3
+  		if (object.start.day === object.end.day) {
+      	charsToSlice += 2
+      }
+    }
+  }
+
+  if (startTime.endsWith(endTime)) {
+    throw new Error('Start and end moment must not be the same')
+  }
+
+  return `${startTime}--${endTime.slice(charsToSlice)}.yaml`
+}
+
+inquirer
+  .prompt(startTimeQuestions)
+  .then(startAnswers => {
+    // Months are indexed from 0 in JavaScript
+    startAnswers.month -= 1
+
+    results.start = startAnswers
+    return inquirer.prompt(endTimeQuestions)
+  })
+  .then(endAnswers => {
+    // Months are indexed from 0 in JavaScript
+    endAnswers.month -= 1
+
+    results.end = endAnswers
+    return inquirer.prompt(mainQuestions)
+  })
+  .then(answers => {
+    results.fileContent = answers
+    results.fileName = getFileName(results)
+    results.filePath = path.join(userHome, 'Events', results.fileName)
+
+    return fsp.writeFile(results.filePath, yaml.safeDump(answers))
+  })
+  .then(() => {
+    console.log(`✔︎ Successfully created event file ${results.filePath}`)
+    console.dir(results.fileContent, {depth: null, colors: true})
+  })
+  .catch(console.error)
