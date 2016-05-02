@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 
-'use strict'
-
 const path = require('path')
+const nativeConsole = require('console')
+const log = new nativeConsole.Console(process.stdout, process.stdin)
 
 const inquirer = require('inquirer')
 const fsp = require('fs-promise')
@@ -10,11 +10,12 @@ const yaml = require('js-yaml')
 const userHome = require('user-home')
 
 const now = new Date()
-const startDate = new Date()
-startDate.setMinutes(0)
+const startOfEvent = new Date()
+startOfEvent.setMinutes(0)
 
-const toIsoDate = date => date.toISOString().slice(0, 10)
-const toIsoTime = date => date.toISOString().slice(11, 16)
+const toIsoTime = date => date
+  .toISOString()
+  .slice(11, 16)
 const getDate = object => new Date(
   object.year,
   object.month,
@@ -54,7 +55,7 @@ const startTimeQuestions = [
     type: 'input',
     name: 'time',
     message: 'Start Time',
-    default: toIsoTime(startDate),
+    default: toIsoTime(startOfEvent),
     validate: validateTime,
   },
 ]
@@ -98,42 +99,70 @@ const mainQuestions = [
     choices: [
       'Sleep',
       'Nap',
-      'Meal',
+      'Breakfast',
+      'Lunch',
+      'Dinner',
+      'Snack',
       'Oral Hygiene',
       'Movie',
       'TV Series',
       'Meeting',
+      'Work',
+      'Physical Exercise',
     ],
     default: 'Sleep',
-    filter: value => value.toLowerCase().replace(' ', '-'),
+    filter: value => value
+      .toLowerCase()
+      .replace(' ', '-'),
   },
   {
+    when: answers => ['movie', 'tv-series'].includes(answers.type),
     type: 'input',
     name: 'title',
     message: 'Event Title',
-    default: null,
-    when: answers => ['movie', 'tv-series'].includes(answers.type),
-  }
+  },
+  {
+    when: answers => answers.type === 'work',
+    type: 'input',
+    name: 'project',
+    message: 'Project',
+  },
+  {
+    when: answers => answers.type === 'physical-exercise',
+    type: 'list',
+    name: 'subtype',
+    message: 'Subtype',
+    choices: [
+      'Jogging',
+      'Strength Training',
+      'Swimming',
+      'Football',
+      'Cycling',
+    ],
+    filter: value => value.toLowerCase(),
+  },
 ]
 
 const results = {}
 
-function getFileName(object) {
-	const toIsoDateTime = date => date.toISOString().slice(0, 16)
+function getFileName (object) {
+  const toIsoDateTime = date => date
+    .toISOString()
+    .slice(0, 16)
 
   const startDate = getDate(object.start)
   const startTime = toIsoDateTime(startDate)
 
   const endDate = getDate(object.end)
-  let endTime = toIsoDateTime(endDate)
+  const endTime = toIsoDateTime(endDate)
   let charsToSlice = 0
 
   if (object.start.year === object.end.year) {
-  	charsToSlice += 5
-  	if (object.start.month === object.end.month) {
-    	charsToSlice += 3
-  		if (object.start.day === object.end.day) {
-      	charsToSlice += 2
+    charsToSlice += 5
+    if (object.start.month === object.end.month) {
+      charsToSlice += 3
+      if (object.start.day === object.end.day) {
+        charsToSlice += 2
       }
     }
   }
@@ -169,7 +198,7 @@ inquirer
     return fsp.writeFile(results.filePath, yaml.safeDump(answers))
   })
   .then(() => {
-    console.log(`✔︎ Successfully created event file ${results.filePath}`)
-    console.dir(results.fileContent, {depth: null, colors: true})
+    log.info(`✔︎ Successfully created event file ${results.filePath}`)
+    log.dir(results.fileContent, {depth: null, colors: true})
   })
-  .catch(console.error)
+  .catch(log.error)
