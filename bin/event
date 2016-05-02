@@ -142,7 +142,7 @@ function getFileName(object) {
     throw new Error('Start and end moment must not be the same')
   }
 
-  return `${startTime}--${endTime.slice(charsToSlice)}.yaml`
+  return `${startTime}--${endTime.slice(charsToSlice)}.yaml`.replace(/:/g, '')
 }
 
 inquirer
