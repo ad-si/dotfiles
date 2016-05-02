@@ -25,7 +25,7 @@ then
 	echo "Started backup to $backupdir"
 else
 	echo "$backupdir is not a directory!"
-	exit 1;
+	exit 1
 fi
 
 for directory in "${paths[@]}"
@@ -38,7 +38,7 @@ do
 	then
 		cp -v "$a" "$backupdir"
 	else
-		echo "$a is not valid";
-		exit 1;
+		echo "$a is not valid"
+		exit 1
 	fi
 done

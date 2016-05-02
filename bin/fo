@@ -2,6 +2,8 @@
 
 IFS=$'\n'
 
+cd ~
+
 files=$(fzf-tmux --query="$1" --select-1 --exit-0)
 [[ -n "$files" ]] && open "${files[@]}"
 

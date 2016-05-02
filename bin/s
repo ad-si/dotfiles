@@ -1,4 +1,1 @@
-#! /usr/bin/env bash
-
-open https://google.com/search?q="$*"
-
+search-online
