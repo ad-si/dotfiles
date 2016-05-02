@@ -1,6 +1,7 @@
-home/atom/packages
-home/atom/storage
-home/atom/compile-cache
-home/atom/.node-gyp
-home/atom/.apm
-alfred
+/node_modules
+/home/atom/packages
+/home/atom/storage
+/home/atom/compile-cache
+/home/atom/.node-gyp
+/home/atom/.apm
+/alfred
