@@ -104,6 +104,7 @@ const mainQuestions = [
       'Dinner',
       'Snack',
       'Oral Hygiene',
+      'Shower',
       'Movie',
       'TV Series',
       'Meeting',
@@ -140,6 +141,13 @@ const mainQuestions = [
       'Cycling',
     ],
     filter: value => value.toLowerCase(),
+  },
+  {
+    when: answers =>
+      ['breakfast', 'lunch', 'dinner', 'snack'].includes(answers.type),
+    type: 'input',
+    name: 'items',
+    message: 'Items',
   },
 ]
 
