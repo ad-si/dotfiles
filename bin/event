@@ -117,10 +117,19 @@ const mainQuestions = [
       .replace(' ', '-'),
   },
   {
-    when: answers => ['movie', 'tv-series'].includes(answers.type),
+    when: answers => ['movie', 'tv-series', 'meeting'].includes(answers.type),
     type: 'input',
     name: 'title',
     message: 'Event Title',
+  },
+  {
+    when: answers => answers.type === 'meeting',
+    type: 'input',
+    name: 'with',
+    message: 'With',
+    filter: value => value
+      .split(',')
+      .map(item => item.trim()),
   },
   {
     when: answers => answers.type === 'work',
@@ -148,6 +157,9 @@ const mainQuestions = [
     type: 'input',
     name: 'items',
     message: 'Items',
+    filter: value => value
+      .split(',')
+      .map(item => item.trim()),
   },
 ]
 
