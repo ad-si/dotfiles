@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+
+separator='✔\n\n\n'
+
+echo '===== Cleanup brew ====='
+brew cleanup
+printf $separator
+
+echo '===== Cleanup brew cask ====='
+brew cask cleanup
+printf $separator
+
+echo '===== Clean npm cache ====='
+npm cache clean
+printf $separator
+
+echo '===== Empty trash ====='
+rm -rf ~/.Trash/*
+printf $separator
