@@ -1,3 +1,3 @@
-#! /bin/branch
+#! /usr/bin/env bash
 
-git branch "$@"
+git branch -vv "$@"
