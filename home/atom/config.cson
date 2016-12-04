@@ -1,22 +1,18 @@
 "*":
-  editor:
-    fontFamily: "Source Code Pro"
-    tabLength: 4
-    softTabs: false
-    softWrap: true
-    invisibles: {}
-    showInvisibles: true
-    fontSize: 12
-    softWrapAtPreferredLineLength: true
-    autoIndentOnPaste: false
+  Hydrogen: {}
+  "atom-beautify":
+    general:
+      _analyticsUserId: "aabf2a1d-5bc2-4d2d-b153-bcf8fc366e55"
+  autosave:
+    enabled: true
+  "browser-plus":
+    live: 0
+    node: true
   core:
     disabledPackages: [
       "language-smalltalk"
       "terminal"
       "atom-lint"
-      "terminal-panel"
-      "vim-mode"
-      "AtLilyPond"
       "linter-chktex"
       "travis-ci-status"
       "term2"
@@ -29,10 +25,24 @@
       "styleguide"
       "update-package-dependencies"
       "welcome"
-      "emmet"
-      "linter"
       "npm-docs"
       "coffee-compiler"
+      "vim-mode"
+      "terminal-plus"
+      "Hydrogen"
+      "js-refactor"
+      "markdown-preview"
+      "linter-jshint"
+      "linter-jscs"
+      "language-vue-component"
+      "standard-formatter"
+      "standardjs-snippets"
+      "preview-plus"
+      "tablr"
+      "linter-eslint"
+      "trailing-spaces"
+      "linter-js-standard"
+      "language-gfm"
     ]
     followSymlinks: true
     projectHome: "~/Projects"
@@ -40,85 +50,162 @@
       "one-dark-ui"
       "atom-dark-syntax"
     ]
-  autosave:
-    enabled: true
-  "markdown-preview":
-    breakOnSingleNewline: true
-  linter:
-    lintDebug: false
-    statusBar: "Show error if the cursor is in range"
-    showErrorPanel: false
-    showErrorTabProject: false
-    showErrorTabFile: false
-    statusIconScope: "File"
-  jsformat:
-    indent_with_tabs: true
-    eval_code: true
-  "git-log":
-    fontScale: 0.6
-  "linter-coffeelint":
-    no_tabs: "ignore"
+    useCustomTitleBar: true
+  "custom-title":
+    template: "<%= fileName %><% if (projectPath) { %> - <%= projectPath %><% } %> - Atom <%= atom.getVersion() %>"
+  editor:
+    autoIndentOnPaste: false
+    fontFamily: "Source Code Pro"
+    fontSize: 12
+    invisibles:
+      cr: " "
+      eol: " "
+      space: " "
+    showInvisibles: true
+    softWrap: true
+    tabLength: 4
+  emmet: {}
   "exception-reporting":
     userId: "e1f4ef15-b72f-d1f8-3af5-8d0a66844b85"
-  welcome:
-    showOnStartup: false
-  "atom-beautify":
-    _analyticsUserId: "aabf2a1d-5bc2-4d2d-b153-bcf8fc366e55"
-  "one-dark-ui": {}
-  "linter-jshint":
-    disableWhenNoJshintrcFileInPath: true
-    lintInlineJavaScript: true
-  "linter-jscs":
-    onlyConfig: true
-    verbose: true
-  "linter-eslint":
-    disableWhenNoEslintrcFileInPath: true
-  "tree-view":
-    hideVcsIgnoredFiles: true
+  "git-log":
+    fontScale: 0.6
+  "git-plus": {}
+  jsformat:
+    eval_code: true
+    indent_with_tabs: true
+  jumpy:
+    fontSize: 1
+    highContrast: true
   latex:
     alwaysOpenResultInAtom: true
     enableShellEscape: true
+  linter:
+    lintDebug: false
+    showErrorPanel: false
+    showErrorTabFile: false
+    showErrorTabProject: false
+    statusBar: "Show error if the cursor is in range"
+    statusIconScope: "File"
   "linter-chktex": {}
-  term2: {}
-  emmet: {}
+  "linter-coffeelint":
+    no_tabs: "ignore"
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+    eslintrcPath: "~/Projects/JavaScript/.eslintrc.yaml"
+    fixOnSave: true
+    useGlobalEslint: true
+  "linter-jscs":
+    onlyConfig: true
+    verbose: true
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+    lintInlineJavaScript: true
+  "markdown-preview":
+    breakOnSingleNewline: true
+  "markdown-table-formatter":
+    formatOnSave: false
+  "one-dark-ui": {}
   "one-light-ui": {}
-  Hydrogen: {}
-  "preview-plus":
-    htmlp: true
-".latex.log.text":
+  "preview-plus": {}
+  "spell-check": {}
+  "svg-preview": {}
+  tablr: {}
+  term2: {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
+".AtLilyPond.source":
   editor:
-    softWrap: true
-".latex.tex.text":
+    tabLength: 4
+".basic.html.text":
   editor:
-    softWrap: true
+    tabLength: 2
 ".bibtex.text":
   editor:
     softWrap: true
 ".coffee.source":
   editor:
     autoIndent: true
-    tabLength: 4
     softWrap: true
-".pyjade.source":
+    tabLength: 4
+".dockerfile.source":
   editor:
-    autoIndent: true
-    tabLength: 2
+    tabLength: 4
+".html.text.vue":
+  editor:
+    tabLength: 4
 ".jade.source":
   editor:
     autoIndent: true
     showInvisibles: true
     tabLength: 2
+  whitespace:
+    removeTrailingWhitespace: true
+".js.source":
+  editor:
+    tabLength: 4
+".json.source":
+  editor:
+    autoIndentOnPaste: true
+    tabLength: 2
+".latex.log.text":
+  editor:
+    softWrap: true
+".latex.tex.text":
+  editor:
+    softWrap: true
+".lilypond-drummode.source":
+  editor:
+    tabLength: 4
+".lilypond-figbassmode.source":
+  editor:
+    tabLength: 4
+".lilypond-figuregroup.source":
+  editor:
+    tabLength: 4
+".lilypond-internals.source":
+  editor:
+    tabLength: 4
+".lilypond-lyricsmode.source":
+  editor:
+    tabLength: 4
+".lilypond-markupmode.source":
+  editor:
+    tabLength: 4
+".lilypond-notedrum.source":
+  editor:
+    tabLength: 4
+".lilypond-notemode-explicit.source":
+  editor:
+    tabLength: 4
+".lilypond-notemode.source":
+  editor:
+    tabLength: 4
+".lilypond-notenames.source":
+  editor:
+    tabLength: 4
+".lilypond-schememode.source":
+  editor:
+    tabLength: 4
+".md.source":
+  whitespace:
+    removeTrailingWhitespace: true
+".pyjade.source":
+  editor:
+    autoIndent: true
+    tabLength: 2
 ".source.yaml":
   editor:
     autoIndentOnPaste: true
+    showIndentGuide: true
+    softTabs: true
     softWrap: false
     tabLength: 2
-    softTabs: true
-".json.source":
+".text.xml":
   editor:
-    tabLength: 2
-    autoIndentOnPaste: true
-".js.source":
+    tabLength: 4
+".text.xml.xsl":
   editor:
     tabLength: 4
 "file-types":

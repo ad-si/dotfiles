@@ -1,5 +1,8 @@
 'atom-text-editor[data-grammar="text xml"]:not([mini])':
-  'tab': 'emmet:expand-abbreviation-with-tab'
+  tab: 'emmet:expand-abbreviation-with-tab'
+
+'atom-text-editor:not([mini])':
+  'ctrl-o': 'editor:newline'
 
 '.platform-darwin':
   'cmd-p': 'command-palette:toggle'
