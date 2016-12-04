@@ -9,5 +9,5 @@ packages=(
 
 for package in ${packages[@]}
 do
-	npm install --global $package
+  npm install --global $package
 done

@@ -4,6 +4,6 @@ names=$(ls | sed -E s/\(_[0-9]\)?.png//g | uniq | sort)
 
 for name in $names
 do
-	mkdir $name
+  mkdir $name
     mv "$name"*.png "$name"
 done

@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
 find . -name "*.png" \
-	-exec convert {} -trim {} \; \
-	-exec optipng -silent {} \; \
-	-exec printf "." \;
+  -exec convert {} -trim {} \; \
+  -exec optipng -silent {} \; \
+  -exec printf "." \;
 
 printf "\n"

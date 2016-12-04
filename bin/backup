@@ -3,42 +3,42 @@
 backupdir=/Volumes/Adrian\ 1\ TB
 
 paths=(
-	~/.ssh
-	~/Books
-	~/Contacts
-	~/Desktop
-	~/Documents
-	~/Events
-	~/Library/Fonts
-	~/Library/Keychains
-	~/Movies
-	~/Music
-	~/Photos
-	~/Pictures
-	~/Projects
-	~/Sheetmusic
-	~/Things
+  ~/.ssh
+  ~/Books
+  ~/Contacts
+  ~/Desktop
+  ~/Documents
+  ~/Events
+  ~/Library/Fonts
+  ~/Library/Keychains
+  ~/Movies
+  ~/Music
+  ~/Photos
+  ~/Pictures
+  ~/Projects
+  ~/Sheetmusic
+  ~/Things
 )
 
 if [ -d "$backupdir" ]
 then
-	echo "Started backup to $backupdir"
+  echo "Started backup to $backupdir"
 else
-	echo "$backupdir is not a directory!"
-	exit 1
+  echo "$backupdir is not a directory!"
+  exit 1
 fi
 
 for directory in "${paths[@]}"
 do
-	if [ -d "$directory" ]
-	then
-		echo "Backuping directory $directory"
-		rsync -av "$directory" "$backupdir"
-	elif [ -f "$directory" ]
-	then
-		cp -v "$a" "$backupdir"
-	else
-		echo "$a is not valid"
-		exit 1
-	fi
+  if [ -d "$directory" ]
+  then
+    echo "Backuping directory $directory"
+    rsync -av "$directory" "$backupdir"
+  elif [ -f "$directory" ]
+  then
+    cp -v "$a" "$backupdir"
+  else
+    echo "$a is not valid"
+    exit 1
+  fi
 done

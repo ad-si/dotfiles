@@ -1,39 +1,39 @@
 #! /usr/bin/env node
 
 var fs = require('fs'),
-	csv = require('csv'),
-	dict,
-	text
+  csv = require('csv'),
+  dict,
+  text
 
 
 if (process.argv[2] !== undefined && process.argv[3]  !== undefined) {
 
-	dict = fs.readFileSync(process.argv[2], "utf8")
-	text = fs.readFileSync(process.argv[3], "utf8")
+  dict = fs.readFileSync(process.argv[2], "utf8")
+  text = fs.readFileSync(process.argv[3], "utf8")
 
-	csv()
-	.from
-	.path('./' + process.argv[2], {
-		delimiter: '\t',
-		comment: '//'
-	})
-	.to
-	.array(function(data){
+  csv()
+  .from
+  .path('./' + process.argv[2], {
+    delimiter: '\t',
+    comment: '//'
+  })
+  .to
+  .array(function(data){
 
-		data.forEach(function(pair){
+    data.forEach(function(pair){
 
-			var pattern = new RegExp(pair[0], "gm"),
-				hex
-			
-			
-			if ((/^\\u.*/g).test(pair[1]))
-				pair[1] = String.fromCharCode("0x" + pair[1].substr(2))
-			
-			text = text.replace(pattern, pair[1])
-		})
+      var pattern = new RegExp(pair[0], "gm"),
+        hex
+      
+      
+      if ((/^\\u.*/g).test(pair[1]))
+        pair[1] = String.fromCharCode("0x" + pair[1].substr(2))
+      
+      text = text.replace(pattern, pair[1])
+    })
 
-		console.log(text)
-	})
+    console.log(text)
+  })
 }
 else
-	console.log("Usage: " + __filename.replace(__dirname + '/', '') + " <tsv-file> <text-file>")
+  console.log("Usage: " + __filename.replace(__dirname + '/', '') + " <tsv-file> <text-file>")

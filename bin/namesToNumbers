@@ -6,6 +6,6 @@ numberOfDigits="${#numberOfFiles}"
 
 for file in $(ls)
 do
-	mv "$file" "$(printf %0${numberOfDigits}d $counter).${file##*.}"
-	counter=$((counter + 1))
+  mv "$file" "$(printf %0${numberOfDigits}d $counter).${file##*.}"
+  counter=$((counter + 1))
 done

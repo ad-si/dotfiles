@@ -1,7 +1,7 @@
 #! /bin/bash
 
 find . -iname "*.png" \
-	-exec optipng -silent {} \; \
-	-exec printf "." \;
+  -exec optipng -silent {} \; \
+  -exec printf "." \;
 
 printf "\n"

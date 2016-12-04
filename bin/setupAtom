@@ -1,39 +1,39 @@
 #! /usr/bin/env bash
 
 packages=(
-	AtLilyPond
-	Stylus
-	atom-terminal
-	autocomplete-emojis
-	autocomplete-paths
-	autocomplete-plus
-	coffee-compiler
-	devdocs
-	distraction-free-mode
-	emmet
-	file-type-icons
-	file-types
-	git-control
-	git-plus
-	hex
-	language-arduino
-	language-jade
-	language-openscad
-	language-smalltalk
-	linter
-	linter-coffeelint
-	linter-jscs
-	linter-jshint
-	linter-shellcheck
-	npm-docs
-	preview-plus
-	sort-lines
-	tabs-to-spaces
-	terminal-panel
-	travis-ci-status
+  AtLilyPond
+  Stylus
+  atom-terminal
+  autocomplete-emojis
+  autocomplete-paths
+  autocomplete-plus
+  coffee-compiler
+  devdocs
+  distraction-free-mode
+  emmet
+  file-type-icons
+  file-types
+  git-control
+  git-plus
+  hex
+  language-arduino
+  language-jade
+  language-openscad
+  language-smalltalk
+  linter
+  linter-coffeelint
+  linter-jscs
+  linter-jshint
+  linter-shellcheck
+  npm-docs
+  preview-plus
+  sort-lines
+  tabs-to-spaces
+  terminal-panel
+  travis-ci-status
 )
 
 for package in ${packages[@]}
 do
-	apm install $package
+  apm install $package
 done

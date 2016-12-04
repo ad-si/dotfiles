@@ -8,5 +8,5 @@ fi
 
 for a in *
 do
-	mv "$a" "${a}$1"
+  mv "$a" "${a}$1"
 done

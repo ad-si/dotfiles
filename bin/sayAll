@@ -4,6 +4,6 @@
 
 say -v ? | while read line
 do
-		name=$(echo $line | cut -f 1 -d " ")
-		say --voice $name $1
+    name=$(echo $line | cut -f 1 -d " ")
+    say --voice $name $1
 done

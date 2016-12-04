@@ -57,92 +57,92 @@ PROGNAME=`type $0 | awk '{print $3}'`  # search for executable on path
 PROGDIR=`dirname $PROGNAME`            # extract directory of program
 PROGNAME=`basename $PROGNAME`          # base name of program
 usage1() 
-	{
-	echo >&2 ""
-	echo >&2 "$PROGNAME:" "$@"
-	sed >&2 -n '/^###/q;  /^#/!q;  s/^#//;  s/^ //;  4,$p' "$PROGDIR/$PROGNAME"
-	}
+  {
+  echo >&2 ""
+  echo >&2 "$PROGNAME:" "$@"
+  sed >&2 -n '/^###/q;  /^#/!q;  s/^#//;  s/^ //;  4,$p' "$PROGDIR/$PROGNAME"
+  }
 usage2() 
-	{
-	echo >&2 ""
-	echo >&2 "$PROGNAME:" "$@"
-	sed >&2 -n '/^######/q;  /^#/!q;  s/^#*//;  s/^ //;  4,$p' "$PROGDIR/$PROGNAME"
-	}
+  {
+  echo >&2 ""
+  echo >&2 "$PROGNAME:" "$@"
+  sed >&2 -n '/^######/q;  /^#/!q;  s/^#*//;  s/^ //;  4,$p' "$PROGDIR/$PROGNAME"
+  }
 
 # function to report error messages
 errMsg()
-	{
-	echo ""
-	echo $1
-	echo ""
-	usage1
-	exit 1
-	}
+  {
+  echo ""
+  echo $1
+  echo ""
+  usage1
+  exit 1
+  }
 
 # function to test for minus at start of value of second part of option 1 or 2
 checkMinus()
-	{
-	test=`echo "$1" | grep -c '^-.*$'`   # returns 1 if match; 0 otherwise
+  {
+  test=`echo "$1" | grep -c '^-.*$'`   # returns 1 if match; 0 otherwise
     [ $test -eq 1 ] && errMsg "$errorMsg"
-	}
+  }
 
 
 # test for correct number of arguments and get values
 if [ $# -eq 0 ]
-	then
-	# help information
-	echo ""
-	usage2
-	exit 0
+  then
+  # help information
+  echo ""
+  usage2
+  exit 0
 elif [ $# -gt 6 ]
-	then
-	errMsg "--- TOO MANY ARGUMENTS WERE PROVIDED ---"
+  then
+  errMsg "--- TOO MANY ARGUMENTS WERE PROVIDED ---"
 else
-	while [ $# -gt 0 ]
-		do
-		# get parameters
-		case "$1" in
-	  -h|-help)    # help information
-				   echo ""
-				   usage2
-				   ;;
-			-r)    # radius
-				   shift  # to get the next parameter - radius
-				   # test if parameter starts with minus sign 
-				   errorMsg="--- INVALID RADIUS SPECIFICATION ---"
-				   checkMinus "$1"
-				   radius=`expr "$1" : '\([0-9]*\)'`
-				   [ "$radius" = "" ] && errMsg "--- RADIUS=$radius MUST BE AN INTEGER ---"
-				   radiustest=`echo "$radius < 1" | bc`
-				   [ $radiustest -eq 1 ] && errMsg "--- RADIUS=$radius MUST BE AN INTEGER GREATER THAN 0 ---"
-				   ;;
-			-t)    # threshold
-				   shift  # to get the next parameter - threshold
-				   # test if parameter starts with minus sign 
-				   errorMsg="--- INVALID THRESHOLD SPECIFICATION ---"
-				   checkMinus "$1"
-				   thresh=`expr "$1" : '\([.0-9]*\)'`
-				   [ "$thresh" = "" ] && errMsg "--- THRESH=$thresh MUST BE A POSITIVE FLOATING POINT VALUE (with no sign) ---"
-				   threshtestA=`echo "$thresh < 0" | bc`
-				   threshtestB=`echo "$thresh > 100" | bc`
-				   [ $threshtestA -eq 1 -o $threshtestB -eq 1 ] && errMsg "--- THRESH=$thresh MUST BE A POSITIVE FLOATING POINT VALUE BETWEEN 0 AND 100 ---"
-				   ;;
-			 -)    # STDIN and end of arguments
-				   break
-				   ;;
-			-*)    # any other - argument
-				   errMsg "--- UNKNOWN OPTION ---"
-				   ;;
-			*)     # end of arguments
-				   break
-				   ;;
-		esac
-		shift   # next option
-	done
-	#
-	# get infile and outfile
-	infile=$1
-	outfile=$2
+  while [ $# -gt 0 ]
+    do
+    # get parameters
+    case "$1" in
+    -h|-help)    # help information
+           echo ""
+           usage2
+           ;;
+      -r)    # radius
+           shift  # to get the next parameter - radius
+           # test if parameter starts with minus sign 
+           errorMsg="--- INVALID RADIUS SPECIFICATION ---"
+           checkMinus "$1"
+           radius=`expr "$1" : '\([0-9]*\)'`
+           [ "$radius" = "" ] && errMsg "--- RADIUS=$radius MUST BE AN INTEGER ---"
+           radiustest=`echo "$radius < 1" | bc`
+           [ $radiustest -eq 1 ] && errMsg "--- RADIUS=$radius MUST BE AN INTEGER GREATER THAN 0 ---"
+           ;;
+      -t)    # threshold
+           shift  # to get the next parameter - threshold
+           # test if parameter starts with minus sign 
+           errorMsg="--- INVALID THRESHOLD SPECIFICATION ---"
+           checkMinus "$1"
+           thresh=`expr "$1" : '\([.0-9]*\)'`
+           [ "$thresh" = "" ] && errMsg "--- THRESH=$thresh MUST BE A POSITIVE FLOATING POINT VALUE (with no sign) ---"
+           threshtestA=`echo "$thresh < 0" | bc`
+           threshtestB=`echo "$thresh > 100" | bc`
+           [ $threshtestA -eq 1 -o $threshtestB -eq 1 ] && errMsg "--- THRESH=$thresh MUST BE A POSITIVE FLOATING POINT VALUE BETWEEN 0 AND 100 ---"
+           ;;
+       -)    # STDIN and end of arguments
+           break
+           ;;
+      -*)    # any other - argument
+           errMsg "--- UNKNOWN OPTION ---"
+           ;;
+      *)     # end of arguments
+           break
+           ;;
+    esac
+    shift   # next option
+  done
+  #
+  # get infile and outfile
+  infile=$1
+  outfile=$2
 fi
 
 # test that infile provided
@@ -163,12 +163,12 @@ trap "rm -f $tmpA $tmpB $tmp0 $tmp1; exit 1" 1 2 3 15
 #correct for change in median at IM 6.6.8-6 from radius to widthxheight
 #and to go from -median to -statistic median
 im_version=`convert -list configure | \
-	sed '/^LIB_VERSION_NUMBER /!d;  s//,/;  s/,/,0/g;  s/,0*\([0-9][0-9]\)/\1/g' | head -n 1`
+  sed '/^LIB_VERSION_NUMBER /!d;  s//,/;  s/,/,0/g;  s/,0*\([0-9][0-9]\)/\1/g' | head -n 1`
 if [ "$im_version" -ge "06060806" ]; then
-	radius=$((2*$radius+1))
-	proc="-statistic median"
+  radius=$((2*$radius+1))
+  proc="-statistic median"
 else
-	proc="-median"
+  proc="-median"
 fi
 
 
@@ -179,11 +179,11 @@ fi
 # multiply median by threshold, original by complement of threshold, and then add results together
 #
 if convert -quiet -regard-warnings "$infile" +repage "$tmpA"
-	then
-	convert $tmpA $proc $radius $tmp0
-	convert $tmpA $tmp0 -compose Difference -composite -threshold $thresh% $tmp1
-	convert $tmpA $tmp0 $tmp1 -compose src -composite $outfile
+  then
+  convert $tmpA $proc $radius $tmp0
+  convert $tmpA $tmp0 -compose Difference -composite -threshold $thresh% $tmp1
+  convert $tmpA $tmp0 $tmp1 -compose src -composite $outfile
 else
-	errMsg "--- FILE $infile DOES NOT EXIST OR IS NOT AN ORDINARY FILE, NOT READABLE OR HAS ZERO SIZE ---"
+  errMsg "--- FILE $infile DOES NOT EXIST OR IS NOT AN ORDINARY FILE, NOT READABLE OR HAS ZERO SIZE ---"
 fi
 exit 0

@@ -4,5 +4,5 @@
 
 for file in {*.azw?,*.mobi}
 do
-	ebook-convert "$file" "${file%.*}.epub"
+  ebook-convert "$file" "${file%.*}.epub"
 done
