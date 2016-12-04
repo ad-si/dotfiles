@@ -1,20 +1,18 @@
-export PATH="~/bin:$PATH"
-export PATH="$HOME/dotfiles/bin:$PATH"
-export PATH="/usr/sbin:$PATH"
-export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/dotfiles/bin:$PATH"
 
 # PHP 5.6
 export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
 
 # NPM executables
-export PATH=/usr/local/share/npm/bin:$PATH
+export PATH="/usr/local/share/npm/bin:$PATH"
 
 # Postgres
-export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
+export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 
 # Ruby Gems
-export PATH=$(brew --prefix ruby)/bin:$PATH
+export PATH="$(brew --prefix ruby)/bin:$PATH"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
@@ -45,3 +43,11 @@ export NVM_DIR="/Users/adrian/.nvm"
 
 # Grep
 export GREP_OPTIONS='--color=always'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Default editor
+export EDITOR=atom
