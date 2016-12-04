@@ -1,8 +1,9 @@
 #! /usr/bin/env bash
 
 IFS=$'\n'
+directory=${2:-~}
 
-cd ~
+cd "$directory"
 
 files=$(fzf-tmux --query="$1" --select-1 --exit-0)
 [[ -n "$files" ]] && open "${files[@]}"

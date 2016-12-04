@@ -3,22 +3,27 @@
 echo -e "===== Update Brew =====\n"
 
 brew update
-brew upgrade --all
+brew upgrade
 
 
 echo -e "\n\n===== Update Brew Cask =====\n"
 
 for program in $(brew cask list)
 do
-	brew cask install $program
+  brew cask install $program
 done
 
 
 echo -e "\n\n===== Update Npm =====\n"
 
-npm install -g npm@latest
-npm -g update
+npm install --global npm@latest
+npm update --global
 
+# for module in $(ls /usr/local/lib/node_modules | cat)
+# do
+#    echo "Upgrade $module"
+#    npm upgrade --global "$module"
+# done
 
 echo -e "\n\n===== Update Apm =====\n"
 
@@ -40,11 +45,6 @@ echo -e "\n\n===== Update Pip 2 =====\n"
 pip install --upgrade pip
 
 
-echo -e "\n\n===== Update Pip 3 =====\n"
-
-pip3 install --upgrade pip
-
-
 echo -e "\n\n===== Update Mac OS =====\n"
 
-softwareupdate -i -a
+softwareupdate --install --all
