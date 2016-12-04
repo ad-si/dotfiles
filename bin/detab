@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+files=$(ag --hidden -g \
+  '(svg|txt|md|js|coffee|yaml|json|ignore|styl|jade|pug|.babelrc)$')
+
+echo 'Replace tabs with 2 spaces and use LF for newline:'
+
+for file in $files
+do
+  printf "%s" "$file"
+  tab2space -unix -t2 "$file"{,}
+  ex -scwq "$file"
+  echo ' ✔'
+done
