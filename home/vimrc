@@ -1,2 +1,12 @@
 syntax on
 :au FocusLost * :wa
+
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set noexpandtab
+set colorcolumn=80 "Show column at 80 characters
+
+" Show invisible characters
+set listchars=tab:▸\ ,eol:¬,trail:·
+
