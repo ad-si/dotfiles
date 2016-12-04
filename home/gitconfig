@@ -8,20 +8,18 @@
 [credential]
 	helper = osxkeychain
 
-[format]
-	pretty = oneline
-
 [core]
 	excludesfile = /Users/adrian/.gitignore
 	ignorecase = false
 	pager = sed 's/\t/    /g' | less
+	editor = vim
 
 [alias]
 	amend = commit --amend
 	d = diff --color-words
-	l = log --oneline
 	full = log --format=full
-	fuller = log --format=fuller
+	fuller = log --format=fuller --date=iso
+	s = status
 
 [push]
 	default = simple
