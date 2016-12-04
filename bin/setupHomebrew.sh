@@ -5,8 +5,8 @@ which -s brew
 
 if [[ $? != 0 ]]
 then
-	echo 'Installing Homebrew…'
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo 'Installing Homebrew…'
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Stop on error
@@ -36,22 +36,22 @@ brew install bash
 
 # Miscellaneous
 brews=(
-	caskroom/cask/brew-cask
-	fdupes
-	git
-	git-extras
-	httpie
-	imagemagick
-	mongodb
-	node
-	optipng
-	tree
-	z
+  caskroom/cask/brew-cask
+  fdupes
+  git
+  git-extras
+  httpie
+  imagemagick
+  mongodb
+  node
+  optipng
+  tree
+  z
 )
 
 for brew in ${brews[@]}
 do
-	brew install $brew
+  brew install $brew
 done
 
 
@@ -59,66 +59,66 @@ done
 echo "Install casks …"
 
 casks=(
-	alfred
-	#arduino
-	atom
-	#automap-server MISSING
-	betterzipql		# Preview archives
-	blender
-	#calibre
-	cheatsheet
-	chromium
-	#cloudcompare MISSING
-	#dedrm MISSING
-	duet
-	electrum
-	#filezilla
-	firefox
-	#flux
-	#fritzing
-	gimp
-	google-chrome
-	handbrake
-	hex-fiend
-	#ichm
+  alfred
+  #arduino
+  atom
+  #automap-server MISSING
+  betterzipql   # Preview archives
+  #blender
+  #calibre
+  cheatsheet
+  chromium
+  #cloudcompare MISSING
+  #dedrm MISSING
+  duet
+  #electrum
+  #filezilla
+  firefox
+  flux
+  #fritzing
+  gimp
+  google-chrome
+  #handbrake
+  #hex-fiend
+  #ichm
 
-	#caskroom/homebrew-versions/java6
-	#intellij-idea
+  #caskroom/homebrew-versions/java6
+  #intellij-idea
 
-	iterm2
-	#kindle
-	#librecad
-	libreoffice
-	#mongohub
-	musescore
-	#onyx
-	#opera
-	qlstephen		# Preview plain text files without a file extension
-	#quicksilver
-	shiftit
-	silverlight
-	#sketchup
-	#skype
-	slic3r
-	#squeak MISSING
-	sourcetree
-	#speedcrunch		# Calculator
-	spotify
-	textmate
-	#tunnelblick BUGGY
-	#universal-control MISSING
-	#virtualbox
-	vlc
-	#vmware-fusion
-	xquartz
+  iterm2
+  #kindle
+  #librecad
+  libreoffice
+  #mongohub
+  #musescore
+  #onyx
+  #opera
+  qlstephen   # Preview plain text files without a file extension
+  #quicksilver
+  shiftit
+  #silverlight
+  #sketchup
+  #skype
+  #slic3r
+  #squeak MISSING
+  #sourcetree
+  #speedcrunch    # Calculator
+  spotify
+  #textmate
+  #tunnelblick BUGGY
+  #universal-control MISSING
+  #virtualbox
+  #vlc
+  #vmware-fusion
+  xquartz
 
-	# XQuartz dependent casks:
-	inkscape
+  # XQuartz dependent casks:
+  inkscape
 )
 
 for cask in ${casks[@]}
 do
-	brew cask install $cask
+  brew cask install $cask
 done
 
 # Remove outdated versions from the cellar

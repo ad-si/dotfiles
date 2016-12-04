@@ -14,8 +14,8 @@ bash bin/symlinkDotfiles.sh
 # Mac OS X specific Code
 if [[ $(uname) == "Darwin" ]]
 then
-	# Homebrew
-	bash bin/setupHomebrew.sh
+  # Homebrew
+  bash bin/setupHomebrew.sh
 
     # TODO:
     # Set preferences with systemsetup
@@ -55,20 +55,20 @@ then
 
     echo "Disable startup chime"
     sudo nvram SystemAudioVolume=%80
-    
+
     echo "Set default theme to dark (Restart your Mac to see changes)"
     sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
-    
-	defaults write com.apple.finder QLEnableTextSelection -bool true
-	defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-	defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
-	defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+  defaults write com.apple.finder QLEnableTextSelection -bool true
+  defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-	defaults write com.apple.screencapture disable-shadow -bool true
-	defaults write com.apple.screencapture location /Users/adrian/Desktop/Screenshots
+  defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+  defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 
-	defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
+  defaults write com.apple.screencapture disable-shadow -bool true
+  defaults write com.apple.screencapture location /Users/adrian/Desktop/Screenshots
+
+  defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
 
     killall Finder
 fi

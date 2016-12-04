@@ -4,5 +4,5 @@
 
 for i in *[A-Z]*
 do
-	mv "$i" "$(echo $i | tr '[:upper:]' '[:lower:]')"
+  mv "$i" "$(echo $i | tr '[:upper:]' '[:lower:]')"
 done

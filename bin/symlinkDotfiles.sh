@@ -4,28 +4,28 @@ dotfiles="$HOME/dotfiles"
 
 if [[ -d "$dotfiles" ]]
 then
-	echo "Symlinking dotfiles from $dotfiles"
-	echo "Linking:"
+  echo "Symlinking dotfiles from $dotfiles"
+  echo "Linking:"
 else
-	echo "$dotfiles does not exist"
-	exit 1
+  echo "$dotfiles does not exist"
+  exit 1
 fi
 
 link() {
-	from="$1"
-	to="$2"
+  from="$1"
+  to="$2"
 
-	echo "$from => $to"
-	rm -rf "$to"
-	ln -s "$from" "$to"
+  echo "$from => $to"
+  rm -rf "$to"
+  ln -s "$from" "$to"
 }
 
 for location in $dotfiles/home/*
 do
-	file="${location##*/}"
-	file="${file%.*}"
-	
-	link "$location" "$HOME/.$file"
+  file="${location##*/}"
+  file="${file%.*}"
+  
+  link "$location" "$HOME/.$file"
 done
 
 # TODO: Mac OS X specific
