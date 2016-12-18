@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 dotfiles="$HOME/dotfiles"
 
@@ -24,8 +24,16 @@ for location in $dotfiles/home/*
 do
   file="${location##*/}"
   file="${file%.*}"
-  
+
   link "$location" "$HOME/.$file"
+done
+
+for location in $dotfiles/configs/*
+do
+  file="${location##*/}"
+  file="${file%.*}"
+
+  link "$location" "$HOME/.config/$file"
 done
 
 # TODO: Mac OS X specific
