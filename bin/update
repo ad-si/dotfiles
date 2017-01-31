@@ -45,6 +45,11 @@ echo -e "\n\n===== Update Pip 2 =====\n"
 pip install --upgrade pip
 
 
+echo -e "\n\n===== Update Pip 3 =====\n"
+
+pip3 install --upgrade pip
+
+
 echo -e "\n\n===== Update Mac OS =====\n"
 
 softwareupdate --install --all
