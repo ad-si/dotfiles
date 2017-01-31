@@ -56,7 +56,7 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Source Code Pro"
-    fontSize: 12
+    fontSize: 11
     invisibles:
       cr: " "
       eol: " "
@@ -67,9 +67,12 @@
   emmet: {}
   "exception-reporting":
     userId: "e1f4ef15-b72f-d1f8-3af5-8d0a66844b85"
+  "fast-eslint": {}
   "git-log":
     fontScale: 0.6
-  "git-plus": {}
+  "git-plus":
+    general:
+      _analyticsUserId: "2621e659-146c-461b-8354-71161e66aae9"
   jsformat:
     eval_code: true
     indent_with_tabs: true
@@ -104,6 +107,11 @@
     breakOnSingleNewline: true
   "markdown-table-formatter":
     formatOnSave: false
+    limitLastColumnPadding: true
+    markdownGrammarScopes: [
+      "source.gfm"
+      "text.md"
+    ]
   "one-dark-ui": {}
   "one-light-ui": {}
   "preview-plus": {}
@@ -191,6 +199,9 @@
 ".md.source":
   whitespace:
     removeTrailingWhitespace: true
+".md.text":
+  editor:
+    softWrapAtPreferredLineLength: true
 ".pyjade.source":
   editor:
     autoIndent: true
