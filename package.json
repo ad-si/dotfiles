@@ -6,8 +6,7 @@
     "test": "eslint --ignore-path .gitignore ."
   },
   "eslintConfig": {
-    "root": true,
-    "extends": "./node_modules/javascript-styleguide/.eslintrc.yaml"
+    "extends": "eslint-config-javascript"
   },
   "repository": {
     "type": "git",
@@ -31,7 +30,7 @@
     "user-home": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^2.9.0",
-    "javascript-styleguide": "^0.2.2"
+    "eslint": "^3.14.1",
+    "eslint-config-javascript": "^1.2.0"
   }
 }
