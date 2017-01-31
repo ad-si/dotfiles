@@ -1,18 +1,32 @@
-export PATH="/usr/local/sbin:$PATH"
+export GOPATH="$HOME/.go:$GOPATH"
+export OSA_LIBRARY_PATH="$HOME/dotfiles/script-libraries:$OSA_LIBRARY_PATH"
+
+# Add paths to path variable with increasing priority
+# Global executables
 export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/dotfiles/bin:$PATH"
 
-# PHP 5.6
-export PATH="$(brew --prefix homebrew/php/php56)/bin:$PATH"
+# User executables
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
-# NPM executables
-export PATH="/usr/local/share/npm/bin:$PATH"
+# PHP
+export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
 
 # Postgres
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
 
+# Go executables
+export PATH="$GOPATH/bin:$PATH"
+
 # Ruby Gems
 export PATH="$(brew --prefix ruby)/bin:$PATH"
+
+# Npm executables
+export PATH="/usr/local/share/npm/bin:$PATH"
+
+# Custom user scripts
+export PATH="$HOME/dotfiles/bin:$PATH"
+
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
@@ -51,3 +65,6 @@ export GREP_OPTIONS='--color=always'
 
 # Default editor
 export EDITOR=atom
+
+# added by travis gem
+[ -f /Users/adrian/.travis/travis.sh ] && source /Users/adrian/.travis/travis.sh
