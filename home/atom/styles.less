@@ -1,48 +1,41 @@
-/*
-* Your Stylesheet
-*
-* This stylesheet is loaded when Atom starts up and is reloaded automatically
-* when it is changed.
-*/
-
 .markdown-preview {
-	background-color: rgb(20,20,20);
-	color: rgb(200,200,200);
+  background-color: rgb(20,20,20);
+  color: rgb(200,200,200);
 
-	h1, h2, h3, h4, h5, h6 {
-		color: rgb(220,220,220)
-	}
+  h1, h2, h3, h4, h5, h6 {
+    color: rgb(220,220,220)
+  }
 
-	code, tt {
-		border: 1px solid #101010;
-		background-color: #202020;
-		color: #a0a0a0
-	}
+  code, tt {
+    border: 1px solid #101010;
+    background-color: #202020;
+    color: #a0a0a0
+  }
 }
 
 .term2 {
-	.terminal {
-		font-size: 11px;
-	}
+  .terminal {
+    font-size: 11px;
+  }
 }
 
 .indent-guide-improved {
-	background-color: rgb(50, 50, 50);
-	&.indent-guide-stack {
-		background-color: rgb(70, 70, 70);
-		&.indent-guide-active {
-			background-color: rgb(120, 120, 120);
-		}
-	}
+  background-color: rgb(50, 50, 50);
+  &.indent-guide-stack {
+    background-color: rgb(70, 70, 70);
+    &.indent-guide-active {
+      background-color: rgb(120, 120, 120);
+    }
+  }
 }
 
 
-atom-text-editor::shadow .meta.structure.dictionary.json {
-	.punctuation {
-		color: gray;
-	}
+.syntax--meta.syntax--structure.syntax--dictionary.syntax--json {
+  .syntax--punctuation {
+    color: dimgray;
+  }
 
-	&:not(.value) > .string {
-		color: lightgray;
-	}
+  &:not(.syntax--value) > .syntax--string {
+    color: lightgray;
+  }
 }
