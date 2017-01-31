@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+path="${1:-.}"
+dirname="$path/$(date -u "+%Y-%m-%dT%H%M")"
+
+mkdir "$dirname"
+
+echo "Created directory $dirname"
