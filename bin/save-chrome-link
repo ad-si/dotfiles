@@ -1,0 +1,35 @@
+#! /usr/bin/env osascript -l JavaScript
+
+/* globals Application, Library */
+/* eslint-disable new-cap, no-console */
+
+const tools = Library('dotfiles/tools')
+const chrome = Application('Google Chrome')
+const title = chrome.windows[0].activeTab
+  .name()
+  .replace(/: /g, ' - ')
+const link = chrome.windows[0].activeTab.url()
+const fileData = {title, link}
+
+const app = Application.currentApplication()
+app.includeStandardAdditions = true
+
+const dialogSettings = {
+  withTitle: 'Enter Tags',
+  defaultAnswer: title
+      .split(' ')
+      .join(', '),
+}
+fileData.tags = app
+  .displayDialog('Enter tags for link (comma separated):', dialogSettings)
+  .textReturned
+  .split(',')
+  .map(tag => tag.trim())
+
+const fileContent = tools.json2yaml(fileData)
+const fileName = tools.getDateFileName()
+const filePath = `~/Dropbox (Personal)/Links/${fileName}`
+
+tools.writeFile(fileContent, filePath)
+
+console.log(`Created link "${filePath}"`)
