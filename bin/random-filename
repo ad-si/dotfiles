@@ -1,0 +1,13 @@
+#! /usr/bin/env node
+
+const crypto = require('crypto')
+const fileName = crypto
+  .randomBytes(6)
+  .toString('base64')
+  .replace(/\+/g, '-')
+  .replace(/\//g, '_')
+  // Replace "-" at beginning of file
+  // so that it doesn't get interpreted as an cli flag
+  .replace(/^-/, 0)
+
+process.stdout.write(fileName)
