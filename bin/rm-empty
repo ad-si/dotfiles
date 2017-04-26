@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+# Recursively delete all empty files in the current or the specified directory
+
+directory="${@:-.}"
+
+gfind "$directory" \
+  -empty \
+  -type f \
+  -delete
