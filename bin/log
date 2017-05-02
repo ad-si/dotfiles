@@ -4,4 +4,7 @@ git log \
   --decorate \
   --date="short" \
   --graph \
-  --pretty="format:%C(yellow)%h%C(reset) %ad%C(red)%d%C(reset) %C(bold normal)%s%C(reset)%C(cyan) [%cn]"
+  --pretty="format:%C(yellow)%h%C(reset) %ad%C(red)%d%C(reset) %C(bold normal)%s%C(reset) %G? %C(cyan)[%an]%C(reset)" \
+| sed 's/ N / /g' \
+| sed 's/ G / 🔑  /g' \
+| less -R
