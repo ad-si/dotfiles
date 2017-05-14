@@ -1,6 +1,6 @@
 {
-  "CtrlP": "CursorUp",
-  "CtrlN": "CursorDown",
-  "CtrlF": "CursorRight",
-  "CtrlB": "CursorLeft"
+  "CtrlA": "StartOfLine",
+  "CtrlD": "Delete",
+  "CtrlE": "EndOfLine",
+  "CtrlP": "CommandMode"
 }
