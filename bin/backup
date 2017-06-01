@@ -1,6 +1,6 @@
 #! /bin/bash
 
-backupdir=/Volumes/Adrian\ 1\ TB
+backupdir=/Volumes/Adrian\ 1\ TB/Backups
 
 paths=(
   ~/.ssh
