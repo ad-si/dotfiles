@@ -1,0 +1,19 @@
+#! /bin/bash
+
+counter="${1:-1}"
+numberOfFiles=$(printf "%d" $(ls | wc -l))
+numberOfDigits="${#numberOfFiles}"
+
+# Give them temporary names to avoid collisions
+for file in *
+do
+  mv "$file" "temp_$file"
+done
+
+echo ''
+
+for file in *
+do
+  mv -v "$file" "$(printf %0${numberOfDigits}d $counter).${file##*.}"
+  counter=$((counter + 1))
+done

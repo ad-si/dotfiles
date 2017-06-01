@@ -1,0 +1,16 @@
+#! /bin/bash
+
+counter=1
+
+#for a in $(ls)
+#do
+# mv $a $counter.png
+# counter=$((counter + 1))
+#done
+
+echo 'TODO: use `find -exec` instead of a for loop
+
+# for a in $(find . -name '*.png')
+# do
+#   convert "$a" -verbose -trim "$a"
+# done
