@@ -11,7 +11,7 @@ brew cask cleanup
 printf $separator
 
 echo '===== Clean npm cache ====='
-npm cache clean
+npm cache clean --force
 printf $separator
 
 echo '===== Clean docker ====='
