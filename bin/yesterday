@@ -1,0 +1,10 @@
+#! /usr/bin/env node
+
+const minusADay = new Date()
+minusADay.setDate(minusADay.getDate() - 1)
+
+const yesterday = minusADay
+  .toISOString()
+  .split('T')[0]
+
+console.info(yesterday)

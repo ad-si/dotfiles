@@ -1,0 +1,10 @@
+#! /usr/bin/env node
+
+const plusADay = new Date()
+plusADay.setDate(plusADay.getDate() + 1)
+
+const tomorrow = plusADay
+    .toISOString()
+    .split('T')[0]
+
+console.info(tomorrow)
