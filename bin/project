@@ -1,0 +1,17 @@
+#! /usr/bin/env bash
+
+if test $# -eq 0
+then
+  echo "Usage: $0 <project name>"
+  exit 1
+fi
+
+dirpath=~/Projects/"$1"
+
+if test ! -d "$dirpath"
+then
+  echo "Project \"$dirpath\" does not exist"
+  exit 1
+fi
+
+atom -a "$dirpath"
