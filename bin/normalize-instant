@@ -1,0 +1,12 @@
+#! /usr/bin/env node
+
+const Instant = require('@datatypes/moment').Instant
+
+
+const usage = 'Usage: normalize-date <date>'
+
+if (!process.argv[2]) throw new Error(usage)
+
+const date = new Instant(process.argv[2])
+
+console.info(date.toISOString())
