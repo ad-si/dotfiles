@@ -64,7 +64,7 @@ export GREP_OPTIONS='--color=always'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Default editor
-export EDITOR=atom
+export EDITOR=micro
 
 # added by travis gem
 [ -f /Users/adrian/.travis/travis.sh ] && source /Users/adrian/.travis/travis.sh
