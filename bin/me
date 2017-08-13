@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+contactsPath="${CONTACTS:-~/Contacts}"
+
+hicat "$contactsPath/adrian_sieber.yaml"
