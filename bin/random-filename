@@ -1,13 +1,18 @@
 #! /usr/bin/env node
 
-const crypto = require('crypto')
-const fileName = crypto
-  .randomBytes(6)
-  .toString('base64')
-  .replace(/\+/g, '-')
-  .replace(/\//g, '_')
-  // Replace "-" at beginning of file
-  // so that it doesn't get interpreted as an cli flag
-  .replace(/^-/, 0)
+const BigNumber = require('bignumber.js')
+
+const numberOfChars = Number(process.argv[2]) || 6
+const base = 36
+
+const randomNumber = BigNumber.random(numberOfChars * 2)
+const baseNumber = new BigNumber(
+  randomNumber
+    .toString()
+    .slice(2)
+)
+const fileName = baseNumber
+  .toString(base)
+  .slice(0, numberOfChars)
 
 process.stdout.write(fileName)
