@@ -5,5 +5,5 @@ language=${2:-eng}
 
 for file in $(find "$sourceDirectory" -iname '*.png')
 do
-  tesseract "$file" "${file%.png}" -l "$language"
+  tesseract --tessdata-dir ~/dotfiles "$file" "${file%.png}" -l "$language"
 done
