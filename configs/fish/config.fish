@@ -57,6 +57,26 @@ set -x ITERMPLOT rv
 set -x EDITOR micro
 set -x MAIL ~/Mails
 
+set -x AUDIOBOOKS ~/'Dropbox (Personal)'/Audiobooks
+set -x BOOKS      ~/'Dropbox (Personal)'/Books
+set -x CARDS      ~/'Dropbox (Personal)'/Cards
+set -x CHECKLISTS ~/'Dropbox (Personal)'/Checklists
+set -x CONTACTS   ~/'Dropbox (Personal)'/Contacts
+set -x DOCUMENTS  ~/'Dropbox (Personal)'/Documents
+set -x EVENTS     ~/'Dropbox (Personal)'/Events
+set -x IDEAS      ~/'Dropbox (Personal)'/Ideas
+set -x LINKS      ~/'Dropbox (Personal)'/Links
+set -x NEWS       ~/'Dropbox (Personal)'/News
+set -x NOTES      ~/'Dropbox (Personal)'/Notes
+set -x PHOTOS     ~/'Dropbox (Personal)'/Photos
+set -x POSTS      ~/'Dropbox (Personal)'/Posts
+set -x RECEIPTS   ~/'Dropbox (Personal)'/Receipts
+set -x SHEETMUSIC ~/'Dropbox (Personal)'/Sheetmusic
+set -x TASKS      ~/'Dropbox (Personal)'/Tasks
+set -x THINGS     ~/'Dropbox (Personal)'/Things
+set -x VOUCHERS   ~/'Dropbox (Personal)'/Vouchers
+
+
 [ -f /usr/local/share/autojump/autojump.fish ]; \
   and . /usr/local/share/autojump/autojump.fish
 
