@@ -3,7 +3,7 @@
 /* globals Application, Library */
 /* eslint-disable new-cap, no-console */
 
-const tools = Library('dotfiles/tools')
+const tools = Library('personal/tools')
 const chrome = Application('Google Chrome')
 const title = chrome.windows[0].activeTab
   .name()
@@ -17,8 +17,8 @@ app.includeStandardAdditions = true
 const dialogSettings = {
   withTitle: 'Enter Tags',
   defaultAnswer: title
-      .split(' ')
-      .join(', '),
+    .split(' ')
+    .join(', '),
 }
 fileData.tags = app
   .displayDialog('Enter tags for link (comma separated):', dialogSettings)
