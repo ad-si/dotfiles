@@ -5,7 +5,7 @@ backupdir=/Volumes/Adrian\ 1\ TB/Backups
 paths=(
   ~/.ssh
   ~/Books
-  ~/Contacts
+  # ~/Contacts
   ~/Desktop
   ~/Documents
   ~/Events
@@ -36,9 +36,9 @@ do
     rsync -av "$directory" "$backupdir"
   elif [ -f "$directory" ]
   then
-    cp -v "$a" "$backupdir"
+    cp -v "$directory" "$backupdir"
   else
-    echo "$a is not valid"
+    echo "'$directory' is not a valid path"
     exit 1
   fi
 done
