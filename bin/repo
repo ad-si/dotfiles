@@ -7,6 +7,6 @@ cd "$1"
 touch readme.md
 git init
 printf "# ${1^}\n\n" > readme.md
-atom -n readme.md:3
+atom -a readme.md:3
 
 set +e
