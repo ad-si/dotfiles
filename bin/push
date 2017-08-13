@@ -1,3 +1,8 @@
 #! /usr/bin/env bash
 
-git push && git push --tags
+if test $# -ge 1
+then
+  git push "$1" && git push --tags "$1"
+else
+  git push && git push --tags
+fi
