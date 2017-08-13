@@ -1,3 +1,7 @@
 #! /usr/bin/env bash
 
-open http://localhost:8000 && python3 -m http.server
+randomPort=$((1 + RANDOM % 10))$((RANDOM % 1000))
+
+cd "${1:-.}"
+open http://localhost:$randomPort && \
+python3 -m http.server $randomPort
