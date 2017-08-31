@@ -1,16 +1,18 @@
 #! /usr/bin/env bash
 
 files=$(\
-  ag --hidden -g \
-  '(.babelrc|coffee|html|ignore|jade|js|json|md|pug|sh|styl|svg|txt|yaml)$' \
+  ag \
+    --hidden \
+    --filename-pattern \
+    '(.babelrc|coffee|html|ignore|jade|js|json|md|pug|sh|styl|svg|txt|yaml)$' \
 )
 
 echo 'Replace tabs with 2 spaces and use LF for newline:'
 
-for file in $files
+echo "$files" | while read -r file
 do
   printf "%s" "$file"
   tab2space -unix -t2 "$file"{,}
   ex -scwq "$file"
-  echo ' ✔︎'
+  echo ' ✔'
 done
