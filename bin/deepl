@@ -1,0 +1,15 @@
+#! /usr/bin/env node
+
+const translate = require('node-deepl')
+
+translate(
+  process.argv
+    .slice(2)
+    .join(' '),
+  'DE',
+  'EN',
+  (error, result) => {
+    if (error) throw error
+    console.info(result)
+  }
+)
