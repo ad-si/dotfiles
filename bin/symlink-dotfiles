@@ -16,7 +16,6 @@ fi
 for location in $dotfilesDir/home/*
 do
   file="${location##*/}"
-  file="${file%.*}"
 
   ln -s -v "$location" "$HOME/.$file"
 done
@@ -26,7 +25,7 @@ do
   file="${location##*/}"
   file="${file%.*}"
 
-  ln -s -v "$location" "$HOME/.config/$file"
+  ln -s -v "$location" "$HOME/.config"
 done
 
 
