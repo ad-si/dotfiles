@@ -1,0 +1,15 @@
+alwaystrust: false
+askformore: false
+autoimport: false
+autopull: true
+autopush: true
+autosync: true
+cliptimeout: 45
+loadkeys: false
+mounts:
+  feram: /Users/adrian/Projects/feram/meta
+noconfirm: false
+path: /Users/adrian/.password-store
+persistkeys: true
+safecontent: false
+version: 1.3.2
