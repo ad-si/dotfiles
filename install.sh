@@ -9,55 +9,59 @@ git clone git://github.com/adius/dotfiles.git
 
 cd dotfiles
 
-bash bin/symlinkDotfiles.sh
+./bin/symlink-dotfiles
 
 # Mac OS X specific Code
 if [[ $(uname) == "Darwin" ]]
 then
   # Homebrew
-  bash bin/setupHomebrew.sh
+  ./bin/setup-homebrew
 
-    # TODO:
-    # Set preferences with systemsetup
-    # e.g. systemsetup -setnetworktimeserver us.pool.ntp.org
-
-
-    echo "Disable window animations"
-    defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-
-    echo "Disable auto-reopen for Quicktime"
-    defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
-
-    echo "Disable auto reopen for Preview"
-    defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
+  # TODO:
+  # Set preferences with systemsetup
+  # e.g. systemsetup -setnetworktimeserver us.pool.ntp.org
 
 
-    echo "Configure the Dock"
 
-    echo "Remove default app icons"
-    defaults write com.apple.dock persistent-apps -array
+  echo "Disable window animations"
+  defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
-    echo "Set icon size to 48px"
-    defaults write com.apple.dock tilesize -int 48px
+  echo "Disable auto-reopen for Quicktime"
+  defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
 
-    echo "Remove slide-in delay"
-    defaults write com.apple.dock autohide-delay -float 0
-
-    echo "Enable autohide"
-    defaults write com.apple.dock autohide -bool true
-
-    echo "Set animation speed to 0.5s"
-    defaults write com.apple.dock autohide-time-modifier -float 0.5
-
-    echo "Restart Dock"
-    killall Dock
+  echo "Disable auto reopen for Preview"
+  defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
 
 
-    echo "Disable startup chime"
-    sudo nvram SystemAudioVolume=%80
+  echo "Configure the Dock"
 
-    echo "Set default theme to dark (Restart your Mac to see changes)"
-    sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
+  echo "Remove default app icons"
+  defaults write com.apple.dock persistent-apps -array
+
+  echo "Set icon size to 48px"
+  defaults write com.apple.dock tilesize -int 48px
+
+  echo "Remove slide-in delay"
+  defaults write com.apple.dock autohide-delay -float 0
+
+  echo "Enable autohide"
+  defaults write com.apple.dock autohide -bool true
+
+  echo "Set animation speed to 0.5s"
+  defaults write com.apple.dock autohide-time-modifier -float 0.5
+
+  echo "Restart Dock"
+  killall Dock
+
+
+  echo "Disable startup chime"
+  sudo nvram SystemAudioVolume=%80
+
+  echo "Set default theme to dark (Restart your Mac to see changes)"
+  sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
+
+  echo "Disable creation of .DS_Store files"
+  defaults write com.apple.desktopservices DSDontWriteNetworkStores true
 
   defaults write com.apple.finder QLEnableTextSelection -bool true
   defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
@@ -70,8 +74,8 @@ then
 
   defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
 
-    killall Finder
+  killall Finder
 fi
 
 echo "Setup atom editor"
-./bin/setupAtom
+./bin/setup-atom
