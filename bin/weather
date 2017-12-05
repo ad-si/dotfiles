@@ -1,4 +1,5 @@
 #! /usr/bin/env bash
 
-curl wttr.in/"$*"
+city=${@:-potsdam}
 
+curl wttr.in/"$city"
