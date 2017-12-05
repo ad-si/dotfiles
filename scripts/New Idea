@@ -1,0 +1,37 @@
+#! /usr/bin/env osascript -l JavaScript
+
+/* globals $, Application, Library */
+/* eslint-disable new-cap, no-console */
+
+const tools = Library('personal/tools')
+const fileData = {}
+
+const app = Application.currentApplication()
+app.includeStandardAdditions = true
+
+const dialogSettingsTitle = {
+  withTitle: 'Enter Title',
+  defaultAnswer: '',
+}
+fileData.title = app
+  .displayDialog('Enter title for new idea:', dialogSettingsTitle)
+  .textReturned
+
+const dialogSettingsBody = {
+  withTitle: 'Enter Body',
+  defaultAnswer: '',
+}
+fileData.body = app
+  .displayDialog('Enter body for new idea:', dialogSettingsBody)
+  .textReturned
+
+const ideasDir = '~/Dropbox (Personal)/Ideas'
+tools.createDirectory(ideasDir)
+
+const fileContent = tools.json2yaml(fileData)
+const fileName = tools.getDateFileName()
+const filePath = `${ideasDir}/${fileName}`
+
+tools.writeFile(fileContent, filePath)
+
+console.log(`Created link "${filePath}"`)
