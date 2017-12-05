@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+# -C: Colorize output
+# -L 1: Display tree one level deep (all childs of current directory)
+
+tree \
+  -C \
+  -L 1 \
+  --dirsfirst \
+  "${@:-.}"
