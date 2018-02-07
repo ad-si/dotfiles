@@ -1,14 +1,23 @@
 #! /usr/bin/env bash
 
-if test -n "$@"
+if test $# -eq 0
 then
-  printf "Check availability of %s" "$@"
-
-  aws route53domains check-domain-availability \
-    --domain-name "$@" \
-  | sed 's/[-+|]//g' \
-  | tr -d '\n' \
-  | sed -E 's/( +)CheckDomainAvailability( +)Availability( +)/ => /' \
-  | sed -E 's/UNAVAILABLE/❌/' \
-  | sed -E 's/AVAILABLE/✅/'
+  echo 'Usage: url <some-url.com> [<another-one.com> ...]'
+  exit 1
 fi
+
+for url in "$@"
+do
+  if test -n "$url"
+  then
+    printf "%s" "$url"
+
+    aws route53domains check-domain-availability \
+        --domain-name "$url" \
+      | sed 's/[-+|]//g' \
+      | tr -d '\n' \
+      | sed -E 's/( +)CheckDomainAvailability( +)Availability( +)/ /' \
+      | sed 's/UNAVAILABLE/❌/' \
+      | sed 's/AVAILABLE/✅/'
+  fi
+done
