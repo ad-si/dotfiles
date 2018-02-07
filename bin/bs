@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+name=$(mktemp)
+filename="$name".png
+
+
+# With sitescan (uses Chrome via Puppeteer)
+sitescan --name "$name" "$@"
+
+# With pageres (much slower and worse rendering via Phantom.js)
+# pageres --crop --filename "$name" "$@"
+
+imgcat "$filename"
+
+rm "$filename"
