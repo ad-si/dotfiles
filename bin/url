@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+if test -n "$@"
+then
+  printf "Check availability of %s" "$@"
+
+  aws route53domains check-domain-availability \
+    --domain-name "$@" \
+  | sed 's/[-+|]//g' \
+  | tr -d '\n' \
+  | sed -E 's/( +)CheckDomainAvailability( +)Availability( +)/ => /' \
+  | sed -E 's/UNAVAILABLE/❌/' \
+  | sed -E 's/AVAILABLE/✅/'
+fi
