@@ -105,7 +105,9 @@ if status --is-login
   set fisher_config ~/.config/fisherman
   source $fisher_home/config.fish
 
-  eval (thefuck --alias | tr '\n' ';')
+  if type -q thefuck # Check if `thefuck` is something executable
+    eval (thefuck --alias | tr '\n' ';')
+  end
 
   # Necessary for signing git commits and tags
   set -x GPG_TTY (tty)
