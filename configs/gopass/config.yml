@@ -1,15 +1,24 @@
-alwaystrust: false
-askformore: false
-autoimport: false
-autopull: true
-autopush: true
-autosync: true
-cliptimeout: 45
-loadkeys: false
+root:
+  askformore: false
+  autoimport: false
+  autosync: true
+  cliptimeout: 45
+  noconfirm: false
+  nopager: false
+  path: /Users/adrian/.password-store
+  safecontent: false
+  usesymbols: false
+  nocolor: false
 mounts:
-  feram: /Users/adrian/Projects/feram/meta
-noconfirm: false
-path: /Users/adrian/.password-store
-persistkeys: true
-safecontent: false
-version: 1.3.2
+  feram:
+    askformore: false
+    autoimport: false
+    autosync: true
+    cliptimeout: 45
+    noconfirm: false
+    nopager: false
+    path: /Users/adrian/Projects/feram/meta
+    safecontent: false
+    usesymbols: false
+    nocolor: false
+version: 1.6.11

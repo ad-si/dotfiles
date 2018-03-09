@@ -37,13 +37,18 @@
   required = true
 
 [github]
-  user = adius
-
-[ghi]
+  user = ad-si
 
 [merge]
   conflictstyle = diff3
   tool = meld
+
+[sendemail]
+  smtpEncryption = tls
+  smtpServer = smtp.gmail.com
+  smtpServerPort = 587
+  smtpUser = adrian@feram.io
+  from = adrian@feram.io
 
 [filter "lfs"]
   clean = git lfs clean %f
