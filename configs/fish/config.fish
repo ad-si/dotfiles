@@ -98,8 +98,13 @@ if status --is-login
   set -x THINGS $filesRootPath/Things
   set -x VOUCHERS $filesRootPath/Vouchers
 
+
+  # Fish specific configs
   test -e /usr/local/share/autojump/autojump.fish
   and source /usr/local/share/autojump/autojump.fish
+
+  test -e /usr/share/autojump/autojump.fish
+  and source /usr/share/autojump/autojump.fish
 
   set fisher_home ~/.local/share/fisherman
   set fisher_config ~/.config/fisherman
