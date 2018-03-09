@@ -19,7 +19,9 @@ if status --is-login
   ## Programming Languages
 
   ### PHP
-  set -x PATH (brew --prefix homebrew/php/php71)/bin $PATH
+  if test (uname) = "Darwin"
+    set -x PATH (brew --prefix homebrew/php/php71)/bin $PATH
+  end
 
   ### Rust
   set -x PATH ~/.cargo/bin $PATH
@@ -29,7 +31,9 @@ if status --is-login
   set -x PATH $GOPATH/bin $PATH
 
   ### Ruby
-  set -x PATH (brew --prefix ruby)/bin $PATH
+  if test (uname) = "Darwin"
+    set -x PATH (brew --prefix ruby)/bin $PATH
+  end
 
   ### Haskell
   set -x PATH ~/.local/bin $PATH
@@ -39,9 +43,6 @@ if status --is-login
     ".:/usr/local/Cellar/antlr/4.7/antlr-4.7-complete.jar:$CLASSPATH"
 
   ### JavaScript
-
-  #### For cli tools exposed with `yarn link`
-  set -x PATH (yarn global bin) $PATH
 
   #### For cli tools installed with `yarn global add`
   set -x PATH ~/.config/yarn/global/node_modules/.bin $PATH
@@ -53,7 +54,9 @@ if status --is-login
   set -x PATH ~/dotfiles/bin $PATH
 
   ## Homebrew (token allows reading public repos, creating gists)
-  set -x HOMEBREW_GITHUB_API_TOKEN cb528140cd2c26bda22113db890c94bcae9bbc37
+  if test (uname) = "Darwin"
+    set -x HOMEBREW_GITHUB_API_TOKEN 82be123e43e30ac125991df444550fb2b6389f4c
+  end
 
 
   # MatplotLib in iTerm
@@ -90,6 +93,7 @@ if status --is-login
   set -x POSTS $filesRootPath/Posts
   set -x RECEIPTS $filesRootPath/Receipts
   set -x SHEETMUSIC $filesRootPath/Sheetmusic
+  set -x SONGS $filesRootPath/Songs
   set -x TASKS $filesRootPath/Tasks
   set -x THINGS $filesRootPath/Things
   set -x VOUCHERS $filesRootPath/Vouchers
