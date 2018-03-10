@@ -14,6 +14,10 @@ sudo apt update
 sudo apt install -y "${aptPackages[@]}"
 
 
+# Haskell Stack
+curl -sSL https://get.haskellstack.org/ | sh
+
+
 # Node.js
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt update

@@ -23,6 +23,12 @@ fi
 # Set fish as default shell
 chsh -s "$(which fish)"
 
+
+# Set correct GPG path for git
+git config --global gpg.program "$(which gpg)"
+
+
+# Install global npm modules
 npmModules=(
   insect  # Calculator
   live-server  # Development server with auto reloading

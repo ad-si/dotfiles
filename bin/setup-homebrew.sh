@@ -1,9 +1,7 @@
 #! /usr/bin/env bash
 
 # Install Homebrew
-which -s brew
-
-if [[ $? != 0 ]]
+if ! which -s brew
 then
   echo 'Installing Homebrew…'
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -45,13 +43,13 @@ brews=(
   mongodb
   node
   optipng
+  stack  # Haskell tool stack
   tree
-  z
 )
 
-for brew in ${brews[@]}
+for brew in "${brews[@]}"
 do
-  brew install $brew
+  brew install "$brew"
 done
 
 
@@ -116,9 +114,9 @@ casks=(
   inkscape
 )
 
-for cask in ${casks[@]}
+for cask in "${casks[@]}"
 do
-  brew cask install $cask
+  brew cask install "$cask"
 done
 
 # Remove outdated versions from the cellar
