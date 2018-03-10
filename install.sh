@@ -5,7 +5,7 @@ set -e
 cd "$HOME"
 
 echo "Clone repository from GitLab"
-git clone git://gitlab.com/adius/dotfiles.git
+git clone https://gitlab.com/adius/dotfiles.git
 
 cd dotfiles
 
