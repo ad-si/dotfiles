@@ -2,12 +2,17 @@
 
 set -e
 
+aptPackages=(
+  autojump
+  fish
+  make
+  tree
+)
+
 # Basics
 sudo apt update
-sudo apt install -y \
-  autojump \
-  fish \
-  tree
+sudo apt install -y "${aptPackages[@]}"
+
 
 # Node.js
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -

@@ -6,6 +6,8 @@ Installation:
 curl --silent https://gitlab.com/adius/dotfiles/raw/master/install.sh | bash
 ```
 
+**Attention:** The user must have sudo rights to install dependencies
+
 
 ## Structure
 

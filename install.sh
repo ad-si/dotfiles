@@ -20,6 +20,9 @@ then
   ./install-ubuntu.sh
 fi
 
+# Set fish as default shell
+chsh -s "$(which fish)"
+
 npmModules=(
   insect  # Calculator
   live-server  # Development server with auto reloading
