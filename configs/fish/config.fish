@@ -12,9 +12,10 @@ if status --is-login
   ## User
   set -x PATH /usr/local/sbin $PATH
 
-  ## Postgrs
-  set -x PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
-
+  ## Postgres
+  if test (uname) = "Darwin"
+    set -x PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
+  end
 
   ## Programming Languages
 
@@ -72,6 +73,7 @@ if status --is-login
   set -x EDITOR sublime-wait
 
 
+  # Default locations
   set filesRootPath ~/'Dropbox (Personal)'
 
   set -x AUDIOBOOKS $filesRootPath/Audiobooks
@@ -98,27 +100,26 @@ if status --is-login
   set -x THINGS $filesRootPath/Things
   set -x VOUCHERS $filesRootPath/Vouchers
 
-
-  # Fish specific configs
+  # Fish
+  ## Autojump
   test -e /usr/local/share/autojump/autojump.fish
   and source /usr/local/share/autojump/autojump.fish
 
   test -e /usr/share/autojump/autojump.fish
   and source /usr/share/autojump/autojump.fish
 
-  set fisher_home ~/.local/share/fisherman
-  set fisher_config ~/.config/fisherman
-  source $fisher_home/config.fish
+  ## iTerm
+  test -e {$HOME}/.iterm2_shell_integration.fish
+  and source {$HOME}/.iterm2_shell_integration.fish
 
+
+  # thefuck
   if type -q thefuck # Check if `thefuck` is something executable
     eval (thefuck --alias | tr '\n' ';')
   end
 
-  # Necessary for signing git commits and tags
+  # GPG (Necessary for signing git commits and tags)
   set -x GPG_TTY (tty)
-
-  test -e {$HOME}/.iterm2_shell_integration.fish
-  and source {$HOME}/.iterm2_shell_integration.fish
 end
 
 # tabtab source for serverless package
