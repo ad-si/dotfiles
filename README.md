@@ -3,7 +3,7 @@
 Installation:
 
 ```bash
-curl --silent https://raw.githubusercontent.com/adius/dotfiles/master/install.sh | bash
+curl --silent https://gitlab.com/adius/dotfiles/raw/master/install.sh | bash
 ```
 
 
@@ -30,6 +30,8 @@ and are displayed in the scripts editor submenu in the menu bar.
 (Enable via
 `Script Editor.app > Preferences > General > Show Script menu in menu bar`)
 Add subdirectories with app names for app specific scripts.
+
+The `symlink-dotfiles` script must be run after adding new scripts.
 
 
 ## Script Libraries
