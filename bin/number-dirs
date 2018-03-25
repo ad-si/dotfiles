@@ -5,15 +5,16 @@ numberOfFiles="$(printf "%d" "$(find . -depth 1 | wc -l)")"
 numberOfDigits="${#numberOfFiles}"
 
 # Give them temporary names to avoid collisions
-for file in *
-do
-  mv "$file" "temp_$file"
-done
+find . -type d -mindepth 1 -maxdepth 1 \
+| while read -r directory
+  do
+    mv "$directory" "temp_$(basename "$directory")"
+  done
 
 echo ''
 
-for fileTmp in *
+for dirTemp in *
 do
-  mv -v "$fileTmp" "$(printf "%0${numberOfDigits}d" "$counter").${fileTmp#*.}"
+  mv -v "$dirTemp" "$(printf "%0${numberOfDigits}d" "$counter")"
   counter=$((counter + 1))
 done
