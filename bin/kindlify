@@ -1,0 +1,63 @@
+#! /usr/bin/env bash
+
+set -e
+
+if test $# -eq 0
+then
+  echo "Usage: $(basename "$0") <url / path to document>"
+  exit 1
+fi
+
+readerWidth='90mm'
+readerHeight='122mm'
+margin='4mm'
+dpi='300'
+zoom='3.5'
+scale='0.8'
+mode='wkhtmltopdf'
+utc=$(date -u "+%Y-%m-%dT%H%M")
+sender='mail@adriansieber.com'
+receiver='adrians_kindle_paperwhite@kindle.com'
+
+outputBase="$(echo "${2:-$1}" | sed -E -e 's%https?://(www.)?%%' -e 's#[/:.]#_#g' )"
+tempPdf="$(mktemp -d)/$utc $outputBase.pdf"
+
+
+echo "$1  =>  $tempPdf"
+
+if test $mode = 'wkhtmltopdf'
+then
+  wkhtmltopdf \
+    --page-width "$readerWidth" \
+    --page-height "$readerHeight" \
+    --dpi "$dpi" \
+    --zoom "$zoom" \
+    --margin-top "$margin" \
+    --margin-right "$margin" \
+    --margin-bottom "$margin" \
+    --margin-left "$margin" \
+    "$1" \
+    "$tempPdf"
+else
+  urlToPdf='https://url-to-pdf-api.herokuapp.com/api/render'
+  downloadUrl="$urlToPdf?url=$1&pdf.width=$readerWidth&pdf.height=$readerHeight&pdf.scale=$scale"
+  curl \
+    --fail \
+    --location \
+    --output "$tempPdf" \
+    "$downloadUrl"
+fi
+
+
+echo "Send PDF to $receiver"
+
+curl \
+  --silent \
+  --location \
+  --user "api:key-$MAILGUN_KEY" \
+  --form from="$sender" \
+  --form to="$receiver" \
+  --form subject='Document via Kindlify' \
+  --form text="Retrieved from $1 with url-to-pdf" \
+  --form attachment=@"$tempPdf" \
+  https://api.mailgun.net/v3/adriansieber.com/messages
