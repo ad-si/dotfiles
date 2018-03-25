@@ -1,20 +1,17 @@
 #! /usr/bin/env bash
 
-echo -e "===== Update Brew =====\n"
+echo -e "===== Update Brew =====\\n"
 
 brew update
 brew upgrade
 
 
-echo -e "\n\n===== Update Brew Cask =====\n"
+echo -e "\\n\\n===== Update Brew Casks =====\\n"
 
-for program in $(brew cask list)
-do
-  brew cask install $program
-done
+brew cask upgrade
 
 
-echo -e "\n\n===== Update Npm =====\n"
+echo -e "\\n\\n===== Update Npm =====\\n"
 
 npm install --global npm@latest
 npm update --global
@@ -26,36 +23,31 @@ npm update --global
 # done
 
 
-echo -e "\n\n===== Update Yarn =====\n"
+echo -e "\\n\\n===== Update Yarn =====\\n"
 
 yarn global upgrade --force
 
 
-echo -e "\n\n===== Update Apm =====\n"
+echo -e "\\n\\n===== Update Apm =====\\n"
 
 apm update --no-confirm
 
 
-echo -e "\n\n===== Update Tldr =====\n"
+echo -e "\\n\\n===== Update Tldr =====\\n"
 
 tldr --update
 
 
-echo -e "\n\n===== Update Gems =====\n"
+echo -e "\\n\\n===== Update Gems =====\\n"
 
 gem update
 
 
-echo -e "\n\n===== Update Pip 2 =====\n"
+echo -e "\\n\\n===== Update Pip =====\\n"
 
 pip install --upgrade pip setuptools wheel
 
 
-echo -e "\n\n===== Update Pip 3 =====\n"
-
-pip3 install --upgrade pip setuptools wheel
-
-
-echo -e "\n\n===== Update Mac OS =====\n"
+echo -e "\\n\\n===== Update Mac OS =====\\n"
 
 softwareupdate --install --all
