@@ -1,52 +1,95 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
-# lsc
-# Prints all available commands
+# lsc - List all cli commands which match the specified name
 
-# lsc | ruby -e 'puts STDIN.readlines.shuffle' | tail -n 5
-# Prints 5 random commands of available commands
+set -e
 
+if test ! $# == 1
+then
+  echo "Usage: $(basename "$0") <name>"
+  exit 1
+fi
 
 # TODO: Functions don't get listed
 
-
-
 # Need to resource aliases because subshells can't acces them
+# shellcheck source=/dev/null
 source ~/.bash_aliases
 
-checkManPage () {
-    return $(man "$1" > /dev/null 2>&1)
+function hasManPage {
+  man -w "$1" > /dev/null 2>&1
 }
 
-commands=$(compgen -abckA 'function' | sort -uf)
+function commandExists {
+    which "$1" > /dev/null 2>&1
+}
+
+function hasHelpPage {
+  "$1" -h
+}
+
+reset=$(tput sgr0)
+
+function cyanify {
+  cyan=$(tput setaf 6)
+  echo "$cyan$1$reset"
+}
+
+function grayify {
+  gray=$(tput setaf 8)
+  echo "$gray$1$reset"
+}
+
+commands=$(compgen -abckA 'function' | sort -uf | ag "$1" | head -n 20)
+
+function printUsage {
+  # printUsage <command> <usage>
+  cmdCyan=$(cyanify "$1")
+  whichCmd=$(stat -l "$(which "$1")" | tr -s ' ' | cut -d ' ' -f10-)
+  whichCmdGray=$(grayify "($whichCmd)")
+  printf "%s - %s %s\\n" "$cmdCyan" "${2:-?}" "$whichCmdGray"
+}
 
 for theCommand in $commands
 do
-    printf "$theCommand"
-    
-    # manual=$(man "$theCommand")
-    # 
-    # printf "2======="
-    # 
-    # nameLine=$(echo "$manual" | sed -n '5p')
-    # 
-    # if [[ "$nameLine" == 'NAME' ]]
-    # then
-    #     echo "$nameLine"
-    # else
-    #     echo $(man "$theCommand" | sed -n '6p')
-    # fi
-    #type "$theCommand"
-    #echo "$theCommand"
-    #echo $(whatis "$theCommand" | truncate 100)
-    #echo $(man "$theCommand" | sed -n '5p')
-    #echo " …"
-    printf "\n"
+  cmdCyan=$(cyanify "$theCommand")
+
+
+  if ! commandExists "$theCommand"
+  then
+    printUsage "$theCommand"
+  else
+    if hasManPage "$theCommand"
+    then
+      manual="$(man "$theCommand" 2> /dev/null)"
+      usageLine=$(echo "$manual" | ag "$theCommand " | head -n 1 | trim)
+      printUsage "$theCommand" "$usageLine"
+
+    else
+      helpPages="
+        $(gtimeout 2s "$theCommand" -h 2>&1 | cat)
+        $(gtimeout 2s "$theCommand" --help 2>&1 | cat)
+      "
+
+      usageLine=$(\
+        echo "$helpPages" | ag 'syntax' || \
+        echo "$helpPages" | ag 'usage' || \
+        echo "$helpPages" | ag " $theCommand" || \
+        echo "$helpPages" | ag "$theCommand " ||
+        echo "?"
+      )
+
+      usageLineCropped=$(echo "$usageLine" | head -n 1 | trim)
+      printUsage "$theCommand" "$usageLineCropped"
+
+      # TODO: Execute plain command if usageLine is empty
+      # if test -z "$usageLine"
+      # then
+      #   echo "$helpPage" | head -n 5
+      # else
+      #   printf "%s" "$cmdCyan - "
+      #   echo "$usageLine" | head -n 1 | trim
+      # fi
+    fi
+  fi
 done
-
-
-# for a in $(lsc)
-# do
-#     printf "%s $a %s " "-" "-"
-#     echo \($(binpath "$a")\)
-# done
