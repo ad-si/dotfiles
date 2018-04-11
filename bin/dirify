@@ -1,9 +1,27 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
-names=$(ls | sed -E s/\(_[0-9]\)?.png//g | uniq | sort)
+files=$(find . -type f -mindepth 1 -maxdepth 1)
 
-for name in $names
-do
-  mkdir $name
-    mv "$name"*.png "$name"
-done
+if test -z "$files"
+then
+  exit 1
+fi
+
+echo "$files" \
+| while read -r file
+  do
+    fileName="$(basename "$file")"
+    tempName="temporary-name-to-avoid-collisions_$fileName"
+
+    mv "$fileName" "$tempName"
+
+    stem="${fileName%%.*}"
+    # Use name without dot if is dotfile
+    directoryName="${stem:-"${fileName#*.}"}"  # Fix syntax highlighting "
+    destPath="$directoryName/$fileName"
+
+    mkdir "$directoryName"
+
+    echo "$fileName -> $destPath"
+    mv "$tempName" "$destPath"
+  done
