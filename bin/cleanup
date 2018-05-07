@@ -14,6 +14,10 @@ echo '===== Clean npm cache ====='
 npm cache clean --force
 printf $separator
 
+echo '===== Clean yarn cache ====='
+yarn cache clean
+printf $separator
+
 echo '===== Clean docker ====='
 docker-clean
 printf $separator
