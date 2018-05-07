@@ -21,7 +21,7 @@ if status --is-login
 
   ### PHP
   if test (uname) = "Darwin"
-    set -x PATH (brew --prefix homebrew/php/php71)/bin $PATH
+    set -x PATH (brew --prefix php)/bin $PATH
   end
 
   ### Rust
@@ -56,7 +56,7 @@ if status --is-login
 
   ## Homebrew (token allows reading public repos, creating gists)
   if test (uname) = "Darwin"
-    set -x HOMEBREW_GITHUB_API_TOKEN 82be123e43e30ac125991df444550fb2b6389f4c
+    set -x HOMEBREW_GITHUB_API_TOKEN replace_this_with_secret_token
   end
 
 
@@ -124,7 +124,11 @@ end
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/serverless.fish
+[ -f /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/serverless.fish ];
+  and . /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/serverless.fish
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/sls.fish ]; and . /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/sls.fish
+[ -f /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/sls.fish ];
+  and . /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/sls.fish
+
+set -g fish_user_paths "/usr/local/opt/node@8/bin" $fish_user_paths
