@@ -1,0 +1,219 @@
+#! /usr/bin/env bash
+
+if test $# = 0
+then
+  echo "Usage: $(basename "$0") <url / path to document>"
+  exit 1
+fi
+
+
+readerWidth='90mm'
+readerHeight='122mm'
+dpi='300'
+zoom='1'
+margin='5mm'
+papersize='B7'
+
+
+outputBase="$(echo "${2:-$1}" | sed -E -e 's%https?://(www.)?%%' -e 's#[/:.]#_#g' )"
+
+geometry="geometry:papersize={$readerWidth,$readerHeight},top=5mm,right=5mm,bottom=5mm,left=5mm"
+
+
+declare -A enabled=(
+ # ["epub"]=true
+ # ["mobi"]=true
+ # ["pdflatex"]=true
+ # ["lualatex"]=true
+ # ["xelatex"]=true
+ # ["wkhtmltopdf"]=true
+ # ["weasyprint"]=true
+ # ["context"]=true
+ ["wkhtml_custom"]=true
+ # ["url_to_pdf"]=true
+)
+
+
+# TODO: Integrate https://github.com/ageitgey/node-unfluff
+
+# Epub
+if test "${enabled[epub]}" = true
+then
+  outputName="$outputBase.epub"
+  echo "$1 => $outputName"
+
+  pandoc \
+    --output "$outputName" \
+    "$1"
+  echo ""
+fi
+
+
+# Mobi
+if test "${enabled[mobi]}" = true
+then
+  echo "$outputName => $outputBase.mobi"
+  kindlegen "$outputName"
+  echo ""
+fi
+
+
+# Pdflatex
+if test "${enabled[pdflatex]}" = true
+then
+  outputName="$outputBase.pdflatex.pdf"
+  echo "$1 => $outputName"
+
+  pandoc \
+    --pdf-engine pdflatex \
+    --output "$outputName" \
+    "$1"
+  echo ""
+fi
+
+
+# Lualatex
+if test "${enabled[lualatex]}" = true
+then
+  outputName="$outputBase.lualatex.pdf"
+  echo "$1 => $outputName"
+
+  pandoc \
+    --pdf-engine lualatex \
+    --output "$outputName" \
+    "$1"
+  echo ""
+fi
+
+
+# Xelatex
+if test "${enabled[xelatex]}" = true
+then
+  outputName="$outputBase.xelatex.pdf"
+  echo "$1 => $outputName"
+
+  pandoc \
+    --pdf-engine xelatex \
+    --variable "$geometry" \
+    --variable 'fontfamily:roboto' \
+    --variable 'fontfamilyoptions:rm' \
+    --variable 'linestretch:1.1' \
+    --css "../configs/pandoc/ebook-reader.css" \
+    --output "$outputName" \
+    "$1"
+  echo ""
+fi
+
+
+# Wkhtmltopdf
+if test "${enabled[wkhtmltopdf]}" = true
+then
+  nameWkhtml="$outputBase.wkhtmltopdf.pdf"
+  echo "$1 => $nameWkhtml"
+
+  pandoc \
+    --pdf-engine wkhtmltopdf \
+    --pdf-engine-opt '--lowquality' \
+    --css "../configs/pandoc/ebook-reader.css" \
+    --output "$nameWkhtml" \
+    "$1"
+  echo ""
+fi
+
+
+# Weasyprint
+if test "${enabled[weasyprint]}" = true
+then
+  nameWeasyprint="$outputBase.weasyprint.pdf"
+  echo "$1 => $nameWeasyprint"
+
+  pandoc \
+    --pdf-engine weasyprint \
+    --variable "$geometry" \
+    --output "$nameWeasyprint" \
+    "$1"
+  echo ""
+fi
+
+
+# Context
+if test "${enabled[context]}" = true
+then
+  outputName="$outputBase.context.pdf"
+  echo "$1 => $outputName"
+
+  pandoc \
+    --pdf-engine Context \
+    --output "$outputName" \
+    "$1"
+  echo ""
+fi
+
+
+# Pdfroff
+if test "${enabled[pdfroff]}" = true
+then
+  namePdfroff="$outputBase.pdfroff.pdf"
+  echo "$1 => $namePdfroff"
+
+  pandoc \
+    --pdf-engine pdfroff \
+    --output "$namePdfroff" \
+    "$1"
+  echo ""
+fi
+
+
+# Wkhtml Custom
+if test "${enabled[wkhtml_custom]}" = true
+then
+  nameCustom="$outputBase.custom.pdf"
+  echo "$1 => $nameCustom"
+
+  # TODO: Usable after https://github.com/wkhtmltopdf/wkhtmltopdf/issues/3860
+  # wkhtmltopdf \
+  #   --page-width "$readerWidth" \
+  #   --page-height "$readerHeight" \
+  #   --dpi "$dpi" \
+  #   --zoom "$zoom" \
+  #   --margin-top "$margin" \
+  #   --margin-right "$margin" \
+  #   --margin-bottom "$margin" \
+  #   --margin-left "$margin" \
+  #   --user-style-sheet ~/dotfiles/configs/pandoc/ebook-reader.css \
+  #   "$1" \
+  #   "$nameCustom"
+
+    # --print-media-type \
+    # --load-error-handling ignore \
+
+  # TODO: Use native dpi after https://github.com/jgm/pandoc/issues/4142 is fixed
+  pandoc \
+    --pdf-engine "wkhtmltopdf" \
+    --pdf-engine-opt "--dpi" \
+    --pdf-engine-opt "$dpi" \
+    --css ~/dotfiles/configs/pandoc/ebook-reader.css \
+    --variable "papersize:$papersize" \
+    --variable "margin-top:$margin" \
+    --variable "margin-right:$margin" \
+    --variable "margin-bottom:$margin" \
+    --variable "margin-left:$margin" \
+    --output "$nameCustom" \
+    "$1"
+  echo ""
+fi
+
+
+# URL to PDF
+if test "${enabled[url_to_pdf]}" = true
+then
+  nameUrlToPdf="$outputBase.urltopdf.pdf"
+  echo "$1 => $nameUrlToPdf"
+
+  curl \
+    --fail \
+    --location \
+    --output "$nameUrlToPdf" \
+    "https://url-to-pdf-api.herokuapp.com/api/render?url=$1&pdf.width=$readerWidth&pdf.height=$readerHeight"
+  echo ""
+fi
