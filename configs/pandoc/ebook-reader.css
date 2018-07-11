@@ -1,0 +1,50 @@
+/*
+In order to generate the "RoSlaReg" font you need to clone the
+"Roboto Slab Light" file and change the name with FontForge.
+
+Attention: You need to change the PS names and the TTF names
+- especially the "Preferred Family" field as described in
+https://stackoverflow.com/a/45524377/1850340
+*/
+
+@font-face {
+  font-family: 'RoSlaReg';
+  src: url('/Users/adrian/Library/Fonts/RoSlaReg.ttf');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'RoSlaReg', 'Georgia', 'Palatino', serif;
+  font-size: 13px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+p {
+  margin-bottom: 0.5em;
+}
+
+pre,
+code,
+kbd,
+samp {
+  color: black;
+  font-family: 'Hasklig', 'Arial', monospace;
+  font-size: 0.9em;
+}
+
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: 1px solid gray;
+  padding: 0.5em;
+  border-radius: 2px;
+  margin-bottom: 1em;
+  page-break-inside: avoid;
+}
