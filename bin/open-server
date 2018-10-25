@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+# Open the Server
+
+kubectl run fish-shell \
+  --restart=Never \
+  --rm \
+  --stdin \
+  --tty \
+  --image ohmyfish/fish \
+  -- fish
