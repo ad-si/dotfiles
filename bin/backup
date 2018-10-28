@@ -1,44 +1,83 @@
 #! /bin/bash
 
-backupdir=/Volumes/Adrian\ 1\ TB/Backups
+set -e
+
+backupdir=/Volumes/4_tb_red_src/backups/latest_macbook_2015
 
 paths=(
   ~/.ssh
-  ~/Books
+  ~/.task
+  ~/.timewarrior
+  ~/tasklite
+  # ~/Books
   # ~/Contacts
   ~/Desktop
   ~/Documents
-  ~/Events
+  ~/Downloads
+  ~/Dropbox\ \(Feram\)
+  ~/Dropbox\ \(Personal\)
+  # ~/Events
+  ~/Google\ Drive
   ~/Library/Fonts
   ~/Library/Keychains
   ~/Movies
   ~/Music
-  ~/Photos
+  # ~/Photos
   ~/Pictures
   ~/Projects
-  ~/Sheetmusic
-  ~/Things
+  # ~/Sheetmusic
+  # ~/Things
+  ~/tasklite
+  ~/Wallets
 )
 
-if [ -d "$backupdir" ]
+if test -d "$backupdir"
 then
   echo "Started backup to $backupdir"
+
 else
   echo "$backupdir is not a directory!"
   exit 1
 fi
 
+
 for directory in "${paths[@]}"
 do
-  if [ -d "$directory" ]
+  if test -d "$directory"
   then
     echo "Backuping directory $directory"
-    rsync -av "$directory" "$backupdir"
-  elif [ -f "$directory" ]
+    rsync \
+      --archive \
+      --verbose \
+      --stats \
+      "$directory" \
+      "$backupdir"
+
+  elif test -f "$directory"
   then
     cp -v "$directory" "$backupdir"
+
   else
     echo "'$directory' is not a valid path"
     exit 1
   fi
 done
+
+
+echo "Backing up SD card"
+rsync \
+  --archive \
+  --verbose \
+  --stats \
+  "/Volumes/adrian_64gb" \
+  "/Volumes/4_tb_red_src/backups/latest_adrian_64gb"
+
+
+echo "Sync main 4 TB drive with backup 4 TB drive"  # basically RAID 1
+rsync \
+  --archive \
+  --delete \
+  --verbose \
+  --stats \
+  /Volumes/4_tb_red_src/ \
+  /Volumes/4_tb_red_trgt/
