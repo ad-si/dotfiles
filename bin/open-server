@@ -2,10 +2,19 @@
 
 # Open the Server
 
-kubectl run fish-shell \
-  --restart=Never \
-  --rm \
-  --stdin \
-  --tty \
-  --image ohmyfish/fish \
-  -- fish
+# kubectl run adrians-ubuntu \
+#   --restart=Never \
+#   --rm \
+#   --stdin \
+#   --tty \
+#   --image gcr.io/deploy-219812/adrians-ubuntu \
+#   -- fish
+
+kubectl create -f base/job.yaml
+
+sleep 80
+
+kubectl exec \
+  -it \
+  $(kubectl get pods | grep adrians-ubuntu-job | cut -c 1-24) \
+  -- fish --login

@@ -87,7 +87,7 @@ if status --is-login
   set -x IDEAS $filesRootPath/Ideas
   set -x LINKS $filesRootPath/Links
   set -x LEADSHEETS $filesRootPath/Leadsheets
-  set -x MAIL ~/Mails
+  # set -x MAIL ~/Mails
   set -x MAILS $filesRootPath/Mails
   set -x NEWS $filesRootPath/News
   set -x NOTES $filesRootPath/Notes

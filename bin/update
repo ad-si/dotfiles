@@ -46,6 +46,7 @@ gem update
 echo -e "\\n\\n===== Update Pip =====\\n"
 
 pip install --upgrade pip setuptools wheel
+pip3 install --upgrade pip setuptools wheel
 
 
 echo -e "\\n\\n===== Update Mac OS =====\\n"

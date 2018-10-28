@@ -1,24 +1,36 @@
 root:
   askformore: false
+  autoclip: false
   autoimport: false
   autosync: true
+  check_recipient_hash: false
   cliptimeout: 45
+  concurrency: 1
+  editrecipients: false
+  nocolor: false
   noconfirm: false
   nopager: false
-  path: /Users/adrian/.password-store
+  notifications: false
+  path: gpgcli-gitcli-fs+file:///Users/adrian/.password-store
+  recipient_hash: {}
   safecontent: false
   usesymbols: false
-  nocolor: false
 mounts:
   feram:
     askformore: false
+    autoclip: false
     autoimport: false
     autosync: true
+    check_recipient_hash: false
     cliptimeout: 45
+    concurrency: 1
+    editrecipients: false
+    nocolor: false
     noconfirm: false
     nopager: false
-    path: /Users/adrian/Projects/feram/meta
+    notifications: false
+    path: gpgcli-gitcli-fs+file:///Users/adrian/Projects/feram/meta
+    recipient_hash: {}
     safecontent: false
     usesymbols: false
-    nocolor: false
-version: 1.6.11
+version: 1.8.1

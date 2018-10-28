@@ -6,10 +6,6 @@ echo '===== Cleanup brew ====='
 brew cleanup
 printf $separator
 
-echo '===== Cleanup brew cask ====='
-brew cask cleanup
-printf $separator
-
 echo '===== Clean npm cache ====='
 npm cache clean --force
 printf $separator

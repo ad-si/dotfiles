@@ -1,9 +1,24 @@
 #! /usr/bin/env bash
 
-sourceDirectory=${1:-.}
-language=${2:-eng}
 
-for file in $(find "$sourceDirectory" -iname '*.png')
-do
-  tesseract --tessdata-dir ~/dotfiles "$file" "${file%.png}" -l "$language"
-done
+function checkFile {
+  # $1 -> Path to file
+  # $2 -> Language of text
+
+  tesseract \
+    --tessdata-dir ~/dotfiles \
+    -l "$2" \
+    "$1" \
+    stdout
+}
+
+
+set -e
+
+if test $# == 0 || test $# -gt 2
+then
+  echo "Usage: $(basename "$0") <path to document> [language]"
+  exit 1
+fi
+
+checkFile "$1" "${2:-eng}"

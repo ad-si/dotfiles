@@ -4,7 +4,7 @@ files=$(find . -type f -mindepth 1 -maxdepth 1)
 
 if test -z "$files"
 then
-  exit 1
+  exit 0
 fi
 
 echo "$files" \
