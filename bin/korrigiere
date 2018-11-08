@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+directory=$(cd $(dirname $0) && pwd)
+dictionary="$directory/../dictionaries/de_DE"
+
+hunspell -d "$dictionary" "$*"

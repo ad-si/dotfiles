@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+tasklite query \
+  "tags like '%feram%' and state is 'Open' \
+    order by priority \
+    desc limit 10"
+  "$@"

@@ -1,0 +1,10 @@
+#! /usr/bin/env node
+
+const plusAWeek = new Date()
+plusAWeek.setDate(plusAWeek.getDate() + 7)
+
+const tomorrow = plusAWeek
+  .toISOString()
+  .split('T')[0]
+
+console.info(tomorrow)

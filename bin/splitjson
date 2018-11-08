@@ -1,0 +1,40 @@
+#! /usr/bin/env node
+
+const fs = require('fs')
+const path = require('path')
+
+const filePath = path.resolve(process.argv[2])
+const fileExtension = path.extname(filePath)
+const fileBaseName = path.basename(filePath, fileExtension)
+const fileDir = path.dirname(filePath)
+const outDir = path.join(fileDir, fileBaseName)
+
+const entries = require(filePath)
+
+if (!Array.isArray(entries)) {
+  throw new Error('Content of JSON file must be an array')
+}
+
+fs.mkdirSync(outDir)
+
+const numberLength = Math.floor(Math.log10(entries.length))
+
+entries
+  .forEach((entry, index) => {
+    const paddedIndex = ('0'.repeat(numberLength) + index).slice(-numberLength)
+    const outFilePath = path.join(outDir, `${paddedIndex}.json`)
+    const outFileContent = JSON.stringify(entry, null, 2)
+
+    fs.open(outFilePath, 'wx', (openError, fileDescriptor) => {
+      if (openError) throw openError
+
+      fs.writeFile(
+        fileDescriptor,
+        outFileContent,
+        writeError => {
+          if (writeError) throw writeError
+          process.stdout.write('.')
+        }
+      )
+    })
+  })

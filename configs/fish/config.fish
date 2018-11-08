@@ -13,9 +13,9 @@ if status --is-login
   set -x PATH /usr/local/sbin $PATH
 
   ## Postgres
-  if test (uname) = "Darwin"
-    set -x PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
-  end
+  # if test (uname) = "Darwin"
+  #   set -x PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
+  # end
 
   ## Programming Languages
 
@@ -130,5 +130,3 @@ end
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [ -f /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/sls.fish ];
   and . /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/sls.fish
-
-set -g fish_user_paths "/usr/local/opt/node@8/bin" $fish_user_paths

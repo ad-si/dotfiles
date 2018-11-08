@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+open "http://www.thesaurus.com/browse/$*"

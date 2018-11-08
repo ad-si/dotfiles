@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+now="$(date -u "+%Y-%m-%dt%H%M")"
+filename="${now}_webcam_shot.jpg"
+outFile="${*:-$filename}"
+
+ffmpeg \
+  -f avfoundation \
+  -video_size 1280x720 \
+  -framerate 30 \
+  -i 0 \
+  -vframes 1 \
+  "$outFile"

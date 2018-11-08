@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+# Textnet Browser
+
+curl \
+  --header 'Accept: text/plain' \
+  --location \
+  "$@"

@@ -45,3 +45,9 @@ and can be imported like this:
 ```js
 const tools = Library('dotfiles/tools')
 ```
+
+
+## TODO
+
+- `defaults write com.apple.desktopservices DSDontWriteNetworkStores true`
+- Check out https://github.com/danburzo/percollate for PDF generation

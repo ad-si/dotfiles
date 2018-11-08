@@ -10,11 +10,14 @@
 #   --image gcr.io/deploy-219812/adrians-ubuntu \
 #   -- fish
 
-kubectl create -f base/job.yaml
+kubectl create -f ~/Projects/deploy/base/job.yaml
 
 sleep 80
 
+podName="$(kubectl get pods | grep adrians-ubuntu-job | cut -c 1-24)"
+
 kubectl exec \
   -it \
-  $(kubectl get pods | grep adrians-ubuntu-job | cut -c 1-24) \
-  -- fish --login
+  "$podName" \
+  -- \
+  fish --login

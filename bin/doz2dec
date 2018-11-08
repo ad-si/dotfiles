@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+# Convert a dozenal to a dezimal number
+
+node <<DOC
+const normNum = "$1"
+  .replace(/↊/g, 'a')
+  .replace(/X/ig, 'a')
+  .replace(/↋/g, 'b')
+  .replace(/E/ig, 'b')
+
+console.log(
+  parseInt(normNum, 12)
+)
+DOC

@@ -1,0 +1,42 @@
+name: dotfiles
+version: 0.1.0.0
+github: adius/dotfiles
+license: GPL-3.0-or-later
+author: Adrian Sieber
+maintainer: mail@adriansieber.com
+copyright: Adrian Sieber
+synopsis: All of my precious dotfiles
+category: Tooling
+description: |
+  Please see the README on Github at
+  <https://github.com/adius/dotfiles#readme>
+
+extra-source-files:
+  - README.md
+
+dependencies:
+  - base
+  - turtle
+
+# library:
+#   source-dirs: bin
+
+# executables:
+#   dotfiles-exe:
+#     main: Main.hs
+#     source-dirs: bin
+#     ghc-options:
+#       - -threaded
+#       - -rtsopts
+#       - -with-rtsopts=-N
+
+# tests:
+#   dotfiles-test:
+#     main:  Spec.hs
+#     source-dirs: tests
+#     ghc-options:
+#       - -threaded
+#       - -rtsopts
+#       - -with-rtsopts=-N
+#     dependencies:
+#       - dotfiles

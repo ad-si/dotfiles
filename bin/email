@@ -1,0 +1,25 @@
+#! /usr/bin/env bash
+
+set -e
+
+if test -z "$MAILGUN_KEY"
+then
+  echo 'MAILGUN_KEY must be set!'
+  exit 1
+fi
+
+if test ! $# -eq 2
+then
+  echo "Usage: $(basename "$0") <email-address> <file-path>"
+  exit 1
+fi
+
+curl \
+  --location \
+  --user "api:key-$MAILGUN_KEY" \
+  --form from="mail@adriansieber.com" \
+  --form to="$1" \
+  --form subject="File $2 from Adrian's laptop" \
+  --form text="File $2 from Adrian's laptop" \
+  --form attachment=@"$2" \
+  https://api.mailgun.net/v3/adriansieber.com/messages

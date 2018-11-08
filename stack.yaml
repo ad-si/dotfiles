@@ -1,0 +1,5 @@
+resolver: lts-11.16
+packages:
+  - '.'
+extra-deps:
+  - http-conduit-2.3.0

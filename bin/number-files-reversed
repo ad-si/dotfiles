@@ -1,0 +1,20 @@
+#! /usr/bin/env bash
+
+numberOfFiles="$(printf "%d" "$(find . -depth 1 | wc -l)")"
+numberOfDigits="${#numberOfFiles}"
+counter="$numberOfFiles"
+
+# Give them temporary names to avoid collisions
+for file in *
+do
+  mv "$file" "temp_$file"
+done
+
+echo ''
+
+for fileTmp in *
+do
+  targetName="$(printf "%0${numberOfDigits}d" "$counter").${fileTmp#*.}"
+  mv -v "$fileTmp" "$targetName"
+  counter=$((counter - 1))
+done

@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+# TODO: Check if `rename --nows *.txt` is better
+
+for file in *
+do
+  base="${file%.*}"
+  extension="${file##*.}"
+  dotless="${base//./-}"
+  mv "$file" "$dotless.$extension"
+done

@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+docker run \
+  --interactive \
+  --tty \
+  --rm \
+  --entrypoint 'gh' \
+  --volume "$(pwd):/src/" \
+  --volume "${HOME}/.gitsomeconfig:/root/.gitsomeconfig" \
+  --volume "${HOME}/.gitconfig:/root/.gitconfig" \
+  mariolet/gitsome \
+  "$@"

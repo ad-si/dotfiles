@@ -1,0 +1,15 @@
+#! /usr/bin/env bash
+
+find . -iname "*.png" | \
+while read -r file
+do
+  convert \
+    -verbose \
+    "$file" \
+    \( +clone -blur 0x60 -brightness-contrast 40 \) \
+    -compose minus \
+    -composite \
+    -negate \
+    -auto-threshold otsu \
+    "$(basename "$file" ".png")"-fixed.png
+done

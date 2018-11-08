@@ -1,0 +1,238 @@
+{
+  "Shell": {
+    "packages": [
+      {
+        "name": "language-fish-shell",
+        "action": "added"
+      },
+      {
+        "name": "language-shellscript",
+        "action": "added"
+      },
+      {
+        "name": "make-executable",
+        "action": "added"
+      }
+    ]
+  },
+  "Pug": {
+    "packages": [
+      {
+        "name": "indent-guide-improved",
+        "action": "added"
+      },
+      {
+        "name": "language-markdown",
+        "action": "added"
+      },
+      {
+        "name": "language-pug",
+        "action": "added"
+      },
+      {
+        "name": "language-yaml",
+        "action": "added"
+      }
+    ]
+  },
+  "Flow": {
+    "packages": [
+      {
+        "name": "atom-ide-ui",
+        "action": "removed"
+      },
+      {
+        "name": "atom-ternjs",
+        "action": "added"
+      },
+      {
+        "name": "autocomplete-plus",
+        "action": "added"
+      },
+      {
+        "name": "autocomplete-snippets",
+        "action": "added"
+      },
+      {
+        "name": "bracket-matcher",
+        "action": "added"
+      },
+      {
+        "name": "fast-eslint",
+        "action": "added"
+      },
+      {
+        "name": "file-icons",
+        "action": "added"
+      },
+      {
+        "name": "flow-ide",
+        "action": "removed"
+      },
+      {
+        "name": "git-diff",
+        "action": "added"
+      },
+      {
+        "name": "github",
+        "action": "added"
+      },
+      {
+        "name": "ide-flowtype",
+        "action": "removed"
+      },
+      {
+        "name": "indent-guide-improved",
+        "action": "added"
+      },
+      {
+        "name": "language-docker",
+        "action": "added"
+      },
+      {
+        "name": "language-javascript",
+        "action": "added"
+      },
+      {
+        "name": "language-json",
+        "action": "added"
+      },
+      {
+        "name": "language-make",
+        "action": "added"
+      },
+      {
+        "name": "language-markdown",
+        "action": "added"
+      },
+      {
+        "name": "language-yaml",
+        "action": "added"
+      },
+      {
+        "name": "linter",
+        "action": "added"
+      },
+      {
+        "name": "linter-docker",
+        "action": "added"
+      },
+      {
+        "name": "linter-flow",
+        "action": "added"
+      },
+      {
+        "name": "linter-ui-default",
+        "action": "added"
+      },
+      {
+        "name": "snippets",
+        "action": "added"
+      },
+      {
+        "name": "status-bar",
+        "action": "added"
+      },
+      {
+        "name": "Sublime-Style-Column-Selection",
+        "action": "added"
+      }
+    ]
+  },
+  "Markdown": {
+    "packages": [
+      {
+        "name": "asciidoc-preview",
+        "action": "added"
+      },
+      {
+        "name": "image-view",
+        "action": "added"
+      },
+      {
+        "name": "language-asciidoc",
+        "action": "added"
+      },
+      {
+        "name": "language-html",
+        "action": "added"
+      },
+      {
+        "name": "language-make",
+        "action": "added"
+      },
+      {
+        "name": "language-markdown",
+        "action": "added"
+      },
+      {
+        "name": "markdown-preview",
+        "action": "removed"
+      },
+      {
+        "name": "markdown-preview-plus",
+        "action": "added"
+      },
+      {
+        "name": "markdown-table-formatter",
+        "action": "added"
+      },
+      {
+        "name": "markdown-toc",
+        "action": "added"
+      },
+      {
+        "name": "sort-lines",
+        "action": "added"
+      }
+    ]
+  },
+  "Elm": {
+    "packages": [
+      {
+        "name": "elm-format",
+        "action": "added"
+      },
+      {
+        "name": "elmjutsu",
+        "action": "added"
+      },
+      {
+        "name": "file-icons",
+        "action": "added"
+      },
+      {
+        "name": "language-elm",
+        "action": "added"
+      },
+      {
+        "name": "language-javascript",
+        "action": "added"
+      },
+      {
+        "name": "linter",
+        "action": "added"
+      },
+      {
+        "name": "linter-elm-make",
+        "action": "added"
+      }
+    ]
+  },
+  "PureScript": {
+    "packages": [
+      {
+        "name": "ide-purescript",
+        "action": "added"
+      },
+      {
+        "name": "language-javascript",
+        "action": "added"
+      },
+      {
+        "name": "language-purescript",
+        "action": "added"
+      }
+    ]
+  }
+}

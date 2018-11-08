@@ -22,7 +22,7 @@
 
 - **od** - Octal, decimal, hex, ASCII dump
 - **strings** - find the printable strings in a object, or other binary, file
-- **hexdump** - 
+- **hexdump** -
 - **xxd** -
 
 
@@ -73,6 +73,7 @@
 - **links**
 - **elinks** - Advanced and well-established feature-rich text mode web browser.
 - **surfraw** - CLi to a variety of popular WWW search engines.
+- **ssh brow.sh** - Opens a graphical terminal browser
 
 
 ## Music
@@ -101,7 +102,7 @@
 ## Search
 
 - grep - file pattern searcher
-- ack - 
+- ack -
 - ag - Recursively search for PATTERN in PATH. Like grep or ack, but faster.
 
 
@@ -124,4 +125,4 @@
 - wego - Weather app with ascii art (github.com/schachmat/wego)
 ## Links
 
-- http://shell-fu.org - All those little command line goodies that you come across and then can never find again when you need 
+- http://shell-fu.org - All those little command line goodies that you come across and then can never find again when you need

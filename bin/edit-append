@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+# TODO: Find better way to implement this
+# "${EDITOR:-vim}" "${@:-.}"
+
+subl -a "${@:-.}"

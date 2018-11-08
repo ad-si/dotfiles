@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+rsync \
+  --archive \
+  --delete \
+  --verbose \
+  --stats \
+  /Volumes/4_tb_red_src/ \
+  /Volumes/4_tb_red_trgt/

@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+test "$#" -ne 2 &&
+  echo "Usage: svg2pdf [input.svg] [output.pdf]" &&
+  exit 1
+
+inkscape \
+    --without-gui \
+    --export-pdf "$(pwd)/$2" \
+    "$(pwd)/$1"
