@@ -1,0 +1,65 @@
+# Use the command 'task show' to see all defaults and overrides
+
+# Database location
+data.location=~/.task
+# data.location=~/Downloads/task-test
+
+
+# Settings
+color.alternate=on gray4
+color=on
+context.work=project:feram
+context.home=project!~feram
+reserved.lines=20
+search.case.sensitive=no
+weekstart=monday
+
+
+# Set special coefficients of tags
+urgency.user.tag.feram.coefficient=+0.1
+urgency.user.tag.book.coefficient=-1
+urgency.user.tag.movie.coefficient=-2
+urgency.user.tag.nice.coefficient=-2
+urgency.user.tag.ultimate.coefficient=-3
+urgency.user.tag.idea.coefficient=-4
+urgency.user.tag.maybe.coefficient=-5
+
+
+# Tasks without tag are more urgent as they haven't been categorized yet
+urgency.tags.coefficient=-0.5
+
+
+# Bugwarrior User Defined Attributes
+uda.githubtitle.type=string
+uda.githubtitle.label=Github Title
+
+uda.githubbody.type=string
+uda.githubbody.label=Github Body
+
+uda.githubcreatedon.type=date
+uda.githubcreatedon.label=Github Created
+
+uda.githubupdatedat.type=date
+uda.githubupdatedat.label=Github Updated
+
+uda.githubmilestone.type=string
+uda.githubmilestone.label=Github Milestone
+
+uda.githubrepo.type=string
+uda.githubrepo.label=Github Repo Slug
+
+uda.githuburl.type=string
+uda.githuburl.label=Github URL
+
+uda.githubtype.type=string
+uda.githubtype.label=Github Type
+
+uda.githubnumber.type=numeric
+uda.githubnumber.label=Github Issue/PR #
+
+uda.githubuser.type=string
+uda.githubuser.label=Github User
+
+
+# Automatically added configs
+context=home
