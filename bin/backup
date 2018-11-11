@@ -45,8 +45,13 @@ if test -d "$backupdir"
 then
   echo "Start backup to '$backupdir' …"
 else
-  echo "'$backupdir' is not a directory!"
-  exit 1
+  if test -e "$backupdir"
+  then
+    echo "'$backupdir' is not a directory!"
+    exit 1
+  else
+    mkdir -p "$backupdir"
+  fi
 fi
 
 
