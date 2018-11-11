@@ -120,6 +120,9 @@ if status --is-login
 
   # GPG (Necessary for signing git commits and tags)
   set -x GPG_TTY (tty)
+
+  # Enable color output for github.com/chrisallenlane/cheat
+  set -x CHEATCOLORS true
 end
 
 # tabtab source for serverless package

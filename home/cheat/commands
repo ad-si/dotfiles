@@ -1,0 +1,10 @@
+```md
+- **whatis** - Search the whatis database for complete words.
+- **apropos** - Search the whatis database for strings.
+- **man** - Manual page.
+- **tldr** - Summary of manual page.
+- **bro** - Voted summaries of manual page.
+- **compgen** - Bash built-in commands lister.
+- **type** - Get type of command (alias, keyword, function, builtin, file).
+- **cheat** - Create and view interactive cheatsheets on the command-line.
+```

@@ -1,0 +1,72 @@
+```md
+# Command Line Tools
+
+## Information
+
+### General
+
+- **`man ascii`** - Print the ascii tables in octal, hexadeciamal and decimal
+
+
+## Misc
+
+- **who**
+- **lsof** - List open files.
+- **system_profiler** - Information about the computer hardware and settings.
+- **caffeinate** - Prevent the system from sleeping on behalf of a utility.
+
+
+## File System
+
+- **rename** - Rename multiple files
+- **seq** - Print sequences of numbers
+- **mkfile** - Create one or more zero padded files
+
+
+## Internet
+
+- **HTTPie** - Command line HTTP client and user-friendly cURL replacement.
+
+
+## Music
+
+- **afplay** - Plays an audio file to the default audio output.
+- **cursynth**
+- **fluidsynth**
+- **lilypond**
+- **beet**
+
+
+## Convert
+
+- **json2yaml**
+
+
+## Search
+
+- grep - file pattern searcher
+- ack -
+- ag - Recursively search for PATTERN in PATH. Like grep or ack, but faster.
+
+
+## Jumper
+
+- fasd
+- autojump
+- z
+- v
+
+
+### Spell Cheking
+
+- aspell - Interactive spell checker
+- hunspell - Spell checker, stemmer and morphological analyzer
+
+
+### Weather
+
+- wego - Weather app with ascii art (github.com/schachmat/wego)
+## Links
+
+- http://shell-fu.org - All those little command line goodies that you come across and then can never find again when you need
+```

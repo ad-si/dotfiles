@@ -1,0 +1,7 @@
+```md
+- `hexdump` -
+- `od` - Octal, decimal, hex, ASCII dump
+- `strings` - find the printable strings in a object, or other binary, file
+- `view` - View file with vim in read only mode
+- `xxd` -
+```
