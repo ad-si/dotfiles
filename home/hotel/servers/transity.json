@@ -1,0 +1,8 @@
+{
+  "cwd": "/Users/adrian/Projects/transity",
+  "cmd": "pulp server",
+  "env": {
+    "PATH": "/Users/adrian/dotfiles/bin:/usr/local/Cellar/node/9.4.0/bin:/Users/adrian/.config/yarn/global/node_modules/.bin:/Users/adrian/Library/Haskell/bin:/Users/adrian/.local/bin:/usr/local/opt/ruby/bin:/Users/adrian/.go/bin:/Users/adrian/.cargo/bin:/usr/local/opt/php71/bin:/Applications/Postgres.app/Contents/Versions/9.4/bin:/usr/local/sbin:/usr/local/opt/fzf/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin",
+    "PORT": 1337
+  }
+}

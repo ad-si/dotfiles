@@ -1,0 +1,228 @@
+set realname = 'Adrian Sieber'
+
+set ssl_starttls = 'yes'
+set ssl_force_tls = 'yes'
+
+# Gmail
+set from = 'adrian.sieber1@gmail.com'
+set imap_user = 'adrian.sieber1@gmail.com'
+set smtp_url = 'smtps://adrian.sieber1@smtp.gmail.com:465'
+
+# ATTENTION: Do not store password in config file
+# set smtp_pass = ''
+# set imap_pass = ''
+
+# https://github.com/Homebrew/legacy-homebrew/issues/33419
+set smtp_authenticators = 'login'
+
+set folder = 'imaps://imap.gmail.com:993' # from now on `+` refers to this url
+set spoolfile = '+INBOX'
+
+# Google automatically safes
+# Therefore this is unnecssary:
+# set record = '+[Google Mail]/Sent Mail'
+unset record
+
+set postponed = '+[Google Mail]/Drafts'
+
+# Check all subscribed IMAP folders regularly for new emails
+set imap_check_subscribed
+
+# This could be used alternatively if set of folders shall be limited
+# mailboxes +INBOX +Family
+
+# Store message headers locally to speed things up
+set header_cache = '~/.cache/mutt'
+
+# Store messages locally to speed things up, like searching message bodies.
+# Can be the same folder as header_cache.
+# ATTENTION: Can take up a lot of storage space
+# set message_cachedir = '~/.cache/mutt'
+
+
+set charset = 'utf-8'
+
+set editor = 'micro'
+set sleep_time = 0
+
+
+### Alias ###
+
+alias adrian  mail@adriansieber.com  (Adrian Sieber)
+
+
+### Rendering ###
+
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+
+set text_flowed = 'yes'
+unset markers
+set wrap = 80
+
+set sidebar_visible = 'yes'
+set mail_check_stats
+set status_on_top
+
+set index_format = '%(%Y-%m-%d %H:%M) | %Z | %-20.20L | %s'
+set pager_format = '%(%Y-%m-%d %H:%M) | %Z | %C/%m | %-20.20n | %s %* -- (%P)'
+
+# Hide date field in header
+ignore Date
+
+# Scroll inside the message rather than the index
+bind pager <up> previous-line
+bind pager <down> next-line
+
+
+### Colors ###
+
+# Explanation: `color <object> <foreground> <background> [regex]`
+
+# Basic monocolor screen fallback
+mono bold       bold
+mono underline  underline
+mono indicator  reverse
+mono error      bold
+
+# Custom body highlights
+color body yellow default '(adrian|sieber)'
+
+# Custom index highlights
+# Messages which mention my name in the body
+
+# color index yellow default "~b \"phil(_g|\!| gregory| gold)|pgregory\" !~N !~T !~F !~p !~P"
+# color index J_cream brightwhite "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~N !~T !~F !~p !~P"
+# color index yellow cyan "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~T !~F !~p !~P"
+# color index yellow J_magent "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~F !~p !~P"
+
+# Messages which are in reference to my mails
+
+# color index J_magent default "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" !~N !~T !~F !~p !~P"
+# color index J_magent brightwhite "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~N !~T !~F !~p !~P"
+# color index J_magent cyan "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~T !~F !~p !~P"
+# color index J_magent red "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~F !~p !~P"
+
+# For background in 16 color terminal, valid background colors include:
+# Base03, bg, black, any of the non brights
+
+# Basic colors
+color normal      brightyellow  default
+color error       red           default
+color tilde       black         default
+color message     cyan          default
+color markers     red           white
+color attachment  white         default
+color search      brightmagenta default
+# color status J_black J_status
+color status      brightyellow  black
+color indicator   brightblack   yellow
+color tree        yellow        default # Arrow in threads
+
+
+# Index
+
+# color index red default "~D(!~p|~p)" # Deleted
+# color index black default ~F # Flagged
+# color index brightred default ~= # Duplicate messages
+# color index brightgreen default "~A!~N!~T!~p!~Q!~F!~D!~P" # The rest
+# color index J_base default "~A~N!~T!~p!~Q!~F!~D" # The rest, new
+color index red           default "~A" # All messages
+color index brightred     default "~E" # Expired messages
+color index blue          default "~N" # New messages
+color index blue          default "~O" # Old messages
+color index brightmagenta default "~Q" # Messages that have been replied to
+color index black        default "~R" # Read messages
+color index blue          default "~U" # Unread messages
+color index blue          default "~U~$" # Unread, unreferenced messages
+color index brightyellow  default "~v" # Messages part of a collapsed thread
+color index brightyellow  default "~P" # Messages from me
+color index cyan          default "~p!~F" # Messages to me
+color index cyan          default "~N~p!~F" # New messages to me
+color index cyan          default "~U~p!~F" # Unread messages to me
+color index brightgreen   default "~R~p!~F" # Messages to me
+color index red           default "~F" # Flagged messages
+color index red           default "~F~p" # Flagged messages to me
+color index red           default "~N~F" # New flagged messages
+color index red           default "~N~F~p" # New flagged messages to me
+color index red           default "~U~F~p" # New flagged messages to me
+color index black         red "~D" # Deleted messages
+color index brightcyan    default "~v~(!~N)" # Collapsed thread with no unread
+color index yellow        default "~v~(~N)" # Collapsed thread with some unread
+color index green         default "~N~v~(~N)" # Collapsed thread with unread parent
+# Statusbg used to indicated flagged when foreground color shows other status
+# For collapsed thread
+color index red     black "~v~(~F)!~N" # Collapsed thread with flagged, no unread
+color index yellow  black "~v~(~F~N)" # Collapsed thread with some unread & flagged
+color index green   black "~N~v~(~F~N)" # Collapsed thread with unread parent & flagged
+color index green   black "~N~v~(~F)" # Collapsed thread with unread parent, no unread inside, but some flagged
+color index cyan    black "~v~(~p)" # Collapsed thread with unread parent, no unread inside, some to me directly
+color index yellow  red "~v~(~D)" # Thread with deleted (doesn't differentiate between all or partial)
+# color index yellow default "~(~N)" # Messages in threads with some unread
+# color index green default "~S" # Superseded messages
+# color index red default "~T" # Tagged messages
+# color index brightred red "~=" # Duplicated messages
+
+# Message headers
+
+# color header brightgreen default "^"
+color hdrdefault brightgreen default
+color header brightyellow default "^(From)"
+color header blue default "^(Subject)"
+
+# Body
+
+color quoted blue default
+color quoted1 cyan default
+color quoted2 yellow default
+color quoted3 red default
+color quoted4 brightred default
+
+color signature brightgreen default
+color bold black default
+color underline black default
+color normal default default
+#
+color body brightcyan default "[;:][-o][)/(|]" # Emoticons
+color body brightcyan default "[;:][)(|]" # Emoticons
+color body brightcyan default "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|\
+ |FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|\
+ |IRL|RTFM|ROTFL|ROFL|YMMV)[*]?"
+color body brightcyan default "[ ][*][^*]*[*][ ]?" # More emoticon?
+color body brightcyan default "[ ]?[*][^*]*[*][ ]" # More emoticon?
+
+## Pgp
+
+color body red default "(BAD signature)"
+color body cyan default "(Good signature)"
+color body brightblack default "^gpg: Good signature .*"
+color body brightyellow default "^gpg: "
+color body brightyellow red "^gpg: BAD signature from.*"
+mono body bold "^gpg: Good signature"
+mono body bold "^gpg: BAD signature from.*"
+
+# Yes, an insance URL regex
+color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+# And a heavy handed email regex
+# color body J_magent default "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
+
+# Various smilies and the like
+# color body brightwhite default "<[Gg]>" # <g>
+# color body brightwhite default "<[Bb][Gg]>" # <bg>
+# color body yellow default " [;:]-*[})>{(<|]" # :-) etc...
+# *bold*
+# color body blue default "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
+#mono body bold "(^|[[:space:][:punct:]])\\*[^*]+\\*([[:space:][:punct:]]|$)"
+# _underline_
+# color body blue default "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
+#mono body underline "(^|[[:space:][:punct:]])_[^_]+_([[:space:][:punct:]]|$)"
+# /italic/ (Sometimes gets directory names)
+# color body blue default "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
+#mono body underline "(^|[[:space:][:punct:]])/[^/]+/([[:space:][:punct:]]|$)"
+
+# Border lines.
+# color body blue default "( *[-+=#*~_]){6,}"
+
+#folder-hook . "color status J_black J_status "
+#folder-hook gmail/inbox "color status J_black yellow "
+#folder-hook gmail/important "color status J_black yellow "
