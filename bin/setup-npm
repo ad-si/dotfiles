@@ -1,10 +1,20 @@
 #! /usr/bin/env bash
 
 packages=(
-    supervisor
-    forever
-    rethinkdb
-    tldr
+  eslint
+  forever
+  live-server
+  markdown-link-check
+  msee
+  nodemon
+  npm-check-updates
+  qrcode
+  rethinkdb
+  serverless
+  supervisor
+  surge
+  tldr
+  trash
 )
 
 for package in "${packages[@]}"
