@@ -8,7 +8,6 @@ paths=(
   ~/.ssh
   ~/.task
   ~/.timewarrior
-  ~/tasklite
   # ~/Books
   # ~/Contacts
   ~/Desktop
@@ -17,9 +16,11 @@ paths=(
   ~/Dropbox\ \(Feram\)
   ~/Dropbox\ \(Personal\)
   # ~/Events
-  ~/Google\ Drive
+  # ~/Google\ Drive
+  ~/Library/autojump
   ~/Library/Fonts
   ~/Library/Keychains
+  ~/Library/Thunderbird/Profiles
   ~/Movies
   ~/Music
   # ~/Photos

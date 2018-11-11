@@ -4,7 +4,7 @@ dotfilesDir="$HOME/dotfiles"
 scriptsDir="$dotfilesDir/scripts"
 appScriptsDir="$scriptsDir/Applications"
 
-if [[ -d "$dotfilesDir" ]]
+if test -d "$dotfilesDir"
 then
   echo "Symlinking dotfiles from $dotfilesDir"
   echo "Linking:"
@@ -13,12 +13,22 @@ else
   exit 1
 fi
 
+
+echo 'Link home dotfiles …'
+
 for location in $dotfilesDir/home/*
 do
   file="${location##*/}"
+  filepath="$HOME/.$file"
 
-  ln -s -v "$location" "$HOME/.$file"
+  if test ! -L "$filepath"  # Check if link does not yet exist
+  then
+    ln -s -v "$location" "$filepath"
+  fi
 done
+
+
+echo 'Link configs dotfiles …'
 
 for location in $dotfilesDir/configs/*
 do
@@ -31,21 +41,21 @@ done
 
 if [[ $(uname) == 'Darwin' ]]
 then
-  echo && echo "Link Darwin (macOS) specific files"
+  echo && echo "Link Darwin (macOS) specific files …"
 
   echo && echo "Link Scripting Libraries"
   ln -s -v -F "$dotfilesDir/script-libraries/personal" "$HOME/Library/Script Libraries"
 
-  echo && echo "Link Scripts"
+  echo && echo "Link Scripts:"
 
-  echo && echo "Link User Scripts"
+  echo && echo "Link User Scripts …"
   find "$scriptsDir" \
     -type f \
     -depth 1 \
     -exec sh -c \
       'ln -s -v "$0" "$HOME/Library/Scripts/${0##$1}"' {} "$scriptsDir/" \;
 
-  echo && echo "Link App Scripts"
+  echo && echo "Link App Scripts …"
   mkdir "$HOME/Library/Scripts/Applications"
 
   find "$appScriptsDir" \

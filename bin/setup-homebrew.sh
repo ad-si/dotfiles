@@ -58,56 +58,85 @@ echo "Install casks …"
 
 casks=(
   alfred
-  #arduino
+  # arduino
+  android-file-transfer
   atom
-  #automap-server MISSING
-  betterzipql   # Preview archives
-  #blender
-  #calibre
+  # automap-server MISSING
+  betterzipql   #  Preview archives
+  brave
+  # blender
+  # calibre
   cheatsheet
   chromium
-  #cloudcompare MISSING
-  #dedrm MISSING
-  duet
-  #electrum
-  #filezilla
+  # cloudcompare MISSING
+  db-browser-for-sqlite
+  # dedrm MISSING
+  disk-inventory-x
+  docker
+  dropbox
+  # duet
+  # electron-cash
+  # electrum
+  # emacs
+  # filezilla
   firefox
   flux
-  #fritzing
+  fman
+  # franz
+  # fritzing
   gimp
+  gitup
   google-chrome
-  #handbrake
-  #hex-fiend
-  #ichm
-
-  #caskroom/homebrew-versions/java6
-  #intellij-idea
-
+  # handbrake
+  # hex-fiend
+  # ichm
+  imageplay
+  inkscape
   iterm2
-  #kindle
-  #librecad
+  kindle
+  kindlegen
+  # librecad
   libreoffice
-  #mongohub
-  #musescore
-  #onyx
-  #opera
-  qlstephen   # Preview plain text files without a file extension
-  #quicksilver
+  logitech-control-center
+  microsoft-remote-desktop-beta
+  # mongohub
+  # musescore
+  nvidia-geforce-now
+  # onyx
+  # opera
+  platypus
+  qlstephen  # Preview plain text files without a file extension
+  # quicksilver
+  # rawtherapee
+  send-to-kindle
   shiftit
-  #silverlight
-  #sketchup
-  #skype
-  #slic3r
-  #squeak MISSING
-  #sourcetree
-  #speedcrunch    # Calculator
+  # sigil
+  # silverlight
+  sketch
+  # sketchup
+  skype
+  slack
+  # slic3r
+  # squeak MISSING
+  # sourcetree
+  # speedcrunch    #  Calculator
   spotify
-  #textmate
-  #tunnelblick BUGGY
-  #universal-control MISSING
-  #virtualbox
-  #vlc
-  #vmware-fusion
+  sublime-text
+  table-tool
+  tad
+  # teensy
+  telegram
+  texstudio
+  # textmate
+  thunderbird
+  tor-browser
+  # tunnelblick BUGGY
+  # universal-control MISSING
+  # vienna
+  # virtualbox
+  # visual-studio-code
+  vlc
+  # vmware-fusion
   xquartz
 
   # XQuartz dependent casks:
