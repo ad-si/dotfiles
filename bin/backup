@@ -5,6 +5,13 @@ set -e
 backupdir=/Volumes/4_tb_red_src/backups/latest_macbook_2015
 
 paths=(
+  ~/.electrum/wallets
+  ~/.electron-cash/wallets
+  ~/.gnupg
+  ~/.password-store
+  ~/.rclone.conf
+  ~/.s3cfg
+  ~/.serverlessrc
   ~/.ssh
   ~/.task
   ~/.timewarrior
