@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-user=$(whoami)
- 
+user="$(whoami)"
+
 soundFont="/Users/$user/dotfiles/misc/fluidR3.sf2"
- 
+
 if [[ ! -f "$soundFont" ]]
 then
     echo "Can't find the soundfont: $soundFont"
     exit 1
 fi
- 
- 
+
+
 if [ "$#" -eq 0 ]
 then
     echo "Usage: midi2mp3 <midi-file>"
@@ -25,7 +25,7 @@ else
         --gain 1 \
         --fast-render "$waveFile" \
         "$soundFont" \
-        "$filename"
+        "$mp3File"
 fi
 
 # Timidity

@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-cd "$CONTACTS"
+cd "$CONTACTS" || exit
 
 users=$(ag --filename-pattern "$1")
 
@@ -8,7 +8,7 @@ if test -z "$users"
 then
   echo "No contact found matching \"$1\""
 else
-  if test $(echo "$users" | wc -l) -gt 1
+  if test "$(echo "$users" | wc -l)" -gt 1
   then
     echo "$users"
   else

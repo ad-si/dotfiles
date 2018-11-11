@@ -1,5 +1,0 @@
-#! /bin/bash
-
-filePath=$HOME/dotfiles/tools.md
-
-msee $filePath || hicat $filePath  || cat $filePath

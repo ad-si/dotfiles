@@ -3,7 +3,7 @@
 IFS=$'\n'
 directory=${2:-~}
 
-cd "$directory"
+cd "$directory" || exit
 
 files=$(fzf-tmux --query="$1" --select-1 --exit-0)
 [[ -n "$files" ]] && open "${files[@]}"

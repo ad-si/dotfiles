@@ -3,5 +3,5 @@
 python3 -c "\
 import math; \
 import numpy; \
-print($@) \
+print($*) \
 "

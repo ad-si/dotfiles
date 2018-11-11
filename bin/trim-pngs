@@ -5,4 +5,4 @@ find . -name "*.png" \
   -exec optipng -silent {} \; \
   -exec printf "." \;
 
-printf "\n"
+echo

@@ -1,8 +1,9 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 set -e
 
-backupdir=/Volumes/4_tb_red_src/backups/latest_macbook_2015
+today="$(date -u "+%Y-%m-%d")"
+backupdir=/Volumes/4_tb_red_src/backups/${today}_macbook_2015
 
 paths=(
   ~/.electrum/wallets
@@ -39,12 +40,12 @@ paths=(
   ~/Wallets
 )
 
+
 if test -d "$backupdir"
 then
-  echo "Started backup to $backupdir"
-
+  echo "Start backup to '$backupdir' …"
 else
-  echo "$backupdir is not a directory!"
+  echo "'$backupdir' is not a directory!"
   exit 1
 fi
 
@@ -53,7 +54,7 @@ for directory in "${paths[@]}"
 do
   if test -d "$directory"
   then
-    echo "Backuping directory $directory"
+    echo "Backing up directory '$directory' …"
     rsync \
       --archive \
       --verbose \
@@ -63,22 +64,23 @@ do
 
   elif test -f "$directory"
   then
+    echo "Backing up file '$directory' …"
     cp -v "$directory" "$backupdir"
 
   else
-    echo "'$directory' is not a valid path"
+    echo "Error: '$directory' is not a valid path"
     exit 1
   fi
 done
 
 
-echo "Backing up SD card"
+echo "Backing up SD card …"
 rsync \
   --archive \
   --verbose \
   --stats \
   "/Volumes/adrian_64gb" \
-  "/Volumes/4_tb_red_src/backups/latest_adrian_64gb"
+  "/Volumes/4_tb_red_src/backups/${today}_adrian_64gb"
 
 
 echo "Sync main 4 TB drive with backup 4 TB drive"  # basically RAID 1

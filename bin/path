@@ -2,6 +2,5 @@
 
 old=$IFS
 IFS=:
-printf "%s\n" $PATH
+printf "%s\\n" $PATH
 IFS=$old
-

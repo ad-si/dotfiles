@@ -16,7 +16,7 @@ fi
 
 echo 'Link home dotfiles …'
 
-for location in $dotfilesDir/home/*
+for location in "$dotfilesDir/home"/*
 do
   file="${location##*/}"
   filepath="$HOME/.$file"
@@ -30,7 +30,7 @@ done
 
 echo 'Link configs dotfiles …'
 
-for location in $dotfilesDir/configs/*
+for location in "$dotfilesDir/configs"/*
 do
   file="${location##*/}"
   file="${file%.*}"
@@ -39,7 +39,7 @@ do
 done
 
 
-if [[ $(uname) == 'Darwin' ]]
+if test "$(uname)" == 'Darwin'
 then
   echo && echo "Link Darwin (macOS) specific files …"
 

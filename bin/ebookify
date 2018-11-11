@@ -10,7 +10,7 @@ fi
 readerWidth='90mm'
 readerHeight='122mm'
 dpi='300'
-zoom='1'
+# zoom='1'
 margin='5mm'
 papersize='B7'
 

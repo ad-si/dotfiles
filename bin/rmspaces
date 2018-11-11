@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 # TODO: Check if `rename --nows *.txt` is better
 

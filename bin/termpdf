@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 
 if [[ "${BASH_VERSINFO[0]}" -lt 4 ]]; then
     message="upgrade to bash 4 to enable marks"
@@ -15,8 +15,8 @@ fi
 ###########################################################################
 
 ###########################################################################
-# Functions for displaying images in iTerm2, adapted from the imgcat 
-# script at 
+# Functions for displaying images in iTerm2, adapted from the imgcat
+# script at
 #   https://raw.githubusercontent.com/gnachman/iTerm2/master/tests/imgcat
 ###########################################################################
 
@@ -28,17 +28,17 @@ fi
 
 function print_osc() {
     if [[ $TERM == screen* ]] ; then
-        printf "\033Ptmux;\033\033"
+        printf "\\033Ptmux;\\033\\033"
     else
-        printf "\033"
+        printf "\\033"
     fi
 }
 
 function print_st() {
     if [[ $TERM == screen* ]] ; then
-        printf "\a\033\\"
+        printf "\\a\\033\\"
     else
-        printf "\a"
+        printf "\\a"
     fi
 }
 
@@ -54,8 +54,9 @@ function print_st() {
 function print_image() {
     print_osc
     printf ']1337;File='
-    if [[ -n "$1" ]]; then
-        printf 'name='`echo -n "$1" | base64`";"
+    if [[ -n "$1" ]]
+    then
+        printf "name=%s;" "$(echo -n "$1" | base64)"
     fi
     if $(base64 --version 2>&1 | grep GNU > /dev/null)
     then
@@ -88,8 +89,8 @@ function get_pane_size() {
 
 
 ###########################################################################
-# Function for adjusting background color of current pane 
-# 
+# Function for adjusting background color of current pane
+#
 # The tmux commands are commented out because iTerm2 doesn't seem
 # to respect tmux background colors when drawing images, so this
 # doesn't help with https://github.com/dsanson/termpdf/issues/10
@@ -115,7 +116,7 @@ function get_total_number_of_pages() {
     case $filetype in
         pdf)
             total_pages=$(pdfinfo "$1" 2>/dev/null \
-                | grep "^Pages:" | awk '{print $2}') 
+                | grep "^Pages:" | awk '{print $2}')
             ;;
         djvu)
             total_pages=$(djvudump "$1" 2>/dev/null \
@@ -126,7 +127,7 @@ function get_total_number_of_pages() {
                 | sed -n 's/ *Page Number:.*-//p' | sed -n '1p')
             ;;
         *)
-            total_pages=1 
+            total_pages=1
     esac
 
     if [[ ! $total_pages =~ [0-9]* ]]; then
@@ -138,16 +139,16 @@ function validate_page_number() {
     if [[ $page_number == "" ]]; then
         page_number=1
     fi
-    if [[ "${page_number}" -le 0 ]]; then 
+    if [[ "${page_number}" -le 0 ]]; then
         page_number=1
     fi
-    if [[ "${page_number}" -ge "$total_pages" ]]; then 
+    if [[ "${page_number}" -ge "$total_pages" ]]; then
         page_number=$total_pages
     fi
 }
 
 ###########################################################################
-# Printing 
+# Printing
 ###########################################################################
 
 function print_document() {
@@ -169,7 +170,7 @@ function print_document() {
 }
 
 ###########################################################################
-# Set keys for navigation etc. 
+# Set keys for navigation etc.
 ###########################################################################
 
 function keys() {
@@ -190,13 +191,13 @@ function keys() {
         make="M"
         print="p"
         crop="c"
-        notes="a" 
+        notes="a"
         help="h"
         quit="q"
 }
 
 ###########################################################################
-# Edit this is if you prefer different print settings 
+# Edit this is if you prefer different print settings
 ###########################################################################
 
 
@@ -243,8 +244,8 @@ function clean_and_exit() {
 
 
 ###########################################################################
-# Many commands have a vim-style optional "count" (e.g, 5j moves forward 
-# 5 pages). Often, if no count is given, we default to 1 
+# Many commands have a vim-style optional "count" (e.g, 5j moves forward
+# 5 pages). Often, if no count is given, we default to 1
 ###########################################################################
 
 function check_count() {
@@ -261,7 +262,7 @@ clear_message() {
 }
 
 ###########################################################################
-# A simple function for listing all the saved marks in the status bar 
+# A simple function for listing all the saved marks in the status bar
 ###########################################################################
 
 function list_marks() {
@@ -276,7 +277,7 @@ function list_marks() {
 }
 
 ###########################################################################
-# Use k2pdfopt <https://github.com/JohannesBuchner/k2pdfopt> to crop 
+# Use k2pdfopt <https://github.com/JohannesBuchner/k2pdfopt> to crop
 # excess whitespace from pdfs.
 #
 #     crop_margins root page
@@ -294,7 +295,7 @@ function crop_margins() {
 # Functions for extracting and caching a single page from a multipage
 # pdf or djvu file.
 #
-#     extract_pdf_page path root extension page 
+#     extract_pdf_page path root extension page
 ###########################################################################
 
 function extract_pdf_page() {
@@ -314,7 +315,7 @@ function extract_tiff_page() {
 
 
 ###########################################################################
-# Wrapper function for extracting page depending on file type 
+# Wrapper function for extracting page depending on file type
 #
 #    extract_page path rootname extension page-number
 ###########################################################################
@@ -364,13 +365,13 @@ function export_pdf() {
         last_page="$1"
     fi
     if [[ "$filetype" == "pdf" ]]; then
-        pdftocairo -pdf -f "$first_page" -l "$last_page" "$document" "$output" 
+        pdftocairo -pdf -f "$first_page" -l "$last_page" "$document" "$output"
         message="pages $first_page to $last_page saved to $output"
     elif [[ "$filetype" == "djvu" ]]; then
         djvups -page=${first_page}-${last_page} "$document" - \
             | ps2pdf - "$output"
         message="pages $first_page to $last_page saved to $output"
-    else 
+    else
         # TODO: add support for TIFF
         message="export to pdf not yet supported for this filetype"
     fi
@@ -379,7 +380,7 @@ function export_pdf() {
 
 ###########################################################################
 # Open a filename_notes.md file for annotation
-# 
+#
 # If you are running inside of tmux, then this will open your editor
 # in a split pane. Otherwise, it will simply open the file in your $EDITOR.
 #
@@ -390,10 +391,10 @@ function export_pdf() {
 function notes() {
     notes="${document%%.*}_notes.md"
     if [[ ! -f "$notes" ]]; then
-        printf -- "---\ntitle: Notes on %s\nauthor: %s\ndate: %s\n...\n\n" "${document##*/}" "$(id -F)" "$(date)" >> "$notes" 
+        printf -- "---\ntitle: Notes on %s\nauthor: %s\ndate: %s\n...\n\n" "${document##*/}" "$(id -F)" "$(date)" >> "$notes"
     fi
     if [[ ! $TMUX ]]; then
-        $EDITOR "$notes" 
+        $EDITOR "$notes"
     else
         tmux split-window -h -d $EDITOR "$notes"
         refresh
@@ -403,7 +404,7 @@ function notes() {
 
 
 ###########################################################################
-# Draw the status bar 
+# Draw the status bar
 ###########################################################################
 
 function display_bar() {
@@ -426,7 +427,7 @@ function display_bar() {
 
 
 ###########################################################################
-# Display help 
+# Display help
 ###########################################################################
 
 function help() {
@@ -446,11 +447,11 @@ Keyboard commands
     $refresh:           refresh display
     $reload:           reload document
     $make:           remake document
-    $crop:           crop margins 
+    $crop:           crop margins
     $notes:           annotate in split pane
     $mark[r]:        store current page in register [r]
     $reference[r]:        go to page stored in register [r]
-    ${goto_m}${reference}[r]:       go to to page in register [r]  
+    ${goto_m}${reference}[r]:       go to to page in register [r]
     ${yank}${reference}[r]:       yank from current page to mark and save as pdf
     $quit:           quit
     $help:           view this help
@@ -462,7 +463,7 @@ EOH
 }
 
 ###########################################################################
-# Each command is its own function 
+# Each command is its own function
 ###########################################################################
 
 function goto() {
@@ -526,7 +527,7 @@ function refresh() {
 }
 
 function remake() {
-    if [[ -f "Makefile" ]]; then 
+    if [[ -f "Makefile" ]]; then
         clear
         make "$document"
         reload
@@ -783,11 +784,11 @@ function display_document() {
     clear
     while true
     do
-        validate_page_number 
-        get_pane_size 
-        extract_page "$filepath" "$fileroot" "$filetype" "$page_number" 
+        validate_page_number
+        get_pane_size
+        extract_page "$filepath" "$fileroot" "$filetype" "$page_number"
         image="${tmp_dir}/${fileroot}${page_number}${cropped}.pdf"
-        tput cup 0 0 
+        tput cup 0 0
         print_image "$image" 1 "$(base64 < "$image")" $width $height
         display_bar
         count=""
@@ -797,14 +798,14 @@ function display_document() {
 
 
 ###########################################################################
-# Select Document 
+# Select Document
 ###########################################################################
 
 function select_document() {
      display_bar
     read -e -p "Open: " new_file
     if [[ -r $new_file ]]; then
-        document=$new_file 
+        document=$new_file
     elif [[ -z $new_file ]]; then
         clean_and_exit
     else
@@ -850,5 +851,3 @@ else
 fi
 
 display_document "$document"
-
-

@@ -4,4 +4,4 @@ find . \( -iname '*jpg' -o -iname '*jpeg' \) \
   -exec jpegtran -optimize -outfile {} {} \; \
   -exec printf "." \;
 
-printf "\n"
+echo

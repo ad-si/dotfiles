@@ -1,4 +1,7 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
-printf $(date -u "+%Y-%m-%dT%H%M")--$(date -v+60M -u "+%Y-%m-%dT%H%M") | pbcopy
-
+printf \
+  "%s--%s" \
+  "$(date -u "+%Y-%m-%dT%H%M")" \
+  "$(date -v+60M -u "+%Y-%m-%dT%H%M")" \
+| pbcopy

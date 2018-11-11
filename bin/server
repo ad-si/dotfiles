@@ -2,6 +2,6 @@
 
 randomPort=$((1 + RANDOM % 10))$((RANDOM % 1000))
 
-cd "${1:-.}"
-open http://localhost:$randomPort && \
-python3 -m http.server $randomPort
+cd "${1:-.}" || exit
+open "http://localhost:$randomPort" && \
+python3 -m http.server "$randomPort"

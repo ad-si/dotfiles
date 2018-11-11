@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /usr/bin/env bash
 
 counter="${1:-1}"
 numberOfFiles="$(printf "%d" "$(find . -depth 1 | wc -l)")"

@@ -2,19 +2,19 @@
 
 INPUT="/Users/adrian/file.csv"
 [ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
-while read line
+while read -r line
 do
-  filename="$(echo $line | csvcut -c 1)-$(random-filename)"
+  filename="$(echo "$line" | csvcut -c 1)-$(random-filename)"
   header="account,label,comment,created,modified,kind,type,domain,authtype,class,creator"
-  entry="$header\n$(echo $line | csvcut -c 2,4,5,6,7,8,9,10,11,12,13)"
+  entry="$header\\n$(echo "$line" | csvcut -c 2,4,5,6,7,8,9,10,11,12,13)"
   body="$( \
-    echo -e $entry \
+    echo -e "$entry" \
       | csvjson \
       | json2yaml \
       | gsed -E -e 's/^[ \t]*//' -e 's/ null$//' \
       | gsed -E -e 's/^-+//' -e 's/\"//g' -e '/^$/d' \
   )"
 
-  echo -e "$(echo $line | csvcut -c 3)$body" \
+  echo -e "$(echo "$line" | csvcut -c 3)$body" \
     | gopass insert -f -m "$filename"
 done < $INPUT

@@ -1,23 +1,23 @@
 #! /usr/bin/env bash
 
-separator='✔\n\n\n'
+separator='✔\n\n'
 
 echo '===== Cleanup brew ====='
 brew cleanup
-printf $separator
+echo "$separator"
 
 echo '===== Clean npm cache ====='
 npm cache clean --force
-printf $separator
+echo "$separator"
 
 echo '===== Clean yarn cache ====='
 yarn cache clean
-printf $separator
+echo "$separator"
 
 echo '===== Clean docker ====='
 docker-clean
-printf $separator
+echo "$separator"
 
 echo '===== Empty trash ====='
 rm -rf ~/.Trash/*
-printf $separator
+echo "$separator"
