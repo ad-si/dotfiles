@@ -1,52 +1,58 @@
 #! /usr/bin/env bash
 
+# For this script to work you need to give
+# your Terminal access to the the file system at Settings > Security & Privacy
+
 set -e
 
 today="$(date -u "+%Y-%m-%d")"
-backupdir=/Volumes/4_tb_red_src/backups/${today}_macbook_2015
+backupdir="/Volumes/4_tb_red_src/backups/${today}_macbook_2015"
 
 paths=(
-  ~/.electrum/wallets
-  ~/.electron-cash/wallets
-  ~/.gnupg
-  ~/.password-store
-  ~/.rclone.conf
-  ~/.s3cfg
-  ~/.serverlessrc
-  ~/.ssh
-  ~/.task
-  ~/.timewarrior
-  # ~/Books
-  # ~/Contacts
-  ~/Desktop
-  ~/Documents
-  ~/Downloads
-  ~/Dropbox\ \(Feram\)
-  ~/Dropbox\ \(Personal\)
-  # ~/Events
-  # ~/Google\ Drive
-  ~/Library/autojump
-  ~/Library/Fonts
-  ~/Library/Keychains
-  ~/Library/Thunderbird/Profiles
-  ~/Movies
-  ~/Music
-  # ~/Photos
-  ~/Pictures
-  ~/Projects
-  # ~/Sheetmusic
-  # ~/Things
-  ~/tasklite
-  ~/Wallets
+  .electrum/wallets
+  .electron-cash/wallets
+  .gnupg
+  .password-store
+  .rclone.conf
+  .s3cfg
+  .serverlessrc
+  .ssh
+  .task
+  .timewarrior
+  # Books
+  # Contacts
+  Desktop
+  Documents
+  Downloads
+  Dropbox\ \(Feram\)
+  Dropbox\ \(Personal\)
+  # Events
+  # Google\ Drive
+  Library/autojump
+  Library/Fonts
+  Library/Keychains
+  Library/Thunderbird/Profiles
+  Movies
+  Music
+  # Photos
+  Pictures/Photo\ Booth\ Library
+  Pictures/Photos\ Library.photoslibrary
+  Projects
+  # Sheetmusic
+  # Things
+  tasklite
+  Wallets
 )
 
 
 if test -d "$backupdir"
 then
+  printf "\\n\\n"
   echo "Start backup to '$backupdir' …"
 else
   if test -e "$backupdir"
   then
+    printf "\\n\\n"
     echo "'$backupdir' is not a directory!"
     exit 1
   else
@@ -55,44 +61,64 @@ else
 fi
 
 
-for directory in "${paths[@]}"
+for path in "${paths[@]}"
 do
-  if test -d "$directory"
+  if test -d "$HOME/$path"
   then
-    echo "Backing up directory '$directory' …"
+    printf "\\n\\n"
+    echo "Backing up directory '$HOME/$path' …"
+    mkdir -p "$backupdir/$path"
     rsync \
       --archive \
+      --delete \
       --verbose \
       --stats \
-      "$directory" \
-      "$backupdir"
+      --exclude '.Spotlight-V100' \
+      --exclude '.Trashes' \
+      "$HOME/$path/" \
+      "$backupdir/$path/"
 
-  elif test -f "$directory"
+  elif test -f "$HOME/$path"
   then
-    echo "Backing up file '$directory' …"
-    cp -v "$directory" "$backupdir"
+    printf "\\n\\n"
+    echo "Backing up file '$HOME/$path' …"
+    rsync \
+      --archive \
+      --delete \
+      --verbose \
+      --stats \
+      "$HOME/$path" \
+      "$backupdir/$path"
 
   else
-    echo "Error: '$directory' is not a valid path"
+    printf "\\n\\n"
+    echo "Error: '$HOME/$path' is not a valid path"
     exit 1
   fi
 done
 
 
+printf "\\n\\n"
 echo "Backing up SD card …"
 rsync \
   --archive \
+  --delete \
   --verbose \
   --stats \
-  "/Volumes/adrian_64gb" \
-  "/Volumes/4_tb_red_src/backups/${today}_adrian_64gb"
+  --exclude '.Spotlight-V100' \
+  --exclude '.Trashes' \
+  "/Volumes/adrian_64gb/" \
+  "/Volumes/4_tb_red_src/backups/${today}_adrian_64gb/"
 
 
+printf "\\n\\n"
 echo "Sync main 4 TB drive with backup 4 TB drive"  # basically RAID 1
 rsync \
   --archive \
   --delete \
   --verbose \
   --stats \
+  --exclude '.Spotlight-V100' \
+  --exclude '.Trashes' \
   /Volumes/4_tb_red_src/ \
   /Volumes/4_tb_red_trgt/
