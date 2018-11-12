@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+# Do not set `set -e` as already existing files are expected
+
+dotfilesDir="$HOME/dotfiles"
+configDir="$HOME/.config"
+
+mkdir -p "$configDir"
+
+echo 'Link configs dotfiles …'
+
+for location in "$dotfilesDir/configs"/*
+do
+  file="${location##*/}"
+  file="${file%.*}"
+
+  ln -s -v "$location" "$configDir"
+done

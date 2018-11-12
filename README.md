@@ -51,3 +51,22 @@ const tools = Library('dotfiles/tools')
 
 - `defaults write com.apple.desktopservices DSDontWriteNetworkStores true`
 - Check out https://github.com/danburzo/percollate for PDF generation
+- Sublime Text config
+- Logitech Control Center config
+  To install and/or use logitech-control-center you may need to enable their kernel extension in
+  System Preferences → Security & Privacy → General
+- ShiftIt preferences
+- Key repetition speed of keyboard
+- Install brew fonts
+- gopass config
+  gopass fsck
+  If password on gpg key => install pinentry-mac from brew and configure it in ~/gpg/gpg-agent.conf
+  `echo "pinentry-program /usr/local/bin/pinentry-mac" >> ~/.gnupg/gpg-agent.conf`
+  Restart shell afterwards
+- set: Warning: $PATH entry "/usr/local/Cellar/php/7.2.12/bin" is not valid (No such file or directory)
+- set: Warning: $PATH entry "/Users/adrian/.cargo/bin" is not valid (No such file or directory)
+- set: Warning: $PATH entry "/Users/adrian/.go/bin" is not valid (No such file or directory)
+- set: Warning: $PATH entry "/usr/local/Cellar/ruby/2.5.3_1/bin" is not valid (No such file or directory)
+- set: Warning: $PATH entry "/Users/adrian/.local/bin" is not valid (No such file or directory)
+- set: Warning: $PATH entry "/Users/adrian/.config/yarn/global/node_modules/.bin" is not valid (No such file or directory)
+- Firefox bookmarks

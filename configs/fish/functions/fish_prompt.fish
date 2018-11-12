@@ -37,11 +37,11 @@ function fish_prompt --description 'Write out the prompt'
 
 	set_color red
 
-	set --local taskCount (tasklite runsql \
+	set --local taskCount (which tasklite; and tasklite runsql \
 		"select count(*) from tasks where state is 'Open'" \
 		| tail -n 1)
 
-	set --local taskDesc (tasklite next \
+	set --local taskDesc (which tasklite; and tasklite next \
 		| grep '^body: ' \
 		| cut -c 7- \
 		| sed -E 's/(.{40})(.{1,})$/\1…/')

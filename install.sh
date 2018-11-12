@@ -21,7 +21,16 @@ then
 fi
 
 # Set fish as default shell
-chsh -s "$(which fish)"
+fishPath="$(which fish)"
+
+if "$fishPath"
+then
+  echo "$fishPath" >> /etc/shells
+  chsh -s "$fishPath"
+else
+  echo "Error: fish is not yet installed"
+  exit 1
+fi
 
 
 # Set correct GPG path for git
@@ -37,7 +46,7 @@ npmModules=(
   pageres  # Capture website screenshots
   qrcode  # Display qrcode as ansi art
   surge  # Deploy static websites
-  tldr  # Simple & community driven man pages
+  # tldr  # Simple & community driven man pages (currently installed with brew)
   trash  # Move files and folders to the trash
 )
 

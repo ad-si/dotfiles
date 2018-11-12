@@ -34,16 +34,21 @@ brew install bash
 
 # Miscellaneous
 brews=(
-  caskroom/cask/brew-cask
+  ag
   fdupes
+  fish
   git
   git-extras
+  gopass
   httpie
   imagemagick
   mongodb
   node
   optipng
+  pinentry-mac  # Needed for gopass
   stack  # Haskell tool stack
+  tldr
+  translate-shell
   tree
 )
 
@@ -56,21 +61,24 @@ done
 # Brew casks
 echo "Install casks …"
 
+# Must be pre-installed for Inkscape
+brew cask install xquartz
+
 casks=(
   alfred
   # arduino
   android-file-transfer
   atom
-  # automap-server MISSING
-  betterzipql   #  Preview archives
-  brave
+  # automap-server FIXME: missing
+  # betterzipql  # Preview archives  FIXME: missing
+  brave-browser
   # blender
   # calibre
   cheatsheet
   chromium
-  # cloudcompare MISSING
+  # cloudcompare FIXME: missing
   db-browser-for-sqlite
-  # dedrm MISSING
+  # dedrm FIXME: missing
   disk-inventory-x
   docker
   dropbox
@@ -89,6 +97,8 @@ casks=(
   google-chrome
   # handbrake
   # hex-fiend
+  homebrew/cask-drivers/logitech-control-center
+  homebrew/cask-versions/microsoft-remote-desktop-beta
   # ichm
   imageplay
   inkscape
@@ -117,7 +127,7 @@ casks=(
   skype
   slack
   # slic3r
-  # squeak MISSING
+  # squeak FIXME: missing
   # sourcetree
   # speedcrunch    #  Calculator
   spotify
@@ -131,16 +141,13 @@ casks=(
   thunderbird
   tor-browser
   # tunnelblick BUGGY
-  # universal-control MISSING
+  # universal-control FIXME: missing
   # vienna
   # virtualbox
   # visual-studio-code
   vlc
   # vmware-fusion
   xquartz
-
-  # XQuartz dependent casks:
-  inkscape
 )
 
 for cask in "${casks[@]}"

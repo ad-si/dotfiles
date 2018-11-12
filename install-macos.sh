@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 # Homebrew
-./bin/setup-homebrew
+./bin/setup-homebrew.sh
 
 # TODO:
 # Set preferences with systemsetup

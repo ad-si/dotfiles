@@ -28,15 +28,7 @@ do
 done
 
 
-echo 'Link configs dotfiles …'
-
-for location in "$dotfilesDir/configs"/*
-do
-  file="${location##*/}"
-  file="${file%.*}"
-
-  ln -s -v "$location" "$HOME/.config"
-done
+"$dotfilesDir/bin/symlink-configs"
 
 
 if test "$(uname)" == 'Darwin'
@@ -46,17 +38,21 @@ then
   echo && echo "Link Scripting Libraries"
   ln -s -v -F "$dotfilesDir/script-libraries/personal" "$HOME/Library/Script Libraries"
 
+
   echo && echo "Link Scripts:"
 
   echo && echo "Link User Scripts …"
+  mkdir -p "$HOME/Library/Scripts"
+  
   find "$scriptsDir" \
     -type f \
     -depth 1 \
     -exec sh -c \
       'ln -s -v "$0" "$HOME/Library/Scripts/${0##$1}"' {} "$scriptsDir/" \;
 
+
   echo && echo "Link App Scripts …"
-  mkdir "$HOME/Library/Scripts/Applications"
+  mkdir -p "$HOME/Library/Scripts/Applications"
 
   find "$appScriptsDir" \
     -depth 1 \

@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+
+set -e
+
+if test $# -eq 0
+then
+  echo 'Usage: restore-backup <date-of-backup>'
+  exit 1
+fi
+
+backupdir="/Volumes/4_tb_red_src/backups/$1_macbook_2015"
+
+srcDir="$backupdir/"
+trgtDir="$HOME/Downloads/"
+
+echo "Syncing '$srcDir' to '$trgtDir' …"
+
+rsync \
+  --archive \
+  --verbose \
+  --stats \
+  --human-readable \
+  --exclude '.Spotlight-V100' \
+  --exclude '.Trashes' \
+  "$srcDir" \
+  "$trgtDir"
