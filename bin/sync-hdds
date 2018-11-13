@@ -1,9 +1,16 @@
 #! /usr/bin/env bash
 
+printf "\\n\\n"
+
+echo "Sync main 4 TB drive with backup 4 TB drive"  # basically RAID 1
+
 rsync \
   --archive \
   --delete \
   --verbose \
   --stats \
+  --human-readable \
+  --exclude '.Spotlight-V100' \
+  --exclude '.Trashes' \
   /Volumes/4_tb_red_src/ \
   /Volumes/4_tb_red_trgt/

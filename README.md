@@ -49,7 +49,10 @@ const tools = Library('dotfiles/tools')
 
 ## TODO
 
-- `defaults write com.apple.desktopservices DSDontWriteNetworkStores true`
+- MacOS
+    - `defaults write com.apple.desktopservices DSDontWriteNetworkStores true`
+    - System Preferences > General: Set "Show scroll bars" to "When scrolling"
+    - Change Finder Preferences
 - Check out https://github.com/danburzo/percollate for PDF generation
 - Activate Sublime Text `gopass sublimetext.com/license-key`
 - Logitech Control Center config
@@ -71,3 +74,6 @@ const tools = Library('dotfiles/tools')
 - set: Warning: $PATH entry "/Users/adrian/.config/yarn/global/node_modules/.bin" is not valid (No such file or directory)
 - Firefox bookmarks
 - Install app store apps with https://github.com/mas-cli/mas
+- Set "Load preferences from a custom folder or URL" in iTerm to `~/dotfiles/terminal`
+- Install TaskLite
+- Printer driver software

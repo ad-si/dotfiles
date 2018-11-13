@@ -11,5 +11,8 @@
 /home/atom/recovery
 /home/atom/storage
 
+# Ignore all except for the already added files
+/home/stack
+
 /node_modules
 /tessdata
