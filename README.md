@@ -51,7 +51,7 @@ const tools = Library('dotfiles/tools')
 
 - `defaults write com.apple.desktopservices DSDontWriteNetworkStores true`
 - Check out https://github.com/danburzo/percollate for PDF generation
-- Sublime Text config
+- Activate Sublime Text `gopass sublimetext.com/license-key`
 - Logitech Control Center config
   To install and/or use logitech-control-center you may need to enable their kernel extension in
   System Preferences → Security & Privacy → General
@@ -70,3 +70,4 @@ const tools = Library('dotfiles/tools')
 - set: Warning: $PATH entry "/Users/adrian/.local/bin" is not valid (No such file or directory)
 - set: Warning: $PATH entry "/Users/adrian/.config/yarn/global/node_modules/.bin" is not valid (No such file or directory)
 - Firefox bookmarks
+- Install app store apps with https://github.com/mas-cli/mas

@@ -107,7 +107,7 @@ casks=(
   kindlegen
   # librecad
   libreoffice
-  logitech-control-center
+  logitech-options
   microsoft-remote-desktop-beta
   # mongohub
   # musescore
