@@ -36,18 +36,4 @@ fi
 # Set correct GPG path for git
 # git config --global gpg.program "$(which gpg)"
 
-
-# Install global npm modules
-npmModules=(
-  insect  # Calculator
-  live-server  # Development server with auto reloading
-  msee  # Markdown terminal renderer
-  nodemon  # Development server for node.js
-  pageres  # Capture website screenshots
-  qrcode  # Display qrcode as ansi art
-  surge  # Deploy static websites
-  # tldr  # Simple & community driven man pages (currently installed with brew)
-  trash  # Move files and folders to the trash
-)
-
-npm install --global "${npmModules[@]}"
+./bin/setup-npm

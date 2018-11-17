@@ -35,6 +35,8 @@ brew install bash
 # Miscellaneous
 brews=(
   ag
+  autojump
+  fd
   fdupes
   fish
   git
@@ -42,6 +44,7 @@ brews=(
   gopass
   httpie
   imagemagick
+  kubectl
   mongodb
   node
   optipng
@@ -50,6 +53,7 @@ brews=(
   tldr
   translate-shell
   tree
+  yarn
 )
 
 for brew in "${brews[@]}"
@@ -95,6 +99,7 @@ casks=(
   gimp
   gitup
   google-chrome
+  google-cloud-sdk
   # handbrake
   # hex-fiend
   homebrew/cask-drivers/logitech-control-center
