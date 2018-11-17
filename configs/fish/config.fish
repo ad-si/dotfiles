@@ -100,13 +100,12 @@ if status --is-login
   set -x THINGS $filesRootPath/Things
   set -x VOUCHERS $filesRootPath/Vouchers
 
+
   # Fish
+
   ## Autojump
   test -e /usr/local/share/autojump/autojump.fish
   and source /usr/local/share/autojump/autojump.fish
-
-  test -e /usr/share/autojump/autojump.fish
-  and source /usr/share/autojump/autojump.fish
 
   ## iTerm
   test -e {$HOME}/.iterm2_shell_integration.fish
