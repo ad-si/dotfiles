@@ -3607,20 +3607,10 @@
 	<true/>
 	<key>MaxVertically</key>
 	<false/>
-	<key>NSColorPanelMode</key>
-	<string>1</string>
-	<key>NSColorPickerPreferredRGBEntryMode</key>
-	<integer>2</integer>
-	<key>NSColorPickerSlidersDefaults</key>
-	<string>1</string>
-	<key>NSFontPanelAttributes</key>
-	<string>1, 0</string>
 	<key>NSNavLastRootDirectory</key>
 	<string>/Applications</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{998, 459}</string>
-	<key>NSNavPanelExpandedSizeForSaveMode</key>
-	<string>{712, 488}</string>
+	<string>{885, 588}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -3662,30 +3652,12 @@
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
-	<key>NSWindow Frame NSColorPanel</key>
-	<string>485 412 224 325 0 0 1680 1050 </string>
-	<key>NSWindow Frame NSFontPanel</key>
-	<string>1594 174 762 435 0 0 2560 1440 </string>
-	<key>NSWindow Frame Preferences</key>
-	<string>411 969 606 456 0 0 2560 1440 </string>
-	<key>NSWindow Frame ProfilesPanel</key>
-	<string>3745 421 735 382 2560 0 1920 1080 </string>
-	<key>NSWindow Frame SUStatusFrame</key>
-	<string>417 683 400 129 0 0 1680 1050 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>3170 388 700 562 2560 0 1920 1080 </string>
-	<key>NSWindow Frame SessionsPreferences</key>
-	<string>3166 184 606 469 2560 0 1920 1080 </string>
+	<string>3490 975 620 545 3200 0 1200 1897 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1596 483 918 423 0 0 2560 1440 </string>
-	<key>NSWindow Frame UKCrashReporter</key>
-	<string>730 78 1680 954 0 0 2560 1440 </string>
+	<string>2261 407 918 514 1280 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1284 0 1276 1440 0 0 2560 1440 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
-	<string>2053 197 490 375 1920 -223 1200 1920 </string>
-	<key>NSWindow Frame iTerm Window 2</key>
-	<string>2560 655 490 375 2560 0 1920 1080 </string>
+	<string>4000 -180 1920 1057 4000 -180 1920 1057 </string>
 	<key>NeverWarnAboutShortLivedSessions_85FB85B4-FC57-4627-8C1F-4BD01080DEE2</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -4531,6 +4503,25 @@
 					<string>very_high</string>
 					<key>regex</key>
 					<string>\btelnet:([a-z0-9A-Z_]+@)?([a-zA-Z0-9\-]+\.)*[a-zA-Z0-9\-]+\b</string>
+				</dict>
+				<dict>
+					<key>actions</key>
+					<array>
+						<dict>
+							<key>action</key>
+							<integer>2</integer>
+							<key>parameter</key>
+							<string>open -a Firefox http://\0</string>
+							<key>title</key>
+							<string>Open IP</string>
+						</dict>
+					</array>
+					<key>notes</key>
+					<string>IP</string>
+					<key>precision</key>
+					<string>normal</string>
+					<key>regex</key>
+					<string>((\d\d?\d?\.){3}\d\d?\d?:\d\d?\d?\d?)</string>
 				</dict>
 			</array>
 			<key>Sync Title</key>
@@ -6996,42 +6987,18 @@
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
-	<key>NoSyncConfirmBeta</key>
-	<true/>
-	<key>NoSyncDoNotWarnBeforeMultilinePaste</key>
-	<false/>
-	<key>NoSyncHaveShownPromoWithId_4</key>
-	<true/>
-	<key>NoSyncHaveUsedCopyMode</key>
+	<key>NoSyncHaveRequestedFullDiskAccess</key>
 	<true/>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>5CA6C8D3-0C14-4F11-B7FB-7062F82155D5</string>
+	<string>CED98809-06F2-4F68-935E-254E5A172B0B</string>
 	<key>NoSyncLastTipTime</key>
-	<real>523185570.22375703</real>
-	<key>NoSyncNeverRemindPrefsChangesCopy</key>
-	<true/>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
-	<true/>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
-	<integer>0</integer>
-	<key>NoSyncNewWindowOrTabFromTmuxOpensTmux</key>
-	<true/>
-	<key>NoSyncNewWindowOrTabFromTmuxOpensTmux_selection</key>
-	<integer>0</integer>
+	<real>564061333.25950098</real>
 	<key>NoSyncPermissionToShowTip</key>
 	<true/>
-	<key>NoSyncSuppressAnnyoingBellOffer</key>
-	<true/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>477592726.80336899</real>
-	<key>NoSyncTimeOfLastPromo</key>
-	<real>477755279.22654098</real>
-	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>488575568.95326102</real>
-	<key>NoSyncTipsDisabled</key>
-	<true/>
+	<real>563749153.191818</real>
 	<key>NoSyncTipsToNotShow</key>
 	<array>
 		<string>000</string>
@@ -7175,18 +7142,18 @@
 	<integer>8</integer>
 	<key>RightOption</key>
 	<integer>3</integer>
-	<key>SUAutomaticallyUpdate</key>
-	<false/>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml?shard=22</string>
+	<string>https://iterm2.com/appcasts/testing.xml?shard=17</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-10-28T16:04:13Z</date>
+	<date>2018-11-16T12:08:15Z</date>
+	<key>SUSendProfileInfo</key>
+	<false/>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -7238,7 +7205,7 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.2.4beta3</string>
+	<string>3.2.6beta3</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>7</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

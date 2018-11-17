@@ -50,9 +50,10 @@ const tools = Library('dotfiles/tools')
 ## TODO
 
 - MacOS
-    - `defaults write com.apple.desktopservices DSDontWriteNetworkStores true`
     - System Preferences > General: Set "Show scroll bars" to "When scrolling"
     - Change Finder Preferences
+    - Change date and time preferences
+    - Use "U.S." keyboard layout to have correct direct output of "~" and "\`"
 - Check out https://github.com/danburzo/percollate for PDF generation
 - Activate Sublime Text `gopass sublimetext.com/license-key`
 - Logitech Control Center config
@@ -77,3 +78,4 @@ const tools = Library('dotfiles/tools')
 - Set "Load preferences from a custom folder or URL" in iTerm to `~/dotfiles/terminal`
 - Install TaskLite
 - Printer driver software
+- Backup fish history
