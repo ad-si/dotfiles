@@ -36,23 +36,34 @@ brew install bash
 brews=(
   ag
   autojump
+  bat
+  colordiff
+  exa
   fd
   fdupes
   fish
+  gcal
   git
   git-extras
+  gnu-sed
   gopass
   httpie
+  hunspell
   imagemagick
   kubectl
   mongodb
   node
   optipng
+  pandoc
+  # pandoc-citeproc
   pinentry-mac  # Needed for gopass
+  platypus  # CLI tool only (GUI gets installed with brew cask)
+  ruby
   stack  # Haskell tool stack
   tldr
   translate-shell
   tree
+  xsv  # CSV command line toolkit written in Rust
   yarn
 )
 
@@ -113,6 +124,7 @@ casks=(
   # librecad
   libreoffice
   logitech-options
+  mactex
   microsoft-remote-desktop-beta
   # mongohub
   # musescore

@@ -34,6 +34,7 @@ if status --is-login
   ### Ruby
   if test (uname) = "Darwin"
     set -x PATH (brew --prefix ruby)/bin $PATH
+    set -x PATH /usr/local/lib/ruby/gems/2.5.0/bin $PATH
   end
 
   ### Haskell
@@ -50,6 +51,7 @@ if status --is-login
 
   #### Tools installed with npm
   set -x PATH (npm bin --global) $PATH
+
 
   ## Custom
   set -x PATH ~/dotfiles/bin $PATH

@@ -18,6 +18,10 @@ echo '===== Clean docker ====='
 docker-clean
 echo "$separator"
 
+# echo '===== Clean Xcode ====='
+# xcrun simctl delete unavailable
+# echo "$separator"
+
 echo '===== Empty trash ====='
 rm -rf ~/.Trash/*
 echo "$separator"

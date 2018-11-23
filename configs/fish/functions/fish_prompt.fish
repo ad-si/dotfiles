@@ -1,3 +1,18 @@
+
+function printPagesPerDay
+  set -l bookPath ~/Projects/programmiersprachenbuch/book/main.md
+  set -l lines (wc -l $bookPath | cut -c 1-08)
+  set -l writtenPages (echo "$lines / 40" | bc -l)
+  set -l pagesToWrite (echo "300 - $writtenPages" | bc -l)
+  set -l deadline (gdate -d '2019-04-01' +%s)
+  set -l today (gdate +%s)
+  set -l pagesPerDay \
+    (echo "scale=2; $pagesToWrite * 86400" / \($deadline - $today\) | bc -l)
+
+  printf ' %s pages / day ' $pagesPerDay
+end
+
+
 function fish_prompt --description 'Write out the prompt'
   set -l last_status $status
 
@@ -37,18 +52,20 @@ function fish_prompt --description 'Write out the prompt'
 
   set_color red
 
-  if command -sq tasklite
-    set --local taskCount (tasklite runsql \
-      "select count(*) from tasks where state is 'Open'" \
-      | tail -n 1)
+  # if command -sq tasklite
+  #   set --local taskCount (tasklite runsql \
+  #     "select count(*) from tasks where state is 'Open'" \
+  #     | tail -n 1)
 
-    set --local taskDesc (tasklite next \
-      | grep '^body: ' \
-      | cut -c 7- \
-      | sed -E 's/(.{40})(.{1,})$/\1…/')
+  #   set --local taskDesc (tasklite next \
+  #     | grep '^body: ' \
+  #     | cut -c 7- \
+  #     | sed -E 's/(.{40})(.{1,})$/\1…/')
 
-    printf ' %s | %s ' $taskCount $taskDesc
-  end
+  #   printf ' %s | %s ' $taskCount $taskDesc
+  # end
+
+  printPagesPerDay
 
   # Gray Arrow End
   # set_color -b normal 333333

@@ -1,3 +1,10 @@
 #! /usr/bin/env bash
 
-ls -alhG "$@"
+# ls -alhG "$@"
+
+exa \
+  --long \
+  --git \
+  --time created \
+  --time-style long-iso \
+  "$@"

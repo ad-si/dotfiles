@@ -79,3 +79,8 @@ const tools = Library('dotfiles/tools')
 - Install TaskLite
 - Printer driver software
 - Backup fish history
+- Install TexLive packages after installation of MacTeX
+- Run `yarn install` in the dotfiles directory
+- Add Hunspell dictionaries after installation
+  (e.g. https://github.com/titoBouzout/Dictionaries to
+  `~/Library/Application Support/Sublime Text 3/Packages`)
