@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+packages=(
+  cheat
+  img2pdf  # Lossless conversion of raster images to PDF
+)
+
+for package in "${packages[@]}"
+do
+  pip3 install "$package"
+done
