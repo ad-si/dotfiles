@@ -115,4 +115,4 @@ rsync \
   "/Volumes/4_tb_red_src/backups/${today}_adrian_64gb/"
 
 
-./sync-hdds
+sync-hdds

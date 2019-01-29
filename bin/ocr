@@ -6,7 +6,8 @@ function checkFile {
   # $2 -> Language of text
 
   tesseract \
-    --tessdata-dir ~/dotfiles \
+    --tessdata-dir ~/dotfiles/tessdata \
+    --oem 1 \
     -l "$2" \
     "$1" \
     stdout

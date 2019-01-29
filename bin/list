@@ -3,6 +3,7 @@
 # ls -alhG "$@"
 
 exa \
+  --all \
   --long \
   --git \
   --time created \

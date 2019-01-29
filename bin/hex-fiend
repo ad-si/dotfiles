@@ -1,3 +1,14 @@
 #! /usr/bin/env bash
 
-open -a ~/Applications/Hex\ Fiend.app "$1"
+app='/Applications/Hex Fiend.app'
+
+if test -e "$app"
+then
+  open -a "$app" "$1"
+else
+  echo '"Hex Fiend" is not available.'
+  echo 'Install it with the package manager of your choice first.'
+  echo 'E.g. "brew cask install hex-fiend"'
+
+  exit 1
+fi

@@ -1,10 +1,12 @@
 #! /usr/bin/env bash
 
-# -C: Colorize output
-# -L 1: Display tree one level deep (all childs of current directory)
-
-tree \
-  -C \
-  -L 2 \
-  --dirsfirst \
-  "${@:-.}"
+exa \
+  --all \
+  --classify \
+  --long \
+  --git \
+  --time created \
+  --time-style long-iso \
+  --ignore-glob="node_modules|.git" \
+  --tree \
+  "$@"
