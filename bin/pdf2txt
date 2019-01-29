@@ -1,0 +1,22 @@
+#! /usr/bin/env bash
+
+filepath="$1"
+filetype=$(file -bI "$filepath")
+pdfMime="application/pdf; charset=binary"
+
+if ! test -e "$filepath"
+then
+  echo "File does not exist"
+  exit 1
+fi
+
+if ! test "$filetype" == "$pdfMime"
+then
+  echo "File must be of type '$pdfMime' and not '$filetype'"
+  exit 1
+fi
+
+gs \
+  -sDEVICE=txtwrite \
+  -o "${filepath%.pdf}.txt" \
+  "$filepath"
