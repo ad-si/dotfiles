@@ -1,3 +1,5 @@
 source ~/.bash_login
 source ~/.bashrc
 source ~/.profile
+
+export PATH="$HOME/.cargo/bin:$PATH"

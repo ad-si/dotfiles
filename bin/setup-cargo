@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+packages=(
+  hexyl  # Simple hex viewer for the terminal
+  unic-cli  # Tool for Unicode (generating, transforming, inspecting strings)
+)
+
+for package in "${packages[@]}"
+do
+  cargo install "$package"
+done

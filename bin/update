@@ -49,6 +49,11 @@ pip install --upgrade pip setuptools wheel
 pip3 install --upgrade pip setuptools wheel
 
 
+echo -e "\\n\\n===== Update Rust =====\\n"
+
+rustup update
+
+
 echo -e "\\n\\n===== Update Mac OS =====\\n"
 
 softwareupdate --install --all
