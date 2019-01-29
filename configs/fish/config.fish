@@ -34,7 +34,7 @@ if status --is-login
   ### Ruby
   if test (uname) = "Darwin"
     set -x PATH (brew --prefix ruby)/bin $PATH
-    set -x PATH /usr/local/lib/ruby/gems/2.5.0/bin $PATH
+    set -x PATH /usr/local/lib/ruby/gems/2.6.0/bin $PATH
   end
 
   ### Haskell
