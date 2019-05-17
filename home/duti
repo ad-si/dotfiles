@@ -1,0 +1,46 @@
+# Duti configuration file – for setting default file handlers
+#
+# blank lines and lines beginning with a '#' are ignored
+# Documentation: Man Page duti
+#
+# Determine the bundle bundle ID via
+#     mdls /Applications/iPhoto.app | grep kMDItemCF
+# Determine the UTI via
+#     mdls file.ext | grep kMDItemContentType
+#
+# bundle id		       			 UTI/Extension		   	   role (all, viewer, editor, shell, none)
+
+# Text Files
+com.macromates.TextMate         public.plain-text           all
+com.macromates.TextMate         public.rtf                  all
+com.github.atom                 md                          all
+
+# Configuration Files
+com.apple.dt.Xcode              plist                       all
+com.macromates.TextMate         public.shell-script         all
+com.macromates.TextMate         duti                        all
+
+# Source Code
+com.microsoft.VSCode            go                          all
+com.macromates.TextMate         public.ruby-script          all
+com.macromates.TextMate			public.python-script		all
+
+# Other Files
+#cx.c3.theunarchiver
+com.readdle.PDFExpert-Mac       com.adobe.pdf               all
+
+# Media Files
+com.colliderli.iina	        avi	                    viewer
+com.colliderli.iina	        flac                    viewer
+com.colliderli.iina	        flv                     viewer
+com.colliderli.iina	        m4a                     viewer
+com.colliderli.iina	        mkv                     viewer
+com.colliderli.iina	        mov                     viewer
+com.colliderli.iina	        mp3	                    viewer
+com.colliderli.iina	        mp4	                    viewer
+com.colliderli.iina	        mpg	                    viewer
+com.colliderli.iina	        wav	                    viewer
+com.colliderli.iina	        wmv	                    viewer
+
+#bundle ids for future use
+#com.microsoft.VSCode

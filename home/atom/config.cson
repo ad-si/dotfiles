@@ -10,7 +10,6 @@
     node: true
   core:
     disabledPackages: [
-      "language-smalltalk"
       "terminal"
       "atom-lint"
       "linter-chktex"
@@ -78,7 +77,6 @@
       "language-html"
       "language-java"
       "language-less"
-      "language-make"
       "language-mustache"
       "language-objective-c"
       "language-perl"
@@ -91,7 +89,6 @@
       "language-todo"
       "language-toml"
       "language-typescript"
-      "language-xml"
       "AtLilyPond"
       "Stylus"
       "Sublime-Style-Column-Selection"
@@ -202,7 +199,6 @@
       "xml-formatter"
       "yaml-sortkey"
       "language-gfm"
-      "markdown-preview"
     ]
     followSymlinks: true
     projectHome: "~/Projects"
@@ -216,14 +212,13 @@
   editor:
     autoIndentOnPaste: false
     fontFamily: "Source Code Pro"
-    fontSize: 11
+    fontSize: 12
     invisibles:
       cr: " "
       eol: " "
       space: " "
-    showInvisibles: true
+    showIndentGuide: true
     softWrap: true
-    tabLength: 4
   emmet: {}
   "exception-reporting":
     userId: "e1f4ef15-b72f-d1f8-3af5-8d0a66844b85"

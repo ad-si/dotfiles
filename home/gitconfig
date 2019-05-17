@@ -1,6 +1,6 @@
 [user]
-  name = Adrian Sieber
-  email = mail@adriansieber.com
+	name = Adrian Sieber
+	email = mail@adriansieber.com
   signingkey = 5B146BCF5F125D859C7654A115985EE18DE6224B
 
 [color]
@@ -10,7 +10,7 @@
   helper = osxkeychain
 
 [core]
-  excludesfile = /Users/adrian/.gitignore
+	excludesfile = /Users/adrian/.gitignore
   ignorecase = false
   pager = sed 's/\t/    /g' | less
 
@@ -41,7 +41,7 @@
 
 [merge]
   conflictstyle = diff3
-  tool = meld
+	tool = meld
 
 [sendemail]
   smtpEncryption = tls
@@ -56,18 +56,18 @@
   required = true
 
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 
 [mergetool "sourcetree"]
-  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
 [hub]
   protocol = https
 
 [commit]
-  template = /Users/adrian/.stCommitMsg
+	template = /Users/adrian/.stCommitMsg
   gpgsign = true
 
 [gpg]
