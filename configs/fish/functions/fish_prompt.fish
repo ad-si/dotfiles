@@ -1,15 +1,14 @@
 
 function printPagesPerDay
-  set -l bookPath ~/Projects/programmiersprachenbuch/book/main.md
-  set -l lines (wc -l $bookPath | cut -c 1-08)
-  set -l writtenPages (echo "$lines / 40" | bc -l)
+  set -l bookPath /Users/adrian/Projects/programmiersprachenbuch/main.pdf
+  set -l writtenPages (pdfinfo $bookPath | grep Pages | cut -c 9-)
   set -l pagesToWrite (echo "300 - $writtenPages" | bc -l)
-  set -l deadline (gdate -d '2019-04-01' +%s)
+  set -l deadline (gdate -d '2019-06-01' +%s)
   set -l today (gdate +%s)
   set -l pagesPerDay \
     (echo "scale=2; $pagesToWrite * 86400" / \($deadline - $today\) | bc -l)
 
-  printf ' %s pages / day ' $pagesPerDay
+  printf ' %s p | %s p/d ' (math "round($writtenPages * 10)/10") $pagesPerDay
 end
 
 

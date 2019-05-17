@@ -1,4 +1,6 @@
 if status --is-login
+  set systemType (uname)
+
   # Set locales
   set -x LANG en_US.UTF-8
   set -x LC_ALL en_US.UTF-8
@@ -13,16 +15,17 @@ if status --is-login
   set -x PATH /usr/local/sbin $PATH
 
   ## Postgres
-  # if test (uname) = "Darwin"
+  # if test $systemType = "Darwin"
   #   set -x PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
   # end
+
 
   ## Programming Languages
 
   ### PHP
-  if test (uname) = "Darwin"
-    set -x PATH (brew --prefix php)/bin $PATH
-  end
+  # if test $systemType = "Darwin"
+  #   set -x PATH (brew --prefix php)/bin $PATH
+  # end
 
   ### Rust
   set -x PATH ~/.cargo/bin $PATH
@@ -32,8 +35,8 @@ if status --is-login
   set -x PATH $GOPATH/bin $PATH
 
   ### Ruby
-  if test (uname) = "Darwin"
-    set -x PATH (brew --prefix ruby)/bin $PATH
+  if test $systemType = "Darwin"
+    set -x PATH /usr/local/opt/ruby/bin $PATH
     set -x PATH /usr/local/lib/ruby/gems/2.6.0/bin $PATH
   end
 
@@ -47,18 +50,21 @@ if status --is-login
   ### JavaScript
 
   #### For cli tools installed with `yarn global add`
-  set -x PATH ~/.config/yarn/global/node_modules/.bin $PATH
+  # Use hardcoded path instead of `(yarn global bin)` to decrease load time
+  set -x PATH /usr/local/bin $PATH
 
-  #### Tools installed with npm
-  set -x PATH (npm bin --global) $PATH
+  #### Tools installed with `npm --global install`
+  # Use hardcoded path instead of `(npm bin --global)` to decrease load time
+  set -x PATH /usr/local/Cellar/node/*/bin $PATH
 
 
   ## Custom
   set -x PATH ~/dotfiles/bin $PATH
 
   ## Homebrew (token allows reading public repos, creating gists)
-  if test (uname) = "Darwin"
-    set -x HOMEBREW_GITHUB_API_TOKEN replace_this_with_secret_token
+  if test $systemType = "Darwin"
+    ################# DO NOT COMMIT #########################################
+    set -x HOMEBREW_GITHUB_API_TOKEN 1de66c2243ae059adcc536c664066361dfd54baa
   end
 
 
@@ -115,9 +121,9 @@ if status --is-login
 
 
   # thefuck
-  if type -q thefuck # Check if `thefuck` is something executable
-    eval (thefuck --alias | tr '\n' ';')
-  end
+  # if type -q thefuck # Check if `thefuck` is something executable
+  #   eval (thefuck --alias | tr '\n' ';')
+  # end
 
   # GPG (Necessary for signing git commits and tags)
   set -x GPG_TTY (tty)
@@ -128,9 +134,10 @@ end
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/serverless.fish ];
-  and . /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/serverless.fish
+[ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/serverless.fish
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/sls.fish ];
-  and . /Users/adrian/dotfiles/configs/yarn/global/node_modules/tabtab/.completions/sls.fish
+[ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/sls.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/sls.fish
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/slss.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/slss.fish
