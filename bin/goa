@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+gopass list --flat \
+| rg "$@" \
+| while read -r secret
+  do
+    echo "===== $secret ====="
+    gopass "$secret"
+    echo ""
+  done

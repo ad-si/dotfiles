@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+# The "just get" command
+
+rg \
+  --smart-case \
+  -- \
+  "$@"

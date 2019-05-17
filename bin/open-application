@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+if test $# -eq 0
+then
+  echo "Usage: $(basename "$0") <app-name>"
+  exit 1
+fi
+
+open "/Applications/$*.app"

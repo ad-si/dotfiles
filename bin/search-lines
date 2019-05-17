@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+# The "search lines" command
+
+rg \
+  --smart-case \
+  --vimgrep \
+  -- \
+  "$@"

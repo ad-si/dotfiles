@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+packages=(
+  insect  # High precision scientific calculator with support for physical units
+)
+
+yarn global add "${packages[@]}"
