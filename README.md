@@ -54,11 +54,13 @@ const tools = Library('dotfiles/tools')
     - Change Finder Preferences
     - Change date and time preferences
     - Use "U.S." keyboard layout to have correct direct output of "~" and "\`"
+    - Automatically hide menu bar
+    - Change primary display
 - Check out https://github.com/danburzo/percollate for PDF generation
 - Activate Sublime Text `gopass sublimetext.com/license-key`
-- Logitech Control Center config
-  To install and/or use logitech-control-center you may need to enable their kernel extension in
-  System Preferences → Security & Privacy → General
+- Logitech Options config
+  Activate the Logitech Options Daemon at
+  `System Preferences → Security & Privacy → Accessibility`
 - ShiftIt preferences
 - Key repetition speed of keyboard
 - Install brew fonts
@@ -84,3 +86,13 @@ const tools = Library('dotfiles/tools')
 - Add Hunspell dictionaries after installation
   (e.g. https://github.com/titoBouzout/Dictionaries to
   `~/Library/Application Support/Sublime Text 3/Packages`)
+- Configure Firefox to not print headers, footers, and margins
+- Write `sun` with https://github.com/flosse/rust-sun
+- Set default apps for file types with https://github.com/moretension/duti
+- Install https://github.com/purescript/psc-package
+- Install and setup Brother QL-810W label printer
+- Install good CLI tools available on `pip`
+- Install languages for Tesseract (e.g.
+  https://github.com/tesseract-ocr/tessdata_best/blob/master/deu.traineddata?raw=true)
+  to `/usr/local/Cellar/tesseract/4.0.0/share/tessdata`
+- Remap Caps Lock key to CTRL

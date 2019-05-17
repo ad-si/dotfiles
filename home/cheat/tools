@@ -14,6 +14,8 @@
 - **lsof** - List open files.
 - **system_profiler** - Information about the computer hardware and settings.
 - **caffeinate** - Prevent the system from sleeping on behalf of a utility.
+- **rlwrap** - Runs the specified command, intercepting user input
+    to provide readline's line editing, persistent history and completion.
 
 
 ## File System
