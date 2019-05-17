@@ -1,7 +1,9 @@
 #! /usr/bin/env bash
 
 packages=(
+  eva  # Basic calculator REPL
   hexyl  # Simple hex viewer for the terminal
+  peep  # CLI text viewer that works like less on just a few lines
   unic-cli  # Tool for Unicode (generating, transforming, inspecting strings)
 )
 

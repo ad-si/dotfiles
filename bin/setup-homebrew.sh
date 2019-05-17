@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 # Install Homebrew
-if ! which -s brew
+if ! command -v brew
 then
   echo 'Installing Homebrew…'
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -38,7 +38,9 @@ brews=(
   autojump
   bat
   colordiff
+  csvkit  # Utilities for converting to and working with CSV
   exa
+  exiftool
   fd
   fdupes
   fish
@@ -46,23 +48,38 @@ brews=(
   git
   git-extras
   gnu-sed
+  gnuplot  # A graph plotter with support for various formats
+  go  # Go programming language
   gopass
+  graphviz
   httpie
+  htop
   hunspell
   imagemagick
   kubectl
+  micro
   mongodb
   node
   optipng
+  ocrmypdf  # Add an OCR text layer to scanned PDF files
   pandoc
   # pandoc-citeproc
   pinentry-mac  # Needed for gopass
   platypus  # CLI tool only (GUI gets installed with brew cask)
-  ruby
+  poppler
+  ripgrep
+  ruby  # Programming language
+  rustup-init  # Installer for Rust programming language
+  s3cmd  # Command-line tool for the Amazon S3 service
+  shellcheck  # Linter for bash scripts
   stack  # Haskell tool stack
-  tldr
+  tealdeer  # Fast implementation of tldr in Rust
+  tokei  # Display statistics about code
   translate-shell
   tree
+  tesseract  # OCR (Optical Character Recognition) tool
+  uchardet  # Encoding detection library
+  watchexec  # Executes commands in response to file modifications
   xsv  # CSV command line toolkit written in Rust
   yarn
 )

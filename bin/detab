@@ -4,7 +4,7 @@ files=$(\
   ag \
     --hidden \
     --filename-pattern \
-    '(.babelrc|coffee|html|ignore|jade|js|json|md|mustache|pug|sh|styl|svg|txt|yaml)$' \
+    '(.babelrc|coffee|html|ignore|jade|js|json|md|mustache|pug|sass|sh|styl|svg|txt|yaml)$' \
 )
 
 echo 'Replace tabs with 2 spaces and use LF for newline:'

@@ -12,6 +12,6 @@ else
   then
     echo "$users"
   else
-    hicat "$users"
+    bat "$users"
   fi
 fi

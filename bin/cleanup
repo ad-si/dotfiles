@@ -15,7 +15,8 @@ yarn cache clean
 echo "$separator"
 
 echo '===== Clean docker ====='
-docker-clean
+# docker-clean
+docker system prune
 echo "$separator"
 
 # echo '===== Clean Xcode ====='

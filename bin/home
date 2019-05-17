@@ -2,6 +2,5 @@
 
 tasklite query \
   "(tags is null or tags not like '%feram%' and tags not like '%tasklite%') \
-    and state is 'Open' \
-    order by priority \
-    desc limit 20"
+    and closed_utc is null \
+    order by priority desc limit 50"

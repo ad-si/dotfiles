@@ -1,8 +1,9 @@
 #! /usr/bin/env bash
 
+args=${@:-.}
+
 gcal \
   --with-week-number \
   --iso-week-number=yes \
   --starting-day=1 \
-  "$@"
-
+  "$args"

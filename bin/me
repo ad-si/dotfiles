@@ -2,4 +2,4 @@
 
 contactsPath="${CONTACTS:-~/Contacts}"
 
-hicat "$contactsPath/adrian_sieber.yaml"
+bat "$contactsPath/adrian_sieber.yaml"
