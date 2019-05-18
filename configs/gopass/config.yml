@@ -1,6 +1,7 @@
 root:
   askformore: false
   autoclip: false
+  autoprint: false
   autoimport: false
   autosync: true
   check_recipient_hash: false
@@ -19,6 +20,7 @@ mounts:
   feram:
     askformore: false
     autoclip: false
+    autoprint: false
     autoimport: false
     autosync: true
     check_recipient_hash: false

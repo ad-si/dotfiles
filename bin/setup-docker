@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+
+# Install Homebrew
+if ! command -v docker
+then
+  echo 'Please install Docker first!'
+  exit 1
+fi
+
+images=(
+  alpine
+  go
+  haskell
+  node
+  python
+  ruby
+  rust
+  ubuntu
+)
+
+echo "Pull various Docker images…"
+
+for image in "${images[@]}"
+do
+  docker pull "$image"
+done

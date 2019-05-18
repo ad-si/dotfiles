@@ -34,54 +34,58 @@ brew install bash
 
 # Miscellaneous
 brews=(
-  ag
+  # ag
   autojump
   bat
-  colordiff
-  csvkit  # Utilities for converting to and working with CSV
+  # colordiff
+  # csvkit  # Utilities for converting to and working with CSV
+  diskus
   exa
-  exiftool
+  # exiftool
   fd
-  fdupes
+  # fdupes
   fish
   gcal
   git
   git-extras
   gnu-sed
-  gnuplot  # A graph plotter with support for various formats
-  go  # Go programming language
+  # gnuplot  # A graph plotter with support for various formats
+  # go  # Go programming language
   gopass
-  graphviz
-  httpie
+  # graphviz
   htop
-  hunspell
-  imagemagick
-  kubectl
-  micro
-  mongodb
-  node
-  optipng
-  ocrmypdf  # Add an OCR text layer to scanned PDF files
-  pandoc
+  # httpie
+  # hunspell
+  # imagemagick
+  # kubectl
+  # micro
+  # mongodb
+  # node
+  # ocrmypdf  # Add an OCR text layer to scanned PDF files
+  # optipng
+  # osx-cpu-temp
+  # pandoc
   # pandoc-citeproc
-  pinentry-mac  # Needed for gopass
-  platypus  # CLI tool only (GUI gets installed with brew cask)
-  poppler
+  # pinentry-mac  # Needed for gopass
+  pkg-config  # Necessary for stack
+  # platypus  # CLI tool only (GUI gets installed with brew cask)
+  # poppler
   ripgrep
-  ruby  # Programming language
+  # ruby  # Programming language
   rustup-init  # Installer for Rust programming language
-  s3cmd  # Command-line tool for the Amazon S3 service
-  shellcheck  # Linter for bash scripts
-  stack  # Haskell tool stack
+  # s3cmd  # Command-line tool for the Amazon S3 service
+  # shellcheck  # Linter for bash scripts
+  # stack  # Haskell tool stack
   tealdeer  # Fast implementation of tldr in Rust
-  tokei  # Display statistics about code
-  translate-shell
+  # tokei  # Display statistics about code
+  trash
+  # translate-shell
   tree
-  tesseract  # OCR (Optical Character Recognition) tool
-  uchardet  # Encoding detection library
-  watchexec  # Executes commands in response to file modifications
-  xsv  # CSV command line toolkit written in Rust
-  yarn
+  # tesseract  # OCR (Optical Character Recognition) tool
+  # uchardet  # Encoding detection library
+  # watchexec  # Executes commands in response to file modifications
+  # xsv  # CSV command line toolkit written in Rust
+  # yarn
 )
 
 for brew in "${brews[@]}"
@@ -91,27 +95,29 @@ done
 
 
 # Brew casks
-echo "Install casks …"
+echo "Install apps and fonts with with 'brew cask' …"
 
 # Must be pre-installed for Inkscape
 brew cask install xquartz
 
 casks=(
-  alfred
+  affinity-photo
+  affinity-designer
+  # alfred
   # arduino
-  android-file-transfer
-  atom
+  # android-file-transfer
+  # atom
   # automap-server FIXME: missing
   # betterzipql  # Preview archives  FIXME: missing
   brave-browser
   # blender
   # calibre
-  cheatsheet
-  chromium
+  # cheatsheet
+  # chromium
   # cloudcompare FIXME: missing
-  db-browser-for-sqlite
+  # db-browser-for-sqlite
   # dedrm FIXME: missing
-  disk-inventory-x
+  # disk-inventory-x
   docker
   dropbox
   # duet
@@ -119,61 +125,65 @@ casks=(
   # electrum
   # emacs
   # filezilla
-  firefox
-  flux
-  fman
+  # firefox
+  # flux
+  # fman
   # franz
   # fritzing
   gimp
-  gitup
-  google-chrome
-  google-cloud-sdk
+  # gitup
+  # google-chrome
+  # google-cloud-sdk
   # handbrake
   # hex-fiend
   homebrew/cask-drivers/logitech-control-center
-  homebrew/cask-versions/microsoft-remote-desktop-beta
+  homebrew/cask-fonts/font-hasklig-nerd-font-mono  # For editors
+  homebrew/cask-fonts/font-sourcecodepro
+  homebrew/cask-fonts/font-sourcecodepro-nerd-font-mono  # For terminals
+  # homebrew/cask-versions/microsoft-remote-desktop-beta
   # ichm
-  imageplay
-  inkscape
+  # imageplay
+  # inkscape
   iterm2
-  kindle
-  kindlegen
+  # kindle
+  # kindlegen
   # librecad
-  libreoffice
+  # libreoffice
   logitech-options
-  mactex
-  microsoft-remote-desktop-beta
+  # mactex  # Full installation:
+  mactex-no-gui  # Full installation without bundled applications
+  # microsoft-remote-desktop-beta
   # mongohub
   # musescore
-  nvidia-geforce-now
+  # nvidia-geforce-now
   # onyx
   # opera
-  platypus
+  # platypus
   qlstephen  # Preview plain text files without a file extension
   # quicksilver
   # rawtherapee
-  send-to-kindle
+  # send-to-kindle
   shiftit
   # sigil
   # silverlight
-  sketch
+  # sketch
   # sketchup
-  skype
-  slack
+  # skype
+  # slack
   # slic3r
   # squeak FIXME: missing
   # sourcetree
   # speedcrunch    #  Calculator
   spotify
   sublime-text
-  table-tool
-  tad
+  # table-tool
+  # tad
   # teensy
   telegram
-  texstudio
+  # texstudio
   # textmate
   thunderbird
-  tor-browser
+  # tor-browser
   # tunnelblick BUGGY
   # universal-control FIXME: missing
   # vienna

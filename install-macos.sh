@@ -60,5 +60,5 @@ defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
 
 killall Finder
 
-echo "Setup atom editor"
-./bin/setup-atom
+# echo "Setup atom editor"
+# ./bin/setup-atom

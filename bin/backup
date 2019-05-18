@@ -28,10 +28,12 @@ paths=(
   Dropbox\ \(Personal\)
   # Events
   # Google\ Drive
+  Library/Application\ Support/BraveSoftware
   Library/Application\ Support/Sublime\ Text\ 3/Packages/User
   Library/autojump
   Library/Fonts
   Library/Keychains
+  Library/Preferences
   Library/Thunderbird/Profiles
   Movies
   Music
@@ -41,7 +43,7 @@ paths=(
   Projects
   # Sheetmusic
   # Things
-  tasklite
+  # tasklite
   Wallets
 )
 

@@ -4,8 +4,8 @@ set -e
 
 cd "$HOME"
 
-echo "Clone repository from GitLab"
-git clone https://gitlab.com/adius/dotfiles.git
+echo "Clone repository from GitHub"
+git clone https://github.com/ad-si/dotfiles
 
 cd dotfiles
 
@@ -36,4 +36,7 @@ fi
 # Set correct GPG path for git
 # git config --global gpg.program "$(which gpg)"
 
-./bin/setup-npm
+./bin/setup-docker
+# ./bin/setup-cargo
+# ./bin/setup-go
+# ./bin/setup-npm
