@@ -152,6 +152,7 @@ casks=(
   logitech-options
   # mactex  # Full installation:
   mactex-no-gui  # Full installation without bundled applications
+  mas  # Mac App Store command line interface
   # microsoft-remote-desktop-beta
   # mongohub
   # musescore

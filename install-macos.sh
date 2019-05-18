@@ -3,6 +3,34 @@
 # Homebrew
 ./bin/setup-homebrew.sh
 
+
+echo "Installing following App Store Apps:"
+
+echo "Affinity Photo (https://itunes.apple.com/de/app/affinity-photo/id824183456?l=en&mt=12)"
+echo "Affinity Designer (https://itunes.apple.com/de/app/affinity-designer/id824171161?l=en&mt=12)"
+echo "MainStage 3  (https://itunes.apple.com/de/app/mainstage-3/id634159523?l=en&mt=12)"
+echo "Xcode (https://itunes.apple.com/de/app/xcode/id497799835?l=en&mt=12)"
+echo "Logic Pro X (https://itunes.apple.com/de/app/logic-pro-x/id634148309?l=en&mt=12)"
+echo "Final Cut Pro (https://itunes.apple.com/de/app/final-cut-pro/id424389933?l=en&mt=12)"
+
+
+appIds=(
+  824171161  # Affinity Designer
+  824183456  # Affinity Photo
+  424389933  # Final Cut Pro
+  405399194  # Kindle
+  634148309  # Logic Pro X
+  634159523  # MainStage 3
+  504700302  # PDF Squeezer
+  497799835  # XCode
+)
+
+for appId in "${appIds[@]}"
+do
+  mas install "$appId"
+done
+
+
 # TODO:
 # Set preferences with systemsetup
 # e.g. systemsetup -setnetworktimeserver us.pool.ntp.org
