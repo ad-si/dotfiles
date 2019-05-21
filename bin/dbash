@@ -1,0 +1,30 @@
+#! /usr/bin/env bash
+
+# Interactive terminal:
+# `dbash`
+
+# Stdin:
+# `echo 'echo test' | dbash -`
+
+# With flags:
+# `dbash -c 'echo test'`
+
+
+image=bash
+
+set -e
+
+function dockrun () {
+  docker run \
+    --interactive \
+    --rm \
+    --entrypoint=bash \
+    "$@"
+}
+
+if test $# -eq 0
+then
+  dockrun --tty "$image"
+else
+  dockrun "$image" "$@"
+fi

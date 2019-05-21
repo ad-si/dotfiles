@@ -1,0 +1,30 @@
+#! /usr/bin/env bash
+
+# Interactive terminal:
+# `dnode`
+
+# Stdin:
+# `echo 'console.log(`Hello ${1 + 2}`)' | dnode -`
+
+# With flags:
+# `dnode -c 'echo test'`
+
+
+image=node:alpine
+
+set -e
+
+function dorun () {
+  docker run \
+    --interactive \
+    --rm \
+    --entrypoint=node \
+    "$@"
+}
+
+if test $# -eq 0
+then
+  dorun --tty "$image"
+else
+  dorun "$image" "$@"
+fi
