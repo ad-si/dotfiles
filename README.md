@@ -24,6 +24,10 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
   - [x] Automatically hide and show the menu bar
   - [x] Show scroll bars: When scrolling
 - System Preferences > Date & Time: Change date and time preferences
+  - Change time zone to UTC:
+      `sudo ln -sf /usr/share/zoneinfo/UTC /etc/localtime`
+      or
+      `sudo systemsetup -settimezone GMT`
   - [x] Display the time with seconds
   - [x] Use a 24-hour clock
   - [x] Show the day of the week
@@ -84,7 +88,6 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
 
 - Install TaskLite
 - Printer driver software
-- Backup fish history
 - Install TexLive packages after installation of MacTeX
 - Run `yarn install` in the dotfiles directory
 - Add Hunspell dictionaries after installation
@@ -133,6 +136,8 @@ General > Preferences:
 
 - Copy preferences from backup
 - Activate Sublime Text `gopass sublimetext.com/license-key`
+- Install Package Control
+    (will then automatically load all packages from the backup)
 
 
 ### ShiftIt
@@ -225,3 +230,4 @@ const tools = Library('dotfiles/tools')
 - Check out https://github.com/danburzo/percollate for PDF generation
 - Use https://github.com/Homebrew/homebrew-bundle
 - Write `sun` with https://github.com/flosse/rust-sun
+- Backup fish history

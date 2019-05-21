@@ -3574,7 +3574,7 @@
 	<key>HideActivityIndicator</key>
 	<false/>
 	<key>HideFromDockAndAppSwitcher</key>
-	<true/>
+	<false/>
 	<key>HideMenuBarInFullscreen</key>
 	<false/>
 	<key>HideScrollbar</key>
@@ -3592,7 +3592,7 @@
 	<key>HotKeyTogglesWindow</key>
 	<false/>
 	<key>Hotkey</key>
-	<false/>
+	<true/>
 	<key>HotkeyChar</key>
 	<integer>32</integer>
 	<key>HotkeyCode</key>
@@ -3600,7 +3600,7 @@
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
 	<key>HotkeyModifiers</key>
-	<integer>524576</integer>
+	<integer>524288</integer>
 	<key>IRMemory</key>
 	<integer>4</integer>
 	<key>JobName</key>
@@ -3657,7 +3657,7 @@
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>2560 0 1920 1080 2560 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>2560 0 1920 1080 2560 0 1920 1080 </string>
+	<string>0 700 570 378 0 0 2560 1440 </string>
 	<key>NeverWarnAboutShortLivedSessions_85FB85B4-FC57-4627-8C1F-4BD01080DEE2</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -4352,7 +4352,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>HasklugNerdFontCompleteM-Regular 11</string>
+			<string>SauceCodeProNerdFontCompleteM-Regular 11</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -7844,7 +7844,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>HasklugNerdFontCompleteM-Regular 11</string>
+			<string>SauceCodeProNerdFontCompleteM-Regular 18</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
@@ -8086,22 +8086,22 @@
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
-		<string>Menlo</string>
+		<string>SauceCodePro Nerd Font Mono</string>
 		<string>Hasklug Nerd Font Mono</string>
 	</array>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{2560, 0}, {1920, 1080}}</string>
+		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{2874, 918}</string>
+		<string>{1013, 909}</string>
 	</dict>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>D073849C-6D43-4653-B203-67E203C4A276</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>1</integer>
+	<integer>4</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>

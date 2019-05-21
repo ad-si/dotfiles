@@ -2,4 +2,9 @@
 
 # Show holidays for Germany, Brandenburg
 
-gcal --holiday-list --cc-holiday=de_bb
+gcal \
+  --holiday-list \
+  --cc-holiday=de_bb \
+| rg \
+  --color never \
+  '=\s+\+'

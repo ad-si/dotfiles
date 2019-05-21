@@ -35,6 +35,8 @@ paths=(
   Library/Keychains
   Library/Preferences
   Library/Thunderbird/Profiles
+  .local/share/fish
+  .local/bin  # All programs built with stack
   Movies
   Music
   # Photos

@@ -61,6 +61,7 @@ brews=(
   # micro
   # mongodb
   # node
+  mpv  # Media player
   # ocrmypdf  # Add an OCR text layer to scanned PDF files
   # optipng
   # osx-cpu-temp
@@ -79,9 +80,10 @@ brews=(
   tealdeer  # Fast implementation of tldr in Rust
   # tokei  # Display statistics about code
   trash
-  # translate-shell
+  translate-shell
   tree
   # tesseract  # OCR (Optical Character Recognition) tool
+  # tesseract-lang  # All supported languages
   # uchardet  # Encoding detection library
   # watchexec  # Executes commands in response to file modifications
   # xsv  # CSV command line toolkit written in Rust
@@ -127,7 +129,8 @@ casks=(
   # filezilla
   # firefox
   # flux
-  # fman
+  # fman  # Dual pane file manager
+  # forklift  # Better file manager than Finder
   # franz
   # fritzing
   gimp

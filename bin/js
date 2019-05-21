@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
 
 args="$*"
-node -e "console.dir($args, {depth: null, colors: true})"
+dnode -e "console.dir($args, {depth: null, colors: true})"
