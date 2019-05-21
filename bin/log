@@ -6,6 +6,7 @@ git log \
   --graph \
   --color \
   --pretty="format:%C(yellow)%h%C(reset) %ad%C(red)%d%C(reset) %C(bold normal)%s%C(reset) %G? %C(cyan)[%an]%C(reset)" \
+  --max-count 20 \
+  "$@" \
 | sed 's/ N / /g' \
-| sed 's/ G / 🔑  /g' \
-| less -R
+| sed 's/ G / 🔑  /g'
