@@ -1,0 +1,48 @@
+#! /usr/bin/env node
+
+const chrono = require('chrono-node')
+
+function convert (string) {
+  let output = ''
+  let infoData = ''
+  const unixTimeShort = /^[0-9]{10}$/
+  const unixTimeMedium = /^[0-9]{13}$/
+  const unixTimeLong = /^[0-9]{16}$/
+
+  if (unixTimeShort.test(string)) {
+    string = string + '000'
+  }
+
+  if (unixTimeLong.test(string)) {
+    string = string.slice(0, -3)
+  }
+
+  if (unixTimeMedium.test(string)) {
+    let date = new Date(Number(string))
+    return date.toISOString()
+  }
+
+  try {
+    output = chrono
+      .parseDate(string)
+      .toISOString()
+    infoData = chrono.parse(string)[0]
+  }
+  catch (error) {
+    console.info(error)
+  }
+
+  return output
+}
+
+
+if (process.argv.length < 3) {
+  console.error('Usage: utcify <timestamp>')
+  process.exit(1)
+}
+else {
+  const input = process.argv
+    .slice(2)
+    .join(' ')
+  console.info(convert(input))
+}
