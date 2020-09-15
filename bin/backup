@@ -30,10 +30,12 @@ paths=(
   # Google\ Drive
   Library/Application\ Support/BraveSoftware
   Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+  Library/Application\ Support/iTerm2
   Library/autojump
   Library/Fonts
   Library/Keychains
   Library/Preferences
+  Library/Services  # Automator scripts (e.g. quick actions)
   Library/Thunderbird/Profiles
   .local/share/fish
   .local/bin  # All programs built with stack
