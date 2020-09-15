@@ -1,13 +1,46 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+IFS=$'\n\t'
+
+(command -v ex > /dev/null) || \
+    (>&2 echo 'ex is not installed' && exit 1)
+
+(command -v fd > /dev/null) || \
+    (>&2 echo 'fd is not installed' && exit 1)
+
+(command -v tab2space > /dev/null) || \
+    (>&2 echo 'tab2space is not installed' && exit 1)
+
+
 files=$(\
-  ag \
+  fd \
     --hidden \
-    --filename-pattern \
-    '(.babelrc|coffee|html|ignore|jade|js|json|md|mustache|pug|sass|sh|styl|svg|txt|yaml)$' \
+    --no-ignore \
+    --extension babelrc \
+    --extension cabal \
+    --extension coffee \
+    --extension css \
+    --extension hs \
+    --extension htm \
+    --extension html \
+    --extension ignore \
+    --extension jade \
+    --extension js \
+    --extension json \
+    --extension md \
+    --extension mustache \
+    --extension php \
+    --extension pug \
+    --extension sass \
+    --extension sh \
+    --extension styl \
+    --extension svg \
+    --extension txt \
+    --extension yaml \
 )
 
-echo 'Replace tabs with 2 spaces and use LF for newline:'
+echo -e 'Replace tabs with 2 spaces and use LF for newline:\n'
 
 echo "$files" | while read -r file
 do
