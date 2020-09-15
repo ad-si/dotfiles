@@ -68,3 +68,5 @@ export EDITOR=micro
 
 # added by travis gem
 [ -f /Users/adrian/.travis/travis.sh ] && source /Users/adrian/.travis/travis.sh
+
+source /Users/adrian/Library/Preferences/org.dystroy.broot/launcher/bash/br

@@ -1,9 +1,9 @@
 
 function printPagesPerDay
   set -l bookPath /Users/adrian/Projects/programmiersprachenbuch/main.pdf
-  set -l writtenPages (pdfinfo $bookPath | grep Pages | cut -c 9-)
-  set -l pagesToWrite (echo "300 - $writtenPages" | bc -l)
-  set -l deadline (gdate -d '2019-06-01' +%s)
+  set -l writtenPages (pdfinfo "$bookPath" | grep Pages | cut -c 9-)
+  set -l pagesToWrite (echo "250 - $writtenPages" | bc -l)
+  set -l deadline (gdate -d '2019-06-11' +%s)
   set -l today (gdate +%s)
   set -l pagesPerDay \
     (echo "scale=2; $pagesToWrite * 86400" / \($deadline - $today\) | bc -l)

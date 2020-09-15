@@ -30,11 +30,6 @@ do
   mas install "$appId"
 done
 
-
-# TODO:
-# Set preferences with systemsetup
-# e.g. systemsetup -setnetworktimeserver us.pool.ntp.org
-
 echo "Disable window animations"
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
@@ -45,7 +40,7 @@ echo "Disable auto reopen for Preview"
 defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
 
 
-echo "Configure the Dock"
+echo "===== Configure the Dock ====="
 
 echo "Remove default app icons"
 defaults write com.apple.dock persistent-apps -array
@@ -86,7 +81,16 @@ defaults write com.apple.screencapture location /Users/adrian/Desktop/Screenshot
 
 defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
 
-killall Finder
+# TODO:
+# Set preferences with systemsetup
+# e.g. systemsetup -setnetworktimeserver us.pool.ntp.org
+
+echo 'TODO: Disable "Add period with double space"'
+
+echo 'TODO: Disable "Use smart quotes and dashes"'
 
 # echo "Setup atom editor"
 # ./bin/setup-atom
+
+
+killall Finder

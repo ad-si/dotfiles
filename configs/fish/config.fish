@@ -37,7 +37,8 @@ if status --is-login
   ### Ruby
   if test $systemType = "Darwin"
     set -x PATH /usr/local/opt/ruby/bin $PATH
-    set -x PATH /usr/local/lib/ruby/gems/2.6.0/bin $PATH
+    set -x PATH /usr/local/lib/ruby/gems/2.7.0/bin $PATH
+    set -x GEM_HOME $HOME/.gem
   end
 
   ### Haskell
@@ -67,6 +68,8 @@ if status --is-login
     set -x HOMEBREW_GITHUB_API_TOKEN 1de66c2243ae059adcc536c664066361dfd54baa
   end
 
+  set -x HOMEBREW_CASK_OPTS "--no-quarantine"
+
 
   # MatplotLib in iTerm
 
@@ -79,6 +82,9 @@ if status --is-login
 
   # Default editor
   set -x EDITOR sublime-wait
+
+  # Default visual editor
+  set -x VISUAL sublime-wait
 
 
   # Default locations

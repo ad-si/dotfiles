@@ -53,6 +53,10 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
       - Long: HH:mm:ssZZZZZ
       - Full: HH:mm:ss.SSSZZZZZ
 
+- Calendar:
+  - Start week on: Monday
+  - Scroll in week view by: Week, Stop on Today
+
 - Change Finder Preferences
   - Show nothing on the Desktop
   - New Finder windows show home

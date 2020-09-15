@@ -12,3 +12,5 @@ templates:
     author-email: mail@adriansieber.com
     copyright: Adrian Sieber
     github-username: ad-si
+
+allow-newer: true

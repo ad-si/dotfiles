@@ -11,6 +11,8 @@
 /home/atom/recovery
 /home/atom/storage
 
+/home/w3m/history
+
 # Ignore all except for the already added files
 /home/stack
 

@@ -1,8 +1,11 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+
 if test $# -ge 1
 then
   git push "$1" && git push --tags "$1"
 else
-  git push && git push --tags
+  git remote | xargs -L1 git push
+  git remote | xargs -L1 git push --tags
 fi
