@@ -10,7 +10,7 @@ dueStyle: yellow
 overdueStyle: red
 tagStyle: blue
 utcFormat: YYYY-MM-DD H:MI:S
-dataDir: ~/Dropbox (Personal)/TaskLite
+dataDir: ~/Dropbox/TaskLite
 dbName: main.db
 dateWidth: 10
 bodyWidth: 10
@@ -18,3 +18,43 @@ prioWidth: 4
 headCount: 20
 maxWidth: 120
 progressBarWidth: 24
+hooks:
+  directory: ~/DOES-NOT-EXIST
+  # launch:
+  #   pre:
+  #     - interpreter: python
+  #       body: print('Config > pre-launch > Python')
+
+  #     - interpreter: ruby
+  #       body: puts "Config > pre-launch > Ruby"
+
+  #   post:
+  #     - interpreter: python3
+  #       body: print('Config > Python > post-launch')
+
+  # add:
+  #   pre:
+  #     - interpreter: python3
+  #       body: print('Config > Python > pre-add')
+
+  #   post:
+  #     - interpreter: python3
+  #       body: print('Config > Python > post-add')
+
+  # modify:
+  #   pre:
+  #     - interpreter: python3
+  #       body: print('5. Config > Python > pre-modify')
+
+  #   post:
+  #     - interpreter: python3
+  #       body: print('6. Config > Python > post-modify')
+
+  # exit:
+  #   pre:
+  #     - interpreter: python3
+  #       body: print('7. Config > Python > pre-exit')
+
+  #   post:
+  #     - interpreter: python3
+  #       body: print('8. Config > Python > post-exit')

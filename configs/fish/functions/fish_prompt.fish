@@ -1,6 +1,6 @@
 
 function printPagesPerDay
-  set -l bookPath /Users/adrian/Projects/programmiersprachenbuch/main.pdf
+  set -l bookPath "/Users/adrian/Dropbox/Projects/programmiersprachenbuch/main.pdf"
   set -l writtenPages (pdfinfo "$bookPath" | grep Pages | cut -c 9-)
   set -l pagesToWrite (echo "250 - $writtenPages" | bc -l)
   set -l deadline (gdate -d '2019-06-11' +%s)

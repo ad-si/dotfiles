@@ -25,7 +25,7 @@ fileData.body = app
   .displayDialog('Enter body for new idea:', dialogSettingsBody)
   .textReturned
 
-const ideasDir = '~/Dropbox (Personal)/Ideas'
+const ideasDir = '~/Dropbox/Ideas'
 tools.createDirectory(ideasDir)
 
 const fileContent = tools.json2yaml(fileData)

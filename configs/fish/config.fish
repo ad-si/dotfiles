@@ -88,7 +88,7 @@ if status --is-login
 
 
   # Default locations
-  set filesRootPath ~/'Dropbox (Personal)'
+  set filesRootPath ~/'Dropbox'
 
   set -x AUDIOBOOKS $filesRootPath/Audiobooks
   set -x BOOKS $filesRootPath/Books

@@ -28,7 +28,7 @@ fileData.tags = app
 
 const fileContent = tools.json2yaml(fileData)
 const fileName = tools.getDateFileName()
-const filePath = `~/Dropbox (Personal)/Links/${fileName}`
+const filePath = `~/Dropbox/Links/${fileName}`
 
 tools.writeFile(fileContent, filePath)
 

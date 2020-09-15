@@ -6,7 +6,7 @@ import Control.Monad (join)
 
 
 linkDir :: String
-linkDir = "/Users/adrian/Dropbox (Personal)/Links"
+linkDir = "/Users/adrian/Dropbox/Links"
 
 
 putAndFlush :: String -> IO ()
