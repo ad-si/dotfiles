@@ -1,3 +1,4 @@
 #! /usr/bin/env bash
 
-msee readme.md || msee readme
+(test -e readme && bat readme) || (test -e README && bat README)
+(test -e readme.md && bat readme.md) || (test -e README.md && bat README.md)
