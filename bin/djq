@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+image=stedolan/jq
+
+set -e
+
+docker run \
+  --interactive \
+  --rm \
+  "$image" "$@"

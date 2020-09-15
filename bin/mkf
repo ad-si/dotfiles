@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+if test ! $# == 1
+then
+  echo "Usage: $(basename "$0") <path/to/file>"
+  exit 1
+fi
+
+dirname=$(dirname "$@")
+
+mkdir "$dirname"
+touch "$@"
+
+echo "Created $@"

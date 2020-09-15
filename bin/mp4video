@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+# Convert to .webm
+ffmpeg \
+  -i "$1" \
+  -vcodec h264 \
+  -acodec aac \
+  -crf 25 \
+  -movflags +faststart \
+  -threads 0 \
+  "$(echo "$1" | sed 's/\.[a-z]*$/\.mp4/g')"

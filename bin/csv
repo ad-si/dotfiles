@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+# -s 17 - Change theme to Solarized Dark
+
+pspg \
+  -s 17 \
+  --csv \
+  "$@"

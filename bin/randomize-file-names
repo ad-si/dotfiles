@@ -1,0 +1,7 @@
+#!/usr/bin/env dash
+
+for NAME in $(du *.eml | awk '{print $2}')
+do
+	mv "${NAME}" "$(base32 /dev/urandom | head -c 10)${NAME}"
+done
+

@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+# CSV Lookup
+# -b : black/white theme
+
+cat $1 | pspg -b --csv

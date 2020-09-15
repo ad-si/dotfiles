@@ -1,0 +1,29 @@
+#! /usr/bin/env bash
+
+# Stdin:
+# `cat test.sh | dshellcheck -`
+
+# With flags:
+# `cat test.sh | dshellcheck --color=always --format json -`
+
+# TODO: Automatically set --color flag
+
+image=koalaman/shellcheck-alpine
+
+set -euo pipefail
+
+if test $# -eq 0
+then
+  docker run \
+    --interactive \
+    --rm \
+    --entrypoint=shellcheck \
+    "$image" --help
+else
+  docker run \
+    --interactive \
+    --rm \
+    --entrypoint=shellcheck \
+    "$image" \
+    "$@"
+fi

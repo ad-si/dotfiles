@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+image=alpine/httpie
+
+set -e
+
+docker run \
+  --interactive \
+  --tty \
+  --rm \
+  "$image" "$@"

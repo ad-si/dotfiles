@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+
+set -e
+
+if test $# -eq 0
+then
+  docker run \
+    --rm \
+    --volume "$PWD":/data:ro \
+    mbologna/docker-tokei
+else
+  docker run \
+    --rm \
+    --entrypoint tokei \
+    --volume "$PWD":/data:ro \
+    mbologna/docker-tokei \
+    "$@"
+fi

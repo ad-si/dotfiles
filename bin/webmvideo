@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+# Convert to .webm
+ffmpeg \
+  -i "$1" \
+  -vcodec libvpx \
+  -qmin 0 \
+  -qmax 40 \
+  -crf 4 \
+  -b:v 3M \
+  -acodec libvorbis \
+  -movflags +faststart \
+  -threads 0 \
+  "$(echo "$1" | sed 's/\.[a-z]*$/\.webm/g')"
