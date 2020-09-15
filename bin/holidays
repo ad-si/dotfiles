@@ -4,7 +4,7 @@
 
 gcal \
   --holiday-list \
-  --cc-holiday=de_bb \
+  --cc-holiday=de_he \
 | rg \
   --color never \
   '=\s+\+'

@@ -1,6 +1,9 @@
 #! /usr/bin/env bash
 
 tasklite query \
-  "(tags is null or tags not like '%feram%' and tags not like '%tasklite%') \
+  "(tags is null
+      or tags not like '%feram%'
+      and tags not like '%tasklite%'
+      and tags not like '%qthority%') \
     and closed_utc is null \
-    order by priority desc limit 50"
+    order by priority desc limit 40"

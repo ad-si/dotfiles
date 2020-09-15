@@ -6,4 +6,5 @@ rg \
   --smart-case \
   --vimgrep \
   -- \
-  "$@"
+  "$@" \
+| sort

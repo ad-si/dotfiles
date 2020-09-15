@@ -1,5 +1,5 @@
 #! /usr/bin/env bash
 
-city=${*:-potsdam}
+city=${*:-Frankfurt am Main}
 
 curl wttr.in/"$city"

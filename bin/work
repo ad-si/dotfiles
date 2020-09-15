@@ -1,7 +1,8 @@
 #! /usr/bin/env bash
 
 tasklite query \
-  "tags like '%feram%' and closed_utc is null \
+  "(tags like '%feram%' or tags like '%qthority%')
+    and closed_utc is null \
     order by priority desc \
     limit 20"
   "$@"
