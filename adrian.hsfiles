@@ -1,0 +1,127 @@
+{-# START_FILE package.yaml #-}
+name: {{name}}
+version: 0.1.0.0
+synopsis: ""
+description: ""
+homepage: https://github.com/{{github-username}}{{^github-username}}githubuser{{/github-username}}/{{name}}#readme
+license: AGPL-3.0-or-later
+author: {{author-name}}{{^author-name}}Author name here{{/author-name}}
+maintainer: {{author-email}}{{^author-email}}example@example.com{{/author-email}}
+copyright: {{copyright}}{{^copyright}}{{year}}{{^year}}2019{{/year}} {{author-name}}{{^author-name}}Author name here{{/author-name}}{{/copyright}}
+category: {{category}}{{^category}}Web{{/category}}
+
+extra-source-files:
+  - readme.md
+
+dependencies:
+  - base >= 4.7 && < 5
+  - protolude
+
+default-extensions:
+  - DeriveGeneric
+  - FlexibleContexts
+  - FlexibleInstances
+  - GADTs
+  - LambdaCase
+  - MultiParamTypeClasses
+  - MultiWayIf
+  - NoImplicitPrelude
+  - OverloadedStrings
+  - RecordWildCards
+  - StandaloneDeriving
+  - TypeApplications
+  - TypeFamilies
+  - TypeSynonymInstances
+  - UndecidableInstances
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wredundant-constraints
+  - -fno-warn-orphans
+
+library:
+  source-dirs: source
+
+executables:
+  {{name}}:
+    source-dirs:      app
+    main:             Main.hs
+
+{-# START_FILE Setup.hs #-}
+import Distribution.Simple
+main = defaultMain
+
+{-# START_FILE app/Main.hs #-}
+module Main where
+
+import Protolude
+import Lib
+
+main :: IO ()
+main = do
+  putStrLn $ hello "John"
+
+{-# START_FILE source/Lib.hs #-}
+module Lib where
+
+import Protolude
+
+hello :: Text -> Text
+hello name = "Hello " <> name <> "!"
+
+{-# START_FILE readme.md #-}
+# {{name}}
+
+{-# START_FILE .gitignore #-}
+/.stack-work
+/*.cabal
+
+{-# START_FILE .github/workflows/ci.yaml #-}
+name: CI
+
+# Trigger the workflow on push or pull request, but only for the master branch
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    name: ghc ${{ matrix.ghc }}
+    runs-on: ubuntu-16.04
+    strategy:
+      matrix:
+        cabal: ["2.4"]
+        ghc:
+          - "8.8.3"
+
+    steps:
+    - uses: actions/checkout@v2
+      if: |
+        github.event.action == 'opened' ||
+        github.event.action == 'synchronize' ||
+        github.event.ref == 'refs/heads/master'
+
+    - uses: actions/setup-haskell@v1
+      name: Setup Haskell
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
+
+    - uses: actions/cache@v1
+      name: Cache ~/.cabal/store
+      with:
+        path: ~/.cabal/store
+        key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
+
+    - name: Build
+      run: |
+        cabal v2-update
+        cabal v2-build --enable-tests --enable-benchmarks
+
+    - name: Test
+      run: |
+        cabal v2-test --enable-tests
