@@ -1,59 +1,15 @@
 #! /usr/bin/env bash
 
-echo -e "===== Update Brew =====\\n"
+topgrade --disable go
 
-brew update
-brew upgrade
+now=$(date -u +"%H:%M:%S")
 
+echo -e "\\n\\n―― $now - npm ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――\n"
 
-echo -e "\\n\\n===== Update Brew Casks =====\\n"
-
-brew cask upgrade
-
-
-echo -e "\\n\\n===== Update Npm =====\\n"
-
-npm install --global npm@latest
+# npm install --global npm@latest
 npm update --global
 
-# for module in $(ls /usr/local/lib/node_modules | cat)
-# do
-#    echo "Upgrade $module"
-#    npm upgrade --global "$module"
-# done
 
+# echo -e "\\n\\n―― Update Apm -----------------------------------------------\\n"
 
-echo -e "\\n\\n===== Update Yarn =====\\n"
-
-yarn global upgrade --force
-
-
-echo -e "\\n\\n===== Update Apm =====\\n"
-
-apm update --no-confirm
-
-
-echo -e "\\n\\n===== Update Tldr =====\\n"
-
-tldr --update
-
-
-echo -e "\\n\\n===== Update Gems =====\\n"
-
-gem update
-
-
-echo -e "\\n\\n===== Update Pip =====\\n"
-
-pip install --upgrade pip setuptools wheel
-pip3 install --upgrade pip setuptools wheel
-
-
-echo -e "\\n\\n===== Update Rust =====\\n"
-
-rustup update
-
-
-echo -e "\\n\\n===== Update Mac OS =====\\n"
-
-softwareupdate --install --all
+# apm update --no-confirm
