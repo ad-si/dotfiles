@@ -1,4 +1,3 @@
 #! /usr/bin/env bash
 
-trans :en "$*"
-
+trans :en "$*" | awk '{ if ($0 !~ "Examples") print; else exit }'
