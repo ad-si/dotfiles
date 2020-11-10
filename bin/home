@@ -3,7 +3,6 @@
 tasklite query \
   "(tags is null
       or tags not like '%feram%'
-      and tags not like '%tasklite%'
-      and tags not like '%qthority%') \
+      and tags not like '%tasklite%') \
     and closed_utc is null \
     order by priority desc limit 40"
