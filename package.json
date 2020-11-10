@@ -31,6 +31,7 @@
     "js-yaml": "^3.9.1",
     "suncalc": "^1.8.0",
     "timeify": "^0.2.3",
+    "ulid": "^2.3.0",
     "user-home": "^2.0.0"
   },
   "devDependencies": {

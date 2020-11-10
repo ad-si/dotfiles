@@ -59,6 +59,11 @@ if status --is-login
   set -x PATH /usr/local/Cellar/node/*/bin $PATH
 
 
+  ### Python
+  set -g fish_user_paths "/usr/local/opt/python@3.9/bin" $fish_user_paths
+  set -x PATH ~/Library/Python/3.9/bin/ $PATH
+
+
   ## Custom
   set -x PATH ~/dotfiles/bin $PATH
 
@@ -147,3 +152,4 @@ end
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/slss.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/slss.fish
+set -g fish_user_paths "/usr/local/opt/sqlite/bin" $fish_user_paths

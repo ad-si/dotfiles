@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-const ulid = require('ulid')
-const value = ulid()
+const ULID = require('ulid')
+const value = ULID.ulid()
 
 process.stdout.write(value.toLowerCase())
