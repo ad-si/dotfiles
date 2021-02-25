@@ -8,7 +8,7 @@ fi
 
 dirname=$(dirname "$@")
 
-mkdir "$dirname"
+mkdir -p "$dirname"
 touch "$@"
 
 echo "Created $@"

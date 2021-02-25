@@ -3,6 +3,6 @@
 tasklite query \
   "(tags like '%feram%' or tags like '%work%')
     and closed_utc is null \
-    order by priority desc \
-    limit 20"
+    order by priority desc, due_utc asc, ulid desc \
+    limit 30"
   "$@"

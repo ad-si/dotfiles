@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+pandoc \
+  --variable papersize:a4 \
+  --variable margin-top:20mm \
+  --variable margin-right:20mm \
+  --variable margin-bottom:20mm \
+  --variable margin-left:20mm \
+  --output "$1".pdf \
+  "$1"

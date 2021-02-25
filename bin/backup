@@ -29,8 +29,9 @@ paths=(
   # Events
   # Google\ Drive
   Library/Application\ Support/BraveSoftware
-  Library/Application\ Support/Sublime\ Text\ 3/Packages/User
   Library/Application\ Support/iTerm2
+  Library/Application\ Support/midiStroke  # Mapping MIDI note to key combo
+  Library/Application\ Support/Sublime\ Text\ 3/Packages/User
   Library/autojump
   Library/Fonts
   Library/Keychains
