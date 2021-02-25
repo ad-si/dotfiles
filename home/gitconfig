@@ -79,3 +79,5 @@
   pager = more -r
 [pull]
   ff = only
+[init]
+	defaultBranch = main
