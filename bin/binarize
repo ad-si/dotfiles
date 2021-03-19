@@ -6,7 +6,8 @@
 
 mogrify \
   -auto-orient \
-  -blur 0x2 \
   -auto-threshold OTSU \
+  -monochrome \
   -format png \
   "$@"
+  # -blur 0x2 \  # Image must be quite large to work properly

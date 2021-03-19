@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+# 1. Rotate image
+# 2. Convert to grayscale
+# 3. Increases the contrast by stretching the intensity values and
+#    blacks-out max 2% and whites-out max 1% of the pixels
+# 4. Convert to PNG
+
+mogrify \
+  -auto-orient \
+  -colorspace gray \
+  -normalize \
+  -format png \
+  "$@"
