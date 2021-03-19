@@ -1,3 +1,21 @@
+# shellcheck disable=SC1090
+
+# Highlight $HOST:$PWD prompt
+PS1='\[\e[1m\]\h:\w\$\[\e[0m\] '
+#export PS1='\e[0:36m\w/\e[m \e[0:33m`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`\e[m'
+
+# Tell less not to beep and also display colors
+# Also don't wrap lines, as less supports horizontal scolling
+export LESS="-QRS"
+
+# Adjust the less highlight colors
+lessTermcapSo="$(printf 'rev\nbold\nsetaf 3\n' | tput -S)"
+export LESS_TERMCAP_so="$lessTermcapSo"
+
+lessTermcapSe="$(tput sgr0)"
+export LESS_TERMCAP_se="$lessTermcapSe"
+
+
 export GOPATH="$HOME/.go:$GOPATH"
 export OSA_LIBRARY_PATH="$HOME/dotfiles/script-libraries:$OSA_LIBRARY_PATH"
 
@@ -10,16 +28,20 @@ export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 
 # PHP
-export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
+# export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
 
 # Postgres
 export PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
+
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Go executables
 export PATH="$GOPATH/bin:$PATH"
 
 # Ruby Gems
-export PATH="$(brew --prefix ruby)/bin:$PATH"
+rubyPath="$(brew --prefix ruby)"
+export PATH="$rubyPath/bin:$PATH"
 
 # Npm executables
 export PATH="/usr/local/share/npm/bin:$PATH"
@@ -27,8 +49,8 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 # Custom user scripts
 export PATH="$HOME/dotfiles/bin:$PATH"
 
-
-export JAVA_HOME=$(/usr/libexec/java_home)
+javaHome="$(/usr/libexec/java_home)"
+export JAVA_HOME="$javaHome"
 
 # Colors for Man Pages displayed with "Less"
 export LESS_TERMCAP_mb=$'\E[01;31m'         # begin blinking
@@ -49,10 +71,10 @@ then
 fi
 
 # Z
-. $(brew --prefix)/etc/profile.d/z.sh
+# . $(brew --prefix)/etc/profile.d/z.sh
 
 # NVM
-export NVM_DIR="/Users/adrian/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Grep
@@ -67,6 +89,28 @@ export GREP_OPTIONS='--color=always'
 export EDITOR=micro
 
 # added by travis gem
-[ -f /Users/adrian/.travis/travis.sh ] && source /Users/adrian/.travis/travis.sh
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
-source /Users/adrian/Library/Preferences/org.dystroy.broot/launcher/bash/br
+source "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ];
+# then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ];
+#     then
+#       . "$HOME/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="$HOME/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+
+if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh";
+then . "$HOME/.nix-profile/etc/profile.d/nix.sh";
+fi
