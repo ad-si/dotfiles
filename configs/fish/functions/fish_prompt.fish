@@ -31,8 +31,17 @@ function printTasksStatus
 end
 
 
+function checkIfDarkMode
+  set -l interfaceStyle (defaults read -g AppleInterfaceStyle 2> /dev/null)
+  test -n "$interfaceStyle" -a "$interfaceStyle" = "Dark"
+end
+
+
 function fish_prompt --description 'Write out the prompt'
   set -l last_status $status
+
+  set -l bgColor (checkIfDarkMode && echo "000000" || echo "eeeeee")
+  set -l bgColorMuted (checkIfDarkMode && echo "333333" || echo "cccccc")
 
   if not set -q __fish_prompt_normal
     set -g __fish_prompt_normal (set_color normal)
@@ -46,10 +55,10 @@ function fish_prompt --description 'Write out the prompt'
   # Disable path shortening
   set -g fish_prompt_pwd_dir_length 0
 
-  set_color --background 000000 $fish_color_cwd
+  set_color --background "$bgColor" $fish_color_cwd
   printf ' %s%s ' (prompt_pwd) (__fish_git_prompt)
 
-  set_color --background 333333 000000
+  set_color --background "$bgColorMuted" "$bgColor"
   printf '\ue0b0'
 
   set_color cyan
@@ -62,31 +71,29 @@ function fish_prompt --description 'Write out the prompt'
   printf '%s ' (hostname | cut -d . -f 1)
 
   # Gray Arrow End
-  set_color --background 000000 333333
+  set_color --background "$bgColor" "$bgColorMuted"
   printf '\ue0b0'
-  set_color --background 000000
+  set_color --background "$bgColor" normal
 
   # Show datetime
   # set_color white
   # printf ' %s ' (date -u "+%Y-%m-%d %H:%M:%S")
 
-  # set_color --background 333333 000000
+  # set_color --background "$bgColorMuted" "$bgColor"
   # printf '\ue0b0'
-  # set_color --background 333333
-
-  set_color red
+  # set_color --background "$bgColorMuted"
 
   printTasksStatus
 
   # printPagesPerDay
 
   # Gray Arrow End
-  # set_color --background normal 333333
+  # set_color --background normal "$bgColorMuted"
   # printf '\ue0b0'
   # set_color normal
 
   # Black Arrow End
-  set_color --background normal 000000
+  set_color --background normal "$bgColor"
   printf '\ue0b0'
   set_color normal
 
