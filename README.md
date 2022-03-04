@@ -69,6 +69,8 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
     - [x] Show warning before emptying the Trash
     - [x] Remove items from the Trash after 30 days
     - When performing a search: Search the Current Folder
+  - Overwrite default shortcuts
+    ![](./images/overwrite_shortcut.png)
 - System Preferences > Displays:
   - Change primary display
 - Activate Siri
@@ -87,7 +89,6 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
   - Bottom right: Desktop
   - Bottom Left: Put Display to Sleep
 
-
 ### General
 
 - Install TaskLite
@@ -100,6 +101,7 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
 - Configure Firefox to not print headers, footers, and margins
 - Set default apps for file types with https://github.com/moretension/duti
 - Install https://github.com/purescript/psc-package
+- Install https://github.com/jdek/openwith
 - Install and setup Brother QL-810W label printer
 - Install languages for Tesseract (e.g.
   https://github.com/tesseract-ocr/tessdata_best/blob/master/deu.traineddata?raw=true)
