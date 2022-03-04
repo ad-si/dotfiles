@@ -1,0 +1,5 @@
+#! /usr/bin/env bash
+
+# aka "Find all"
+
+fd --hidden --no-ignore "$@"

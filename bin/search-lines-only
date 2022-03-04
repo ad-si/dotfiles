@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+# The "search lines only" command
+# Search for all matches and display only the matching position in the file
+
+rg \
+  --smart-case \
+  --vimgrep \
+  -- \
+  "$@" \
+| cut -d':' -f1-3 \
+| sort

@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+# The "search lines, but only show file position" command
+
+rg \
+  --smart-case \
+  --vimgrep \
+  -- \
+  "$@" \
+| sort \
+| cut -d ':' -f 1-3

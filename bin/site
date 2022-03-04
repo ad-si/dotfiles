@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+curl \
+  --silent \
+  --show-error \
+  "https://api.duckduckgo.com/?format=json&no_redirect=1&q=\\$*" \
+| jq --raw-output '.Redirect'

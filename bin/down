@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+# --alt-format: 07:25 instead of 7h 25m
+
+# Font is rather bleak, but seems to be the only good mono-space font:
+# http://www.figlet.org/examples.html
+
+termdown \
+  --no-seconds \
+  --alt-format \
+  --font moscow \
+  "$@"

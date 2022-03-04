@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+cat /dev/urandom \
+| base64 \
+| tr -d "+/" \
+| head -c 64

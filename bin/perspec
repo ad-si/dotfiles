@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+/Applications/Perspec.app/Contents/Resources/perspec "$@"
