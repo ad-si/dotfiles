@@ -39,6 +39,11 @@ defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false
 echo "Disable auto reopen for Preview"
 defaults write com.apple.Preview NSQuitAlwaysKeepsWindows -bool false
 
+echo "Open plain text files per default with SublimeText 4"
+defaults write com.apple.LaunchServices/com.apple.launchservices.secure \
+  LSHandlers -array-add \
+  '{LSHandlerContentType=public.plain-text;LSHandlerRoleAll=com.sublimetext.4;}'
+
 
 echo "===== Configure the Dock ====="
 
@@ -63,9 +68,6 @@ killall Dock
 
 echo "Disable startup chime"
 sudo nvram SystemAudioVolume=%80
-
-echo "Set default theme to dark (Restart your Mac to see changes)"
-sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
 
 echo "Disable creation of .DS_Store files"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores true

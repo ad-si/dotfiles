@@ -4,10 +4,10 @@ version: 0.1.0.0
 synopsis: ""
 description: ""
 homepage: https://github.com/{{github-username}}{{^github-username}}githubuser{{/github-username}}/{{name}}#readme
-license: AGPL-3.0-or-later
+license: UNLICENSED
 author: {{author-name}}{{^author-name}}Author name here{{/author-name}}
 maintainer: {{author-email}}{{^author-email}}example@example.com{{/author-email}}
-copyright: {{copyright}}{{^copyright}}{{year}}{{^year}}2019{{/year}} {{author-name}}{{^author-name}}Author name here{{/author-name}}{{/copyright}}
+copyright: {{copyright}}{{^copyright}}{{year}}{{^year}}2022{{/year}} {{author-name}}{{^author-name}}Author name here{{/author-name}}{{/copyright}}
 category: {{category}}{{^category}}Web{{/category}}
 
 extra-source-files:
@@ -91,12 +91,12 @@ on:
 jobs:
   build:
     name: ghc ${{ matrix.ghc }}
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
-        cabal: ["2.4"]
+        cabal: ["3.6"]
         ghc:
-          - "8.8.3"
+          - "8.10.7"
 
     steps:
     - uses: actions/checkout@v2

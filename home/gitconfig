@@ -12,14 +12,14 @@
 [core]
   excludesfile = /Users/adrian/.gitignore
   ignorecase = false
-  pager = delta --dark --plus-color="#012800" --minus-color="#340001"
+  pager = delta
 
 [alias]
   amend = commit --amend
   d = diff
   full = log --format=full
   fuller = log --format=fuller --date=iso
-  s = status
+  s = status --ignored
   l = log --decorate --date="short" --graph --color \
       --pretty='format:%C(yellow)%h%C(reset) %ad%C(red)%d%C(reset) %C(bold normal)%s%C(reset) %G? %C(cyan)[%an]%C(reset)'
 
@@ -53,8 +53,8 @@
   from = adrian@feram.io
 
 [filter "lfs"]
-  clean = git lfs clean %f
-  smudge = git lfs smudge %f
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
   required = true
 
 [difftool "sourcetree"]

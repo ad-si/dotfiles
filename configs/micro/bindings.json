@@ -1,6 +1,8 @@
 {
-  "CtrlA": "StartOfLine",
-  "CtrlD": "Delete",
-  "CtrlE": "EndOfLine",
-  "CtrlP": "CommandMode"
+    "Alt-/": "lua:comment.comment",
+    "CtrlA": "StartOfLine",
+    "CtrlD": "Delete",
+    "CtrlE": "EndOfLine",
+    "CtrlP": "CommandMode",
+    "CtrlUnderscore": "lua:comment.comment"
 }
