@@ -1,15 +1,3 @@
 #! /usr/bin/env bash
 
-topgrade --disable go
-
-now=$(date -u +"%H:%M:%S")
-
-echo -e "\\n\\n―― $now - npm ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――\n"
-
-# npm install --global npm@latest
-npm update --global
-
-
-# echo -e "\\n\\n―― Update Apm -----------------------------------------------\\n"
-
-# apm update --no-confirm
+topgrade

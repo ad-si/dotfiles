@@ -3,4 +3,4 @@
 # TODO: Find better way to implement this
 # "${EDITOR:-vim}" "${@:-.}"
 
-subl "${@:-.}"
+subl --launch-or-new-window "${@:-.}"

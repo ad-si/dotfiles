@@ -1,3 +1,10 @@
 #! /usr/bin/env bash
 
-bat "$(which "$1")"
+theme=$(
+  defaults read -globalDomain AppleInterfaceStyle &> /dev/null &&
+  echo default || echo "Monokai Extended Light"
+)
+
+bat \
+  --theme="$theme" \
+  "$(which "$1")"

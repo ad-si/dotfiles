@@ -5,6 +5,8 @@
 rg \
   --smart-case \
   --vimgrep \
+  --max-columns 120 \
+  --color always \
+  --sort path \
   -- \
-  "$@" \
-| sort
+  "$@"

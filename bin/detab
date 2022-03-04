@@ -17,6 +17,10 @@ files=$(\
   fd \
     --hidden \
     --no-ignore \
+    \
+    --exclude node_modules \
+    --exclude .next \
+    \
     --extension babelrc \
     --extension cabal \
     --extension coffee \
@@ -28,6 +32,7 @@ files=$(\
     --extension jade \
     --extension js \
     --extension json \
+    --extension jsx \
     --extension md \
     --extension mustache \
     --extension php \
@@ -36,16 +41,23 @@ files=$(\
     --extension sh \
     --extension styl \
     --extension svg \
+    --extension ts \
+    --extension tsx \
     --extension txt \
     --extension yaml \
 )
 
 echo -e 'Replace tabs with 2 spaces and use LF for newline:\n'
 
-echo "$files" | while read -r file
-do
-  printf "%s" "$file"
-  tab2space -unix -t2 "$file"{,}
-  ex -scwq "$file"
-  echo ' ✔'
-done
+if test "$files"
+then
+  echo "$files" | while read -r file
+  do
+    printf "%s" "$file"
+    tab2space -unix -t2 "$file"{,}
+    ex -scwq "$file"
+    echo ' ✔'
+  done
+else
+  echo "No files with tabs were found"
+fi

@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+echo "Did you run the tests?"
+sleep 3
+
 if test $# -ge 1
 then
   git push "$1" && git push --tags "$1"

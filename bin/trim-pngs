@@ -1,8 +1,10 @@
 #! /usr/bin/env bash
 
-find . -name "*.png" \
-  -exec convert {} -trim {} \; \
-  -exec optipng -silent {} \; \
-  -exec printf "." \;
+# Trim PNGs in parallel
 
-echo
+gfind . -name "*.png" -print0 \
+| gxargs -0 --replace=% -P 0 \
+    bash -c '
+      echo "Trim %" && mogrify -trim "%" &&
+      echo "Optimize %" && optipng -silent "%"
+    '

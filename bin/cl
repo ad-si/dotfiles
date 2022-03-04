@@ -3,4 +3,4 @@
 # CSV Lookup
 # -b : black/white theme
 
-cat $1 | pspg -b --csv
+pspg -b --csv "$1"

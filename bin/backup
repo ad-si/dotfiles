@@ -19,6 +19,7 @@ paths=(
   .ssh
   .task
   .timewarrior
+  .vscode
   # Books
   # Contacts
   Desktop
@@ -29,6 +30,7 @@ paths=(
   # Events
   # Google\ Drive
   Library/Application\ Support/BraveSoftware
+  Library/Application\ Support/Code  # Visual Studio Code
   Library/Application\ Support/iTerm2
   Library/Application\ Support/midiStroke  # Mapping MIDI note to key combo
   Library/Application\ Support/Sublime\ Text\ 3/Packages/User

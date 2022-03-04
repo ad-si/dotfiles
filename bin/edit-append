@@ -3,4 +3,5 @@
 # TODO: Find better way to implement this
 # "${EDITOR:-vim}" "${@:-.}"
 
-subl -a "${@:-.}"
+# Add folders to the current window
+subl --add "${@:-.}"
