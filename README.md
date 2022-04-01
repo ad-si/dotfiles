@@ -1,5 +1,12 @@
 # Dotfiles
 
+## Structure
+
+* `bin` — custom scripts
+* `home` — files that are symlinked to `$HOME` directory
+* `terminal` — terminal config
+
+
 ## Installation
 
 1. Install XCode via the macOS App Store
@@ -28,6 +35,7 @@ Copy all relevant files from backup to new Machine.
   - [x] Show scroll bars: When scrolling
 
 - Date & Time: Change date and time preferences
+  - Deactivate automatic setting of time zone by location
   - Change time zone to UTC:
       `sudo ln -sf /usr/share/zoneinfo/UTC /etc/localtime`
       or
@@ -108,6 +116,29 @@ Copy all relevant files from backup to new Machine.
   - Sort directories in "Favorites" list
 
 
+#### Scripts
+
+Jxa macOS automation scripts are symlinked from
+`~/dotfiles/scripts` to `~/Library/Scripts`
+and are displayed in the scripts editor submenu in the menu bar.
+(Enable via
+`Script Editor.app > Preferences > General > Show Script menu in menu bar`)
+Add subdirectories with app names for app specific scripts.
+
+The `symlink-dotfiles` script must be run after adding new scripts.
+
+
+#### Script Libraries
+
+Script libraries are symlinked from
+`~/dotfiles/script-libraries` to `~/Library/Script Libraries/dotfiles`
+and can be imported like this:
+
+```js
+const tools = Library('dotfiles/tools')
+```
+
+
 ### General
 
 - Install TaskLite
@@ -159,9 +190,9 @@ General > Preferences:
 1. Clone https://github.com/ad-si/password-store with GitHub CLI:
     `gh repo clone ad-si/password-store` and move to `~/.password-store`.
 1. If password on gpg key => `brew install pinentry-mac`.
-1. Then add to gpg-agent config:
+1. Then add to gpg-agent config (skip if .gnupg was copied from backup):
     ```sh
-    echo "pinentry-program /usr/local/bin/pinentry-mac" \
+    echo "pinentry-program /opt/homebrew/bin/pinentry-mac" \
       >> ~/.gnupg/gpg-agent.conf
     ```
 1. Restart shell afterwards.
@@ -176,6 +207,17 @@ General > Preferences:
     (will then automatically load all packages from the backup)
 
 
+### Sublime Merge
+
+- Copy preferences from backup
+- Enter license from Email
+
+
+### Visual Studio Code
+
+Sign in via GitHub to sync preferences.
+
+
 ### ShiftIt
 
 1. Open `/Applications/ShiftIt.app`
@@ -186,11 +228,7 @@ General > Preferences:
 
 ### Thunderbird
 
-1. Copy backup to `~/Library/Thunderbird`
-1. Open and close Thunderbird once
-1. Copy name of newly created profile directory
-1. Delete newly created profile directory
-1. Give the backup profile directory the copied name
+Copy backup to `~/Library/Thunderbird`
 
 
 ### Logitech
@@ -216,37 +254,6 @@ General > Preferences:
 ### Logic Pro X
 
 - Download all additional content
-
-
-## Structure
-
-* `bin` — custom scripts
-* `home` — files that are symlinked to `$HOME` directory
-* `terminal` — terminal config
-
-
-## Scripts
-
-Jxa macOS automation scripts are symlinked from
-`~/dotfiles/scripts` to `~/Library/Scripts`
-and are displayed in the scripts editor submenu in the menu bar.
-(Enable via
-`Script Editor.app > Preferences > General > Show Script menu in menu bar`)
-Add subdirectories with app names for app specific scripts.
-
-The `symlink-dotfiles` script must be run after adding new scripts.
-
-
-## Script Libraries
-
-Script libraries are symlinked from
-`~/dotfiles/script-libraries` to `~/Library/Script Libraries/dotfiles`
-and can be imported like this:
-
-```js
-const tools = Library('dotfiles/tools')
-```
-
 
 ## TODO
 

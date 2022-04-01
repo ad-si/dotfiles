@@ -3,15 +3,20 @@
 # For this script to work you need to give
 # your Terminal access to the the file system at Settings > Security & Privacy
 
+# To selectively restore files from the backup you can run
+# rsync --archive --verbose /source /dest
+
 set -e
 
 today="$(date -u "+%Y-%m-%d")"
-backupdir="/Volumes/4_tb_red_src/backups/${today}_macbook_2015"
+backupdir="/Volumes/4_tb_red_src/backups/${today}_macbook_2021"
 
 paths=(
-  .electrum/wallets
   .electron-cash/wallets
+  .electrum/wallets
   .gnupg
+  .local/bin  # All programs built with stack
+  .local/share/fish
   .password-store
   .rclone.conf
   .s3cfg
@@ -19,38 +24,32 @@ paths=(
   .ssh
   .task
   .timewarrior
-  .vscode
+  # .vscode  # Sync via its integrated sync functionality instead
   # Books
   # Contacts
   Desktop
   Documents
   Downloads
-  Dropbox\ \(Feram\)
-  Dropbox\ \(Personal\)
+  Dropbox
   # Events
   # Google\ Drive
-  Library/Application\ Support/BraveSoftware
-  Library/Application\ Support/Code  # Visual Studio Code
+  # Library/Application\ Support/BraveSoftware
+  # Visual Studio Code - Use integrated sync
+  # Library/Application\ Support/Code
   Library/Application\ Support/iTerm2
   Library/Application\ Support/midiStroke  # Mapping MIDI note to key combo
   Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-  Library/autojump
   Library/Fonts
   Library/Keychains
   Library/Preferences
   Library/Services  # Automator scripts (e.g. quick actions)
   Library/Thunderbird/Profiles
-  .local/share/fish
-  .local/bin  # All programs built with stack
   Movies
   Music
   # Photos
   Pictures/Photo\ Booth\ Library
   Pictures/Photos\ Library.photoslibrary
   Projects
-  # Sheetmusic
-  # Things
-  # tasklite
   Wallets
 )
 

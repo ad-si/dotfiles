@@ -126,9 +126,8 @@ if status --is-login
 
   # Fish
 
-  ## Autojump
-  test -e /usr/local/share/autojump/autojump.fish
-  and source /usr/local/share/autojump/autojump.fish
+  ## Zoxide
+  zoxide init fish | source
 
   ## iTerm
   test -e {$HOME}/.iterm2_shell_integration.fish

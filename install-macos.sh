@@ -121,6 +121,6 @@ dockutil --add /Applications/Calendar.app
 dockutil --add /Applications/Sublime\ Merge.app
 dockutil --add /Applications/Sublime\ Text.app
 dockutil --add /Applications/Visual\ Studio\ Code.app
-dockutil --add /Applications/iTerm.app
+dockutil --add /Applications/iTerm2.app
 
 dockutil --add /Applications/Notion.app

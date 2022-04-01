@@ -34,7 +34,7 @@ fi
 
 
 # Set correct GPG path for git
-# git config --global gpg.program "$(which gpg)"
+git config --global gpg.program "$(which gpg)"
 
 ./bin/setup-docker
 # ./bin/setup-cargo

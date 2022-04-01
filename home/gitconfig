@@ -72,7 +72,7 @@
   gpgsign = true
 
 [gpg]
-  program = /usr/local/bin/gpg
+	program = /opt/homebrew/bin/gpg
 
 [ghi]
   token = !security find-internet-password -a adius -s github.com -l 'ghi token' -w

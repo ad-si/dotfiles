@@ -35,7 +35,6 @@ brew install bash
 # Miscellaneous
 brews=(
   # ag
-  autojump
   bat
   # colordiff
   # csvkit  # Utilities for converting to and working with CSV
@@ -70,7 +69,7 @@ brews=(
   # osx-cpu-temp
   # pandoc
   # pandoc-citeproc
-  # pinentry-mac  # Needed for gopass
+  pinentry-mac  # Needed for gopass
   pkg-config  # Necessary for stack
   # platypus  # CLI tool only (GUI gets installed with brew cask)
   # poppler
@@ -79,9 +78,10 @@ brews=(
   rustup-init  # Installer for Rust programming language
   # s3cmd  # Command-line tool for the Amazon S3 service
   # shellcheck  # Linter for bash scripts
-  # stack  # Haskell tool stack
+  stack  # Haskell tool stack
   tealdeer  # Fast implementation of tldr in Rust
   # tokei  # Display statistics about code
+  topgrade
   trash
   translate-shell
   tree
@@ -91,6 +91,7 @@ brews=(
   # watchexec  # Executes commands in response to file modifications
   # xsv  # CSV command line toolkit written in Rust
   # yarn
+  zoxide
 )
 
 for brew in "${brews[@]}"
