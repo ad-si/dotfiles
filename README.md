@@ -27,6 +27,11 @@ Copy all relevant files from backup to new Machine.
 
 ### MacOS
 
+This is written for Macs with a M1 chip.
+Some changes must be made for Macs with an Intel chip.
+E.g. Replace `/opt/homebrew/bin` with `/usr/local/bin`.
+
+
 #### System Preferences
 
 - Invert scroll direction
