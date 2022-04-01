@@ -67,7 +67,11 @@ if status --is-login
   ## Custom
   set -x PATH ~/dotfiles/bin $PATH
 
-  ## Homebrew (token allows reading public repos, creating gists)
+
+  ## Homebrew
+  set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
+
+  ### Token allows reading public repos, creating gists)
   if test $systemType = "Darwin"
     ################# DO NOT COMMIT #########################################
     set -x HOMEBREW_GITHUB_API_TOKEN 1de66c2243ae059adcc536c664066361dfd54baa

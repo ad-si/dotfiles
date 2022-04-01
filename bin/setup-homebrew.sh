@@ -4,7 +4,7 @@
 if ! command -v brew
 then
   echo 'Installing Homebrew…'
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Stop on error
@@ -40,9 +40,11 @@ brews=(
   # colordiff
   # csvkit  # Utilities for converting to and working with CSV
   diskus
+  dockutil
   exa
   # exiftool
   fd
+  fnm
   # fdupes
   fish
   gcal
@@ -58,6 +60,7 @@ brews=(
   # hunspell
   # imagemagick
   # kubectl
+  mas
   # micro
   # mongodb
   # node
@@ -100,7 +103,7 @@ done
 echo "Install apps and fonts with with 'brew cask' …"
 
 # Must be pre-installed for Inkscape
-brew cask install xquartz
+brew install xquartz
 
 casks=(
   affinity-photo
@@ -119,30 +122,29 @@ casks=(
   # cloudcompare FIXME: missing
   # db-browser-for-sqlite
   # dedrm FIXME: missing
+  discord
   # disk-inventory-x
   docker
   dropbox
   # duet
   # electron-cash
   # electrum
+  element
   # emacs
   # filezilla
-  # firefox
+  firefox
   # flux
   # fman  # Dual pane file manager
   # forklift  # Better file manager than Finder
   # franz
   # fritzing
+  font-hasklug-nerd-font
   gimp
   # gitup
   # google-chrome
   # google-cloud-sdk
   # handbrake
   # hex-fiend
-  homebrew/cask-drivers/logitech-control-center
-  homebrew/cask-fonts/font-hasklig-nerd-font-mono  # For editors
-  homebrew/cask-fonts/font-sourcecodepro
-  homebrew/cask-fonts/font-sourcecodepro-nerd-font-mono  # For terminals
   # homebrew/cask-versions/microsoft-remote-desktop-beta
   # ichm
   # imageplay
@@ -159,6 +161,8 @@ casks=(
   # microsoft-remote-desktop-beta
   # mongohub
   # musescore
+  night-owl
+  notion
   # nvidia-geforce-now
   # onyx
   # opera
@@ -179,6 +183,7 @@ casks=(
   # sourcetree
   # speedcrunch    #  Calculator
   spotify
+  sublime-merge
   sublime-text
   # table-tool
   # tad
@@ -192,15 +197,16 @@ casks=(
   # universal-control FIXME: missing
   # vienna
   # virtualbox
-  # visual-studio-code
+  visual-studio-code
   vlc
   # vmware-fusion
+  whatsapp
   xquartz
 )
 
 for cask in "${casks[@]}"
 do
-  brew cask install "$cask"
+  brew install "$cask"
 done
 
 # Remove outdated versions from the cellar

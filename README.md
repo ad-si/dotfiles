@@ -14,16 +14,20 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
 
 ## Manual Steps
 
-1. Copy all relevant files from backup to new Machine
+Copy all relevant files from backup to new Machine.
+(Check out [./bin/backup] for a list of all files.)
 
 
 ### MacOS
 
+#### System Preferences
+
 - Invert scroll direction
-- System Preferences > General
+- General
   - [x] Automatically hide and show the menu bar
   - [x] Show scroll bars: When scrolling
-- System Preferences > Date & Time: Change date and time preferences
+
+- Date & Time: Change date and time preferences
   - Change time zone to UTC:
       `sudo ln -sf /usr/share/zoneinfo/UTC /etc/localtime`
       or
@@ -32,7 +36,8 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
   - [x] Use a 24-hour clock
   - [x] Show the day of the week
   - [x] Show date
-- System Preferences > Language & Region
+
+- Language & Region
   - Preferred languages: English (US)
   - First day of the week: Monday
   - Calendar: ISO 8601
@@ -53,52 +58,65 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
       - Long: HH:mm:ssZZZZZ
       - Full: HH:mm:ss.SSSZZZZZ
 
+- Displays:
+  - Change primary display
+
+- Keyboard
+  - Keyboard
+    - Key Repeat: Fast
+    - Delay Until Repeat: Short
+  - Text
+    - Disable 
+      - Correct spelling automatically
+      - Capitalize words automatically
+      - Add period with double-space
+      - Use smart quotes and dashes
+  - Shortcuts
+    - [x] Show Spotlight search "⌥ Space"
+    - Overwrite default shortcuts
+      ![](./images/overwrite_shortcut.png)
+  - Input Sources
+    - Use "ABC - Extended" keyboard layout
+        to have correct direct output of "\~" and "\`"
+    - Delete all other input sources
+  - Modifier Keys
+    - Remap Caps Lock key to CTRL
+
+- Mission Control > Hot Corners
+  - Top Left: Put Display to Sleep Launchpad
+  - Top Right: -
+  - Bottom Left: Desktop
+  - Bottom Right: Mission Control
+
 - Calendar:
   - Start week on: Monday
   - Scroll in week view by: Week, Stop on Today
 
-- Change Finder Preferences
-  - Show nothing on the Desktop
-  - New Finder windows show home
-  - Sidebar:
-      Show Applications, Desktop, Downloads,
-      Home, iCloud Drive, All Locations, Tags
-  - Advanced:
-    - [x] Show all filename extensions
-    - [x] Show warning before removing from iCloud Drive
-    - [x] Show warning before emptying the Trash
-    - [x] Remove items from the Trash after 30 days
-    - When performing a search: Search the Current Folder
-  - Overwrite default shortcuts
-    ![](./images/overwrite_shortcut.png)
-- System Preferences > Displays:
-  - Change primary display
-- Activate Siri
-- System Preferences > Keyboard:
-  - Key Repeat: Fast
-  - Delay Until Repeat: Short
-  - [x] Show keyboard and emoji viewers in menu bar
-  - > Input Sources
-    - Use "ABC - extended" keyboard layout
-        to have correct direct output of "\~" and "\`"
-  - > Shortcuts
-    - [x] Show Spotlight search "⌥Space"
-- System Preferences > Mission Control > Hot Corners
-  - Top Left: Launchpad
-  - Top Right: --
-  - Bottom right: Desktop
-  - Bottom Left: Put Display to Sleep
+- Finder
+  - Preferences
+    - Show nothing on the Desktop
+    - New Finder windows show \<username\>
+    - Sidebar:
+        Show Applications, Desktop, Downloads,
+        Home, iCloud Drive, All Locations, Tags
+    - Advanced:
+      - [x] Show all filename extensions
+      - [x] Show warning before removing from iCloud Drive
+      - [x] Show warning before emptying the Trash
+      - [x] Remove items from the Trash after 30 days
+      - When performing a search: Search the Current Folder
+  - Sort directories in "Favorites" list
+
 
 ### General
 
 - Install TaskLite
 - Printer driver software
 - Install TexLive packages after installation of MacTeX
-- Run `yarn install` in the dotfiles directory
+- Run `npm install` in the dotfiles directory
 - Add Hunspell dictionaries after installation
   (e.g. https://github.com/titoBouzout/Dictionaries to
   `~/Library/Application Support/Sublime Text 3/Packages`)
-- Configure Firefox to not print headers, footers, and margins
 - Set default apps for file types with https://github.com/moretension/duti
 - Install https://github.com/purescript/psc-package
 - Install https://github.com/jdek/openwith
@@ -106,18 +124,29 @@ curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
 - Install languages for Tesseract (e.g.
   https://github.com/tesseract-ocr/tessdata_best/blob/master/deu.traineddata?raw=true)
   to `/usr/local/Cellar/tesseract/4.0.0/share/tessdata`
-- For Mac Books: Remap Caps Lock key to CTRL
+
+
+### Brave
+
+1. Go to [brave://sync](brave://sync)
+1. Join Sync Chain
+
+Installed extensions should then include 
+Midnight Lizard, Automatric Metric Conversion, …
+
+
+### Firefox
+
+- Login to Firefox Sync
+- Do not print headers, footers, and margins.
 
 
 ### Dropbox
 
-- Copy directories from backup
-- Enable sync
+Sign in and enable sync for important directories.
 
 
 ### iTerm
-
-Chek for new updates
 
 General > Preferences:
 
@@ -127,7 +156,8 @@ General > Preferences:
 
 ### Gopass
 
-1. Copy password store from backup
+1. Clone https://github.com/ad-si/password-store with GitHub CLI:
+    `gh repo clone ad-si/password-store` and move to `~/.password-store`.
 1. If password on gpg key => `brew install pinentry-mac`.
 1. Then add to gpg-agent config:
     ```sh
@@ -154,19 +184,6 @@ General > Preferences:
     with file from backup
 
 
-### Brave
-
-1. Go to brave://sync
-1. Join Sync Chain
-1. Install extensions Midnight Lizard, Flattr, Just Read
-1. Clean up sync chain
-
-
-### Firefox
-
-- Login to Firefox Sync
-
-
 ### Thunderbird
 
 1. Copy backup to `~/Library/Thunderbird`
@@ -188,17 +205,17 @@ General > Preferences:
 ### Spotify
 
 - Stream quality: Very High
-- [x] Show unavailable songs in playlists
+- Download: Very High
+
+
+### Slack
+
+- Add all accounts
 
 
 ### Logic Pro X
 
 - Download all additional content
-
-
-### Xcode
-
-- Accept License
 
 
 ## Structure
