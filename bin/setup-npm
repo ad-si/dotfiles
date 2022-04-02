@@ -1,21 +1,19 @@
 #! /usr/bin/env bash
 
 packages=(
-  bower               # Package manager for PureScript
-  eslint
-  forever
+  # forever
   insect              # Calculator
-  live-server         # Development server with auto reloading
-  markdown-link-check
-  msee                # Markdown terminal renderer
-  nodemon             # Development server for node.js
+  # live-server         # Development server with auto reloading
+  # markdown-link-check
+  # msee                # Markdown terminal renderer
+  # nodemon             # Development server for node.js
   npm-check-updates
-  pageres             # Capture website screenshots
-  pulp
-  purescript
+  # pageres             # Capture website screenshots
+  # pulp
+  # purescript
   qrcode              # Display QR code as ANSI art
-  serverless
-  supervisor
+  # serverless
+  # supervisor
   surge               # Deploy static websites
   # tldr              # Simple & community driven man pages (currently installed with brew)
   trash               # Move files and folders to the trash

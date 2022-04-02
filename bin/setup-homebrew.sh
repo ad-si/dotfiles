@@ -160,7 +160,7 @@ casks=(
   mactex-no-gui  # Full installation without bundled applications
   mas  # Mac App Store command line interface
   # microsoft-remote-desktop-beta
-  # mongohub
+  # mongodb-compass
   # musescore
   night-owl
   notion

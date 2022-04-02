@@ -8,39 +8,37 @@
 # Determine the UTI via
 #     mdls file.ext | grep kMDItemContentType
 #
-# bundle id		       			 UTI/Extension		   	   role (all, viewer, editor, shell, none)
+# bundle id                UTI/Extension           role (all, viewer, editor, shell, none)
 
 # Text Files
-com.macromates.TextMate         public.plain-text           all
-com.macromates.TextMate         public.rtf                  all
-com.github.atom                 md                          all
+com.sublimetext.4          public.plain-text       all
+com.sublimetext.4          public.rtf              all
+com.sublimetext.4          md                      all
 
 # Configuration Files
-com.apple.dt.Xcode              plist                       all
-com.macromates.TextMate         public.shell-script         all
-com.macromates.TextMate         duti                        all
+com.apple.dt.Xcode         plist                   all
+com.sublimetext.4          public.shell-script     all
+com.sublimetext.4          duti                    all
 
 # Source Code
-com.microsoft.VSCode            go                          all
-com.macromates.TextMate         public.ruby-script          all
-com.macromates.TextMate			public.python-script		all
+com.sublimetext.4          go                      all
+com.sublimetext.4          public.ruby-script      all
+com.sublimetext.4          public.python-script    all
+com.sublimetext.4          ts                      all
 
 # Other Files
 #cx.c3.theunarchiver
-com.readdle.PDFExpert-Mac       com.adobe.pdf               all
+com.readdle.PDFExpert-Mac  com.adobe.pdf           all
 
 # Media Files
-com.colliderli.iina	        avi	                    viewer
-com.colliderli.iina	        flac                    viewer
-com.colliderli.iina	        flv                     viewer
-com.colliderli.iina	        m4a                     viewer
-com.colliderli.iina	        mkv                     viewer
-com.colliderli.iina	        mov                     viewer
-com.colliderli.iina	        mp3	                    viewer
-com.colliderli.iina	        mp4	                    viewer
-com.colliderli.iina	        mpg	                    viewer
-com.colliderli.iina	        wav	                    viewer
-com.colliderli.iina	        wmv	                    viewer
-
-#bundle ids for future use
-#com.microsoft.VSCode
+org.videolan.vlc           avi                     viewer
+org.videolan.vlc           flac                    viewer
+org.videolan.vlc           flv                     viewer
+org.videolan.vlc           m4a                     viewer
+org.videolan.vlc           mkv                     viewer
+org.videolan.vlc           mov                     viewer
+org.videolan.vlc           mp3                     viewer
+org.videolan.vlc           mp4                     viewer
+org.videolan.vlc           mpg                     viewer
+org.videolan.vlc           wav                     viewer
+org.videolan.vlc           wmv                     viewer

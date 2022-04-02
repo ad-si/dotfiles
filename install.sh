@@ -40,3 +40,7 @@ git config --global gpg.program "$(which gpg)"
 # ./bin/setup-cargo
 # ./bin/setup-go
 # ./bin/setup-npm
+
+
+# Set default apps for file extensions
+duti ./home/duti

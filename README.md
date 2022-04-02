@@ -146,6 +146,7 @@ const tools = Library('dotfiles/tools')
 
 ### General
 
+- Set GitHub API token for Homebrew
 - Install TaskLite
 - Printer driver software
 - Install TexLive packages after installation of MacTeX
