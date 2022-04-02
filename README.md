@@ -237,6 +237,26 @@ Sign in via GitHub to sync preferences.
 Copy backup to `~/Library/Thunderbird`
 
 
+### Element
+
+Log in to home server `matrix.feram.io`.
+
+
+### Telegram
+
+Log in
+
+
+### WhatsApp
+
+Log in
+
+
+### Discord
+
+Log in
+
+
 ### Logitech
 
 - Log into Logitech Options account to sync mouse settings
@@ -261,9 +281,8 @@ Copy backup to `~/Library/Thunderbird`
 
 - Download all additional content
 
+
 ## TODO
 
-- Check out https://github.com/danburzo/percollate for PDF generation
 - Use https://github.com/Homebrew/homebrew-bundle
-- Write `sun` with https://github.com/flosse/rust-sun
 - Backup fish history
