@@ -1,0 +1,14 @@
+ #! /usr/bin/env bash
+
+ # The "search lines all" command
+
+ rg \
+   --smart-case \
+   --vimgrep \
+   --max-columns 120 \
+   --color always \
+   --sort path \
+   --hidden \
+   --no-ignore \
+   -- \
+   "$@"

@@ -286,3 +286,5 @@ Log in
 
 - Use https://github.com/Homebrew/homebrew-bundle
 - Backup fish history
+- Disable swipe history navigation in Brave:
+  `defaults write com.brave.Browser AppleEnableSwipeNavigateWithScrolls -bool FALSE`
