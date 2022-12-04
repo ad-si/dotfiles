@@ -172,7 +172,6 @@ casks=(
   # quicksilver
   # rawtherapee
   # send-to-kindle
-  shiftit
   # sigil
   # silverlight
   # sketch

@@ -224,14 +224,6 @@ General > Preferences:
 Sign in via GitHub to sync preferences.
 
 
-### ShiftIt
-
-1. Open `/Applications/ShiftIt.app`
-1. Set necessary System Preferences
-1. Replace `~/Library/Preferences/org.shiftitapp.ShiftIt.plist`
-    with file from backup
-
-
 ### Thunderbird
 
 Copy backup to `~/Library/Thunderbird`
