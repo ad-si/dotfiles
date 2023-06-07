@@ -1,0 +1,9 @@
+#! /usr/bin/env bash
+
+
+for file in "$@"
+do
+  dvisvgm --pdf --page=1- "$file"
+  filename="${file%.*}"
+  svgo "${filename}"-*.svg
+done

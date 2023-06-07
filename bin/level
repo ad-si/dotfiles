@@ -1,0 +1,53 @@
+#! /usr/bin/env bash
+
+# Convert a grayscale image into a mostly black & white image
+
+# 1. Generate gaussian diff image
+# 2. Set whitepoint to OTSU + 10% and blackpoint to OTSU - 10%
+
+for file in "$@"
+do
+  # Good window size was empirically inferred based on image size
+  # TODO: Even better based on high/low frequency distribution
+  numOfPx=$(identify -format "%w * %h" "$file")
+  blurSize=$(echo "sqrt($numOfPx) * 0.1" | bc)
+
+  echo "$file: Blur size = $blurSize"
+
+  # Create temporary gaussian diff file
+  gauss_diff_file="${file%.*}"-gauss-diff.png
+
+  convert \
+    -verbose \
+    "$file" \
+    -alpha off \
+    \( +clone -blur 0x"$blurSize" -brightness-contrast 40 \) \
+    -compose minus \
+    -composite \
+    -negate \
+    "$gauss_diff_file"
+
+
+  # Calculate OTSU threshold for Gaussian diff file
+  threshold_pct=$(
+    convert \
+      -define auto-threshold:verbose=true \
+      -auto-threshold OTSU \
+      "$gauss_diff_file" \
+      null: \
+    | tr -d '%'
+  )
+
+  echo "$file: OTSU threshold = $threshold_pct"
+
+  lower_threshold=$(echo "$threshold_pct - 10" | bc)
+  upper_threshold=$(echo "$threshold_pct + 10" | bc)
+
+  convert \
+    -verbose \
+    "$gauss_diff_file" \
+    -level "$lower_threshold"%,"$upper_threshold"% \
+    "${file%.*}"-level.png
+
+  rm -f "$gauss_diff_file"
+done

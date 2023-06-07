@@ -1,5 +1,3 @@
 #! /usr/bin/env bash
 
-appName=$(brew cask list gimp | grep --only-matching -E 'GIMP.+\.app')
-
-open -a "$appName" "$@"
+open -a "GIMP.app" "$@"

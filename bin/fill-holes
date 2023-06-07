@@ -1,0 +1,11 @@
+#! /usr/bin/env bash
+
+for file in "$@"
+do
+  convert \
+    -verbose \
+    -alpha off \
+    "$file" \
+    -morphology open diamond \
+    "${file%.*}"-holes-filled.png
+done

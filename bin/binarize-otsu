@@ -1,0 +1,13 @@
+#! /usr/bin/env bash
+
+# 1. Rotate image
+# 2. Convert to black & white with Otsu's method
+# 3. Convert to PNG
+
+mogrify \
+  -auto-orient \
+  -auto-threshold OTSU \
+  -monochrome \
+  -format png \
+  "$@"
+  # -blur 0x2 \  # Image must be quite large to work properly

@@ -1,13 +1,18 @@
 #! /usr/bin/env bash
 
-# 1. Rotate image
-# 2. Convert to black & white with Otsu's method
-# 3. Convert to PNG
+# TODO: blur value should percentage of image size
+#   or even better based on high/low frequency distribution
 
-mogrify \
-  -auto-orient \
-  -auto-threshold OTSU \
-  -monochrome \
-  -format png \
-  "$@"
-  # -blur 0x2 \  # Image must be quite large to work properly
+for file in "$@"
+do
+  convert \
+    -verbose \
+    "$file" \
+    -alpha off \
+    \( +clone -blur 0x60 -brightness-contrast 40 \) \
+    -compose minus \
+    -composite \
+    -negate \
+    -auto-threshold otsu \
+    "${file%.*}"-binarized.png
+done
