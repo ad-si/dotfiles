@@ -1,0 +1,15 @@
+[age]
+	usekeychain = false
+[mounts]
+	path = /Users/adrian/.password-store
+[core]
+	cliptimeout = 45
+	parsing = true
+	exportkeys = false
+	autoclip = false
+	showsafecontent = false
+	notifications = false
+	nopager = false
+	autoimport = false
+[mounts "feram"]
+	path = /Users/adrian/Dropbox/Projects/feram/meta
