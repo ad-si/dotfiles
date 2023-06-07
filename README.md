@@ -280,3 +280,5 @@ Log in
 - Backup fish history
 - Disable swipe history navigation in Brave:
   `defaults write com.brave.Browser AppleEnableSwipeNavigateWithScrolls -bool FALSE`
+- Backup ngrok config
+- Install Stack and HLS with ghcup

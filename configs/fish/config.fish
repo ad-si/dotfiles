@@ -60,8 +60,17 @@ if status --is-login
 
 
   ### Python
-  set -g fish_user_paths "/usr/local/opt/python@3.9/bin" $fish_user_paths
-  set -x PATH ~/Library/Python/3.9/bin/ $PATH
+  set -g fish_user_paths "/usr/local/opt/python@3.10/bin" $fish_user_paths
+  set -x PATH ~/Library/Python/3.10/bin/ $PATH
+
+  set -g fish_user_paths "/usr/local/opt/python@3.11/bin" $fish_user_paths
+  set -x PATH ~/Library/Python/3.11/bin/ $PATH
+
+  set -g fish_user_paths "/usr/local/opt/python@3.12/bin" $fish_user_paths
+  set -x PATH ~/Library/Python/3.12/bin/ $PATH
+
+  set -g fish_user_paths "/usr/local/opt/python@3.13/bin" $fish_user_paths
+  set -x PATH ~/Library/Python/3.13/bin/ $PATH
 
 
   ## Custom
@@ -156,3 +165,5 @@ end
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/slss.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/slss.fish
 set -g fish_user_paths "/usr/local/opt/sqlite/bin" $fish_user_paths
+
+set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/adrian/.ghcup/bin # ghcup-env

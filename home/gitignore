@@ -12,3 +12,6 @@ npm-debug.log
 
 selenium-debug.log
 .sass-cache
+
+# VS Code
+.vscode
