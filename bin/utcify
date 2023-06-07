@@ -35,14 +35,24 @@ function convert (string) {
   return output
 }
 
-
-if (process.argv.length < 3) {
-  console.error('Usage: utcify <timestamp>')
-  process.exit(1)
+if (process.stdin.isTTY /* called with arguments */) {
+  if (process.argv.length < 3) {
+    console.error('Usage: utcify <timestamp>')
+    process.exit(1)
+  }
+  else {
+    const input = process.argv
+      .slice(2)
+      .join(' ')
+    console.info(convert(input))
+  }
 }
-else {
-  const input = process.argv
-    .slice(2)
-    .join(' ')
-  console.info(convert(input))
+else /* if text is piped into stdin */ {
+  // Assumes that all input text is in first chunk
+  // (which should be OK since we only convert a date string)
+  process.stdin.on("data", data => {
+    process.stdout.write(
+      convert(data.toString())
+    )
+  })
 }
