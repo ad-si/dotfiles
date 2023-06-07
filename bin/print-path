@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+old=$IFS
+IFS=:
+printf "%s\\n" $PATH
+IFS=$old

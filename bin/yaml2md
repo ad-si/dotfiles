@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Check if yq is installed
+if ! command -v yq &> /dev/null
+then
+  echo "yq is not installed. Please install yq before running this script."
+  exit 1
+fi
+
+# Function to convert YAML to Markdown with YAML frontmatter
+convert_yaml_to_md () {
+  input_file="$1"
+  output_file="${input_file%.*}.md"
+
+  # Convert YAML to Markdown with frontmatter
+  echo -e "---\n$(cat "$input_file")\n---\n" > "$output_file"
+
+  echo "Converted $input_file to $output_file"
+}
+
+# Check if any arguments are provided
+if test $# -eq 0
+then
+  echo "Please provide a list of YAML files to convert."
+  exit 1
+fi
+
+# Process each YAML file
+for yaml_file in "$@"
+do
+  # Check if file exists and has .yaml or .yml extension
+  if [ -f "$yaml_file" ] && [[ "$yaml_file" =~ \.ya?ml$ ]]; then
+    convert_yaml_to_md "$yaml_file"
+  else
+    echo "Invalid file or not a YAML file: $yaml_file"
+  fi
+done
