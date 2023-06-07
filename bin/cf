@@ -1,0 +1,3 @@
+#! /usr/bin/env bash
+
+sgpt --model=gpt-4 "$*"
