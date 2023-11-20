@@ -1,7 +1,11 @@
 #! /usr/bin/env bash
 
+# 1. actual day - bold, fg white, bg red
+# 2. holiday - bold, fg white, bg green
+
 gcal \
   --with-week-number \
   --iso-week-number=yes \
   --starting-day=1 \
+  --highlighting='\e[37;41;1m:\e[0m:\e[37;42;1m:\e[0m' \
   "${@:-.}"
