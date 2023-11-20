@@ -40,7 +40,7 @@ brews=(
   # csvkit  # Utilities for converting to and working with CSV
   diskus
   dockutil
-  exa
+  eza
   # exiftool
   fd
   fnm
