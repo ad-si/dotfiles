@@ -48,16 +48,6 @@ if status --is-login
   set -x CLASSPATH \
     ".:/usr/local/Cellar/antlr/4.7/antlr-4.7-complete.jar:$CLASSPATH"
 
-  ### JavaScript
-
-  #### For cli tools installed with `yarn global add`
-  # Use hardcoded path instead of `(yarn global bin)` to decrease load time
-  set -x PATH /usr/local/bin $PATH
-
-  #### Tools installed with `npm --global install`
-  # Use hardcoded path instead of `(npm bin --global)` to decrease load time
-  set -x PATH /usr/local/Cellar/node/*/bin $PATH
-
 
   ### Python
   set -g fish_user_paths "/usr/local/opt/python@3.10/bin" $fish_user_paths

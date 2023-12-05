@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
-name="$(date -u "+%Y-%m-%dT%H%M%S")"
-directory="$NOTES"/"$name"
+name="$(date -u "+%Y-%m-%dt%H%M%S")"
+directory="/Users/adrian/Dropbox/Vault/Notes/$name"
 filepath="$directory"/main.md
 
 mkdir "$directory"
@@ -9,8 +9,9 @@ mkdir "$directory"
 cat > "$filepath" <<END
 ---
 title:
+date: $name
 tags: []
-...
+---
 
 END
 

@@ -1,3 +1,7 @@
 #! /usr/bin/env bash
 
-topgrade
+ topgrade \
+  --disable go \
+  --disable nix \
+  --disable pnpm \
+  --disable vscode

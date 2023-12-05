@@ -115,5 +115,5 @@ if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh";
 then . "$HOME/.nix-profile/etc/profile.d/nix.sh";
 fi
 
-source /Users/adrian/Library/Application Support/org.dystroy.broot/launcher/bash/br
+source /Users/adrian/Library/Application\ Support/org.dystroy.broot/launcher/bash/br
 . "$HOME/.cargo/env"
