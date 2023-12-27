@@ -15,19 +15,30 @@ com.sublimetext.4          public.plain-text       all
 com.sublimetext.4          public.rtf              all
 com.sublimetext.4          md                      all
 
+# Data Files
+com.pfojenterprises.Modern-CSV  csv                all
+com.pfojenterprises.Modern-CSV  tsv                all
+com.sublimetext.4               xml                all
+com.sublimetext.4               log                all
+
 # Configuration Files
 com.apple.dt.Xcode         plist                   all
-com.sublimetext.4          public.shell-script     all
+com.sublimetext.4          dhall                   all
 com.sublimetext.4          duti                    all
+com.sublimetext.4          json                    all
+com.sublimetext.4          yaml                    all
+com.sublimetext.4          public.shell-script     all
 
 # Source Code
 com.sublimetext.4          go                      all
 com.sublimetext.4          public.ruby-script      all
 com.sublimetext.4          public.python-script    all
+com.sublimetext.4          js                      all
+com.sublimetext.4          jsx                     all
 com.sublimetext.4          ts                      all
+com.sublimetext.4          tsx                     all
 
 # Other Files
-#cx.c3.theunarchiver
 com.readdle.PDFExpert-Mac  com.adobe.pdf           all
 
 # Media Files
@@ -42,3 +53,5 @@ org.videolan.vlc           mp4                     viewer
 org.videolan.vlc           mpg                     viewer
 org.videolan.vlc           wav                     viewer
 org.videolan.vlc           wmv                     viewer
+
+com.seriflabs.affinitydesigner  svg                all
