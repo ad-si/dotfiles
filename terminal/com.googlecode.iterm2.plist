@@ -4727,7 +4727,7 @@
 			<key>Bound Hosts</key>
 			<array/>
 			<key>Brighten Bold Text (Dark)</key>
-			<true/>
+			<false/>
 			<key>Brighten Bold Text (Light)</key>
 			<true/>
 			<key>Character Encoding</key>
@@ -4872,6 +4872,8 @@
 			<key>Disable Smcup Rmcup</key>
 			<false/>
 			<key>Disable Window Resizing</key>
+			<false/>
+			<key>Draw Powerline Glyphs</key>
 			<false/>
 			<key>Flashing Bell</key>
 			<false/>
@@ -5677,6 +5679,8 @@
 			</array>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
+			<key>Unicode Version</key>
+			<integer>9</integer>
 			<key>Unlimited Scrollback</key>
 			<true/>
 			<key>Use Bold Font</key>
@@ -5684,7 +5688,7 @@
 			<key>Use Bright Bold</key>
 			<true/>
 			<key>Use Bright Bold (Dark)</key>
-			<true/>
+			<false/>
 			<key>Use Bright Bold (Light)</key>
 			<true/>
 			<key>Use Canonical Parser</key>
@@ -8517,7 +8521,7 @@
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<false/>
+	<true/>
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SmartPlacement</key>
