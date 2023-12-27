@@ -27,6 +27,7 @@ declare -A enabled=(
  ["pdflatex"]=true
  ["lualatex"]=true
  ["xelatex"]=true
+ ["tectonic"]=true
  ["wkhtmltopdf"]=true
  ["weasyprint"]=true
  ["context"]=true
@@ -95,6 +96,25 @@ fi
 if test "$renderer" = "xelatex" -a "${enabled[xelatex]}" = true
 then
   outputName="$outputBase.xelatex.pdf"
+  echo "$inputFile => $outputName"
+
+  pandoc \
+    --pdf-engine xelatex \
+    --variable "$geometry" \
+    --variable 'fontfamily:roboto' \
+    --variable 'fontfamilyoptions:rm' \
+    --variable 'linestretch:1.1' \
+    --css "../configs/pandoc/ebook-reader.css" \
+    --output "$outputName" \
+    "$inputFile"
+  echo ""
+fi
+
+
+# Tectonic
+if test "$renderer" = "tectonic" -a "${enabled[tectonic]}" = true
+then
+  outputName="$outputBase.tectonic.pdf"
   echo "$inputFile => $outputName"
 
   pandoc \
