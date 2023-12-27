@@ -2,7 +2,7 @@ tableName: tasks
 idWidth: 4
 idStyle: green
 priorityStyle: magenta
-dateStyle: dull black
+dateStyle: black
 bodyStyle: white
 bodyClosedStyle: black
 closedStyle: dull black
