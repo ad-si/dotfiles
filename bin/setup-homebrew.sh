@@ -44,7 +44,7 @@ brews=(
   # exiftool
   fd
   fnm
-  # fdupes
+  fdupes
   fish
   gcal
   git
@@ -53,11 +53,12 @@ brews=(
   # gnuplot  # A graph plotter with support for various formats
   # go  # Go programming language
   gopass
-  # graphviz
+  graphviz
   htop
-  # httpie
+  httpie
   # hunspell
-  # imagemagick
+  imagemagick
+  kalker
   # kubectl
   mas
   # micro
@@ -89,7 +90,7 @@ brews=(
   # tesseract-lang  # All supported languages
   # uchardet  # Encoding detection library
   # watchexec  # Executes commands in response to file modifications
-  # xsv  # CSV command line toolkit written in Rust
+  xsv  # CSV command line toolkit written in Rust
   # yarn
   zoxide
 )
@@ -125,7 +126,6 @@ casks=(
   # dedrm FIXME: missing
   discord
   # disk-inventory-x
-  docker
   dropbox
   # duet
   # electron-cash
@@ -147,6 +147,7 @@ casks=(
   # handbrake
   # hex-fiend
   # homebrew/cask-versions/microsoft-remote-desktop-beta
+  homebrew/cask/docker
   # ichm
   # imageplay
   # inkscape
@@ -159,7 +160,7 @@ casks=(
   # mactex  # Full installation:
   mactex-no-gui  # Full installation without bundled applications
   mas  # Mac App Store command line interface
-  # microsoft-remote-desktop-beta
+  microsoft-remote-desktop
   # mongodb-compass
   # musescore
   night-owl
