@@ -17,7 +17,7 @@ function printTasksStatus
       "select count(*) from tasks_view where closed_utc is null and tags is null" \
       | tail -n 1)
 
-    set --local openTasks (tl count state:open)
+    set --local openTasks (tasklite count state:open)
 
     # set --local taskDesc (tasklite next \
     #   | grep '^body: ' \
