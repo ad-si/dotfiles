@@ -157,3 +157,6 @@ end
 set -g fish_user_paths "/usr/local/opt/sqlite/bin" $fish_user_paths
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/adrian/.ghcup/bin # ghcup-env
+
+# Set ripgrep config path
+set -x RIPGREP_CONFIG_PATH /Users/adrian/dotfiles/configs/ripgrep/ripgrep.txt
