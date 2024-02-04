@@ -36,14 +36,18 @@ then
   echo && echo "Link Darwin (macOS) specific files …"
 
   echo && echo "Link Scripting Libraries"
-  ln -s -v -F "$dotfilesDir/script-libraries/personal" "$HOME/Library/Script Libraries"
-
+  scriptLibDir="$dotfilesDir/script-libraries/personal"
+  targetDir="$HOME/Library/Script Libraries"
+  if test ! -L "$targetDir"
+  then ln -s -v -F "$scriptLibDir" "$targetDir"
+  else echo "Nothing to do. Link already exists at $targetDir"
+  fi
 
   echo && echo "Link Scripts:"
 
   echo && echo "Link User Scripts …"
   mkdir -p "$HOME/Library/Scripts"
-  
+
   find "$scriptsDir" \
     -type f \
     -depth 1 \
