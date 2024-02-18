@@ -43,7 +43,6 @@ brews=(
   eza
   # exiftool
   fd
-  fnm
   fdupes
   fish
   gcal
