@@ -152,8 +152,9 @@ const tools = Library('dotfiles/tools')
 - Install TexLive packages after installation of MacTeX
 - Run `npm install` in the dotfiles directory
 - Add Hunspell dictionaries after installation
-  (e.g. https://github.com/titoBouzout/Dictionaries to
-  `~/Library/Application Support/Sublime Text 3/Packages`)
+    (e.g. https://github.com/titoBouzout/Dictionaries to
+    `~/dotfiles/dictionaries` or to
+    `~/Library/Application Support/Sublime Text 3/Packages`)
 - Set default apps for file types with https://github.com/moretension/duti
 - Install https://github.com/purescript/psc-package
 - Install https://github.com/jdek/openwith

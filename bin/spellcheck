@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 directory="$(cd "$(dirname "$0")" && pwd)"
-dictionary="$directory/../dictionaries/en_US"
+dicFile="$(realpath "$directory/../dictionaries/English (American).dic")"
+dicName=${dicFile%.*}
 
-hunspell -d "$dictionary" "$*"
-
+hunspell -d "$dicName" "$*"
