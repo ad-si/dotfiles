@@ -1,4 +1,131 @@
 #! /usr/bin/env bash
 
-open https://google.com/search?q="$*"
+# Open a browser and search the given search engine for the given query
+# All commands are also available as shortcuts in the browser
 
+if test "$#" -eq 0
+then
+  open -a "Brave Browser"
+  exit 0
+fi
+
+# replace all spaces in $* with '+'
+# shellcheck disable=SC2001  # Doesn't work with $* and $@
+query=$(echo "$*" | sed 's/ /+/g')
+
+case "$1" in
+  "alt") # Software Recommendations Stack Exchange
+    url="https://softwarerecs.stackexchange.com/search?q=$query"
+    ;;
+  "am") # Amazon Deutschland
+    url="https://www.amazon.de/s?k=$query"
+    ;;
+  "bing") # Bing
+    url="https://www.bing.com/search?q=$query"
+    ;;
+  "bm") # Bookmarks
+    url="brave://bookmarks/?q=$query"
+    ;;
+  "br") # Brave
+    url="https://search.brave.com/search?q=$query"
+    ;;
+  "cra") # Rust Crates
+    url="https://crates.io/search?q=$query"
+    ;;
+  "dev") # DevDocs
+    url="https://devdocs.io#q=$query"
+    ;;
+  "do") # hub.docker.com
+    url="https://hub.docker.com/search?q=$query"
+    ;;
+  "du") # DuckDuckGo
+    url="https://duckduckgo.com/?q=$query"
+    ;;
+  "durl") # DevURLs
+    url="https://devurls.com/search?q=$query"
+    ;;
+  "elms") # Elm Search
+    url="https://elm.dmy.fr?q=$query"
+    ;;
+  "gh") # GitHub
+    url="https://github.com/search?q=$query"
+    ;;
+  "go") # Google
+    url="https://google.com/search?q=$query"
+    ;;
+  "hack") # Hackage
+    url="https://hackage.haskell.org/packages/search?terms=$query"
+    ;;
+  "hn") # Hacker News
+    url="https://hn.algolia.com/?q=$query"
+    ;;
+  "hist") # History
+    url="brave://history/?q=$query"
+    ;;
+  "ho") # Hoogle
+    url="https://hoogle.haskell.org/?hoogle=$query"
+    ;;
+  "imdb") # IMDb
+    url="https://www.imdb.com/find?q=$query"
+    ;;
+  "leo") # Leo
+    url="https://dict.leo.org/englisch-deutsch/$query"
+    ;;
+  "map" | "maps") # Google Maps
+    url="https://www.google.com/maps/search/$query"
+    ;;
+  "mdn") # MDN Web Docs
+    url="https://developer.mozilla.org/en-US/search?q=$query"
+    ;;
+  "nix") # NixOS Search
+    url="https://search.nixos.org/packages?query=$query"
+    ;;
+  "npm") # npm
+    url="https://www.npmjs.com/search?q=$query"
+    ;;
+  "ph") # Phind
+    url="https://phind.herokuapp.com/search?q=$query"
+    ;;
+  "pur") # Pursuit
+    url="https://pursuit.purescript.org/search?q=$query"
+    ;;
+  "st") # Stackage
+    url="https://www.stackage.org/lts/hoogle?q=$query"
+    ;;
+  "sym") # SymPy Gamma
+    url="https://www.sympygamma.com/input/?i=$query"
+    ;;
+  "tab") # Tabs
+    url="brave://new-tab-page/?q=$query"
+    ;;
+  "turl") # TechURLs
+    url="https://techurls.com/search?q=$query"
+    ;;
+  "url") # Namecheap Domain Search
+    url="https://www.namecheap.com/domains/registration/results/?domain=$query"
+    ;;
+  "wi") # Wikipedia (en)
+    url="https://en.wikipedia.org/w/index.php?search=$query"
+    ;;
+  "wide") # Wikipedia (de)
+    url="https://de.wikipedia.org/w/index.php?search=$query"
+    ;;
+  "wikt") # Wiktionary (en)
+    url="https://en.wiktionary.org/w/index.php?search=$query"
+    ;;
+  "wo") # Wolfram Alpha
+    url="https://www.wolframalpha.com/input/?i=$query"
+    ;;
+  "x") # 𝕏
+    url="https://x.com/search?q=$query"
+    ;;
+  "yt") # YouTube
+    url="https://www.youtube.com/results?search_query=$query"
+    ;;
+  *)
+    url="https://google.com/search?q=$query"
+    ;;
+esac
+
+echo "Opening $url …"
+open "$url"
