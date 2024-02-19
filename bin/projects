@@ -1,0 +1,26 @@
+#! /usr/bin/env bash
+
+# Print header
+tasklite projects | head -n 1
+
+# List of projects to include
+projects=(
+  airsequel
+  cosuz
+  educatopia
+  feram
+  lamda
+  perspec
+  schifferpatent
+  syvis
+  tasklite
+  textnet
+  transity
+  write
+)
+
+# Print tasks sorted descending by number of open tasks
+tasklite projects \
+  | sort -k2 -n -r \
+  | rg "^($(echo "${projects[@]}" | tr ' ' '|'))" \
+  | head -n 50
