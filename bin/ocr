@@ -1,20 +1,23 @@
 #! /usr/bin/env bash
 
+set -e
+
 
 function checkFile {
   # $1 -> Path to file
   # $2 -> Language of text
 
+  # --oem 1 => Neural nets LSTM engine only
+  # --psm 4 => Assume a single column of text of variable sizes
   tesseract \
     --tessdata-dir ~/dotfiles/tessdata \
     --oem 1 \
+    --psm 4 \
     -l "$2" \
     "$1" \
     stdout
 }
 
-
-set -e
 
 if test $# == 0 || test $# -gt 2
 then
