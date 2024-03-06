@@ -1,0 +1,10 @@
+#! /usr/bin/env bash
+
+set -e
+
+# Image Cat
+
+viu \
+  --width 80 \
+  --name "$@" \
+| sed -E 's/(.+):/\n\1:/g'  # Add newlines around filenames
