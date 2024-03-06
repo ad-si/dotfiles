@@ -1,0 +1,40 @@
+#! /usr/bin/env bash
+
+# Add an extension to files with no extension based on their MIME type
+
+# Function to add extension based on MIME type
+name_with_extension() {
+  filename="$1"
+  mimetype=$(file --brief --mime-type "$filename")
+
+  case "$mimetype" in
+    "application/pdf") echo "$filename".pdf ;;
+    "application/x-sqlite3") echo "$filename".sqlite ;;
+    "application/vnd.sqlite3") echo "$filename".sqlite ;;
+    "application/zip") echo "$filename".zip ;;
+    "application/zstd") echo "$filename".zst ;;
+    "image/jpeg") echo "$filename".jpg ;;
+    "image/png") echo "$filename".png ;;
+    "text/plain") echo "$filename".txt ;;
+    *) echo "$mimetype" ;;
+  esac
+}
+
+for file in "$@"
+do
+  # Do nothing if file already contains a dot
+  if echo "$file" | grep --silent "\."
+  then
+    echo "File '$file' already has an extension"
+  else
+    newname=$(name_with_extension "$file")
+
+    if echo "$newname" | grep --silent "\."
+    then
+      mv "$file" "$newname"
+      echo "Renamed $file to $newname"
+    else
+      echo "Unsupported file type '$newname' for '$file'"
+    fi
+  fi
+done
