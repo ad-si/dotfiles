@@ -36,9 +36,9 @@ if status --is-login
 
   ### Ruby
   if test $systemType = "Darwin"
-    set -x PATH /usr/local/opt/ruby/bin $PATH
-    set -x PATH /usr/local/lib/ruby/gems/2.7.0/bin $PATH
     set -x GEM_HOME $HOME/.gem
+    set -x PATH /usr/local/opt/ruby/bin $PATH
+    set -x PATH $HOME/.gem/bin $PATH
   end
 
   ### Haskell
