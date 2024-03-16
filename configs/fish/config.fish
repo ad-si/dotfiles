@@ -49,6 +49,10 @@ if status --is-login
     ".:/usr/local/Cellar/antlr/4.7/antlr-4.7-complete.jar:$CLASSPATH"
 
 
+  ### JavaScript (Bun)
+  set -x PATH ~/.bun/bin $PATH
+
+
   ### Python
   set -g fish_user_paths "/usr/local/opt/python@3.10/bin" $fish_user_paths
   set -x PATH ~/Library/Python/3.10/bin/ $PATH
