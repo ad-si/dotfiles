@@ -16,7 +16,7 @@
   d = diff
   full = log --format=full
   fuller = log --format=fuller --date=iso
-  s = status --ignored
+  s = status
   l = log --decorate --date="short" --graph --color \
       --pretty='format:%C(yellow)%h%C(reset) %ad%C(red)%d%C(reset) %C(bold normal)%s%C(reset) %G? %C(cyan)[%an]%C(reset)'
 
