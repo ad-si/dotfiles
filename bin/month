@@ -1,10 +1,3 @@
-#! /usr/bin/env node
+#! /bin/dash
 
-const plusAWeek = new Date()
-plusAWeek.setDate(plusAWeek.getDate() + 30)
-
-const tomorrow = plusAWeek
-  .toISOString()
-  .split('T')[0]
-
-console.info(tomorrow)
+tu 1 month | head -c10

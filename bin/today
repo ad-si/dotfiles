@@ -1,3 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
+# This is ~ 20% faster than `tu today` on my machine
 printf "%s" "$(date -u "+%Y-%m-%d")"
