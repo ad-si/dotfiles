@@ -1,57 +1,95 @@
 # Duti configuration file – for setting default file handlers
 #
-# blank lines and lines beginning with a '#' are ignored
-# Documentation: Man Page duti
+# Blank lines and lines beginning with a '#' are ignored
 #
-# Determine the bundle bundle ID via
-#     mdls /Applications/iPhoto.app | grep kMDItemCF
-# Determine the UTI via
-#     mdls file.ext | grep kMDItemContentType
+# Documentation:
+# $ man duti
 #
-# bundle id                UTI/Extension           role (all, viewer, editor, shell, none)
+# Determine the bundle bundle ID:
+# $ mdls /Applications/iPhoto.app | grep kMDItemCF
+#
+# Determine the UTI:
+# $ mdls file.ext | grep kMDItemContentType
+#
+# Show configuration for extension:
+# $ duti -x <ext>
+#
 
-# Text Files
-com.sublimetext.4          public.plain-text       all
-com.sublimetext.4          public.rtf              all
-com.sublimetext.4          md                      all
 
-# Data Files
-com.pfojenterprises.Modern-CSV  csv                all
-com.pfojenterprises.Modern-CSV  tsv                all
-com.sublimetext.4               xml                all
-com.sublimetext.4               log                all
+# Bundle ID           UTI/Extension         Role (all|viewer|editor|shell|none)
 
-# Configuration Files
-com.apple.dt.Xcode         plist                   all
-com.sublimetext.4          dhall                   all
-com.sublimetext.4          duti                    all
-com.sublimetext.4          json                    all
-com.sublimetext.4          yaml                    all
-com.sublimetext.4          public.shell-script     all
 
-# Source Code
-com.sublimetext.4          go                      all
-com.sublimetext.4          public.ruby-script      all
-com.sublimetext.4          public.python-script    all
-com.sublimetext.4          js                      all
-com.sublimetext.4          jsx                     all
-com.sublimetext.4          ts                      all
-com.sublimetext.4          tsx                     all
+########## TEXT FILES ##########
 
-# Other Files
-com.readdle.PDFExpert-Mac  com.adobe.pdf           all
+com.sublimetext.4     public.plain-text     all
+com.sublimetext.4     public.rtf            all
+com.sublimetext.4     md                    all
 
-# Media Files
-org.videolan.vlc           avi                     viewer
-org.videolan.vlc           flac                    viewer
-org.videolan.vlc           flv                     viewer
-org.videolan.vlc           m4a                     viewer
-org.videolan.vlc           mkv                     viewer
-org.videolan.vlc           mov                     viewer
-org.videolan.vlc           mp3                     viewer
-org.videolan.vlc           mp4                     viewer
-org.videolan.vlc           mpg                     viewer
-org.videolan.vlc           wav                     viewer
-org.videolan.vlc           wmv                     viewer
 
-com.seriflabs.affinitydesigner  svg                all
+########## DATA FILES ##########
+
+com.pfojenterprises.Modern-CSV  csv         all
+com.pfojenterprises.Modern-CSV  tsv         all
+
+com.sublimetext.4               log         all
+com.sublimetext.4               xml         all
+
+
+########## CONFIGURATION FILES ##########
+
+com.apple.dt.Xcode              list        all
+
+com.sublimetext.4               aml         all
+com.sublimetext.4               hall        all
+com.sublimetext.4               ini         all
+com.sublimetext.4               son         all
+com.sublimetext.4               uti         all
+
+
+########## SOURCE CODE ##########
+
+com.microsoft.VSCode            elm         all
+com.microsoft.VSCode            hs          all
+com.microsoft.VSCode            js          all
+com.microsoft.VSCode            json        all
+com.microsoft.VSCode            jsx         all
+com.microsoft.VSCode            rs          all
+com.microsoft.VSCode            toml        all
+com.microsoft.VSCode            ts          all
+com.microsoft.VSCode            tsx         all
+com.microsoft.VSCode            yaml        all
+
+com.sublimetext.4     go                    all
+com.sublimetext.4     public.python-script  all
+com.sublimetext.4     public.ruby-script    all
+
+
+########## OTHER FILES ##########
+
+com.readdle.PDFExpert-Mac  com.adobe.pdf    all
+
+net.ankiweb.dtop      apkg                  all
+
+
+########## MEDIA FILES ##########
+
+org.videolan.vlc      avi                   viewer
+org.videolan.vlc      flac                  viewer
+org.videolan.vlc      flv                   viewer
+org.videolan.vlc      m4a                   viewer
+org.videolan.vlc      mkv                   viewer
+org.videolan.vlc      mov                   viewer
+org.videolan.vlc      mp3                   viewer
+org.videolan.vlc      mp4                   viewer
+org.videolan.vlc      mpg                   viewer
+org.videolan.vlc      wav                   viewer
+org.videolan.vlc      wmv                   viewer
+
+com.seriflabs.affinitydesigner  svg         all
+
+
+########## URL SCHEMES ##########
+
+ch.sudo.cyberduck     ftp
+ch.sudo.cyberduck     sftp
+ch.sudo.cyberduck     webdav
