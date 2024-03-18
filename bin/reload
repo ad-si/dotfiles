@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+# Reload the specified application
+# E.g. `reload Google Chrome`
+
+osascript \
+  -e "activate application \"$*\"" \
+  -e 'tell application "System Events" to keystroke "r" using command down'
