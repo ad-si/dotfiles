@@ -1,7 +1,0 @@
-#! /usr/bin/env bash
-
-podName="$(kubectl get pods | grep adrians-ubuntu-job | cut -c 1-24)"
-
-open -a "Microsoft Remote Desktop"
-
-kubectl port-forward "$podName" 3389
