@@ -83,6 +83,10 @@ defaults write com.apple.screencapture location /Users/adrian/Desktop/Screenshot
 
 defaults write NSNavPanelExpandedStateForSaveMode -bool TRUE
 
+# Change whitespace settings to decrease padding around status bar items
+defaults -currentHost write -globalDomain NSStatusItemSelectionPadding -int 6
+defaults -currentHost write -globalDomain NSStatusItemSpacing -int 6
+
 # TODO:
 # Set preferences with systemsetup
 # e.g. systemsetup -setnetworktimeserver us.pool.ntp.org

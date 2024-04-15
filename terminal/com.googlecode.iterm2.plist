@@ -3981,13 +3981,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.30978870391845703</real>
+				<real>0.3803921639919281</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>P3</string>
 				<key>Green Component</key>
-				<real>0.30978870391845703</real>
+				<real>0.3803921639919281</real>
 				<key>Red Component</key>
-				<real>0.30978870391845703</real>
+				<real>0.38039213418960571</real>
 			</dict>
 			<key>Ansi 0 Color (Light)</key>
 			<dict>
@@ -4254,13 +4254,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>1</real>
+				<real>0.99999994039535522</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>P3</string>
 				<key>Green Component</key>
-				<real>1</real>
+				<real>0.99999994039535522</real>
 				<key>Red Component</key>
-				<real>1</real>
+				<real>0.99999994039535522</real>
 			</dict>
 			<key>Ansi 15 Color (Light)</key>
 			<dict>
@@ -4527,26 +4527,26 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.48627451062202454</real>
+				<real>0.55934685468673706</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>P3</string>
 				<key>Green Component</key>
-				<real>0.48627451062202454</real>
+				<real>0.55934685468673706</real>
 				<key>Red Component</key>
-				<real>0.48627451062202454</real>
+				<real>0.55934685468673706</real>
 			</dict>
 			<key>Ansi 8 Color (Light)</key>
 			<dict>
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.4078223705291748</real>
+				<real>0.40782755613327026</real>
 				<key>Color Space</key>
-				<string>sRGB</string>
+				<string>P3</string>
 				<key>Green Component</key>
-				<real>0.40782788395881653</real>
+				<real>0.40782755613327026</real>
 				<key>Red Component</key>
-				<real>0.40781760215759277</real>
+				<real>0.40782755613327026</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
@@ -4705,11 +4705,11 @@
 				<key>Blue Component</key>
 				<real>1</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>P3</string>
 				<key>Green Component</key>
 				<real>1</real>
 				<key>Red Component</key>
-				<real>1</real>
+				<real>0.99999994039535522</real>
 			</dict>
 			<key>Bold Color (Light)</key>
 			<dict>
@@ -5288,7 +5288,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>HasklugNerdFontCompleteM-Regular 11</string>
+			<string>HasklugNFM 11</string>
 			<key>Option Key Sends</key>
 			<integer>0</integer>
 			<key>Prompt Before Closing 2</key>
@@ -5669,14 +5669,7 @@
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
-			<array>
-				<dict>
-					<key>action</key>
-					<string>BounceTrigger</string>
-					<key>regex</key>
-					<string></string>
-				</dict>
-			</array>
+			<array/>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
 			<key>Unicode Version</key>

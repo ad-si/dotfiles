@@ -1,23 +1,30 @@
-#! /usr/bin/env bash
+#!/bin/dash
 
 # $1 => pwd
 # $2 => file
 
-if test -f "$1/$2"
-then
+check_url_prefix() {
+  case "$1" in
+    http://*|https://*|localhost:*) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+
+if test -f "$1/$2"; then
   open "$1/$2"
-elif test -d "$1/$2"
-then
+elif test -d "$1/$2"; then
   open "$1/$2"
-elif test "${2:0:7}" = "http://"
-then
-  open "$2"
-elif test "${2:0:8}" = "https://"
-then
-  open "$2"
-elif test "${2:0:10}" = "localhost:"
-then
+elif check_url_prefix "$2"; then
   open "$2"
 else
-  open "https://duckduckgo.com/?q=\\${*:2}"
+  search_query=""
+  shift  # Skip the first argument (pwd)
+
+  for arg in "$@"; do
+    search_query="$search_query $arg"
+  done
+
+  search_query="${search_query# }" # Remove leading space if any
+  open "https://duckduckgo.com/?q=$search_query"
 fi

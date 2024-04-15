@@ -1,6 +1,7 @@
 [user]
   name = Adrian Sieber
   email = mail@adriansieber.com
+  signingkey = A3ED32245EAEA4D5
 
 [color]
   ui = true
@@ -19,6 +20,7 @@
   s = status
   l = log --decorate --date="short" --graph --color \
       --pretty='format:%C(yellow)%h%C(reset) %ad%C(red)%d%C(reset) %C(bold normal)%s%C(reset) %G? %C(cyan)[%an]%C(reset)'
+  desc = describe --always --dirty --tags
 
 [push]
   default = simple
@@ -68,10 +70,14 @@
 	defaultBranch = main
 
 [credential "https://github.com"]
-	helper = !/usr/local/bin/gh auth git-credential
+	helper = !gh auth git-credential
 
 [credential "https://gist.github.com"]
-	helper = !/usr/local/bin/gh auth git-credential
+	helper = !gh auth git-credential
 
 [sendpack]
 	sideband = false
+[commit]
+	gpgsign = true
+[gpg]
+	program = /opt/homebrew/bin/gpg

@@ -1,5 +1,10 @@
 #! /usr/bin/env bash
 
+# TODO: Improve performance first
+# #! /usr/bin/env nix
+# #! nix shell -I nixpkgs=channel:nixos-23.11
+# #! nix nixpkgs#imagemagick --command bash
+
 # TODO: blur value should percentage of image size
 #   or even better based on high/low frequency distribution
 

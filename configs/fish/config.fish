@@ -22,17 +22,21 @@ if status --is-login
 
   ## Programming Languages
 
+
   ### PHP
   # if test $systemType = "Darwin"
   #   set -x PATH (brew --prefix php)/bin $PATH
   # end
 
+
   ### Rust
   set -x PATH ~/.cargo/bin $PATH
+
 
   ### Go
   set -x GOPATH $HOME/.go $GOPATH
   set -x PATH $GOPATH/bin $PATH
+
 
   ### Ruby
   if test $systemType = "Darwin"
@@ -41,8 +45,10 @@ if status --is-login
     set -x PATH $HOME/.gem/bin $PATH
   end
 
+
   ### Haskell
   set -x PATH ~/.local/bin $PATH
+
 
   ### Java
   set -x CLASSPATH \
@@ -51,20 +57,12 @@ if status --is-login
 
   ### JavaScript (Bun)
   set -x PATH ~/.bun/bin $PATH
+  set -x BUN_INSTALL "$HOME/.bun"
+  set -x PATH $BUN_INSTALL/bin $PATH
 
 
   ### Python
-  set -g fish_user_paths "/usr/local/opt/python@3.10/bin" $fish_user_paths
-  set -x PATH ~/Library/Python/3.10/bin/ $PATH
-
-  set -g fish_user_paths "/usr/local/opt/python@3.11/bin" $fish_user_paths
-  set -x PATH ~/Library/Python/3.11/bin/ $PATH
-
-  set -g fish_user_paths "/usr/local/opt/python@3.12/bin" $fish_user_paths
-  set -x PATH ~/Library/Python/3.12/bin/ $PATH
-
-  set -g fish_user_paths "/usr/local/opt/python@3.13/bin" $fish_user_paths
-  set -x PATH ~/Library/Python/3.13/bin/ $PATH
+  set -g fish_user_paths "$HOME/.rye/shims" $fish_user_paths
 
 
   ## Custom
@@ -81,6 +79,7 @@ if status --is-login
   end
 
   set -x HOMEBREW_CASK_OPTS "--no-quarantine"
+  set -x HOMEBREW_NO_AUTO_UPDATE 1
 
 
   # MatplotLib in iTerm
