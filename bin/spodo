@@ -1,0 +1,10 @@
+#!/bin/dash
+
+# Spotify Downloader
+
+spotdl \
+  --cookie-file="$HOME/Dropbox/music.youtube.com_cookies.txt" \
+  --format=opus \
+  --bitrate=disable \
+  download \
+  "$@"

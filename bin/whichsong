@@ -1,0 +1,33 @@
+#! /usr/bin/env bash
+
+# Return the current playing song in Spotify (macOS only)
+#
+# Inspired by:
+# https://github.com/hendriklammers/dotfiles/blob/master/bin/tmux-spotify
+
+osascript <<'END'
+tell application "Spotify"
+  if it is running then
+    if player state is playing then
+      set songName to name of current track
+      set artist_name to artist of current track
+      set combined_name to artist_name & " - " & songName
+      set max_length to 40
+
+      if length of songName > max_length then
+        set songName to ((characters 1 thru max_length of songName) as string) & "…"
+      end if
+
+      if length of combined_name > max_length then
+        set combined_name to ((characters 1 thru max_length of combined_name) as string) & "…"
+      end if
+
+      if artist_name > 0
+        combined_name
+      else
+        "Advertisement or Podcast:" & songName
+      end if
+    end if
+  end if
+end tell
+END

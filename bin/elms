@@ -1,0 +1,41 @@
+#! /usr/bin/env bash
+
+# Search Elm packages with fzf and jq
+#
+# Inspired by
+# https://github.com/hendriklammers/dotfiles/blob/master/bin/elm-search
+
+set -e
+
+jsonFile="/tmp/elm_package_search.json"
+updateRate=300  # 5 min
+
+fetch_data () {
+  echo -n "Update list of available packages …"
+  curl \
+    --compressed \
+    --fail \
+    --silent \
+    --output $jsonFile \
+    https://package.elm-lang.org/search.json
+  echo -e "\033[2K"
+}
+
+if test ! -f $jsonFile
+then fetch_data
+else
+  age=$(($(date +%s) - $(date -r $jsonFile +%s)))
+  if test $age -gt $updateRate
+  then fetch_data
+  fi
+fi
+
+preview="jq '.[] | select(.name == \"{}\")' $jsonFile"
+
+jq -r -M '.[] | .name' $jsonFile \
+  | fzf \
+      --query "$*" \
+      --preview "$preview" \
+      --bind 'ctrl-o:execute(open https://package.elm-lang.org/packages/{}/latest/),ctrl-i:execute(elm install {})+abort' \
+  | tr -d '\n' \
+  | pbcopy
