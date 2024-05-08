@@ -1,16 +1,16 @@
 #! /usr/local/bin/bun
 
-const chrono = require('chrono-node')
+const chrono = require("chrono-node")
 
-function convert (string) {
-  let output = ''
-  let infoData = ''
+function convert(string) {
+  let output = ""
+  let infoData = ""
   const unixTimeShort = /^[0-9]{10}$/
   const unixTimeMedium = /^[0-9]{13}$/
   const unixTimeLong = /^[0-9]{16}$/
 
   if (unixTimeShort.test(string)) {
-    string = string + '000'
+    string += "000"
   }
 
   if (unixTimeLong.test(string)) {
@@ -23,9 +23,7 @@ function convert (string) {
   }
 
   try {
-    output = chrono
-      .parseDate(string)
-      .toISOString()
+    output = chrono.parseDate(string).toISOString()
     infoData = chrono.parse(string)[0]
   }
   catch (error) {
@@ -37,22 +35,19 @@ function convert (string) {
 
 if (process.stdin.isTTY /* called with arguments */) {
   if (process.argv.length < 3) {
-    console.error('Usage: utcify <timestamp>')
+    console.error("Usage: utcify <timestamp>")
     process.exit(1)
   }
   else {
-    const input = process.argv
-      .slice(2)
-      .join(' ')
+    const input = process.argv.slice(2).join(" ")
     console.info(convert(input))
   }
 }
-else /* if text is piped into stdin */ {
+else {
+  // if text is piped into stdin
   // Assumes that all input text is in first chunk
   // (which should be OK since we only convert a date string)
-  process.stdin.on("data", data => {
-    process.stdout.write(
-      convert(data.toString())
-    )
+  process.stdin.on("data", (data) => {
+    process.stdout.write(convert(data.toString()))
   })
 }

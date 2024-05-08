@@ -1,6 +1,6 @@
 #! /usr/local/bin/bun
 
-const ULID = require('ulid')
+const ULID = require("ulid")
 const value = ULID.ulid()
 
 process.stdout.write(value.toLowerCase())

@@ -1,6 +1,6 @@
 #! /usr/local/bin/bun
 
-const BigNumber = require('bignumber.js')
+const BigNumber = require("bignumber.js")
 
 const numberOfChars = Number(process.argv[2]) || 6
 const base = 36

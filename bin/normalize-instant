@@ -1,9 +1,9 @@
 #! /usr/local/bin/bun
 
-const Instant = require('@datatypes/moment').Instant
+const Instant = require("@datatypes/moment").Instant
 
 
-const usage = 'Usage: normalize-date <date>'
+const usage = "Usage: normalize-date <date>"
 
 if (!process.argv[2]) throw new Error(usage)
 

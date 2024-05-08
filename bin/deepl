@@ -1,15 +1,15 @@
 #! /usr/local/bin/bun
 
-const translate = require('node-deepl')
+const translate = require("node-deepl")
 
 translate(
   process.argv
     .slice(2)
-    .join(' '),
-  'DE',
-  'EN',
+    .join(" "),
+  "DE",
+  "EN",
   (error, result) => {
     if (error) throw error
     console.info(result)
-  }
+  },
 )
