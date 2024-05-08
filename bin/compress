@@ -1,0 +1,29 @@
+#! /bin/dash
+
+if test "$#" -ne 2
+then
+  echo "Usage: compress <input file> <output file>"
+  exit 1
+fi
+
+input_file="$1"
+output_file="$2"
+
+is_pdf() {
+  test -f "$1" && file "$1" | grep -q "PDF"
+}
+
+if is_pdf "$1"
+then
+  # As seen at https://askubuntu.com/a/256449
+  gs \
+    -sDEVICE=pdfwrite \
+    -dPDFSETTINGS=/ebook \
+    -dNOPAUSE \
+    -dQUIET \
+    -dBATCH \
+    -sOutputFile="$output_file" \
+    "$input_file"
+else
+  echo "Only PDF files are supported for now"
+fi

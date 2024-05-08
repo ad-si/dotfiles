@@ -1,0 +1,17 @@
+#! /bin/dash
+
+# Initiate a screenshot of a selected window from the terminal
+
+outPath="$HOME/Temporary/terminal-screenshot.png"
+
+echo "Screenshot will be saved to $outPath"
+echo "Move it to correct position with:"
+echo "mv $outPath REPLACE_WITH_OUT_PATH"
+echo ""
+
+# -o  No shadow
+# -W  Start interaction in window selection mode.
+screencapture \
+  -o \
+  -W \
+  "$outPath" &

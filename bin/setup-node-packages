@@ -1,0 +1,34 @@
+#! /usr/bin/env bash
+
+# Uses `bun` to install and manage global Node.js packages
+
+packages=(
+  @adius/yaml2json  # Convert YAML to JSON
+  concurrently  # Run multiple commands concurrently
+  create-elm-app  # Create Elm apps with no configuration
+  daff  # Diff CSV files
+  depcheck  # Check for unused dependencies
+  elm  # Elm compiler
+  elm-format  # Elm code formatter
+  elm-json  # Tool for managing `elm.json` files
+  elm-land  # Manager for https://elm.land projects
+  elm-test  # Elm test runner
+  flat  # Flatten JSON
+  json-diff  # Diff JSON files
+  netlify-cli  # Netlify CLI
+  nodemon  # Development server for node.js
+  npkill
+  npm-check-updates
+  pageres-cli  # Capture website screenshots
+  percollate
+  purescript
+  qrcode  # Display QR code as ANSI art
+  serve
+  shaven
+  sqlitegpt
+  svgscript
+  tabledown
+  univert
+)
+
+bun install --global "${packages[@]}"

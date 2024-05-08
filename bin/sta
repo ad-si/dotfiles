@@ -1,0 +1,4 @@
+#! /bin/dash
+
+cd ~/Dropbox/Projects/stats-crawler && \
+bun run main.ts

@@ -1,0 +1,13 @@
+#! /bin/dash
+
+test $# -eq 1 || {
+  echo "Usage: $0 <input-file>"
+  exit 1
+}
+
+magick convert -density 150 \
+  "$1" \
+  -rotate 0.5 \
+  -attenuate 0.2 +noise Multiplicative \
+  -colorspace gray \
+  "$(basename "$1" ".pdf")-scanned.pdf"

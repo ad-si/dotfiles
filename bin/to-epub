@@ -1,8 +1,0 @@
-#! /usr/bin/env bash
-
-# ebook-convert is part of calibre (calibre-ebook.com)
-
-for file in {*.azw?,*.mobi}
-do
-  ebook-convert "$file" "${file%.*}.epub"
-done

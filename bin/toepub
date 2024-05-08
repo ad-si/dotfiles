@@ -1,0 +1,8 @@
+#! /usr/local/bin/bash
+
+# `ebook-convert` is part of [Calibre](https://calibre-ebook.com/)
+
+for file in {*.azw?,*.mobi}
+do
+  ebook-convert "$file" "${file%.*}.epub"
+done

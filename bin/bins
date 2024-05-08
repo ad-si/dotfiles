@@ -1,0 +1,25 @@
+#! /bin/dash
+
+# List all the scripts in `~/dotfiles/bin`
+
+binPath="$HOME/dotfiles/bin"
+
+# All text files in the `~/dotfiles/bin` directory
+binFiles=$( \
+  fd "." "$binPath" --exec file --mime-encoding {} \
+  | grep -v '\bbinary$' \
+  | cut -d: -f1 \
+  | sort \
+)
+
+for file in $binFiles
+do
+  # Skip first 2 lines and print next block of comments
+  docs="$(sed -nE '2n; /^# /p; /^[^#]|^$/q' "$file" | tr -d '#' | tr '\n' ' ' )"
+  printf "\033[1m%s\033[0m: %s\n" "$(basename "$file")" "$docs"
+done \
+| sk --ansi --delimiter ':' --nth 1 --preview \
+    "bat \
+      --color=always \
+      --style=header,grid \
+      --line-range :500 $binPath/{1}"

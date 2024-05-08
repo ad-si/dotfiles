@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
 
 echo "*** SVG 2 ICNS ***"
 
