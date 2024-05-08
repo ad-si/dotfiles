@@ -1,6 +1,0 @@
-#! /usr/bin/env bash
-
-old=$IFS
-IFS=:
-printf "%s\\n" "$(man --path)"
-IFS=$old
