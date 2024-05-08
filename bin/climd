@@ -2,6 +2,18 @@
 
 # Convert a markdown file to HTML and display it with lynx
 
+if test $# -ne 1
+then
+  echo "Usage: $(basename "$0") <file>"
+  exit 1
+fi
+
+if test ! -f "$1"
+then
+  echo "File does not exist"
+  exit 1
+fi
+
 pandoc -f markdown -t html5 --standalone "$1" | lynx -stdin
 #pandoc -s -f markdown -t man $1 | groff -T utf8 -man | less
 #markdown README.md | lynx -stdin

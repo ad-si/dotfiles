@@ -2,4 +2,4 @@
 
 city=${*:-Frankfurt am Main}
 
-curl wttr.in/"$city"
+curl "https://wttr.in/${city// /+}"

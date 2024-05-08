@@ -1,7 +1,5 @@
 #! /bin/dash
 
- topgrade \
+topgrade \
   --disable go \
-  --disable nix \
-  --disable pnpm \
-  --disable vscode
+  --disable pnpm

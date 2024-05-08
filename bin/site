@@ -2,8 +2,17 @@
 
 # Use DuckDuckGo's API to search for a query and print the first result's URL.
 
+search_query="\\" # With leading backslash DuckDuckGo opens first result
+
+for arg in "$@"
+do
+  search_query="$search_query+$arg"
+done
+
+search_query="${search_query# }"  # Strip leading space
+
 curl \
   --silent \
   --show-error \
-  "https://api.duckduckgo.com/?format=json&no_redirect=1&q=\\$*" \
+  "https://api.duckduckgo.com/?format=json&no_redirect=1&q=$search_query" \
 | jq --raw-output '.Redirect'

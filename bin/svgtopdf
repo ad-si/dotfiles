@@ -5,6 +5,5 @@ test "$#" -ne 2 &&
   exit 1
 
 inkscape \
-    --without-gui \
-    --export-pdf "$(pwd)/$2" \
-    "$(pwd)/$1"
+  --export-filename "$(pwd)/$2" \
+  "$(pwd)/$1"

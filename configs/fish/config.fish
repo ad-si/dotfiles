@@ -163,3 +163,6 @@ set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; se
 
 # Set ripgrep config path
 set -x RIPGREP_CONFIG_PATH /Users/adrian/dotfiles/configs/ripgrep/ripgrep.txt
+
+# Enable Python package management via Rye (https://rye-up.com)
+set -g fish_user_paths "$HOME/.rye/shims" $fish_user_paths

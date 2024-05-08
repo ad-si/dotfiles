@@ -1,6 +1,7 @@
 #! /bin/dash
 
 pandoc \
+  --pdf-engine tectonic \
   --variable papersize:a4 \
   --variable margin-top:20mm \
   --variable margin-right:20mm \

@@ -18,13 +18,14 @@ elif test -d "$1/$2"; then
 elif check_url_prefix "$2"; then
   open "$2"
 else
-  search_query=""
+  search_query="\\" # With leading backslash DuckDuckGo opens first result
   shift  # Skip the first argument (pwd)
 
   for arg in "$@"; do
     search_query="$search_query $arg"
   done
 
-  search_query="${search_query# }" # Remove leading space if any
+  search_query="${search_query# }"  # Strip leading space
+
   open "https://duckduckgo.com/?q=$search_query"
 fi

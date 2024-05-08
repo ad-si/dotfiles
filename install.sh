@@ -39,7 +39,7 @@ git config --global gpg.program "$(which gpg)"
 ./bin/setup-docker
 # ./bin/setup-cargo
 # ./bin/setup-go
-# ./bin/setup-npm
+./bin/setup-node-packages
 
 
 # Set default apps for file extensions

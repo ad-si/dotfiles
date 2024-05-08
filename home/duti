@@ -83,9 +83,13 @@ org.videolan.vlc      mp3                   viewer
 org.videolan.vlc      mp4                   viewer
 org.videolan.vlc      mpg                   viewer
 org.videolan.vlc      wav                   viewer
+org.videolan.vlc      webm                  viewer
 org.videolan.vlc      wmv                   viewer
 
-com.seriflabs.affinitydesigner  svg         all
+
+########## IMAGE FILES ##########
+
+com.brave.Browser     svg                   viewer
 
 
 ########## URL SCHEMES ##########

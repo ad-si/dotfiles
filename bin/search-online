@@ -9,11 +9,18 @@ then
   exit 0
 fi
 
-# replace all spaces in $* with '+'
-# shellcheck disable=SC2001  # Doesn't work with $* and $@
-query=$(echo "$*" | sed 's/ /+/g')
+command="$1"
 
-case "$1" in
+query=""
+shift  # Skip the first argument (the command)
+
+for arg in "$@"; do
+  query="$query $arg"
+done
+
+query="${query# }"  # Strip leading space
+
+case "$command" in
   "alt") # Software Recommendations Stack Exchange
     url="https://softwarerecs.stackexchange.com/search?q=$query"
     ;;
