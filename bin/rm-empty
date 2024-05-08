@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Recursively delete all empty files in the current or the specified directory
 

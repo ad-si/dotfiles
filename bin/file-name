@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Printing it removes the trailing newline
 printf "%s" "$(date -u "+%Y-%m-%dt%H%M")"

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # FIXME: Only works with Terminal and not with Hyper
 # id=$(osascript -e 'tell app "Hyper" to id of window 1')

@@ -1,6 +1,3 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
-old=$IFS
-IFS=:
-printf "%s\\n" $PATH
-IFS=$old
+echo "$PATH" | tr ':' '\n'

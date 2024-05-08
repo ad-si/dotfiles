@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 find . -iname "*.png" \
   -exec optipng -silent {} \; \

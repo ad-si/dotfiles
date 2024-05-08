@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 find . \( -iname '*jpg' -o -iname '*jpeg' \) \
   -exec jpegtran -optimize -outfile {} {} \; \

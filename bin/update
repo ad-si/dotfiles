@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
  topgrade \
   --disable go \

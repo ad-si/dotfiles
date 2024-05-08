@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
 
 # Print header
 tasklite projects | head -n 1

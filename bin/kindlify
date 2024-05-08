@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # TODO: Set when wkhtmltopdf does not crash anymore
 #       altough producing a valid PDF

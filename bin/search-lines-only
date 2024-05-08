@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # The "search lines only" command
 # Search for all matches and display only the matching position in the file

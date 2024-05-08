@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Convert a grayscale image into a mostly black & white image
 

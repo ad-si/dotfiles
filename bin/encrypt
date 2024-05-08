@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 if test ! $# == 2
 then

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Return the current playing song in Spotify (macOS only)
 #

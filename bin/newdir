@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 path="${1:-.}"
 dirname="$path/$(date -u "+%Y-%m-%dT%H%M")"

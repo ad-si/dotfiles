@@ -1,8 +1,8 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 docker run \
   --publish 8080:8080 \
   --pull always \
-  -u $(id -u):$(id -g) \
-  --volume $(pwd):/data \
+  -u "$(id -u):$(id -g)" \
+  --volume "$(pwd):/data" \
   livebook/livebook

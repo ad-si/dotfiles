@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # 1. actual day - bold, fg white, bg red
 # 2. holiday - bold, fg white, bg green

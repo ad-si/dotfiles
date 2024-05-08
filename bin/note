@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 name="$(date -u "+%Y-%m-%dt%H%M%S")"
 directory="/Users/adrian/Dropbox/Vault/Notes/$name"

@@ -1,9 +1,8 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bun
 
-# Convert a dozenal to a dezimal number
+// Convert a dozenal to a decimal number
 
-node <<DOC
-const normNum = "$1"
+const normNum = process.argv[2]
   .replace(/↊/g, 'a')
   .replace(/X/ig, 'a')
   .replace(/↋/g, 'b')
@@ -12,4 +11,3 @@ const normNum = "$1"
 console.log(
   parseInt(normNum, 12)
 )
-DOC

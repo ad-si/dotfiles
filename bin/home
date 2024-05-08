@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 tasklite query \
   "(tags is null

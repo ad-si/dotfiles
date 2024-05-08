@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 binPath=$(which "$1")
 binDirName=$(dirname "$binPath")

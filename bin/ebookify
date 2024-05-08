@@ -1,4 +1,6 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
+
+# Alternative: https://github.com/danburzo/percollate
 
 if test $# = 0
 then

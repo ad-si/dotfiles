@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
 
 test "$#" -ne 2 &&
   echo "Usage: svg2pdf [input.svg] [output.pdf]" &&

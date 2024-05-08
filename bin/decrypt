@@ -1,6 +1,6 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
-if test ! $# == 2
+if test ! $# = 2
 then
   echo "Usage: $(basename "$0") <input-file> <output-file>"
   exit 1

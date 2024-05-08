@@ -1,6 +1,6 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
-cat /dev/urandom \
+< /dev/urandom head -c 200 \
 | base64 \
 | tr -d "+/" \
 | head -c 64

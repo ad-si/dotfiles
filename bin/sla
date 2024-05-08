@@ -1,14 +1,14 @@
- #! /usr/bin/env bash
+#! /bin/dash
 
- # The "search lines all" command
+# The "search lines all" command
 
- rg \
-   --smart-case \
-   --vimgrep \
-   --max-columns 120 \
-   --color always \
-   --sort path \
-   --hidden \
-   --no-ignore \
-   -- \
-   "$@"
+rg \
+  --smart-case \
+  --vimgrep \
+  --max-columns 120 \
+  --color always \
+  --sort path \
+  --hidden \
+  --no-ignore \
+  -- \
+  "$@"

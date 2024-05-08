@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
 
 if [[ "${BASH_VERSINFO[0]}" -lt 4 ]]; then
     message="upgrade to bash 4 to enable marks"

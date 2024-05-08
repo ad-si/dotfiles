@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
 
 # lsc - List all cli commands which match the specified name
 

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # TODO: Find better way to implement this
 # "${EDITOR:-vim}" "${@:-.}"

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 args="$*"
 dnode -e "console.dir($args, {depth: null, colors: true})"

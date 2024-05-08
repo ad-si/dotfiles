@@ -1,6 +1,4 @@
-#! /usr/bin/env bash
-
-set -euo pipefail
+#! /bin/dash
 
 echo "Did you run the tests?"
 sleep 3

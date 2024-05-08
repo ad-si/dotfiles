@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Interactive terminal:
 # `dbash`
@@ -14,7 +14,7 @@ image=bash
 
 set -e
 
-function dockrun () {
+dockrun () {
   docker run \
     --interactive \
     --rm \

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 (test -e readme && ca readme) || (test -e README && ca README)
 (test -e readme.md && ca readme.md) || (test -e README.md && ca README.md)

@@ -1,12 +1,10 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bun
 
-# Convert a decimal to a dozenal number
+// Convert a decimal to a dozenal number
 
-node <<DOC
 console.log(
-  Number("$1")
+  Number(process.argv[2])
     .toString(12)
     .replace(/a/g, '↊')
     .replace(/b/g, '↋')
 )
-DOC

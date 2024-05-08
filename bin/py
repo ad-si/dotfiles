@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 python3 -c "\
 import math; \

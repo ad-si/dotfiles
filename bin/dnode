@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Interactive terminal:
 # `dnode`
@@ -14,7 +14,7 @@ image=node:alpine
 
 set -e
 
-function dorun () {
+dorun () {
   docker run \
     --interactive \
     --rm \

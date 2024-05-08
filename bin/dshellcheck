@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Stdin:
 # `cat test.sh | dshellcheck -`

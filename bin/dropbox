@@ -1,4 +1,3 @@
-#! /usr/bin/env sh
+#! /bin/dash
 
-~/Projects/Dropbox-Uploader/dropbox_uploader.sh $1
-
+~/Projects/Dropbox-Uploader/dropbox_uploader.sh "$1"

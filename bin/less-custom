@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Pager with support for ANSI colors
 # Warning: Needs a less version > 530

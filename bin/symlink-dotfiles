@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
 
 dotfilesDir="$HOME/dotfiles"
 scriptsDir="$dotfilesDir/scripts"

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Open a browser and search the given search engine for the given query
 # All commands are also available as shortcuts in the browser

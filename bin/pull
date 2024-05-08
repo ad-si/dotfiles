@@ -1,3 +1,6 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
-git pull --all "$@"
+git pull \
+  --all \
+  --autostash \
+  "$@"

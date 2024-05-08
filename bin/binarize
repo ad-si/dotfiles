@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # TODO: Improve performance first
 # #! /usr/bin/env nix

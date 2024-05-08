@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Reload the specified application
 # E.g. `reload Google Chrome`

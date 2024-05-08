@@ -1,7 +1,7 @@
-#! /usr/bin/env bash
-#
+#! /usr/local/bin/bash
+
 # divide_vert_bg [options]  image  multi_image
-#
+
 # Divide (segment) an image with a known pure a background color horizontally
 # into rows of images alternating images of blank background color images, and
 # those with non-background colors (the interesting parts).

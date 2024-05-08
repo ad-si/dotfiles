@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#! /usr/local/bin/bun
 
 const chrono = require('chrono-node')
 

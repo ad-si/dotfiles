@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
 
 INPUT="/Users/adrian/file.csv"
 [ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }

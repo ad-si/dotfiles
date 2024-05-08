@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 pandoc -f markdown -t html5 --standalone "$1" | lynx -stdin
 #pandoc -s -f markdown -t man $1 | groff -T utf8 -man | less

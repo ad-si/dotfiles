@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Add an extension to files with no extension based on their MIME type
 

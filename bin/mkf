@@ -1,6 +1,6 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
-if test ! $# == 1
+if test ! $# = 1
 then
   echo "Usage: $(basename "$0") <path/to/file>"
   exit 1
@@ -11,4 +11,4 @@ dirname=$(dirname "$@")
 mkdir -p "$dirname"
 touch "$@"
 
-echo "Created $@"
+echo "Created $*"

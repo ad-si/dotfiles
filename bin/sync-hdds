@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 echo "Sync main 4 TB drive with backup 4 TB drive"  # basically RAID 1
 

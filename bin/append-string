@@ -1,9 +1,9 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
-if [ -z ${1+x} ] || [ "$1" == "" ]
+if test -z ${1+x} || test "$1" = ""
 then
-    echo "appendString <string>"
-    exit 1
+  echo "appendString <string>"
+  exit 1
 fi
 
 for a in *

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/local/bin/bash
 
 directory="$(cd "$(dirname "$0")" && pwd)"
 dicFile="$(realpath "$directory/../dictionaries/English (American).dic")"

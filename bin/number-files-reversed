@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 numberOfFiles="$(printf "%d" "$(find . -depth 1 | wc -l)")"
 numberOfDigits="${#numberOfFiles}"

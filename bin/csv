@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # -s 17 - Change theme to Solarized Dark
 

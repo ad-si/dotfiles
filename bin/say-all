@@ -1,6 +1,6 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
-#Loop over all mac voices
+# Loop over all mac voices
 
 say -v '?' | while read -r line
 do

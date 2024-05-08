@@ -1,8 +1,25 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 directory=${2:-.}
 
 cd "$directory" || exit
 
-files=$(fd "$1")
-[[ -n "$files" ]] && open "${files[0]}"
+first_file=$(fd "$1" | head -n 1)
+
+if test -n "$first_file"
+then
+  if file "$first_file" |  grep -q '\bexecutable\b'
+  then
+    echo "$first_file is an executable!"
+    echo "Other matching files:"
+    echo ""
+    fd "$1"
+    exit 1
+  else
+    echo "Opening $first_file …"
+    open "$first_file"
+  fi
+else
+  echo "No text file found"
+  exit 1
+fi

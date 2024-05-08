@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Search Elm packages with fzf and jq
 #
@@ -18,7 +18,7 @@ fetch_data () {
     --silent \
     --output $jsonFile \
     https://package.elm-lang.org/search.json
-  echo -e "\033[2K"
+  printf "\033[2K"
 }
 
 if test ! -f $jsonFile

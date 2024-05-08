@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # Find any file maximum 2 levels deep in specified directory
 

@@ -1,9 +1,8 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 set -e
 
-
-function checkFile {
+checkFile () {
   # $1 -> Path to file
   # $2 -> Language of text
 
@@ -18,8 +17,7 @@ function checkFile {
     stdout
 }
 
-
-if test $# == 0 || test $# -gt 2
+if test $# = 0 || test $# -gt 2
 then
   echo "Usage: $(basename "$0") <path to document> [language]"
   exit 1

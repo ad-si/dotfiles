@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 # --alt-format: 07:25 instead of 7h 25m
 

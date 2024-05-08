@@ -1,10 +1,10 @@
-#!/usr/bin/env bash
+#! /bin/dash
 
 user="$(whoami)"
 
 soundFont="/Users/$user/dotfiles/misc/fluidR3.sf2"
 
-if [[ ! -f "$soundFont" ]]
+if ! test -f "$soundFont"
 then
     echo "Can't find the soundfont: $soundFont"
     exit 1

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 filepath="$1"
 filetype=$(file -bI "$filepath")
@@ -10,7 +10,7 @@ then
   exit 1
 fi
 
-if ! test "$filetype" == "$pdfMime"
+if ! test "$filetype" = "$pdfMime"
 then
   echo "File must be of type '$pdfMime' and not '$filetype'"
   exit 1

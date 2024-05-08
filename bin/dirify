@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /bin/dash
 
 files=$(find . -type f -mindepth 1 -maxdepth 1)
 
