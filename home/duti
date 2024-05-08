@@ -40,6 +40,7 @@ com.sublimetext.4               xml         all
 com.apple.dt.Xcode              list        all
 
 com.sublimetext.4               aml         all
+com.sublimetext.4               cabal       all
 com.sublimetext.4               hall        all
 com.sublimetext.4               ini         all
 com.sublimetext.4               son         all
