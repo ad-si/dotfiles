@@ -1,18 +1,13 @@
 #! /usr/local/bin/bash
 
+# `termpdf` is a simple inline PDF and DjVu viewer for iTerm
+
 if [[ "${BASH_VERSINFO[0]}" -lt 4 ]]; then
     message="upgrade to bash 4 to enable marks"
 else
     declare -A marks
     enable_marks="true"
 fi
-
-###########################################################################
-# termpdf is a barebones inline pdf and djvu viewer for iTerm versions 2.9
-# and later.
-#
-# It is a ridiculous hack, but it usually works for me.
-###########################################################################
 
 ###########################################################################
 # Functions for displaying images in iTerm2, adapted from the imgcat

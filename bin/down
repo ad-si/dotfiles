@@ -1,12 +1,13 @@
 #! /bin/dash
 
+# Start a countdown timer with specified duration (e.g. 20m or 1h50m)
+
 # --alt-format: 07:25 instead of 7h 25m
-
-# Font is rather bleak, but seems to be the only good mono-space font:
-# http://www.figlet.org/examples.html
-
 termdown \
   --no-seconds \
   --alt-format \
   --font moscow \
   "$@"
+
+# TODO: Font is rather bleak, but seems to be the only good mono-space font on
+#       http://www.figlet.org/examples.html

@@ -1,3 +1,5 @@
 #! /bin/dash
 
-tokei --columns 80
+# count-source - Count the number of source lines in a project
+
+tokei --columns 80 "$@"

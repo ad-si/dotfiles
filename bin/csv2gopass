@@ -1,5 +1,7 @@
 #! /usr/local/bin/bash
 
+# Read a CSV file and import it into gopass
+
 INPUT="/Users/adrian/file.csv"
 [ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
 while read -r line

@@ -1,5 +1,7 @@
 #! /bin/dash
 
+# Use DuckDuckGo's API to search for a query and print the first result's URL.
+
 curl \
   --silent \
   --show-error \

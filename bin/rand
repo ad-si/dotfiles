@@ -1,5 +1,7 @@
 #! /bin/dash
 
+# Generate a random 64-character base64 string
+
 < /dev/urandom head -c 200 \
 | base64 \
 | tr -d "+/" \

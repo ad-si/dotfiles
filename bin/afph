@@ -1,3 +1,5 @@
 #! /bin/dash
 
+# Open file with Affinity Photo 2
+
 open -a "Affinity Photo 2" "$@"

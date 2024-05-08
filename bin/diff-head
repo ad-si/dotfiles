@@ -1,3 +1,5 @@
 #! /bin/dash
 
-git diff --color-words "$@" | gsed 's/diff --git a/\n\n🌕  a/' | less -r
+git diff --color-words "$@" \
+| gsed 's/diff --git a/\n\n🌕  a/' \
+| less -r

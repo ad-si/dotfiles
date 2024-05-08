@@ -14,4 +14,3 @@ then
     export GIT_AUTHOR_NAME="$CORRECT_NAME"
 fi
 ' --tag-name-filter cat -- --branches --tags
-    

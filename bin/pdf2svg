@@ -1,5 +1,6 @@
 #! /bin/dash
 
+# Usage: pdf2svg file1.pdf file2.pdf …
 
 for file in "$@"
 do

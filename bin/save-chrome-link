@@ -3,11 +3,11 @@
 /* globals Application, Library */
 /* eslint-disable new-cap, no-console */
 
-const tools = Library('personal/tools')
-const chrome = Application('Google Chrome')
+const tools = Library("personal/tools")
+const chrome = Application("Google Chrome")
 const title = chrome.windows[0].activeTab
   .name()
-  .replace(/: /g, ' - ')
+  .replace(/: /g, " - ")
 const link = chrome.windows[0].activeTab.url()
 const fileData = {title, link}
 
@@ -15,15 +15,15 @@ const app = Application.currentApplication()
 app.includeStandardAdditions = true
 
 const dialogSettings = {
-  withTitle: 'Enter Tags',
+  withTitle: "Enter Tags",
   defaultAnswer: title
-    .split(' ')
-    .join(', '),
+    .split(" ")
+    .join(", "),
 }
 fileData.tags = app
-  .displayDialog('Enter tags for link (comma separated):', dialogSettings)
+  .displayDialog("Enter tags for link (comma separated):", dialogSettings)
   .textReturned
-  .split(',')
+  .split(",")
   .map(tag => tag.trim())
 
 const fileContent = tools.json2yaml(fileData)

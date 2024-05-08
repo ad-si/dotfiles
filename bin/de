@@ -1,4 +1,5 @@
 #! /bin/dash
 
-trans :de "$*"
+# Translate any language to German
 
+trans :de "$*"

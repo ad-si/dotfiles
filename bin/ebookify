@@ -18,7 +18,8 @@ margin='5mm'
 papersize='B7'
 
 
-outputBase="$(echo "${3:-$inputFile}" | sed -E -e 's%https?://(www.)?%%' -e 's#[/:.]#_#g' )"
+outputBase="$(echo "${3:-$inputFile}" \
+| sed -E -e 's%https?://(www.)?%%' -e 's#[/:.]#_#g' )"
 
 geometry="geometry:papersize={$readerWidth,$readerHeight},top=5mm,right=5mm,bottom=5mm,left=5mm"
 

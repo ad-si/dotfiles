@@ -1,6 +1,5 @@
 #! /usr/bin/env bash
 
-# Install Homebrew
 if ! command -v docker
 then
   echo 'Please install Docker first!'

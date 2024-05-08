@@ -95,9 +95,6 @@ echo 'TODO: Disable "Add period with double space"'
 
 echo 'TODO: Disable "Use smart quotes and dashes"'
 
-# echo "Setup atom editor"
-# ./bin/setup-atom
-
 
 killall Finder
 

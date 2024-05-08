@@ -1,3 +1,5 @@
 #! /bin/dash
 
+# Translate a string from any language to Spanish
+
 trans :es "$*"
