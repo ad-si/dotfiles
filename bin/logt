@@ -1,0 +1,5 @@
+#! /bin/dash
+
+# Log last 10 commits
+
+log | head  -n 10
