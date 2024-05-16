@@ -60,6 +60,9 @@ com.microsoft.VSCode            ts          all
 com.microsoft.VSCode            tsx         all
 com.microsoft.VSCode            yaml        all
 
+com.sublimetext.4     c                     all
+com.sublimetext.4     cpp                   all
+com.sublimetext.4     cs                    all
 com.sublimetext.4     go                    all
 com.sublimetext.4     public.python-script  all
 com.sublimetext.4     public.ruby-script    all
