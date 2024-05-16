@@ -130,7 +130,7 @@ case "$command" in
     url="https://www.youtube.com/results?search_query=$query"
     ;;
   *)
-    url="https://google.com/search?q=$query"
+    url="https://google.com/search?q=$command $query"
     ;;
 esac
 
