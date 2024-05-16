@@ -1,0 +1,13 @@
+// Documentation: https://zed.dev/docs/configuring-zed
+// Run `open default settings` to see the default settings file
+{
+  "ui_font_size": 14,
+  "buffer_font_size": 12,
+  "buffer_font_family": "Hasklug Nerd Font",
+  "base_keymap": "SublimeText",
+  "theme": {
+    "mode": "system",
+    "dark": "One Dark",
+    "light": "One Light"
+  }
+}

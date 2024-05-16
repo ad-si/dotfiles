@@ -1,0 +1,9 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-p": "command_palette::Toggle",
+      "cmd-t": "file_finder::Toggle"
+    }
+  }
+]
