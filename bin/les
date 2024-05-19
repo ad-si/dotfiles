@@ -1,0 +1,9 @@
+#! /bin/dash
+
+# Pager with support for ANSI colors
+# Warning: Needs a less version > 530
+
+less \
+  --RAW-CONTROL-CHARS \
+  --quit-if-one-screen \
+  "$@"
