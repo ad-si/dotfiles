@@ -1,0 +1,134 @@
+#! /opt/homebrew/bin/lua
+
+-- Normalize datetime fields in JSON files (one object per file)
+
+cjson = require "cjson"
+
+input = io.read("*all")
+data = cjson.decode(input)
+
+date_strings_simple = {
+  "utc",
+  "date",
+
+  "created",
+  "updated",
+  "published",
+  "received",
+  "modified",
+  "completed",
+}
+
+date_strings_underscore = {
+  "date_time",
+  "time_stamp",
+
+  "created_at",
+  "updated_at",
+  "published_at",
+  "received_at",
+  "modified_at",
+  "completed_at",
+
+  "created_utc",
+  "updated_utc",
+  "published_utc",
+  "received_utc",
+  "modified_utc",
+  "completed_utc",
+
+  "creation_date",
+  "update_date",
+  "publication_date",
+  "reception_date",
+  "modification_date",
+  "completion_date",
+
+  "date_created",
+  "date_published",
+  "date_received",
+  "date_modified",
+  "date_updated",
+  "date_completed",
+}
+date_string_set = {}
+
+for _, val in pairs(date_strings_simple) do
+  date_string_set[val] = true
+end
+for _, val in pairs(date_strings_underscore) do
+  date_string_set[val] = true
+end
+for _, val in pairs(date_strings_underscore) do
+  date_string_set[(val:gsub("_", ""))] = true
+end
+
+-- Call external command `tu` to normalize datetime string
+function norm_datetime(datetime_str)
+  local handle = io.popen("tu " .. datetime_str)
+  local result = handle:read("*a")
+  handle:close()
+  return result
+end
+
+for key, val in pairs(data) do
+  key = key and key:lower()
+  val = (type(val) == "string") and val:lower()
+
+  if date_string_set[key]
+  then
+    -- If is RFC 2822 datetime string
+    if val:find("mon,")
+      or val:find("tue,")
+      or val:find("wed,")
+      or val:find("thu,")
+      or val:find("fri,")
+      or val:find("sat,")
+      or val:find("sun,")
+    then
+      data[key] = norm_datetime(val)
+    end
+  end
+end
+
+function extractAndFormatDate(str)
+  local pattern = ""
+  local date = ""
+  local hour = ""
+  local min = ""
+  local sec = ""
+  local ms = ""
+
+  pattern = "^(%d%d%d%d%-%d%d%-%d%d)t?(%d%d)(%d%d)(%d%d)%.(%d+)"
+  date, hour, min, sec, ms = str:lower():match(pattern)
+  if date and hour and min and sec and ms then
+    return date .. "T" .. hour .. ":" .. min .. ":" .. sec .. "." .. ms .. "Z"
+  end
+
+  pattern = "^(%d%d%d%d%-%d%d%-%d%d)t?(%d%d)(%d%d)(%d%d)"
+  date, hour, min, sec = str:lower():match(pattern)
+  if date and hour and min and sec then
+    return date .. "T" .. hour .. ":" .. min .. ":" .. sec .. "Z"
+  end
+
+  pattern = "^(%d%d%d%d%-%d%d%-%d%d)t?(%d%d)(%d%d)"
+  date, hour, min = str:lower():match(pattern)
+  if date and hour and min then
+    return date .. "T" .. hour .. ":" .. min .. "Z"
+  end
+
+  date = str:lower():match("^%d%d%d%d%-%d%d%-%d%d")
+  if date then return date end
+
+  return ""
+end
+
+if not data["utc"]
+then
+  data["utc"] = extractAndFormatDate(data["source_file"])
+end
+
+data.body = (data.body:gsub("^%s+", ""):gsub("%s+$", ""))
+data.source_file = nil
+
+io.write(cjson.encode(data))

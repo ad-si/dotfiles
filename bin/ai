@@ -1,0 +1,3 @@
+#! /bin/dash
+
+cai openai gpt-4o "$@"
