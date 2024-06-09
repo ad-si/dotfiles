@@ -9,8 +9,6 @@
 	notifications = false
 	nopager = false
 	autoimport = false
-[mounts "feram"]
-	path = /Users/adrian/Dropbox/Projects/feram/meta
 [show]
 	safecontent = false
 [generate]

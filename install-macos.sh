@@ -30,8 +30,9 @@ do
   mas install "$appId"
 done
 
-echo "Disable window animations"
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+# TODO: Breaks file renaming https://apple.stackexchange.com/questions/393766
+# echo "Disable window animations"
+# defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 echo "Disable auto-reopen for Quicktime"
 defaults write com.apple.QuickTimePlayerX NSQuitAlwaysKeepsWindows -bool false

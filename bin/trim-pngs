@@ -2,7 +2,8 @@
 
 # Trim PNGs in parallel
 
-gfind . -name "*.png" -print0 \
+gum confirm "Recursively trim all PNGs in working directory?" \
+&& gfind . -name "*.png" -print0 \
 | gxargs -0 --replace=% -P 0 \
     bash -c '
       echo "Trim %" && mogrify -trim "%" &&

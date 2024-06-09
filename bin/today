@@ -1,5 +1,4 @@
 #! /opt/homebrew/bin/luajit
 
-
 -- This is ~ 30% faster than `date -u …` on my machine
 print(os.date("%Y-%m-%d"))

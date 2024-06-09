@@ -19,7 +19,7 @@ headCount: 20
 maxWidth: 120
 progressBarWidth: 24
 hooks:
-  directory: ~/DOES-NOT-EXIST
+  # directory: ~/DOES-NOT-EXIST
   # launch:
   #   pre:
   #     - interpreter: python

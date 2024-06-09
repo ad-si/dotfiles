@@ -58,6 +58,7 @@ brews=(
   # hunspell
   imagemagick
   kalker
+  kondo  # Clean dependencies and build artifacts
   # kubectl
   mas
   # micro
@@ -88,10 +89,11 @@ brews=(
   # tesseract  # OCR (Optical Character Recognition) tool
   # tesseract-lang  # All supported languages
   # uchardet  # Encoding detection library
+  viu  # Terminal image viewer
   # watchexec  # Executes commands in response to file modifications
   xsv  # CSV command line toolkit written in Rust
   # yarn
-  zoxide
+  zoxide  # Jump to directories
 )
 
 for brew in "${brews[@]}"
