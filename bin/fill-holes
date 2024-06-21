@@ -2,7 +2,7 @@
 
 for file in "$@"
 do
-  convert \
+  magick convert \
     -verbose \
     -alpha off \
     "$file" \

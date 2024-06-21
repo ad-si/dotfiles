@@ -1,6 +1,6 @@
 #! /bin/dash
 
-# TODO: Improve performance first
+# TODO: Improve performance before using Nix
 # #! /usr/bin/env nix
 # #! nix shell -I nixpkgs=channel:nixos-23.11
 # #! nix nixpkgs#imagemagick --command bash
@@ -10,7 +10,7 @@
 
 for file in "$@"
 do
-  convert \
+  magick convert \
     -verbose \
     "$file" \
     -alpha off \

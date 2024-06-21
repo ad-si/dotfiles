@@ -17,7 +17,7 @@ do
   # Create temporary gaussian diff file
   gauss_diff_file="${file%.*}"-gauss-diff.png
 
-  convert \
+  magick convert \
     -verbose \
     "$file" \
     -alpha off \
@@ -30,7 +30,7 @@ do
 
   # Calculate OTSU threshold for Gaussian diff file
   threshold_pct=$(
-    convert \
+    magick convert \
       -define auto-threshold:verbose=true \
       -auto-threshold OTSU \
       "$gauss_diff_file" \
@@ -43,7 +43,7 @@ do
   lower_threshold=$(echo "$threshold_pct - 10" | bc)
   upper_threshold=$(echo "$threshold_pct + 10" | bc)
 
-  convert \
+  magick convert \
     -verbose \
     "$gauss_diff_file" \
     -level "$lower_threshold"%,"$upper_threshold"% \

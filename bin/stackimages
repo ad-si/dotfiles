@@ -13,7 +13,7 @@ gap_size="$3"
 
 output_image="stacked.png"
 
-convert "$input_image1" "$input_image2" \
+magick convert "$input_image1" "$input_image2" \
   -size "${gap_size:-50}x${gap_size:-50}" xc:white +swap \
   -gravity Center -background white -append \
   "$output_image"

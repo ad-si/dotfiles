@@ -12,5 +12,5 @@ echo 'TODO: use `find -exec` instead of a for loop'
 
 # for a in $(find . -name '*.png')
 # do
-#   convert "$a" -verbose -trim "$a"
+#   magick convert "$a" -verbose -trim "$a"
 # done
