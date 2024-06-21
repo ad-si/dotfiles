@@ -26,7 +26,7 @@ function printTasksStatus
 
         # printf ' %s | %s ' $taskCount # $taskDesc
 
-        printf ' 📥 %s | ☑️  %s ' $taskCount $openTasks
+        printf ' 📥 %s | ☑️ %s ' $taskCount $openTasks
     end
 end
 

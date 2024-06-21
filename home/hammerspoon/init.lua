@@ -6,8 +6,6 @@ spoon.ShiftIt:bindHotkeys({
   down = { { 'ctrl', 'alt', 'cmd' }, 'j' },
 })
 
-hs.loadSpoon("Calendar")
-
 hs.loadSpoon("ClipboardTool")
 spoon.ClipboardTool:start()
 
