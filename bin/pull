@@ -2,5 +2,6 @@
 
 git pull \
   --all \
+  --rebase \
   --autostash \
   "$@"
