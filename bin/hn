@@ -1,0 +1,14 @@
+#! /bin/dash
+
+# Search for given query on Hacker News
+
+if test "$#" -eq 0
+then
+  echo "Usage: hn <search-query>"
+  exit 0
+fi
+
+url="https://hn.algolia.com/?q=$*"
+
+echo "Opening $url …"
+open "$url"
