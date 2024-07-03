@@ -1,20 +1,10 @@
 /.stack-work
-/alfred
+/bin/_exe_*
 /configs/yarn/link
 /dictionaries
-
-/home/atom/.apm
-/home/atom/.node-gyp
-/home/atom/blob-store
-/home/atom/compile-cache
-/home/atom/packages
-/home/atom/recovery
-/home/atom/storage
-
-/home/w3m/history
-
-# Ignore all except for the already added files
+# Ignore all except for the already added files for stack
 /home/stack
-
+/home/w3m/history
 /node_modules
+/temp
 /tessdata
