@@ -1,12 +1,37 @@
-#! /bin/dash
+#!/usr/bin/env -S v -raw-vsh-tmp-prefix _exe_
 
-if test -z ${1+x} || test "$1" = ""
-then
-  echo "appendString <string>"
-  exit 1
-fi
+import flag
+import os
 
-for a in *
-do
-  mv "$a" "${a}$1"
-done
+fn main() {
+	mut fp := flag.new_flag_parser(os.args)
+	fp.application('append-string')
+	fp.version('v0.0.1')
+	fp.description('Append a suffix to the name of each file in current working directory')
+	fp.limit_free_args_to_exactly(1)!
+	fp.skip_executable()
+
+	additional_args := fp.finalize() or {
+		eprintln(err)
+		println('\n' + fp.usage())
+		return
+	}
+
+	suffix := additional_args[0]
+	files := ls('.') or {
+		eprintln('Failed to list directory contents')
+		return
+	}
+
+	for file in files {
+		file_name := file.all_before_last('.')
+		file_extension := file.all_after_last('.')
+		new_name := file_name + suffix + '.' + file_extension
+		mv(file, new_name) or {
+			eprintln('Failed to rename ${file} to ${new_name}')
+			continue
+		}
+	}
+
+	println('✅ Added suffix "${suffix}" to all files in current directory')
+}

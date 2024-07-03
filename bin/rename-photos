@@ -1,0 +1,53 @@
+#!/usr/bin/env -S v -raw-vsh-tmp-prefix _exe_
+
+import flag
+import os
+
+fn get_date(file string) !string {
+	exif_base := 'exiftool -short -veryShort -d "%Y-%m-%d %H:%M:%S"'
+
+	exif_cmd_1 := '${exif_base} -DateTimeOriginal "${file}"'
+	date_time_original := os.execute(exif_cmd_1).output.trim_space()
+	if date_time_original != '' {
+		return date_time_original
+	}
+
+	exif_cmd_2 := '${exif_base} -api QuickTimeUTC -CreateDate "${file}"'
+	create_date := os.execute(exif_cmd_2).output.trim_space()
+	if create_date != '' {
+		return create_date
+	}
+
+	exif_cmd_3 := '${exif_base} -api QuickTimeUTC -CreationDate "${file}"'
+	creation_date := os.execute(exif_cmd_3).output.trim_space()
+	if creation_date != '' {
+		return creation_date
+	}
+
+	return error('Could not get creation date for "${file}"')
+}
+
+fn main() {
+	mut fp := flag.new_flag_parser(os.args)
+	fp.application('append-string')
+	fp.version('v0.0.1')
+	fp.description('Automatically rename all provided photos according to their creation date')
+	fp.limit_free_args_to_at_least(1)!
+	fp.skip_executable()
+
+	args := fp.finalize() or {
+		eprintln(err)
+		println('\n' + fp.usage())
+		return
+	}
+
+	for filename in args {
+		creation_date := get_date(filename) or {
+			eprintln(err)
+			continue
+		}
+		new_filename := creation_date.replace(' ', 't').replace(':', '') + '_' + filename
+		println('✅ ${filename} -> ${new_filename}')
+		os.rename(filename, new_filename) or { eprintln(err) }
+	}
+}

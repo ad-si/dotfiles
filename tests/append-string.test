@@ -1,0 +1,8 @@
+# Append String
+
+$ rm -rf temp/append-string
+$ mkdir -p temp/append-string
+$ touch temp/append-string/a.txt
+$ touch temp/append-string/b.md
+$ cd temp/append-string && ../../bin/append-string xxx
+✅ Added suffix "xxx" to all files in current directory

@@ -1,0 +1,8 @@
+# Rename Photos
+
+$ mkdir -p temp
+$ cp -r tests/rename-photos temp
+
+$ cd temp/rename-photos && ../../bin/rename-photos flower.jpeg tree.png
+✅ flower.jpeg -> 2008-05-27t114040_flower.jpeg
+✅ tree.png -> 2022-02-15t123042_tree.png

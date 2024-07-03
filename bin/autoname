@@ -1,40 +1,79 @@
-#! /bin/dash
+#!/usr/bin/env -S v -raw-vsh-tmp-prefix _exe_
 
-# Add an extension to files with no extension based on their MIME type
+import flag
+import os
 
-# Function to add extension based on MIME type
-name_with_extension() {
-  filename="$1"
-  mimetype=$(file --brief --mime-type "$filename")
+fn append_extension(filename string) !string {
+	mimetype := os.execute('file --brief --mime-type "${filename}"').output
+		.trim_space()
 
-  case "$mimetype" in
-    "application/pdf") echo "$filename".pdf ;;
-    "application/x-sqlite3") echo "$filename".sqlite ;;
-    "application/vnd.sqlite3") echo "$filename".sqlite ;;
-    "application/zip") echo "$filename".zip ;;
-    "application/zstd") echo "$filename".zst ;;
-    "image/jpeg") echo "$filename".jpg ;;
-    "image/png") echo "$filename".png ;;
-    "text/plain") echo "$filename".txt ;;
-    *) echo "$mimetype" ;;
-  esac
+	return match mimetype {
+		'application/json' {
+			'${filename}.json'
+		}
+		'application/pdf' {
+			'${filename}.pdf'
+		}
+		'application/x-sqlite3' {
+			'${filename}.sqlite'
+		}
+		'application/vnd.sqlite3' {
+			'${filename}.sqlite'
+		}
+		'application/zip' {
+			'${filename}.zip'
+		}
+		'application/zstd' {
+			'${filename}.zst'
+		}
+		'image/jpeg' {
+			'${filename}.jpg'
+		}
+		'image/png' {
+			'${filename}.png'
+		}
+		'text/csv' {
+			'${filename}.csv'
+		}
+		'text/plain' {
+			'${filename}.txt'
+		}
+		else {
+			error('⚠️ Unsupported file type "${mimetype}" for file "${filename}"')
+		}
+	}
 }
 
-for file in "$@"
-do
-  # Do nothing if file already contains a dot
-  if echo "$file" | grep --silent "\."
-  then
-    echo "File '$file' already has an extension"
-  else
-    newname=$(name_with_extension "$file")
+fn main() {
+	mut fp := flag.new_flag_parser(os.args)
+	fp.application('autoname')
+	fp.version('v0.0.1')
+	fp.description('Add an extension to files without one based on their MIME type')
+	fp.limit_free_args_to_at_least(1)!
+	fp.skip_executable()
 
-    if echo "$newname" | grep --silent "\."
-    then
-      mv "$file" "$newname"
-      echo "Renamed $file to $newname"
-    else
-      echo "Unsupported file type '$newname' for '$file'"
-    fi
-  fi
-done
+	args := fp.finalize() or {
+		eprintln(err)
+		println('\n' + fp.usage())
+		return
+	}
+
+	for file in args {
+		if file.contains('.') {
+			println("🆒 File '${file}' already has an extension")
+			continue
+		}
+
+		newname := append_extension(file) or {
+			eprintln(err)
+			continue
+		}
+
+		os.mv(file, newname) or {
+			println("🚨 Failed to rename '${file}' to '${newname}'")
+			continue
+		}
+
+		println("✅ Renamed '${file}' to '${newname}'")
+	}
+}
