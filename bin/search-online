@@ -36,6 +36,12 @@ case "$command" in
   "br") # Brave
     url="https://search.brave.com/search?q=$query"
     ;;
+  "ch")
+    url="https://chat.openai.com?q=$query"
+    ;;
+  "cl")
+    url="https://claude.ai/new?q=$query"
+    ;;
   "cra") # Rust Crates
     url="https://crates.io/search?q=$query"
     ;;
