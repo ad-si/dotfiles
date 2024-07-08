@@ -1,0 +1,24 @@
+# Append String
+
+$ rm -rf temp/dirify
+$ cp -r tests/dirify temp/dirify
+$ cd temp/dirify && ../../bin/dirify
+✅ Grouped files by name and moved them to directories
+
+$ find temp/dirify
+temp/dirify
+temp/dirify/test
+temp/dirify/test/test.txt
+temp/dirify/test/test.md
+temp/dirify/.no-ext copy
+temp/dirify/directory
+temp/dirify/directory/test.txt
+temp/dirify/only-directories
+temp/dirify/only-directories/one
+temp/dirify/only-directories/one/.gitkeep
+temp/dirify/only-directories/two
+temp/dirify/only-directories/two/.gitkeep
+temp/dirify/with-umlauts-äö
+temp/dirify/with.two.extensions
+temp/dirify/file with spaces.txt
+temp/dirify/no-extension

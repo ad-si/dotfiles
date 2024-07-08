@@ -1,27 +1,65 @@
-#! /bin/dash
+#!/usr/bin/env -S v -raw-vsh-tmp-prefix _exe_
 
-files=$(find . -type f -mindepth 1 -maxdepth 1)
+// Group files by name and move them to a directory with the same name
+// if there are multiple files with the same name but different extensions.
+//
+// Example:
+//
+// ```
+// $ tree example-dir
+// example-dir
+// ├── file1.txt
+// ├── file1.md
+// ├── file2.txt
+// ├── file3.txt
+// ```
+//
+// After running the script:
+//
+// ```
+// $ tree example-dir
+// example-dir
+// ├── file1
+// │   ├── file1.txt
+// │   └── file1.md
+// └── file2
+//     ├── file2.txt
+//     └── file2.md
+// ```
+import os
 
-if test -z "$files"
-then
-  exit 0
-fi
+fn main() {
+	directory := '.'
+	mut files_map := map[string][]string{}
 
-echo "$files" \
-| while read -r file
-  do
-    fileName="$(basename "$file")"
-    tempName="temporary-name-to-avoid-collisions_$fileName"
+	// Read the directory and group files by name
+	entries := os.ls(directory) or { panic(err) }
+	for entry in entries {
+		path := os.join_path(directory, entry)
+		if os.is_file(path) {
+			name := os.file_name(path).all_before_last('.')
+			if name in files_map {
+				files_map[name] << path
+			} else {
+				files_map[name] = [path]
+			}
+		}
+	}
 
-    mv "$fileName" "$tempName"
+	// Process each group
+	for name, paths in files_map {
+		if paths.len > 1 {
+			// Ensure there are actually multiple files with different extensions
+			new_dir := os.join_path(directory, name)
+			os.mkdir_all(new_dir) or { panic(err) }
 
-    stem="${fileName%%.*}"
-    # Use name without dot if is dotfile
-    directoryName="${stem:-"${fileName#*.}"}"  # Fix syntax highlighting "
-    destPath="$directoryName/$fileName"
+			// Move files to the new directory
+			for path in paths {
+				new_path := os.join_path(new_dir, os.file_name(path))
+				os.mv(path, new_path) or { panic(err) }
+			}
+		}
+	}
 
-    mkdir "$directoryName"
-
-    echo "$fileName -> $destPath"
-    mv "$tempName" "$destPath"
-  done
+	println('✅ Grouped files by name and moved them to directories')
+}
