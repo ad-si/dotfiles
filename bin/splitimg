@@ -1,0 +1,18 @@
+#! /bin/bash
+
+# Split an image horizontally into two halves
+
+if test "$#" -ne 1
+then
+  echo "Usage: $0 <image>"
+  exit 1
+fi
+
+fileName=$(basename "$1")
+fileExt="${fileName##*.}"
+
+magick "$1" \
+  -crop 50%x100% \
+  +repage \
+  +adjoin \
+  "$fileName"_%d."$fileExt"
