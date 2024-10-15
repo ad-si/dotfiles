@@ -79,3 +79,6 @@
 	sideband = false
 [commit]
 	gpgsign = true
+[diff "lockb"]
+	textconv = bun
+	binary = true
