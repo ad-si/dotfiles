@@ -12,7 +12,7 @@
 1. Install XCode via the macOS App Store
 1. Accept XCode license agreement
 1. `cd ~ && git clone https://github.com/ad-si/dotfiles.git`
-1. `cd dotfiles && ./install.sh`
+1. `cd dotfiles && ./install.sh` \
     **Attention:** The user must have sudo rights to install dependencies
 
 
@@ -24,17 +24,11 @@ Copy all relevant files from backup to new Machine.
 
 ### MacOS
 
-This is written for Macs with a M1 chip.
-Some changes must be made for Macs with an Intel chip.
-E.g. Replace `/opt/homebrew/bin` with `/usr/local/bin`.
-
-
 #### System Preferences
 
-- Invert scroll direction
 - General
-  - [x] Automatically hide and show the menu bar
-  - [x] Show scroll bars: When scrolling
+  - Automatically hide and show the menu bar
+  - Show scroll bars: When scrolling
 
 - Date & Time: Change date and time preferences
   - Deactivate automatic setting of time zone by location
@@ -42,10 +36,10 @@ E.g. Replace `/opt/homebrew/bin` with `/usr/local/bin`.
       `sudo ln -sf /usr/share/zoneinfo/UTC /etc/localtime`
       or
       `sudo systemsetup -settimezone GMT`
-  - [x] Display the time with seconds
-  - [x] Use a 24-hour clock
-  - [x] Show the day of the week
-  - [x] Show date
+  - Display the time with seconds
+  - Use a 24-hour clock
+  - Show the day of the week
+  - Show date
 
 - Language & Region
   - Preferred languages: English (US)
@@ -75,22 +69,24 @@ E.g. Replace `/opt/homebrew/bin` with `/usr/local/bin`.
   - Keyboard
     - Key Repeat: Fast
     - Delay Until Repeat: Short
-  - Text
-    - Disable
-      - Correct spelling automatically
-      - Capitalize words automatically
-      - Add period with double-space
-      - Use smart quotes and dashes
-  - Shortcuts
-    - [x] Show Spotlight search "⌥ Space"
-    - Overwrite default shortcuts
-      ![](./images/overwrite_shortcut.png)
-  - Input Sources
-    - Use "ABC - Extended" keyboard layout
-        to have correct direct output of "\~" and "\`"
-    - Delete all other input sources
-  - Modifier Keys
-    - Remap Caps Lock key to CTRL
+    - Press 🌐 key to Start Dictation
+    - Keyboard navigation ☑️
+    - Keyboard Shortcuts
+      - Show Spotlight search "⌥ Space"
+      - Overwrite default shortcuts
+        ![](./images/overwrite_shortcut.png)
+      - Modifier Keys
+        - Remap Caps Lock key to `^ Control`
+  - Text Input
+    - Input Sources
+      - Use "ABC - Extended" keyboard layout
+          to have correct direct output of "\~" and "\`"
+      - Delete all other input sources
+      - Disable
+        - Correct spelling automatically
+        - Capitalize words automatically
+        - Add period with double-space
+        - Use smart quotes and dashes
 
 - Mission Control > Hot Corners
   - Top Left: Put Display to Sleep Launchpad
@@ -110,10 +106,10 @@ E.g. Replace `/opt/homebrew/bin` with `/usr/local/bin`.
         Show Applications, Desktop, Downloads,
         Home, iCloud Drive, All Locations, Tags
     - Advanced:
-      - [x] Show all filename extensions
-      - [x] Show warning before removing from iCloud Drive
-      - [x] Show warning before emptying the Trash
-      - [x] Remove items from the Trash after 30 days
+      - Show all filename extensions
+      - Show warning before removing from iCloud Drive
+      - Show warning before emptying the Trash
+      - Remove items from the Trash after 30 days
       - When performing a search: Search the Current Folder
   - Sort directories in "Favorites" list
 
@@ -185,8 +181,8 @@ Sign in and enable sync for important directories.
 
 General > Preferences:
 
-- [x] Load preferences from a custom folder or URL: `~/dotfiles/terminal`
-- [x] Save changes to folder when iTerm2 quits
+- Load preferences from a custom folder or URL: `~/dotfiles/terminal`
+- Save changes to folder when iTerm2 quits
 
 
 ### Gopass

@@ -1,5 +1,7 @@
 #! /usr/bin/env bash
 
+set -euo pipefail
+
 # Install Homebrew
 if ! command -v brew
 then
@@ -7,8 +9,10 @@ then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-# Stop on error
-set -e
+echo >> /Users/adrian/.zprofile
+# shellcheck disable=SC2016
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/adrian/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Make sure we’re using the latest Homebrew
 echo 'Update hombrew…'
@@ -36,16 +40,19 @@ brew install bash
 brews=(
   # ag
   bat
+  bun  # JavaScript engine
   # colordiff
   # csvkit  # Utilities for converting to and working with CSV
   diskus
   dockutil
   eza
-  # exiftool
+  exiftool  # Manage meta information of vaious files
+  fastfetch  # Display system information in the terminal
   fd
   fdupes
   fish
-  gcal
+  fnm  # Fast Node.js version manager
+  # gcal  # TODO: Re-add after the formula was re-activated on homebrew
   git
   git-extras
   gnu-sed
@@ -57,6 +64,7 @@ brews=(
   httpie
   # hunspell
   imagemagick
+  just  # Command runner
   kalker
   kondo  # Clean dependencies and build artifacts
   # kubectl
@@ -66,6 +74,7 @@ brews=(
   # node
   mpv  # Media player
   # ocrmypdf  # Add an OCR text layer to scanned PDF files
+  ollama
   # optipng
   # osx-cpu-temp
   # pandoc
@@ -89,6 +98,7 @@ brews=(
   # tesseract  # OCR (Optical Character Recognition) tool
   # tesseract-lang  # All supported languages
   # uchardet  # Encoding detection library
+  uv  # Python package manager
   viu  # Terminal image viewer
   # watchexec  # Executes commands in response to file modifications
   xsv  # CSV command line toolkit written in Rust
@@ -143,6 +153,7 @@ casks=(
   font-hasklug-nerd-font
   gimp
   # gitup
+  godot  # Game engine
   # google-chrome
   # google-cloud-sdk
   # handbrake
@@ -158,13 +169,11 @@ casks=(
   # librecad
   # libreoffice
   logitech-options
-  # mactex  # Full installation:
-  mactex-no-gui  # Full installation without bundled applications
   mas  # Mac App Store command line interface
-  microsoft-remote-desktop
+  # microsoft-remote-desktop
   # mongodb-compass
   # musescore
-  night-owl
+  nightfall  # Menu bar app to switch between light and dark mode
   notion
   # nvidia-geforce-now
   # onyx
@@ -204,6 +213,7 @@ casks=(
   # vmware-fusion
   whatsapp
   xquartz
+  zoom  # Video conferencing
 )
 
 for cask in "${casks[@]}"
