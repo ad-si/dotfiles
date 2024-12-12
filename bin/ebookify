@@ -31,6 +31,7 @@ declare -A enabled=(
  ["lualatex"]=true
  ["xelatex"]=true
  ["tectonic"]=true
+ ["typst"]=true
  ["wkhtmltopdf"]=true
  ["weasyprint"]=true
  ["context"]=true
@@ -121,11 +122,27 @@ then
   echo "$inputFile => $outputName"
 
   pandoc \
-    --pdf-engine xelatex \
+    --pdf-engine tectonic \
     --variable "$geometry" \
     --variable 'fontfamily:roboto' \
     --variable 'fontfamilyoptions:rm' \
     --variable 'linestretch:1.1' \
+    --css "../configs/pandoc/ebook-reader.css" \
+    --output "$outputName" \
+    "$inputFile"
+  echo ""
+fi
+
+
+# Typst
+if test "$renderer" = "typst" -a "${enabled[typst]}" = true
+then
+  outputName="$outputBase.typst.pdf"
+  echo "$inputFile => $outputName"
+
+  pandoc \
+    --pdf-engine typst \
+    --variable "$geometry" \
     --css "../configs/pandoc/ebook-reader.css" \
     --output "$outputName" \
     "$inputFile"

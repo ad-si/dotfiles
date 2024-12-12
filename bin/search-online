@@ -37,7 +37,7 @@ case "$command" in
     url="https://search.brave.com/search?q=$query"
     ;;
   "ch")
-    url="https://chat.openai.com?q=$query"
+    url="https://chatgpt.com?q=$query"
     ;;
   "cl")
     url="https://claude.ai/new?q=$query"

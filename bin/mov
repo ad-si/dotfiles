@@ -1,0 +1,5 @@
+#! /bin/dash
+
+# Move, but prompt before overwriting an existing file and show verbose output
+
+mv -i -v "$@"
