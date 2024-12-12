@@ -61,10 +61,6 @@ if status --is-login
   set -x PATH $BUN_INSTALL/bin $PATH
 
 
-  ### Python
-  set -g fish_user_paths "$HOME/.rye/shims" $fish_user_paths
-
-
   ## Custom
   set -x PATH ~/dotfiles/bin $PATH
 
@@ -74,7 +70,7 @@ if status --is-login
 
   ### Token allows reading public repos, creating gists)
   if test $systemType = "Darwin"
-    ################# DO NOT COMMIT #########################################
+    ############################# DO NOT COMMIT #############################
     set -x HOMEBREW_GITHUB_API_TOKEN 1de66c2243ae059adcc536c664066361dfd54baa
   end
 
@@ -148,6 +144,13 @@ if status --is-login
   set -x CHEATCOLORS true
 end
 
+
+# # TODO: Reenable after https://github.com/ellie/atuin/issues/978
+# if status --is-interactive
+#   atuin init fish | source
+# end
+
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/serverless.fish
@@ -163,6 +166,3 @@ set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; se
 
 # Set ripgrep config path
 set -x RIPGREP_CONFIG_PATH /Users/adrian/dotfiles/configs/ripgrep/ripgrep.txt
-
-# Enable Python package management via Rye (https://rye-up.com)
-set -g fish_user_paths "$HOME/.rye/shims" $fish_user_paths

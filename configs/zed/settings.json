@@ -1,6 +1,13 @@
 // Documentation: https://zed.dev/docs/configuring-zed
 // Run `open default settings` to see the default settings file
 {
+  "assistant": {
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-3-5-sonnet-20240620"
+    },
+    "version": "2"
+  },
   "ui_font_size": 14,
   "buffer_font_size": 12,
   "buffer_font_family": "Hasklug Nerd Font",
@@ -9,5 +16,8 @@
     "mode": "system",
     "dark": "One Dark",
     "light": "One Light"
+  },
+  "project_panel": {
+    "dock": "right"
   }
 }

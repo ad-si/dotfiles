@@ -1,1 +1,1 @@
-fnm env --use-on-cd | source
+fnm env --use-on-cd --shell fish | source
