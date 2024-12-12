@@ -1,4 +1,4 @@
-#! /usr/local/bin/bash
+#! /usr/bin/env bash
 
 # Read a CSV file and import it into gopass
 

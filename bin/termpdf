@@ -1,4 +1,4 @@
-#! /usr/local/bin/bash
+#! /usr/bin/env bash
 
 # `termpdf` is a simple inline PDF and DjVu viewer for iTerm
 

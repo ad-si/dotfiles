@@ -1,4 +1,4 @@
-#! /usr/local/bin/bash
+#! /usr/bin/env bash
 
 randomPort=$((1 + RANDOM % 10))$((RANDOM % 1000))
 

@@ -1,4 +1,4 @@
-#! /usr/local/bin/bash
+#! /usr/bin/env bash
 
 # For this script to work you need to give
 # your Terminal access to the the file system at Settings > Security & Privacy

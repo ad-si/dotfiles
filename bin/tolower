@@ -1,4 +1,4 @@
-#! /usr/local/bin/bash
+#! /usr/bin/env bash
 
 # TODO: Check if `rename -c *.txt` is better suited
 
