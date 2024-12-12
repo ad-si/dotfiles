@@ -11,12 +11,9 @@
 
 1. Install XCode via the macOS App Store
 1. Accept XCode license agreement
-
-```bash
-curl --silent https://github.com/ad-si/dotfiles/raw/master/install.sh | bash
-```
-
-**Attention:** The user must have sudo rights to install dependencies
+1. `cd ~ && git clone https://github.com/ad-si/dotfiles.git`
+1. `cd dotfiles && ./install.sh`
+    **Attention:** The user must have sudo rights to install dependencies
 
 
 ## Manual Steps
@@ -79,7 +76,7 @@ E.g. Replace `/opt/homebrew/bin` with `/usr/local/bin`.
     - Key Repeat: Fast
     - Delay Until Repeat: Short
   - Text
-    - Disable 
+    - Disable
       - Correct spelling automatically
       - Capitalize words automatically
       - Add period with double-space
@@ -169,7 +166,7 @@ const tools = Library('dotfiles/tools')
 1. Go to [brave://sync](brave://sync)
 1. Join Sync Chain
 
-Installed extensions should then include 
+Installed extensions should then include
 Midnight Lizard, Automatric Metric Conversion, …
 
 

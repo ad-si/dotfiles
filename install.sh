@@ -1,13 +1,6 @@
 #! /usr/bin/env bash
 
-set -e
-
-cd "$HOME"
-
-echo "Clone repository from GitHub"
-git clone https://github.com/ad-si/dotfiles
-
-cd dotfiles
+set -euo pipefail
 
 ./bin/symlink-dotfiles
 
