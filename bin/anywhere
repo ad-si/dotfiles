@@ -1,0 +1,3 @@
+#! /bin/dash
+
+tasklite get -- -frankfurt -lindenberg | head --lines 50
