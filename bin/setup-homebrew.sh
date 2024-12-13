@@ -53,6 +53,7 @@ brews=(
   fish
   fnm  # Fast Node.js version manager
   # gcal  # TODO: Re-add after the formula was re-activated on homebrew
+  gh
   git
   git-extras
   gnu-sed
@@ -60,6 +61,7 @@ brews=(
   # go  # Go programming language
   gopass
   graphviz
+  hammerspoon  # Desktop automation
   htop
   httpie
   # hunspell
@@ -85,7 +87,6 @@ brews=(
   # poppler
   ripgrep
   # ruby  # Programming language
-  rustup-init  # Installer for Rust programming language
   # s3cmd  # Command-line tool for the Amazon S3 service
   # shellcheck  # Linter for bash scripts
   stack  # Haskell tool stack
@@ -100,7 +101,7 @@ brews=(
   # uchardet  # Encoding detection library
   uv  # Python package manager
   viu  # Terminal image viewer
-  # watchexec  # Executes commands in response to file modifications
+  watchexec  # Executes commands in response to file modifications
   xsv  # CSV command line toolkit written in Rust
   # yarn
   zoxide  # Jump to directories
@@ -126,6 +127,7 @@ casks=(
   # android-file-transfer
   # atom
   # automap-server FIXME: missing
+  beekeeper-studio  # SQL Editor and Database Manager
   # betterzipql  # Preview archives  FIXME: missing
   brave-browser
   # blender
