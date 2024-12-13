@@ -1,12 +1,21 @@
 #! /usr/bin/env bash
 
+# This script backs up all important files to external hard drives.
+# Apps that use a different backup / sync mechanism:
+# - Brave Browser - Brave Sync
+# - Dropbox - Most files are synced via Dropbox
+# - iTerm - Via `../terminal` directory
+# - Photos - iCloud
+# - VS Code - GitHub Settings Sync
+
+
 # For this script to work you need to give
 # your Terminal access to the the file system at Settings > Security & Privacy
 
 # To selectively restore files from the backup you can run
 # rsync --archive --verbose /source /dest
 
-set -e
+set -eufo pipefail
 
 today="$(date -u "+%Y-%m-%d")"
 backupdir="/Volumes/4_tb_red_src/backups/${today}_macbook_2021"
@@ -14,7 +23,7 @@ backupdir="/Volumes/4_tb_red_src/backups/${today}_macbook_2021"
 paths=(
   .electron-cash/wallets
   .electrum/wallets
-  .gnupg
+  .gnupg  # Alternatively: https://askubuntu.com/q/514534
   .local/bin  # All programs built with stack
   .local/share/fish
   .password-store
@@ -24,29 +33,18 @@ paths=(
   .ssh
   .task
   .timewarrior
-  # .vscode  # Sync via its integrated sync functionality instead
-  # Books
-  # Contacts
   Desktop
   Documents
   Downloads
   Dropbox
-  # Events
-  # Google\ Drive
-  # Library/Application\ Support/BraveSoftware
-  # Visual Studio Code - Use integrated sync
-  # Library/Application\ Support/Code
-  Library/Application\ Support/iTerm2
   Library/Application\ Support/midiStroke  # Mapping MIDI note to key combo
   Library/Application\ Support/Sublime\ Text\ 3/Packages/User
   Library/Fonts
-  Library/Keychains
   Library/Preferences
   Library/Services  # Automator scripts (e.g. quick actions)
   Library/Thunderbird/Profiles
   Movies
   Music
-  # Photos
   Pictures/Photo\ Booth\ Library
   Pictures/Photos\ Library.photoslibrary
   Projects
