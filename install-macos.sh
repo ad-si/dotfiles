@@ -101,21 +101,25 @@ dockutil --add /Applications/Affinity\ Photo.app
 dockutil --add /Applications/Affinity\ Designer.app
 dockutil --add /Applications/Perspec.app
 
-dockutil --add /Applications/WhatsApp.app
-dockutil --add /Applications/Element.app
+dockutil --add /Applications/zoom.us.app
+dockutil --add /Applications/Signal.app
 dockutil --add /Applications/Telegram.app
 dockutil --add /Applications/Discord.app
+dockutil --add /Applications/Element.app
+dockutil --add /Applications/WhatsApp.app
 dockutil --add /Applications/Slack.app
 
-dockutil --add /Applications/Brave\ Browser.app
 dockutil --add /Applications/Firefox.app
+dockutil --add /Applications/Brave\ Browser.app
 
 dockutil --add /Applications/Thunderbird.app
 dockutil --add /Applications/Calendar.app
+dockutil --add /Applications/Notion.app
+dockutil --add /Applications/Reminders.app
 
+dockutil --add /Applications/Godot.app
+dockutil --add /Applications/Docker\ Desktop.app
 dockutil --add /Applications/Sublime\ Merge.app
 dockutil --add /Applications/Sublime\ Text.app
 dockutil --add /Applications/Visual\ Studio\ Code.app
-dockutil --add /Applications/iTerm2.app
-
-dockutil --add /Applications/Notion.app
+dockutil --add /Applications/iTerm.app
