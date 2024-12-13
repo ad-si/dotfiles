@@ -30,7 +30,7 @@ fi
 git config --global gpg.program "$(which gpg)"
 
 ./bin/setup-docker
-# ./bin/setup-cargo
+./bin/setup-rust-and-cargo
 # ./bin/setup-go
 ./bin/setup-node-packages
 

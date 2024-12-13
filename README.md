@@ -19,7 +19,7 @@
 ## Manual Steps
 
 Copy all relevant files from backup to new Machine.
-(Check out [./bin/backup] for a list of all files.)
+(Check out [bin/backup](./bin/backup) for a list of all files.)
 
 
 ### MacOS
@@ -27,43 +27,66 @@ Copy all relevant files from backup to new Machine.
 #### System Preferences
 
 - General
-  - Automatically hide and show the menu bar
+  - Date & Time: Change date and time preferences
+    - Deactivate automatic setting of time zone by location
+    - Change time zone to UTC:
+        `sudo ln -sf /usr/share/zoneinfo/UTC /etc/localtime`
+        or
+        `sudo systemsetup -settimezone GMT` (will error, but still work)
+    - Display the time with seconds
+    - Use a 24-hour clock
+    - Show the day of the week
+    - Show date
+
+  - Language & Region
+    - Preferred languages: English (US)
+    - First day of the week: Monday
+    - Calendar: ISO 8601
+    - Temperature: Celsius
+    - Advanced:
+      - General:
+        - Grouping: Space
+        - Decimal: .
+        - Measurement: Metric
+      - Dates:
+        - Short: y-MM-dd
+        - Medium: y-MM-dd
+        - Long: y-MM-dd
+        - Full: y-MM-dd, D', W'w, EEEE
+      - Times:
+        - Short: HH:mmZZZZZ
+        - Medium: HH:mm:ssZZZZZ
+        - Long: HH:mm:ssZZZZZ
+        - Full: HH:mm:ss.SSSZZZZZ
+
+- Appearance
   - Show scroll bars: When scrolling
+  - Click in the scroll bar to: Jump to the spot that's clicked
 
-- Date & Time: Change date and time preferences
-  - Deactivate automatic setting of time zone by location
-  - Change time zone to UTC:
-      `sudo ln -sf /usr/share/zoneinfo/UTC /etc/localtime`
-      or
-      `sudo systemsetup -settimezone GMT`
-  - Display the time with seconds
-  - Use a 24-hour clock
-  - Show the day of the week
-  - Show date
+- Control Center
+  - Battery: Show Percentage
+  - Keyboard Brightness: Show in Menu Bar
+  - Spotlight: Don't show in menu bar
 
-- Language & Region
-  - Preferred languages: English (US)
-  - First day of the week: Monday
-  - Calendar: ISO 8601
-  - Temperature: Celsius
-  - Advanced:
-    - General:
-      - Grouping: Space
-      - Decimal: .
-      - Measurement: Metric
-    - Dates:
-      - Short: y-MM-dd
-      - Medium: y-MM-dd
-      - Long: y-MM-dd
-      - Full: y-MM-dd, D', W'w, EEEE
-    - Times:
-      - Short: HH:mmZZZZZ
-      - Medium: HH:mm:ssZZZZZ
-      - Long: HH:mm:ssZZZZZ
-      - Full: HH:mm:ss.SSSZZZZZ
+- Desktop & Dock
+  - Widgets
+    - Default web browser: Brave
+
+  - Windows
+    - Tiled windows have margins: Off
+
+  - Mission Control
+    - Automatically rearrange Spaces based on most recent use: Off
+    - Hot Corners
+      - Top Left: Put Display to Sleep Launchpad
+      - Top Right: -
+      - Bottom Left: Desktop
+      - Bottom Right: Mission Control
 
 - Displays:
   - Change primary display
+  - Set resolution to "More Space"
+  - Night Shift: Off
 
 - Keyboard
   - Keyboard
@@ -72,9 +95,18 @@ Copy all relevant files from backup to new Machine.
     - Press 🌐 key to Start Dictation
     - Keyboard navigation ☑️
     - Keyboard Shortcuts
-      - Show Spotlight search "⌥ Space"
-      - Overwrite default shortcuts
-        ![](./images/overwrite_shortcut.png)
+      - Launchpad & Dock
+        - Turn Dock hiding on/off: Off
+      - Display
+        - Disable all
+      - Input Sources
+        - Select the previous input source: Off
+      - Presenter Overlay
+        - Disable all
+      - Spotlight
+        - Show Spotlight search "^ Space"
+      - App shortcuts
+          ![](./images/overwrite_shortcut.png)
       - Modifier Keys
         - Remap Caps Lock key to `^ Control`
   - Text Input
@@ -88,30 +120,68 @@ Copy all relevant files from backup to new Machine.
         - Add period with double-space
         - Use smart quotes and dashes
 
-- Mission Control > Hot Corners
-  - Top Left: Put Display to Sleep Launchpad
-  - Top Right: -
-  - Bottom Left: Desktop
-  - Bottom Right: Mission Control
 
-- Calendar:
-  - Start week on: Monday
+#### Apps
+
+##### Calendar
+
+- General:
   - Scroll in week view by: Week, Stop on Today
+- Accounts: Add all accounts
+- Advanced:
+  - Turn on time zone support
+  - Show week numbers
 
-- Finder
-  - Preferences
-    - Show nothing on the Desktop
-    - New Finder windows show \<username\>
-    - Sidebar:
-        Show Applications, Desktop, Downloads,
-        Home, iCloud Drive, All Locations, Tags
-    - Advanced:
-      - Show all filename extensions
-      - Show warning before removing from iCloud Drive
-      - Show warning before emptying the Trash
-      - Remove items from the Trash after 30 days
-      - When performing a search: Search the Current Folder
-  - Sort directories in "Favorites" list
+
+##### Finder
+
+- Preferences
+  - Show nothing on the Desktop
+  - New Finder windows show \<username\>
+  - Sync Desktop & Documents folders
+  - Sidebar:
+      - Applications
+      - Downloads
+      - \<username\>
+      - iCloud Drive
+      - Desktop
+      - Locations: All
+      - Tags
+  - Advanced:
+    - Show all filename extensions
+    - Show warning before removing from iCloud Drive
+    - Show warning before emptying the Trash
+    - Remove items from the Trash after 30 days
+    - When performing a search: Search the Current Folder
+- Sidebar:
+  - Sort directories in "Favorites" section
+
+
+##### iTerm
+
+General > Settings:
+
+- Load preferences from a custom folder or URL: `~/dotfiles/terminal`
+- Save changes to folder when iTerm2 quits
+- Set Fish as the default shell:
+    ```sh
+    echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+    chsh -s /opt/homebrew/bin/fish
+    ```
+    More details: https://fishshell.com/docs/current/#default-shell
+
+
+##### Hammerspoon
+
+- Deactivate all settings except:
+  - Launch Hammerspoon at login
+  - Show Menu Icon
+- Enable Accessibility
+
+
+##### Logic Pro X
+
+- Download all additional content
 
 
 #### Scripts
@@ -137,30 +207,40 @@ const tools = Library('dotfiles/tools')
 ```
 
 
-### General
+#### General
+
+With descending priority:
 
 - Set GitHub API token for Homebrew
 - Install TaskLite
-- Printer driver software
-- Install TexLive packages after installation of MacTeX
 - Run `npm install` in the dotfiles directory
 - Add Hunspell dictionaries after installation
     (e.g. https://github.com/titoBouzout/Dictionaries to
     `~/dotfiles/dictionaries` or to
     `~/Library/Application Support/Sublime Text 3/Packages`)
-- Set default apps for file types with https://github.com/moretension/duti
-- Install https://github.com/purescript/psc-package
-- Install https://github.com/jdek/openwith
-- Install and setup Brother QL-810W label printer
-- Install languages for Tesseract (e.g.
-  https://github.com/tesseract-ocr/tessdata_best/blob/master/deu.traineddata?raw=true)
-  to `/usr/local/Cellar/tesseract/4.0.0/share/tessdata`
+- Install languages for Tesseract
+    (e.g. https://github.com/tesseract-ocr/tessdata_best/blob/master/deu.traineddata?raw=true)
+    to `/usr/local/Cellar/tesseract/4.0.0/share/tessdata`
+- Printer driver software
+  - Install and setup Brother QL-810W label printer
+
+
+### Git
+
+```sh
+gh auth login
+```
 
 
 ### Brave
 
-1. Go to [brave://sync](brave://sync)
+1. Set Brave as default browser
+    (Should pop up when opening Brave for the first time)
+1. Go to [Brave Sync](brave://settings/braveSync/setup)
 1. Join Sync Chain
+1. Disable swipe history navigation:
+    `defaults write com.brave.Browser AppleEnableSwipeNavigateWithScrolls -bool FALSE`
+1. Set "Page zoom" to 90%
 
 Installed extensions should then include
 Midnight Lizard, Automatric Metric Conversion, …
@@ -175,42 +255,43 @@ Midnight Lizard, Automatric Metric Conversion, …
 ### Dropbox
 
 Sign in and enable sync for important directories.
+Especially `Settings`, which is needed for Sublime Text/Merge sync.
 
 
-### iTerm
+### GPG
 
-General > Preferences:
-
-- Load preferences from a custom folder or URL: `~/dotfiles/terminal`
-- Save changes to folder when iTerm2 quits
-
-
-### Gopass
-
-1. Clone https://github.com/ad-si/password-store with GitHub CLI:
-    `gh repo clone ad-si/password-store` and move to `~/.password-store`.
-1. If password on gpg key => `brew install pinentry-mac`.
-1. Then add to gpg-agent config (skip if .gnupg was copied from backup):
+1. `brew install pinentry-mac`
+1. Then add to gpg-agent config (skip if `.gnupg` was copied from backup):
     ```sh
     echo "pinentry-program /opt/homebrew/bin/pinentry-mac" \
       >> ~/.gnupg/gpg-agent.conf
     ```
-1. Restart shell afterwards.
+1. `killall gpg-agent`
+1. Restart shell
+
+
+### Gopass
+
+1. Make sure GPG is set up correctly.
+1. Clone https://github.com/ad-si/password-store with GitHub CLI:
+    `gh repo clone ad-si/password-store` and move to `~/.password-store`.
 1. `gopass fsck`
 
 
 ### Sublime Text
 
-- Copy preferences from backup
+Synced via Dropbox as described in https://packagecontrol.io/docs/syncing
+
 - Activate Sublime Text `gopass sublimetext.com/license-key`
 - Install Package Control
-    (will then automatically load all packages from the backup)
+    (will then automatically install all packages from the synced list)
 
 
 ### Sublime Merge
 
-- Copy preferences from backup
 - Enter license from Email
+- Copy preferences from backup
+  - Theme: Auto
 
 
 ### Visual Studio Code
@@ -263,16 +344,11 @@ Log in
 - Add all accounts
 
 
-### Logic Pro X
-
-- Download all additional content
-
-
 ## TODO
 
+- iterm settings
+- Setup git (via `gh`?)
 - Use https://github.com/Homebrew/homebrew-bundle
 - Backup fish history
-- Disable swipe history navigation in Brave:
-  `defaults write com.brave.Browser AppleEnableSwipeNavigateWithScrolls -bool FALSE`
 - Backup ngrok config
 - Install Stack and HLS with ghcup
