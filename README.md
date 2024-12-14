@@ -60,6 +60,7 @@ Copy all relevant files from backup to new Machine.
         - Full: HH:mm:ss.SSSZZZZZ
 
 - Appearance
+  - Light Mode (Use Nightfall to switch between light and dark mode)
   - Show scroll bars: When scrolling
   - Click in the scroll bar to: Jump to the spot that's clicked
 
@@ -280,18 +281,20 @@ Especially `Settings`, which is needed for Sublime Text/Merge sync.
 
 ### Sublime Text
 
-Synced via Dropbox as described in https://packagecontrol.io/docs/syncing
-
-- Activate Sublime Text `gopass sublimetext.com/license-key`
+- Activate installation
+  - Get license key with `gopass sublimetext.com/license-key`
+  - Apply under Help > Enter License
 - Install Package Control
     (will then automatically install all packages from the synced list)
+- Sync via Dropbox as described in https://packagecontrol.io/docs/syncing
 
 
 ### Sublime Merge
 
-- Enter license from Email
-- Copy preferences from backup
-  - Theme: Auto
+- Activate installation
+  - Get license key from Passwords app
+  - Apply under Help > Enter License
+- Sync via Dropbox as described in https://packagecontrol.io/docs/syncing
 
 
 ### Visual Studio Code
