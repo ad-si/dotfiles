@@ -1,0 +1,23 @@
+#!/usr/bin/env dash
+
+# Create a hotfix branch from the main/master branch
+# Usage: git hotfix [nameOfHotfixBranch]
+# If nameOfHotfixBranch is not provided, the default name is "username/hotfix"
+
+nameOfHotfixBranch="$(whoami)/${1:-hotfix}"
+nameOfMainBranch=$( \
+  git symbolic-ref refs/remotes/origin/HEAD \
+  | sed 's@^refs/remotes/origin/@@' \
+)
+
+git stash --message "Changes for hotfix branch \"$nameOfHotfixBranch\""
+
+# Delete hotfix branch if it already exists
+if git show-ref --verify --quiet "refs/heads/$nameOfHotfixBranch"
+then git branch -d "$nameOfHotfixBranch"
+fi
+
+# Create hotfix branch from main branch
+git switch --create "$nameOfHotfixBranch" "$nameOfMainBranch"
+
+git stash pop
