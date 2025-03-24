@@ -33,11 +33,13 @@ files=$(\
     --extension js \
     --extension json \
     --extension jsx \
+    --extension lua \
     --extension md \
     --extension mustache \
     --extension php \
     --extension pug \
     --extension sass \
+    --extension scad \
     --extension sh \
     --extension styl \
     --extension svg \

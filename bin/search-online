@@ -96,8 +96,11 @@ case "$command" in
   "npm") # npm
     url="https://www.npmjs.com/search?q=$query"
     ;;
+  "pe") # Perplexity
+    url="https://www.perplexity.ai/search?q=$query"
+    ;;
   "ph") # Phind
-    url="https://phind.herokuapp.com/search?q=$query"
+    url="https://www.phind.com/search?q=$query"
     ;;
   "pur") # Pursuit
     url="https://pursuit.purescript.org/search?q=$query"

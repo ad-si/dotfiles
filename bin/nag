@@ -1,7 +1,9 @@
 #! /bin/dash
 
-while true
+count=0
+while test $count -lt 100
 do
   say "Get back to work!"
   sleep 1
+  count=$((count + 1))
 done

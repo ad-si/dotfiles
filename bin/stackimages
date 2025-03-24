@@ -3,7 +3,7 @@
 # Check if the correct number of arguments is provided
 if test "$#" -lt 2
 then
-  echo "Usage: $0 <image_1> <image_2> [<gap_size>]"
+  echo "Usage: $(basename "$0") <image_1> <image_2> [<gap_size>]"
   exit 1
 fi
 
@@ -13,7 +13,7 @@ gap_size="$3"
 
 output_image="stacked.png"
 
-magick convert "$input_image1" "$input_image2" \
+magick "$input_image1" "$input_image2" \
   -size "${gap_size:-50}x${gap_size:-50}" xc:white +swap \
   -gravity Center -background white -append \
   "$output_image"

@@ -6,4 +6,6 @@ then
   exit 1
 fi
 
-open "/Applications/$*.app"
+open -a "$*.app" 2>/dev/null || \
+find /Applications -maxdepth 1 -iname "*$**.app" \
+  -exec sh -c 'echo "Opening $1 …" && open -a "$1"' _ {} \;
