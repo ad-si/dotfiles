@@ -1,0 +1,81 @@
+[
+  {
+    "Command": [],
+    "Constant": [],
+    "Constructor": [],
+    "Deprecated": [],
+    "Field": [],
+    "Function": [],
+    "Method": [
+      {
+        "def": "HammerTime:popup()",
+        "desc": "Popup an alert or notification when time is up.",
+        "doc": "Popup an alert or notification when time is up.\n\nParameters:\n * None\n\nReturns:\n * None",
+        "name": "popup",
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "HammerTime:popup()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "HammerTime:start()",
+        "desc": "Starts the timer and displays the countdown in a menubar item",
+        "doc": "Starts the timer and displays the countdown in a menubar item\n\nParameters:\n * resume - boolean when true resumes countdown at current value of self.timeLeft\n\nReturns:\n * None",
+        "name": "start",
+        "parameters": [
+          " * resume - boolean when true resumes countdown at current value of self.timeLeft"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "HammerTime:start()",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "Variable": [],
+    "desc": "HammerTime -- a Timer for the menubar",
+    "doc": "HammerTime -- a Timer for the menubar\n\nDownload: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/HammerTime.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/HammerTime.spoon.zip)\n",
+    "items": [
+      {
+        "def": "HammerTime:popup()",
+        "desc": "Popup an alert or notification when time is up.",
+        "doc": "Popup an alert or notification when time is up.\n\nParameters:\n * None\n\nReturns:\n * None",
+        "name": "popup",
+        "parameters": [
+          " * None"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "HammerTime:popup()",
+        "stripped_doc": "",
+        "type": "Method"
+      },
+      {
+        "def": "HammerTime:start()",
+        "desc": "Starts the timer and displays the countdown in a menubar item",
+        "doc": "Starts the timer and displays the countdown in a menubar item\n\nParameters:\n * resume - boolean when true resumes countdown at current value of self.timeLeft\n\nReturns:\n * None",
+        "name": "start",
+        "parameters": [
+          " * resume - boolean when true resumes countdown at current value of self.timeLeft"
+        ],
+        "returns": [
+          " * None"
+        ],
+        "signature": "HammerTime:start()",
+        "stripped_doc": "",
+        "type": "Method"
+      }
+    ],
+    "name": "HammerTime",
+    "stripped_doc": "\nDownload: [https://github.com/Hammerspoon/Spoons/raw/master/Spoons/HammerTime.spoon.zip](https://github.com/Hammerspoon/Spoons/raw/master/Spoons/HammerTime.spoon.zip)\n",
+    "submodules": [],
+    "type": "Module"
+  }
+]

@@ -9,10 +9,20 @@ spoon.ShiftIt:bindHotkeys({
 hs.loadSpoon("ClipboardTool")
 spoon.ClipboardTool:start()
 
-micMute = hs.loadSpoon("MicMute")
 
--- TODO: Add https://www.hammerspoon.org/Spoons/MusicAppMediaFix.html
+--[[-------------------------- Time Tracking ---------------------------------]]
+-- Inspired by https://github.com/Hammerspoon/Spoons/tree/master/Source/Cherry.spoon
+hs.loadSpoon("HammerTime")
+spoon.HammerTime:start()
 
+
+--[[-------------------------- MicMute ---------------------------------------]]
+--[[ TODO: Works, but I couldn't get into the habit of using it yet ]]
+-- micMute = hs.loadSpoon("MicMute")
+
+
+--[[-------------------------- MIDI Keyboard ---------------------------------]]
+--[[ TODO: Add https://www.hammerspoon.org/Spoons/MusicAppMediaFix.html ]]
 -- MIDI devices are normally
 -- 1 Network
 -- 2 Bluetooth
