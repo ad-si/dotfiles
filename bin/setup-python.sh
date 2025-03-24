@@ -4,4 +4,6 @@ set -eufo pipefail
 
 uv python install 3.10
 
-ut tool install aider-chat
+uv tool install \
+  aider-chat \
+  pdfCropMargins

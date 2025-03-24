@@ -91,8 +91,6 @@ export EDITOR=micro
 # added by travis gem
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
-source "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
-
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -114,6 +112,3 @@ source "$HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br"
 if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh";
 then . "$HOME/.nix-profile/etc/profile.d/nix.sh";
 fi
-
-source /Users/adrian/Library/Application\ Support/org.dystroy.broot/launcher/bash/br
-. "$HOME/.cargo/env"

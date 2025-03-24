@@ -1,5 +1,11 @@
 # Dotfiles
 
+All configuration files and scripts
+for setting up a new macOS or Linux machine.
+
+Check out [phone.md](./phone.md) for setup instructions on a new phone.
+
+
 ## Structure
 
 * `bin` — custom scripts
@@ -128,10 +134,11 @@ Copy all relevant files from backup to new Machine.
 
 - General:
   - Scroll in week view by: Week, Stop on Today
-- Accounts: Add all accounts
+- Accounts: Add all accounts, but disable Mail for them
 - Advanced:
   - Turn on time zone support
   - Show week numbers
+- Enable notifications
 
 
 ##### Finder
@@ -217,8 +224,7 @@ With descending priority:
 - Run `npm install` in the dotfiles directory
 - Add Hunspell dictionaries after installation
     (e.g. https://github.com/titoBouzout/Dictionaries to
-    `~/dotfiles/dictionaries` or to
-    `~/Library/Application Support/Sublime Text 3/Packages`)
+    `~/dotfiles/dictionaries`)
 - Install languages for Tesseract
     (e.g. https://github.com/tesseract-ocr/tessdata_best/blob/master/deu.traineddata?raw=true)
     to `/usr/local/Cellar/tesseract/4.0.0/share/tessdata`
@@ -230,6 +236,18 @@ With descending priority:
 
 ```sh
 gh auth login
+```
+
+
+### OpenJDK
+
+Is installed by Homebrew,
+but for the system Java wrappers to find `openjdk`, symlink it with:
+
+```sh
+sudo ln -sfn \
+  /opt/homebrew/opt/openjdk/libexec/openjdk.jdk \
+  /Library/Java/JavaVirtualMachines/openjdk.jdk
 ```
 
 
@@ -287,6 +305,12 @@ Especially `Settings`, which is needed for Sublime Text/Merge sync.
 - Install Package Control
     (will then automatically install all packages from the synced list)
 - Sync via Dropbox as described in https://packagecontrol.io/docs/syncing
+- Set up GitHub Copilot: https://packagecontrol.io/packages/LSP-copilot#Setup
+- Install additional dictionaries for spell checking:
+    ```sh
+    cd ~/Library/Application\ Support/Sublime\ Text/Packages/
+    git clone https://github.com/titoBouzout/Dictionaries
+    ```
 
 
 ### Sublime Merge
@@ -302,14 +326,20 @@ Especially `Settings`, which is needed for Sublime Text/Merge sync.
 Sign in via GitHub to sync preferences.
 
 
+### Modern CSV
+
+Open app and enter license key from Passwords app.
+
+
 ### Thunderbird
 
-Copy backup to `~/Library/Thunderbird`
+Follow following instructions to migrate the data folder to the new computer:
+https://support.mozilla.org/en-US/kb/moving-thunderbird-data-to-a-new-computer
 
 
 ### Element
 
-Log in to home server `matrix.feram.io`.
+Log in to home server `synapse.feram.io`.
 
 
 ### Telegram

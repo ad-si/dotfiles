@@ -1,4 +1,1 @@
 source ~/.bashrc
-
-source /Users/adrian/Library/Application\ Support/org.dystroy.broot/launcher/bash/br
-. "$HOME/.cargo/env"

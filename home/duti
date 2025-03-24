@@ -2,6 +2,8 @@
 #
 # Blank lines and lines beginning with a '#' are ignored
 #
+# Activate with: `duti ./duti`
+#
 # Documentation:
 # $ man duti
 #
@@ -28,8 +30,8 @@ com.sublimetext.4     md                    all
 
 ########## DATA FILES ##########
 
-com.pfojenterprises.Modern-CSV  csv         all
-com.pfojenterprises.Modern-CSV  tsv         all
+net.galliumdigital.Modern-CSV  csv         all
+net.galliumdigital.Modern-CSV  tsv         all
 
 com.sublimetext.4               log         all
 com.sublimetext.4               xml         all
@@ -54,6 +56,8 @@ com.microsoft.VSCode            hs          all
 com.microsoft.VSCode            js          all
 com.microsoft.VSCode            json        all
 com.microsoft.VSCode            jsx         all
+com.microsoft.VSCode            md          all
+com.microsoft.VSCode            purs        all
 com.microsoft.VSCode            rs          all
 com.microsoft.VSCode            toml        all
 com.microsoft.VSCode            ts          all

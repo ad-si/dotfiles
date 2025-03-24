@@ -92,7 +92,7 @@ brews=(
   # kubectl
   # lilypond  # Music notation software
   lychee  # Link checker
-  mas
+  mas  # Mac App Store command line interface
   mdbook # Create books from markdown files
   # micro
   # mitmproxy  # Intercept, modify, replay, or save HTTP traffic
@@ -105,6 +105,7 @@ brews=(
   ollama
   # optipng
   ocrmypdf  # Add an OCR text layer to scanned PDF files
+  openjdk  # Java development kit (Necessary for many programs)
   optipng  # PNG optimizer
   # osx-cpu-temp
   pandoc
@@ -113,7 +114,7 @@ brews=(
   pinentry-mac  # Needed for gopass
   pkg-config  # Necessary for stack
   # platypus  # CLI tool only (GUI gets installed with brew cask)
-  # poppler
+  poppler  # PDF rendering library (Necessary for `rga`)
   rclone  # Rsync for cloud storage
   rga  # Ripgrep wrapper for PDFs, E-Books, Office documents, zip, tar.gz, etc.
   ripgrep
@@ -123,6 +124,7 @@ brews=(
   # shellcheck  # Linter for bash scripts
   stack  # Haskell tool stack
   sqlite  # SQLite database
+  tcl-tk # Tcl/Tk needed for pdfCropMargins
   tealdeer  # Fast implementation of tldr in Rust
   # tectonic # LaTeX engine
   # tokei  # Display statistics about code
@@ -223,8 +225,8 @@ casks=(
   # libreoffice
   # lm-studio
   logitech-options
-  mas  # Mac App Store command line interface
   # microsoft-remote-desktop
+  modern-csv  # Desktop app for viewing and editing CSVs
   # mongodb-compass
   # musescore
   nightfall  # Menu bar app to switch between light and dark mode
@@ -259,7 +261,7 @@ casks=(
   telegram
   # texstudio
   # textmate
-  thunderbird
+  thunderbird@esr  # Email client (Extended Support Release)
   # tor-browser
   # tunnelblick BUGGY
   # universal-control FIXME: missing

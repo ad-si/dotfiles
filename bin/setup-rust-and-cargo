@@ -7,6 +7,9 @@ rustup-init
 # Use helper to install binaries instead of building from source
 brew install cargo-binstall
 
+# Enable topgrade to update Rust tools
+cargo install cargo-update
+
 packages=(
   # av1an  # AV1 codec analysis tool
   # binstall  # Install binaries from a GitHub release
