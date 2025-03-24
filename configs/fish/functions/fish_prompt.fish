@@ -10,32 +10,50 @@ function printPagesPerDay
     printf ' %s p | %s p/d ' (math "round($writtenPages * 10)/10") $pagesPerDay
 end
 
+function printUser
+    set -l userId (whoami)
+    if not string match -q adrian $userId
+        set_color cyan
+        printf ' %s' (whoami)
+    end
+end
+
+function printHostname
+    set -l hostShort (hostname | cut -d . -f 1)
+    if not string match -q "Adrians-MacBook*" $hostShort
+        set_color black
+        printf '@'
+
+        set_color red
+        printf '%s ' $hostShort
+    end
+end
 
 function printTasksStatus
     if command -sq tasklite
-        set --local taskCount (tasklite runsql \
+        set --local inboxCount (tasklite runsql \
       "select count(*) from tasks_view where closed_utc is null and tags is null" \
       | tail -n 1)
 
-        set --local openTasks (tasklite count state:open)
+        printf ' 📥 %s ' $inboxCount
+
+        ##### Alternatives #####
+
+        # set --local openTasks (tasklite count state:open)
+        # printf ' 📥 %s | ☑️ %s ' $inboxCount $openTasks
 
         # set --local taskDesc (tasklite next \
         #   | grep '^body: ' \
         #   | cut -c 7- \
         #   | sed -E 's/(.{40})(.{1,})$/\1…/')
-
-        # printf ' %s | %s ' $taskCount # $taskDesc
-
-        printf ' 📥 %s | ☑️ %s ' $taskCount $openTasks
+        # printf ' %s | %s ' $inboxCount # $taskDesc
     end
 end
-
 
 function checkIfDarkMode
     set -l interfaceStyle (defaults read -g AppleInterfaceStyle 2> /dev/null)
     test -n "$interfaceStyle" -a "$interfaceStyle" = Dark
 end
-
 
 function fish_prompt --description 'Write out the prompt'
     set -l last_status $status
@@ -67,14 +85,9 @@ function fish_prompt --description 'Write out the prompt'
     set_color --background "$bgColorMuted" "$bgColor"
     printf '\ue0b0'
 
-    set_color cyan
-    printf ' %s' (whoami)
+    printUser
 
-    set_color black
-    printf '@'
-
-    set_color red
-    printf '%s ' (hostname | cut -d . -f 1)
+    printHostname
 
     # Gray Arrow End
     set_color --background "$bgColor" "$bgColorMuted"
