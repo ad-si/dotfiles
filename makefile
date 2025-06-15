@@ -6,3 +6,10 @@ help: makefile
 .PHONY: test
 test:
 	shelltest tests
+
+
+.PHONY: build
+build:
+	docker build \
+		--tag ad-si-ubuntu:latest \
+		- < dockerfiles/ubuntu.dockerfile

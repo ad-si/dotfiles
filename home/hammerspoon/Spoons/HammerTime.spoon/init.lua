@@ -77,13 +77,13 @@ function obj:updateTimerString()
   self.menu:setTitle(timerString)
 
   local items = {
+    self.timerRunning
+      and { title = "⏸️ Pause",  fn = function() self:pause() end }
+      or  { title = "▶️ Resume", fn = function() self:start(true) end },
     { title = "+10 min", fn = function() self:addTime(hs.timer.minutes(10)) end },
     { title = "+60 min", fn = function() self:addTime(hs.timer.minutes(60)) end },
     { title = "-10 min", fn = function() self:addTime(hs.timer.minutes(-10)) end },
     { title = "-60 min", fn = function() self:addTime(hs.timer.minutes(-60)) end },
-    self.timerRunning
-      and { title = "⏸️ Pause",  fn = function() self:pause() end }
-      or  { title = "▶️ Resume", fn = function() self:start(true) end },
     { title = "⏹️ Stop",  fn = function() self:reset() end }
   }
   self.menu:setMenu(items)

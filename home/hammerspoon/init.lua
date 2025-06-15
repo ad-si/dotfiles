@@ -6,8 +6,11 @@ spoon.ShiftIt:bindHotkeys({
   down = { { 'ctrl', 'alt', 'cmd' }, 'j' },
 })
 
-hs.loadSpoon("ClipboardTool")
-spoon.ClipboardTool:start()
+
+--[[------------------------ Clipboard Management ----------------------------]]
+--[[ TODO: Works, but https://setapp.com/apps/paste is better ]]
+-- hs.loadSpoon("ClipboardTool")
+-- spoon.ClipboardTool:start()
 
 
 --[[-------------------------- Time Tracking ---------------------------------]]

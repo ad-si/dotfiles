@@ -42,7 +42,7 @@ defaults write com.apple.LaunchServices/com.apple.launchservices.secure \
 echo "===== Configure the Dock ====="
 
 echo "Remove default app icons"
-defaults write com.apple.dock persistent-apps -array
+defaults write com.apple.dock persistent-apps -array # empty
 
 echo "Set icon size to 48px"
 defaults write com.apple.dock tilesize -int 48px
@@ -55,6 +55,9 @@ defaults write com.apple.dock autohide -bool true
 
 echo "Set animation speed to 0.5s"
 defaults write com.apple.dock autohide-time-modifier -float 0.5
+
+echo "Disable showing suggested and recent apps in Dock"
+defaults write com.apple.dock show-recents -bool no
 
 echo "Restart Dock"
 killall Dock

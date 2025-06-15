@@ -41,6 +41,7 @@
             fclones  # Find duplicate files
             fd
             fdupes  # Find duplicate files (Use fclones instead)
+            findutils  # GNU find utilities
             fish
             flac  # Tools for encoding & decoding FLAC lossless audio files
             flyctl  # Fly.io CLI
