@@ -1,4 +1,29 @@
-#! /usr/bin/env bash
+#! /usr/bin/env dash
 
-wolframscript -c "$*"
-# woxi eval "$*"
+if test -n "$WOXI_USE_WOLFRAM"
+then
+  if test "$(printf "%s" "$1" | grep -q '^FullForm'; echo $?)" -eq 0
+  then wolframscript -charset UTF-8 -format OutputForm -c "$*"
+  else wolframscript -charset UTF-8 -c "$*"
+  fi
+
+elif test -n "$WOXI_USE_MATHICS"
+then
+  mathicsscript -c "$*"
+
+elif test -n "$WOXI_USE_HASKRAM"
+then
+  haskram eval "$*"
+
+# TODO: Add support for https://github.com/coffeemug/ts-wolfram
+# elif test -n "$WOXI_USE_TS"
+# then
+#   ts-wolfram eval "$*"
+
+else
+  # Check if we are in the Woxi project directory
+  if test "$(pwd | grep -E "^$HOME/Dropbox/Projects/Woxi(/|$)")"
+  then cargo run --quiet -- eval "$*"
+  else woxi eval "$*"
+  fi
+fi

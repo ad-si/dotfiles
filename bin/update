@@ -2,5 +2,10 @@
 
 topgrade \
   --no-retry \
+  --disable bun \
+  --disable cargo \
   --disable go \
-  --disable pnpm
+  --disable pnpm \
+  --disable uv
+
+nix profile upgrade nix-config

@@ -1,52 +1,72 @@
-#! /usr/local/bin/bun
+#! /usr/bin/env bun
 
 const SunCalc = require("suncalc")
 
 const now = new Date()
 const nowTimeString = now.toISOString().slice(-13, -8)
-const sunData = SunCalc.getTimes(now, 52.397, 13.077)
-const daytimeDuration = sunData.sunset - sunData.sunrise
-const daytimeDuration24 = new Date(daytimeDuration).toISOString().slice(-13, -8)
-const passedDaytime = now - sunData.sunrise
-const percentageOfDaytime = Math.trunc((passedDaytime / daytimeDuration) * 100)
+const locations = [
+  {
+    name: "Frankfurt am Main",
+    coord: [52.397, 13.077]
+  },
+  {
+    name: "Johannesburg",
+    coord: [-26, 28]
+  },
+]
 
 function getTime(date) {
   return date.toISOString().slice(-13, -8)
 }
 
-const entries = [
-  {
-    type: "sunrise",
-    time: getTime(sunData.sunrise),
-    icon: "🌅",
-  },
-  {
-    type: "solarNoon",
-    time: getTime(sunData.solarNoon),
-    icon: "🌞",
-  },
-  {
-    type: "sunset",
-    time: getTime(sunData.sunset),
-    icon: "🌇",
-  },
-  {
-    type: "nadir",
-    time: getTime(sunData.nadir),
-    icon: "🌑",
-  },
-  {
-    type: "current",
-    time:
-      nowTimeString +
-      ` (${percentageOfDaytime}% of ${daytimeDuration24} h daytime)`,
-    icon: "🕓",
-  },
-]
+let text = ""
 
-const text = entries
-  .sort((entryA, entryB) => entryA.time.localeCompare(entryB.time))
-  .map((entry) => entry.icon + "   " + entry.time)
-  .join("\n")
+locations.forEach(location => {
+  text += `Location: ${location.name}\n`
+
+  const sunData = SunCalc.getTimes(now, location.coord[0], location.coord[1])
+
+  const daytimeDuration = sunData.sunset - sunData.sunrise
+  const daytimeDuration24 = new Date(daytimeDuration).toISOString().slice(-13, -8)
+  const passedDaytime = now - sunData.sunrise
+  const percentageOfDaytime = Math.trunc((passedDaytime / daytimeDuration) * 100)
+
+  const entries = [
+    {
+      type: "sunrise",
+      time: getTime(sunData.sunrise),
+      icon: "🌅",
+    },
+    {
+      type: "solarNoon",
+      time: getTime(sunData.solarNoon),
+      icon: "🌞",
+    },
+    {
+      type: "sunset",
+      time: getTime(sunData.sunset),
+      icon: "🌇",
+    },
+    {
+      type: "nadir",
+      time: getTime(sunData.nadir),
+      icon: "🌑",
+    },
+    {
+      type: "current",
+      time:
+        nowTimeString +
+        ` (${percentageOfDaytime}% of ${daytimeDuration24} h daytime)`,
+      icon: "🕓",
+    },
+  ]
+
+  text += entries
+    .sort((entryA, entryB) => entryA.time.localeCompare(entryB.time))
+    .map((entry) => entry.icon + "   " + entry.time)
+    .join("\n")
+
+  text += "\n\n"
+})
 
 process.stdout.write(text + "\n")

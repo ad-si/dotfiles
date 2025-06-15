@@ -1,5 +1,3 @@
 #! /bin/dash
 
-gh copilot suggest \
-  --target=shell \
-  "$*"
+code --new-window "${@:-.}"

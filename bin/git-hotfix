@@ -2,22 +2,44 @@
 
 # Create a hotfix branch from the main/master branch
 # Usage: git hotfix [nameOfHotfixBranch]
-# If nameOfHotfixBranch is not provided, the default name is "username/hotfix"
+# If nameOfHotfixBranch is not provided,
+# the default name is "username/hotfix-YYYY-mm-ddtHHMM
 
-nameOfHotfixBranch="$(whoami)/${1:-hotfix}"
-nameOfMainBranch=$( \
-  git symbolic-ref refs/remotes/origin/HEAD \
-  | sed 's@^refs/remotes/origin/@@' \
+now=$(date -u "+%Y-%m-%dt%H%M")
+nameOfHotfixBranch="$(whoami)/${1:-hotfix-$now}"
+nameOfMainRemote=$( \
+  git rev-parse --abbrev-ref --symbolic-full-name @{u} \
+  | cut -d'/' -f1 \
 )
-
-git stash --message "Changes for hotfix branch \"$nameOfHotfixBranch\""
+nameOfMainBranch=$( \
+  git symbolic-ref "refs/remotes/$nameOfMainRemote/HEAD" \
+  | sed "s@^refs/remotes/$nameOfMainRemote/@@" \
+)
 
 # Delete hotfix branch if it already exists
 if git show-ref --verify --quiet "refs/heads/$nameOfHotfixBranch"
-then git branch -d "$nameOfHotfixBranch"
+then git branch -D "$nameOfHotfixBranch"
 fi
+
+# Check if working tree is dirty
+git diff-index --quiet HEAD
+isDirty=$?
+
+# If there are any changes, stash them
+if test "$isDirty" -ne 0
+then
+  git stash push --message "Changes for hotfix branch \"$nameOfHotfixBranch\""
+fi
+
+echo "Fetch latest commits for main branch …"
+git fetch origin "$nameOfMainBranch":"$nameOfMainBranch"
 
 # Create hotfix branch from main branch
 git switch --create "$nameOfHotfixBranch" "$nameOfMainBranch"
 
-git stash pop
+
+# If there were any changes, re-apply them
+if test "$isDirty" -ne 0
+then
+  git stash pop
+fi

@@ -1,4 +1,4 @@
-#! /opt/homebrew/bin/luajit
+#! /usr/bin/env luajit
 
 -- This is ~ 30% faster than `date -u …` on my machine
 print(os.date("%Y-%m-%d"))

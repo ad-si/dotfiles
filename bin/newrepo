@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-set -e
+set -eufo pipefail
 
 mkdir "$1"
 cd "$1"
@@ -8,5 +8,3 @@ touch readme.md
 git init
 printf "# %s\\n\\n" "${1^}" > readme.md
 edit readme.md:3
-
-set +e
