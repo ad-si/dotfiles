@@ -72,10 +72,12 @@ Copy all relevant files from backup to new Machine.
 
 - Control Center
   - Battery: Show Percentage
-  - Keyboard Brightness: Show in Menu Bar
+  - Keyboard Brightness: Show in Control Center
   - Spotlight: Don't show in menu bar
 
 - Desktop & Dock
+  - Show suggested and recent apps in Dock: Off
+
   - Widgets
     - Default web browser: Brave
 
@@ -126,6 +128,18 @@ Copy all relevant files from backup to new Machine.
         - Capitalize words automatically
         - Add period with double-space
         - Use smart quotes and dashes
+
+- Open at Login
+  - Brave
+  - Calendar
+  - Dropbox
+  - Google Drive
+  - Hammerspoon
+  - iTerm
+  - Slack
+  - Spotify
+  - Thunderbird
+  - WhatsApp
 
 
 #### Apps
