@@ -1,0 +1,13 @@
+#!/bin/dash
+
+touch flake.nix
+if test ! -e flake.lock
+then echo '{ "version": 7, "root": "root", "nodes": {} }' > flake.lock
+fi
+echo "use flake" >> .envrc
+echo ".direnv" >> .gitignore
+
+git add flake.* .envrc .gitignore
+
+direnv allow .
+direnv reload

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+# Copies a file to each immediate sub-directory of the current directory
+# if the file does not exist there yet.
+
+# File to copy
+SOURCE_FILE="$1"
+
+# Check if file was provided and exists
+if test -z "$SOURCE_FILE" || test ! -f "$SOURCE_FILE"
+then
+  echo "Usage: $0 <file-to-copy>"
+  echo "Error: File '$SOURCE_FILE' does not exist."
+  exit 1
+fi
+
+# Get the filename without the path
+FILENAME=$(basename "$SOURCE_FILE")
+
+# Loop over immediate subdirectories
+for dir in */
+do
+  if test -d "$dir"
+  then
+    # Check if file doesn't exist in the subdirectory
+    if test ! -f "$dir$FILENAME"
+    then
+      cp "$SOURCE_FILE" "$dir"
+      echo "Copied '$FILENAME' to '$dir'"
+    else
+      echo "Skipped '$dir': '$FILENAME' already exists"
+    fi
+  fi
+done

@@ -1,0 +1,64 @@
+#!/usr/bin/env dash
+
+# Convert an audio file or all files in a directory (non-recursively)
+# to FLAC format using ffmpeg.
+# If output file is not specified, it will be saved with the same name,
+# but with a `.flac` extension.
+
+if test -z "$1"
+then
+  echo "Usage: \"$0\" <input_path> [output_path]"
+  exit 1
+fi
+
+if ! command -v ffmpeg >/dev/null 2>&1
+then
+  echo "Error: ffmpeg is not installed or not in PATH."
+  exit 1
+fi
+
+convert_to_flac() {
+  input_file="$1"
+  output_file="$2"
+
+  if test -e "$output_file"
+  then
+    echo "Skipping: Output file already exists: $output_file"
+    return
+  fi
+
+  ffmpeg \
+    -i "$input_file" \
+    -c:a flac \
+    -compression_level 8 \
+    "$output_file"
+
+  if test $? -ne 0
+  then
+    echo "Error: ffmpeg failed to convert the file: $input_file"
+  else
+    echo "Converted: $input_file -> $output_file"
+  fi
+}
+
+if test -d "$1"
+then # Input is a directory, process all files in it (non-recursively)
+  for file in "$1"/*; do
+    if test -f "$file"
+    then
+      input_path_no_ext="${file%.*}"
+      output_path="${input_path_no_ext}.flac"
+      convert_to_flac "$file" "$output_path"
+    fi
+  done
+else # Input is a single file
+  if test ! -f "$1"
+  then
+    echo "Error: Input file does not exist or is not a regular file: $1"
+    exit 1
+  fi
+
+  input_path_no_ext="${1%.*}"
+  output_path="${2:-$input_path_no_ext.flac}"
+  convert_to_flac "$1" "$output_path"
+fi

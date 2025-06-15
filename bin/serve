@@ -1,0 +1,13 @@
+#! /bin/dash
+
+# Serve a directory on a rarely used port to avoid collisions
+
+port=5116
+
+open "http://localhost:$port"
+
+miniserve \
+  --port="$port" \
+  --spa \
+  --index index.html \
+  "${1:-.}"

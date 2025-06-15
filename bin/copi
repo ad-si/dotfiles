@@ -1,0 +1,12 @@
+#! /bin/dash
+
+# Check if `gh copilot` exists, otherwise install it
+if ! gh copilot >/dev/null 2>&1
+then
+  echo 'copilot sub-command needs to be installed first …'
+  gh extension install github/gh-copilot
+fi
+
+gh copilot suggest \
+  --target=shell \
+  "$*"

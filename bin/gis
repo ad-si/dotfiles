@@ -1,0 +1,55 @@
+#! /bin/dash
+
+# More powerful `git status` command that supports directories
+# containing several git repositories as well.
+
+color () {
+  case "$1" in
+    red)    colorCode="1;31" ;;
+    green)  colorCode="1;32" ;;
+    yellow) colorCode="1;33" ;;
+    blue)   colorCode="1;34" ;;
+    *)
+      printf "Invalid color code: %s\n" "$1"
+      exit 1
+      ;;
+  esac
+
+  shift
+  printf "\033[%sm%s\033[0m\n" "$colorCode" "$1"
+}
+
+gitDirs=$(find . -maxdepth 2 -type d -name '.git' | sort)
+
+# If only one git repository is found, run `git status` directly
+if test "$(echo "$gitDirs" | wc -l)" -eq 1
+then
+  git -C "$(dirname "$gitDirs")" status --short
+  exit 0
+fi
+
+echo "$gitDirs" \
+| while read -r gitdir
+  do
+    gitdir=$(dirname "$gitdir")
+    gitdirBasename=$(basename "$gitdir")
+    gitStatus=$(git -C "$gitdir" status --porcelain)
+    numMod=$(echo "$gitStatus" | grep -c '^ M ')
+    numDel=$(echo "$gitStatus" | grep -c '^ D ')
+    numUntrack=$(echo "$gitStatus" | grep -c '^?? ')
+    hasFlakeFile=$(find "$gitdir" -maxdepth 1 -name 'flake.nix')
+
+    # If changes, print stats about repo
+    if test -z "$gitStatus"
+    then
+      echo "$gitdirBasename"
+    else
+      printf \
+        "%s (%s,%s,%s)%s\n" \
+        "$(color yellow "$gitdirBasename")" \
+        "$(if test "$numMod" != "0"; then color red "$numMod M"; fi)" \
+        "$(if test "$numDel" != "0"; then color blue " $numDel D"; fi)" \
+        "$(if test "$numUntrack" != "0"; then color green " $numUntrack U"; fi)" \
+        "$(if test ! -z "$hasFlakeFile"; then color blue " ❄️"; fi)"
+    fi
+  done

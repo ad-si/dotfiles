@@ -1,0 +1,12 @@
+#!/bin/dash
+
+if test $# -eq 0
+then
+  nix run --no-warn-dirty
+elif test $# -eq 1
+then
+  nix run --no-warn-dirty .#"$1"
+else
+  echo "Usage: $(basename "$0") [script]"
+  exit 1
+fi

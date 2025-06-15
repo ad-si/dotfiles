@@ -1,0 +1,10 @@
+#! /bin/dash
+
+# Host website where files can be uploaded to the specified directory
+
+miniserve \
+  --port=8818 \
+  --upload-files \
+  --media-type image \
+  --qrcode \
+  "${1:-.}"
