@@ -21,7 +21,29 @@
     "type": "png"
   },
   "latest-preset": {
+    "theme": "seti",
+    "backgroundColor": "#ADB7C1",
+    "windowTheme": "none",
+    "windowControls": true,
+    "fontFamily": "Hack",
+    "fontSize": "18px",
+    "lineNumbers": false,
+    "firstLineNumber": 1,
+    "dropShadow": false,
+    "dropShadowOffsetY": "20px",
+    "dropShadowBlurRadius": "68px",
+    "selectedLines": "*",
+    "widthAdjustment": true,
+    "width": "20000px",
+    "lineHeight": "133%",
+    "paddingVertical": "48px",
+    "paddingHorizontal": "32px",
+    "squaredImage": false,
+    "watermark": false,
+    "exportSize": "2x",
+    "type": "png",
     "t": "monokai",
+    "l": "Bash",
     "bg": "#ADB7C1",
     "wt": "none",
     "wc": true,
@@ -37,7 +59,6 @@
     "ph": "24px",
     "si": false,
     "wm": false,
-    "es": "2x",
-    "type": "png"
+    "es": "2x"
   }
 }

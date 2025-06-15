@@ -21,87 +21,95 @@
 # Bundle ID           UTI/Extension         Role (all|viewer|editor|shell|none)
 
 
-########## TEXT FILES ##########
+################################## TEXT FILES ##################################
 
-com.sublimetext.4     public.plain-text     all
-com.sublimetext.4     public.rtf            all
-com.sublimetext.4     md                    all
-
-
-########## DATA FILES ##########
-
-net.galliumdigital.Modern-CSV  csv         all
-net.galliumdigital.Modern-CSV  tsv         all
-
-com.sublimetext.4               log         all
-com.sublimetext.4               xml         all
+com.sublimetext.4              public.plain-text        all
+com.sublimetext.4              public.rtf               all
+com.sublimetext.4              md                       all
 
 
-########## CONFIGURATION FILES ##########
+################################## DATA FILES ##################################
 
-com.apple.dt.Xcode              list        all
+net.galliumdigital.Modern-CSV  csv                      all
+net.galliumdigital.Modern-CSV  tsv                      all
 
-com.sublimetext.4               aml         all
-com.sublimetext.4               cabal       all
-com.sublimetext.4               hall        all
-com.sublimetext.4               ini         all
-com.sublimetext.4               son         all
-com.sublimetext.4               uti         all
+com.sublimetext.4              log                      all
+com.sublimetext.4              xml                      all
 
-
-########## SOURCE CODE ##########
-
-com.microsoft.VSCode            elm         all
-com.microsoft.VSCode            hs          all
-com.microsoft.VSCode            js          all
-com.microsoft.VSCode            json        all
-com.microsoft.VSCode            jsx         all
-com.microsoft.VSCode            md          all
-com.microsoft.VSCode            purs        all
-com.microsoft.VSCode            rs          all
-com.microsoft.VSCode            toml        all
-com.microsoft.VSCode            ts          all
-com.microsoft.VSCode            tsx         all
-com.microsoft.VSCode            yaml        all
-
-com.sublimetext.4     c                     all
-com.sublimetext.4     cpp                   all
-com.sublimetext.4     cs                    all
-com.sublimetext.4     go                    all
-com.sublimetext.4     public.python-script  all
-com.sublimetext.4     public.ruby-script    all
+com.tinyapp.TablePlus-setapp   sqlite                   all
 
 
-########## OTHER FILES ##########
+############################# CONFIGURATION FILES ##############################
 
-com.readdle.PDFExpert-Mac  com.adobe.pdf    all
+com.apple.dt.Xcode             list                     all
 
-net.ankiweb.dtop      apkg                  all
-
-
-########## MEDIA FILES ##########
-
-org.videolan.vlc      avi                   viewer
-org.videolan.vlc      flac                  viewer
-org.videolan.vlc      flv                   viewer
-org.videolan.vlc      m4a                   viewer
-org.videolan.vlc      mkv                   viewer
-org.videolan.vlc      mov                   viewer
-org.videolan.vlc      mp3                   viewer
-org.videolan.vlc      mp4                   viewer
-org.videolan.vlc      mpg                   viewer
-org.videolan.vlc      wav                   viewer
-org.videolan.vlc      webm                  viewer
-org.videolan.vlc      wmv                   viewer
+com.sublimetext.4              aml                      all
+com.sublimetext.4              cabal                    all
+com.sublimetext.4              hall                     all
+com.sublimetext.4              ini                      all
+com.sublimetext.4              son                      all
+com.sublimetext.4              uti                      all
+com.sublimetext.4              public.x509-certificate  all
 
 
-########## IMAGE FILES ##########
+################################# SOURCE CODE ##################################
 
-com.brave.Browser     svg                   viewer
+com.microsoft.VSCode           elm                      all
+com.microsoft.VSCode           hs                       all
+com.microsoft.VSCode           js                       all
+com.microsoft.VSCode           jsx                      all
+com.microsoft.VSCode           md                       all
+com.microsoft.VSCode           ncl                      all
+com.microsoft.VSCode           purs                     all
+com.microsoft.VSCode           rs                       all
+com.microsoft.VSCode           toml                     all
+com.microsoft.VSCode           ts                       all
+com.microsoft.VSCode           tsx                      all
+
+com.microsoft.VSCode           public.json              all
+com.microsoft.VSCode           public.make-source       all
+com.microsoft.VSCode           public.shell-script      all
+com.microsoft.VSCode           public.yaml              all
+
+com.sublimetext.4              c                        all
+com.sublimetext.4              cpp                      all
+com.sublimetext.4              cs                       all
+com.sublimetext.4              go                       all
+
+com.sublimetext.4              public.python-script     all
+com.sublimetext.4              public.ruby-script       all
 
 
-########## URL SCHEMES ##########
+################################## OTHER FILES #################################
 
-ch.sudo.cyberduck     ftp
-ch.sudo.cyberduck     sftp
-ch.sudo.cyberduck     webdav
+com.readdle.PDFExpert-Mac      com.adobe.pdf            all
+
+net.ankiweb.dtop               apkg                     all
+
+
+################################## MEDIA FILES #################################
+
+org.videolan.vlc               avi                      viewer
+org.videolan.vlc               flac                     viewer
+org.videolan.vlc               flv                      viewer
+org.videolan.vlc               m4a                      viewer
+org.videolan.vlc               mkv                      viewer
+org.videolan.vlc               mov                      viewer
+org.videolan.vlc               mp3                      viewer
+org.videolan.vlc               mp4                      viewer
+org.videolan.vlc               mpg                      viewer
+org.videolan.vlc               wav                      viewer
+org.videolan.vlc               webm                     viewer
+org.videolan.vlc               wmv                      viewer
+
+
+################################# IMAGE FILES ##################################
+
+com.brave.Browser              svg                      viewer
+
+
+################################# URL SCHEMES ##################################
+
+ch.sudo.cyberduck              ftp
+ch.sudo.cyberduck              sftp
+ch.sudo.cyberduck              webdav

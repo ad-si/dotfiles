@@ -5429,6 +5429,8 @@ The script should do this: \(ai.prompt)</string>
 			<true/>
 			<key>Smart Cursor Color (Light)</key>
 			<true/>
+			<key>Smart Selection Actions Use Interpolated Strings</key>
+			<false/>
 			<key>Smart Selection Rules</key>
 			<array>
 				<dict>
@@ -5528,7 +5530,7 @@ The script should do this: \(ai.prompt)</string>
 							<key>action</key>
 							<integer>2</integer>
 							<key>parameter</key>
-							<string>open -a Firefox http://\0</string>
+							<string>open http://\0</string>
 							<key>title</key>
 							<string>Open IP</string>
 						</dict>
@@ -9250,7 +9252,7 @@ The script should do this: \(ai.prompt)</string>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SmartPlacement</key>

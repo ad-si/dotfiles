@@ -82,3 +82,5 @@
 [diff "lockb"]
 	textconv = bun
 	binary = true
+[log]
+	date = iso
