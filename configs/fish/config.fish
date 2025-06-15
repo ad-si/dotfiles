@@ -8,75 +8,63 @@ if status --is-login
   # Set paths for MacOS scripts
   set -x OSA_LIBRARY_PATH $HOME/dotfiles/script-libraries $OSA_LIBRARY_PATH
 
-
   # Add paths to path variable with increasing priority
 
   ## User
-  set -x PATH /usr/local/sbin $PATH
+  fish_add_path /usr/local/sbin
 
   ## Postgres
   # if test $systemType = "Darwin"
-  #   set -x PATH /Applications/Postgres.app/Contents/Versions/9.4/bin $PATH
+  #   fish_add_path /Applications/Postgres.app/Contents/Versions/9.4/bin
   # end
-
 
   ## Programming Languages
 
-
   ### PHP
   # if test $systemType = "Darwin"
-  #   set -x PATH (brew --prefix php)/bin $PATH
+  #   fish_add_path (brew --prefix php)/bin
   # end
-
-
-  ### Rust
-  set -x PATH ~/.cargo/bin $PATH
-
 
   ### Go
   set -x GOPATH $HOME/.go $GOPATH
-  set -x PATH $GOPATH/bin $PATH
-
+  fish_add_path $GOPATH/bin
 
   ### Ruby
-  if test $systemType = "Darwin"
+  if test $systemType = Darwin
     set -x GEM_HOME $HOME/.gem
-    set -x PATH /usr/local/opt/ruby/bin $PATH
-    set -x PATH $HOME/.gem/bin $PATH
+    fish_add_path /usr/local/opt/ruby/bin
+    fish_add_path $HOME/.gem/bin
   end
 
-
   ### Haskell
-  set -x PATH ~/.local/bin $PATH
-
+  fish_add_path ~/.local/bin
 
   ### Java
   set -x CLASSPATH \
-    ".:/usr/local/Cellar/antlr/4.7/antlr-4.7-complete.jar:$CLASSPATH"
-
+      ".:/usr/local/Cellar/antlr/4.7/antlr-4.7-complete.jar:$CLASSPATH"
 
   ### JavaScript (Bun)
-  set -x PATH ~/.bun/bin $PATH
+  fish_add_path ~/.bun/bin
   set -x BUN_INSTALL "$HOME/.bun"
-  set -x PATH $BUN_INSTALL/bin $PATH
-
+  fish_add_path $BUN_INSTALL/bin
 
   ## Custom
-  set -x PATH ~/dotfiles/bin $PATH
-
+  fish_add_path ~/dotfiles/bin
 
   ## Homebrew
   set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
 
   ### Token allows reading public repos, creating gists)
-  if test $systemType = "Darwin"
-    ############################# DO NOT COMMIT #############################
-    set -x HOMEBREW_GITHUB_API_TOKEN 1de66c2243ae059adcc536c664066361dfd54baa
+  if test $systemType = Darwin
   end
 
-  set -x HOMEBREW_CASK_OPTS "--no-quarantine"
+  set -x HOMEBREW_CASK_OPTS --no-quarantine
   set -x HOMEBREW_NO_AUTO_UPDATE 1
 
+  ### Rust
+  fish_add_path ~/.cargo/bin
+  # Must be loaded before `(brew --prefix)/bin`:
+  fish_add_path -m (brew --prefix rustup)/bin
 
   # MatplotLib in iTerm
 
@@ -86,13 +74,11 @@ if status --is-login
   ## Optimize appearance for dark background
   set -x ITERMPLOT rv
 
-
   # Default editor
   set -x EDITOR sublime-wait
 
   # Default visual editor
   set -x VISUAL sublime-wait
-
 
   # Default locations
   set filesRootPath ~/'Dropbox'
@@ -121,16 +107,14 @@ if status --is-login
   set -x THINGS $filesRootPath/Things
   set -x VOUCHERS $filesRootPath/Vouchers
 
-
   # Fish
 
   ## Zoxide
-  zoxide init fish | source
+  zoxide init fish --cmd j | source
 
   ## iTerm
   test -e {$HOME}/.iterm2_shell_integration.fish
   and source {$HOME}/.iterm2_shell_integration.fish
-
 
   # thefuck
   # if type -q thefuck # Check if `thefuck` is something executable
@@ -142,27 +126,19 @@ if status --is-login
 
   # Enable color output for github.com/chrisallenlane/cheat
   set -x CHEATCOLORS true
+
+  # # TODO: Reenable after https://github.com/ellie/atuin/issues/978
+  # if status --is-interactive
+  #   atuin init fish | source
+  # end
+
+  fish_add_path /usr/local/opt/sqlite/bin
+
+  # Haskell
+  fish_add_path $HOME/.cabal/bin
+  fish_add_path /Users/adrian/.ghcup/bin
+  set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
+
+  # Set ripgrep config path
+  set -x RIPGREP_CONFIG_PATH /Users/adrian/dotfiles/configs/ripgrep/ripgrep.txt
 end
-
-
-# # TODO: Reenable after https://github.com/ellie/atuin/issues/978
-# if status --is-interactive
-#   atuin init fish | source
-# end
-
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/serverless.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/serverless.fish
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/sls.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/sls.fish
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[ -f /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/slss.fish ]; and . /Users/adrian/.config/yarn/global/node_modules/tabtab/.completions/slss.fish
-set -g fish_user_paths "/usr/local/opt/sqlite/bin" $fish_user_paths
-
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/adrian/.ghcup/bin # ghcup-env
-
-# Set ripgrep config path
-set -x RIPGREP_CONFIG_PATH /Users/adrian/dotfiles/configs/ripgrep/ripgrep.txt

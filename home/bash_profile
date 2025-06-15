@@ -1,1 +1,4 @@
 source ~/.bashrc
+
+export PATH="$HOME/.elan/bin:$PATH"
+source "$HOME/.cargo/env"

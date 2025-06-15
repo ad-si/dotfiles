@@ -20,6 +20,13 @@ export GOPATH="$HOME/.go:$GOPATH"
 export OSA_LIBRARY_PATH="$HOME/dotfiles/script-libraries:$OSA_LIBRARY_PATH"
 
 # Add paths to path variable with increasing priority
+
+if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh";
+then
+	# shellcheck source=/dev/null
+	source "$HOME/.nix-profile/etc/profile.d/nix.sh";
+fi
+
 # Global executables
 export PATH="$HOME/bin:$PATH"
 
@@ -75,7 +82,7 @@ fi
 
 # NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Grep
 export GREP_OPTIONS='--color=always'
@@ -87,28 +94,4 @@ export GREP_OPTIONS='--color=always'
 
 # Default editor
 export EDITOR=micro
-
-# added by travis gem
-[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$("$HOME/miniconda3/bin/conda" 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ];
-# then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ];
-#     then
-#       . "$HOME/miniconda3/etc/profile.d/conda.sh"
-#     else
-#         export PATH="$HOME/miniconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
-
-if test -e "$HOME/.nix-profile/etc/profile.d/nix.sh";
-then . "$HOME/.nix-profile/etc/profile.d/nix.sh";
-fi
+source "$HOME/.cargo/env"

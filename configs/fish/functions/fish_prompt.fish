@@ -20,7 +20,7 @@ end
 
 function printHostname
     set -l hostShort (hostname | cut -d . -f 1)
-    if not string match -q "Adrians-MacBook*" $hostShort
+    if echo $hostShort | grep --invert-match -q -E '^(Adrians-MacBook.*|Mac)$'
         set_color black
         printf '@'
 
@@ -32,10 +32,12 @@ end
 function printTasksStatus
     if command -sq tasklite
         set --local inboxCount (tasklite runsql \
-      "select count(*) from tasks_view where closed_utc is null and tags is null" \
-      | tail -n 1)
+            "select count(*) from tasks_view where closed_utc is null and tags is null" \
+            | tail -n 1)
 
-        printf ' 📥 %s ' $inboxCount
+        if test $inboxCount -ne 0
+            printf ' 📥 %s ' $inboxCount
+        end
 
         ##### Alternatives #####
 
