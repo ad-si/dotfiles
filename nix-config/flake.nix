@@ -52,6 +52,7 @@
             # ghcup  # Haskell toolchain installer | TODO: No current version available
             git
             git-extras
+            git-who  # Git blame for file trees
             # gitbatch  # Tool to manage multiple git repositories
             # gleam  # Gleam programming language
             gnumake  # GNU make
