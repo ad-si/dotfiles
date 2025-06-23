@@ -41,7 +41,6 @@ brews=(
   hammerspoon  # Desktop automation
   pinentry-mac  # Needed for gopass
   tcl-tk  # Tcl/Tk needed for pdfCropMargins
-  trash  # Move files to trash
   wolfram-engine  # Execute Wolfram Language code
 )
 
