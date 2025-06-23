@@ -5,7 +5,7 @@
 rg \
   --smart-case \
   --vimgrep \
-  --max-columns 120 \
+  --max-columns 200 \
   --sort path \
   -- \
   "$@"
