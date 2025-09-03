@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Translate a string from any language to Esperanto
 

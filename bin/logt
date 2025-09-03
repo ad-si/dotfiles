@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Log last 10 commits
 

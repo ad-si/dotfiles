@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # count-source - Count the number of source lines in a project
 

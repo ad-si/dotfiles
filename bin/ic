@@ -1,6 +1,6 @@
-#! /bin/dash
+#!/bin/dash
 
-set -e
+set -euf
 
 # Image Cat
 

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # `ebook-convert` is part of [Calibre](https://calibre-ebook.com/)
 

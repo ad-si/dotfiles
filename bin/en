@@ -1,3 +1,5 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 trans :en "$*" | awk '{ if ($0 !~ "Examples") print; else exit }'

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 ext="${1:-png}"
 numDigits="${2:-2}"

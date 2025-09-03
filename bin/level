@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Convert a grayscale image into a mostly black & white image
 

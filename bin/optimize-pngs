@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 find . -iname "*.png" \
   -exec optipng -silent {} \; \

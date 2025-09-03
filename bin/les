@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Pager with support for ANSI colors
 # Warning: Needs a less version > 530

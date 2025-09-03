@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 counter="${1:-0}"
 numberOfFiles="$(printf "%d" "$(find . -depth 1 | wc -l)")"

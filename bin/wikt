@@ -1,3 +1,5 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 open "https://en.wiktionary.org/wiki/$1"

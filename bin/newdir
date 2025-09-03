@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 path="${1:-.}"
 dirname="$path/$(date -u "+%Y-%m-%dT%H%M")"

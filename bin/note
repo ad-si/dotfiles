@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 name="$(date -u "+%Y-%m-%dt%H%M%S")"
 directory="/Users/adrian/Dropbox/Vault/Notes/$name"

@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # divide_vert_bg [options]  image  multi_image
 

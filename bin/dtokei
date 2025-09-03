@@ -1,6 +1,6 @@
-#! /bin/dash
+#!/bin/dash
 
-set -e
+set -euf
 
 if test $# -eq 0
 then

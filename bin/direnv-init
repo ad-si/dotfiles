@@ -1,5 +1,7 @@
 #!/bin/dash
 
+set -euf
+
 touch flake.nix
 if test ! -e flake.lock
 then echo '{ "version": 7, "root": "root", "nodes": {} }' > flake.lock

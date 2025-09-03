@@ -1,8 +1,8 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # lsc - List all cli commands which match the specified name
 
-set -e
+set -eufo pipefail
 
 if test ! $# == 1
 then

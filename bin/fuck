@@ -1,3 +1,5 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 thefuck "$(fc -ln -1)"

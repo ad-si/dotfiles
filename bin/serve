@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Serve a directory on a rarely used port to avoid collisions
 

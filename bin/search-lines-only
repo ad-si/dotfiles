@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # The "search lines only" command
 # Search for all matches and display only the matching position in the file

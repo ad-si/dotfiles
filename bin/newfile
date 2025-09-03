@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 path="${1:-.}"
 extension="${2:-yaml}"

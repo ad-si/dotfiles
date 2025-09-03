@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 args="$*"
 dnode -e "console.dir($args, {depth: null, colors: true})"

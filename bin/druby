@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Interactive terminal:
 # `druby`
@@ -9,10 +11,7 @@
 # With flags:
 # `druby -e '1 + 2'`
 
-
 image=ruby:alpine
-
-set -e
 
 if test $# -eq 0
 then

@@ -1,3 +1,5 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 tu yesterday | head -c10

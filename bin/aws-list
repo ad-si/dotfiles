@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 for region in $(aws ec2 describe-regions --output text | cut -f3)
 do

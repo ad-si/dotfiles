@@ -1,3 +1,5 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 open "https://www.amazon.de/s?field-keywords=$*"

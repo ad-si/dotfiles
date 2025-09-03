@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 git diff --color-words "$@" \
 | gsed 's/diff --git a/\n\n🌕  a/' \

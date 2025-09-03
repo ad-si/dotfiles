@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 echo "Sync main 4 TB drive with backup 4 TB drive"  # basically RAID 1
 

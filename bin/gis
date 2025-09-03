@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # More powerful `git status` command that supports directories
 # containing several git repositories as well.

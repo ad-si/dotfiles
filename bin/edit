@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # TODO: Find better way to implement this
 # "${EDITOR:-vim}" "${@:-.}"

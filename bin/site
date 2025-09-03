@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Use DuckDuckGo's API to search for a query and print the first result's URL.
 

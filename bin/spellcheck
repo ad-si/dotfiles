@@ -1,7 +1,8 @@
-#! /usr/bin/env bash
+#!/bin/dash
 
 directory="$(cd "$(dirname "$0")" && pwd)"
 dicFile="$(realpath "$directory/../dictionaries/English (American).dic")"
 dicName=${dicFile%.*}
+set -euf
 
 hunspell -d "$dicName" "$*"

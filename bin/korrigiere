@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 directory="$(cd "$(dirname "$0")" && pwd)"
 dictionary="$directory/../dictionaries/de_DE"

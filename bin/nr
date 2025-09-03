@@ -1,5 +1,7 @@
 #!/bin/dash
 
+set -euf
+
 if test $# -eq 0
 then
   nix run --no-warn-dirty

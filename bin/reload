@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Reload the specified application
 # E.g. `reload Google Chrome`

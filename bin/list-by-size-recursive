@@ -1,3 +1,5 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 gdu -s -h ./**/* | gsort -h -r

@@ -1,4 +1,7 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
+
 # Convert Markdown to YAML
 # by extracting the frontmatter and including the body as a field
 

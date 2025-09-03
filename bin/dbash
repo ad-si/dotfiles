@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Interactive terminal:
 # `dbash`
@@ -9,10 +11,7 @@
 # With flags:
 # `dbash -c 'echo test'`
 
-
 image=bash
-
-set -e
 
 dockrun () {
   docker run \

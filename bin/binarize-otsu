@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # 1. Rotate image
 # 2. Convert to black & white with Otsu's method

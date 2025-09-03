@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # -s 17 - Change theme to Solarized Dark
 

@@ -1,11 +1,11 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Search Elm packages with fzf and jq
 #
 # Inspired by
 # https://github.com/hendriklammers/dotfiles/blob/master/bin/elm-search
-
-set -e
 
 # Check if fzf is installed
 if ! command -v fzf > /dev/null

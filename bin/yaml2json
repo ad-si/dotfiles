@@ -1,3 +1,5 @@
-#! /bin/dash
+#!/bin/dash
 
 yq -o json
+set -euf
+

@@ -1,3 +1,5 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 ~/Projects/Dropbox-Uploader/dropbox_uploader.sh "$1"

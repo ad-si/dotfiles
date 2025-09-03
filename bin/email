@@ -1,6 +1,6 @@
-#! /bin/dash
+#!/bin/dash
 
-set -e
+set -euf
 
 if test -z "$MAILGUN_KEY"
 then

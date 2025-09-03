@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 cd ~/Dropbox/Projects/stats-crawler && \
 bun run main.ts

@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 numberOfFiles="$(printf "%d" "$(find . -depth 1 | wc -l)")"
 numberOfDigits="${#numberOfFiles}"

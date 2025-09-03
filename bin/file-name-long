@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Printing it removes the trailing newline
 printf "%s" "$(date -u "+%Y-%m-%dt%H%M%S")"

@@ -1,8 +1,8 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 image=stedolan/jq
-
-set -e
 
 docker run \
   --interactive \

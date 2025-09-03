@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 for NAME in $(du ./*.eml | awk '{print $2}')
 do

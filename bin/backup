@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # This script backs up all important files to external hard drives.
 # Apps that use a different backup / sync mechanism:

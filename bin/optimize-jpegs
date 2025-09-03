@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 find . \( -iname '*jpg' -o -iname '*jpeg' \) \
   -exec jpegtran -optimize -outfile {} {} \; \

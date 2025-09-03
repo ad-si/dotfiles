@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Rotate, convert to grayscale, increase contrast, and convert to PNG
 

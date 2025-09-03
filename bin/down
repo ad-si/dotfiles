@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Start a countdown timer with specified duration (e.g. 20m or 1h50m)
 

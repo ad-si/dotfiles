@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # TODO: Improve performance before using Nix
 # #! /usr/bin/env nix

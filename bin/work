@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 tasklite query \
   "(tags like '%feram%' or tags like '%work%')

@@ -1,4 +1,6 @@
-#! /bin/dash
+#!/bin/dash
+
+set -euf
 
 # Interactive terminal:
 # `dnode`
@@ -9,10 +11,7 @@
 # With flags:
 # `dnode -c 'echo test'`
 
-
 image=node:alpine
-
-set -e
 
 dorun () {
   docker run \

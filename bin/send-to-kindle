@@ -1,6 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-set -e
+set -eufo pipefail
 
 if test -z "$KINDLE_EMAIL_ADDRESS"
 then

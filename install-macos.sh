@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 # Homebrew
 ./bin/setup-homebrew.sh
