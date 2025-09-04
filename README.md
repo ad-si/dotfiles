@@ -210,10 +210,10 @@ General > Settings:
 
 Jxa macOS automation scripts are symlinked from
 `~/dotfiles/scripts` to `~/Library/Scripts`
-and are displayed in the scripts editor submenu in the menu bar.
+and are displayed in the scripts editor sub-menu in the menu bar.
 (Enable via
 `Script Editor.app > Preferences > General > Show Script menu in menu bar`)
-Add subdirectories with app names for app specific scripts.
+Add sub-directories with app names for app specific scripts.
 
 The `symlink-dotfiles` script must be run after adding new scripts.
 
@@ -276,7 +276,7 @@ sudo ln -sfn \
 1. Set "Page zoom" to 90%
 
 Installed extensions should then include
-Midnight Lizard, Automatric Metric Conversion, …
+Midnight Lizard, Automatic Metric Conversion, …
 
 
 ### Firefox
@@ -391,6 +391,13 @@ Log in
 - Add all accounts
 
 
+## Related
+
+- [`sd`] - My **s**cript **d**irectory.
+
+[`sd`]: https://github.com/ianthehenry/sd
+
+
 ## TODO
 
 - iterm settings
@@ -399,3 +406,5 @@ Log in
 - Backup fish history
 - Backup ngrok config
 - Install Stack and HLS with ghcup
+- Backup "$HOME/Library/Application Support/harper-ls/dictionary.txt"
+- `.aws` directory
