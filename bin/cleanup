@@ -4,27 +4,31 @@ set -euf
 
 separator='✔\n\n'
 
-echo '===== Cleanup brew ====='
+echo '===== Clean Homebrew Cache ====='
 brew cleanup
 echo "$separator"
 
-echo '===== Clean npm cache ====='
+echo '===== Clean npm Cache ====='
 npm cache clean --force
 echo "$separator"
 
-echo '===== Clean yarn cache ====='
+echo '===== Clean Yarn Cache ====='
 yarn cache clean
 echo "$separator"
 
-echo '===== Clean docker ====='
+echo '===== Clean Docker ====='
 # docker-clean
 docker system prune
+echo "$separator"
+
+echo '===== Clean Nix Store ====='
+nix store gc
 echo "$separator"
 
 # echo '===== Clean Xcode ====='
 # xcrun simctl delete unavailable
 # echo "$separator"
 
-echo '===== Empty trash ====='
+echo '===== Empty Trash ====='
 rm -rf ~/.Trash/*
 echo "$separator"
