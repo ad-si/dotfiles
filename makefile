@@ -13,3 +13,7 @@ build:
 	docker build \
 		--tag ad-si-ubuntu:latest \
 		- < dockerfiles/ubuntu.dockerfile
+
+	docker build \
+		--tag ad-si-nixos:latest \
+		- < dockerfiles/nixos.dockerfile

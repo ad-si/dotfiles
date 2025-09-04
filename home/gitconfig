@@ -9,8 +9,7 @@
 [core]
   excludesfile = /Users/adrian/.gitignore
   ignorecase = false
-  # TODO: Use again when better support for light mode
-  # pager = delta
+  pager = delta --side-by-side
 
 [alias]
   amend = commit --amend
@@ -84,3 +83,4 @@
 	binary = true
 [log]
 	date = iso
+	mailmap = true

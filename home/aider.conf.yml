@@ -1,2 +1,14 @@
+model: o3
+architect: true
+
+auto-lint: false
+
+auto-test: true
+test-cmd: make test
 
 auto-commits: false
+attribute-committer: false
+
+chat-language: English
+
+

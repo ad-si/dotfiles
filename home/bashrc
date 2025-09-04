@@ -95,3 +95,5 @@ export GREP_OPTIONS='--color=always'
 # Default editor
 export EDITOR=micro
 source "$HOME/.cargo/env"
+
+eval "$(direnv hook bash)"

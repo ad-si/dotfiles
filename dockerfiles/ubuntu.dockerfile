@@ -14,9 +14,15 @@ RUN apt-get install -y \
   build-essential \
   curl \
   git \
+  libffi-dev \
+  libffi8 \
+  libgmp-dev \
+  libgmp10 \
+  libncurses-dev \
   make \
   neofetch \
   neovim \
+  pkg-config \
   unzip
 
 # TODO: # Install Fish

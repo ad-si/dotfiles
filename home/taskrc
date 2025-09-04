@@ -63,3 +63,4 @@ uda.githubuser.label=Github User
 
 # Automatically added configs
 context=home
+news.version=3.4.1

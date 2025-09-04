@@ -1,2 +1,3 @@
 --smart-case
 --max-columns=120
+--max-columns-preview

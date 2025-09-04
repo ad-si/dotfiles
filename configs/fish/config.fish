@@ -141,4 +141,5 @@ if status --is-login
 
   # Set ripgrep config path
   set -x RIPGREP_CONFIG_PATH /Users/adrian/dotfiles/configs/ripgrep/ripgrep.txt
+
 end

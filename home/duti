@@ -36,7 +36,9 @@ net.galliumdigital.Modern-CSV  tsv                      all
 com.sublimetext.4              log                      all
 com.sublimetext.4              xml                      all
 
+com.tinyapp.TablePlus-setapp   db                       all
 com.tinyapp.TablePlus-setapp   sqlite                   all
+com.tinyapp.TablePlus-setapp   sqlite3                  all
 
 
 ############################# CONFIGURATION FILES ##############################
@@ -62,6 +64,7 @@ com.microsoft.VSCode           md                       all
 com.microsoft.VSCode           ncl                      all
 com.microsoft.VSCode           purs                     all
 com.microsoft.VSCode           rs                       all
+com.microsoft.VSCode           sql                      all
 com.microsoft.VSCode           toml                     all
 com.microsoft.VSCode           ts                       all
 com.microsoft.VSCode           tsx                      all
@@ -72,7 +75,9 @@ com.microsoft.VSCode           public.shell-script      all
 com.microsoft.VSCode           public.yaml              all
 
 com.sublimetext.4              c                        all
+com.sublimetext.4              h                        all
 com.sublimetext.4              cpp                      all
+com.sublimetext.4              hpp                      all
 com.sublimetext.4              cs                       all
 com.sublimetext.4              go                       all
 

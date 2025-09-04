@@ -16,10 +16,11 @@ dateWidth: 10
 bodyWidth: 10
 prioWidth: 4
 headCount: 20
-maxWidth: 120
+# maxWidth: 120
 progressBarWidth: 24
+columns: [id, prio, age, body]
 hooks:
-  # directory: ~/DOES-NOT-EXIST
+  # directory: /Users/adrian/Dropbox/TaskLite/hooks
   # launch:
   #   pre:
   #     - interpreter: python
