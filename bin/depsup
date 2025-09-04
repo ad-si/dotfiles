@@ -1,0 +1,14 @@
+#!/usr/bin/env dash
+
+# Upgrade all dependencies of the current project.
+
+if test -f Cargo.toml
+then
+  cargo +nightly update --breaking -Z unstable-options
+elif test -f package.json
+then
+  npx npm-check-updates -u
+else
+  echo "No supported project file found."
+  exit 1
+fi

@@ -1,0 +1,161 @@
+#!/usr/bin/env bash
+
+# Script to set Git author and committer dates to current time
+# for all commits after a specified commit.
+
+set -eufo pipefail
+
+# Function to show usage
+usage() {
+  cat << EOF
+Set Git author and committer dates to the current time
+for all commits after the specified commit.
+
+This will rewrite the Git history. Make sure to:
+  1. Backup your repository first
+  2. Coordinate with team members if working on a shared repository
+  3. Force push will be required after running this script
+
+USAGE: $0 [OPTIONS] <commit-hash>
+
+ARGUMENTS:
+  commit-hash  The commit hash after which all commits will be rewritten
+
+OPTIONS:
+  -h, --help   Show this help message
+  -f, --force  Skip confirmation prompt
+  -b, --branch   Specify branch to rewrite (default: current branch)
+
+EXAMPLES:
+  $0 abc1234          # Rewrite commits after abc1234
+  $0 -f HEAD~5           # Rewrite last 5 commits without confirmation
+  $0 -b main abc1234       # Rewrite commits on main branch after abc1234
+EOF
+}
+
+# Parse command line arguments
+FORCE=false
+BRANCH=""
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    -f|--force)
+      FORCE=true
+      shift
+      ;;
+    -b|--branch)
+      BRANCH="$2"
+      shift 2
+      ;;
+    *)
+      COMMIT_HASH="$1"
+      shift
+      ;;
+  esac
+done
+
+# Check if commit hash was provided
+if test -z "$COMMIT_HASH"
+then
+  echo "No commit hash provided"
+  usage
+  exit 1
+fi
+
+# Check if we're in a git repository
+if ! git rev-parse --git-dir > /dev/null 2>&]
+then
+  echo "Not in a Git repository"
+  exit 1
+fi
+
+# If branch not specified, use current branch
+if test -z "$BRANCH"
+then
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+fi
+
+echo "Target branch: $BRANCH"
+
+# Verify the commit exists
+if ! git rev-parse "$COMMIT_HASH^{commit}" > /dev/null 2>&]
+then
+  echo "Commit '$COMMIT_HASH' not found"
+  exit 1
+fi
+
+# Get the full commit hash
+FULL_HASH=$(git rev-parse "$COMMIT_HASH")
+echo "Starting from commit: $FULL_HASH"
+
+# Count commits that will be affected
+COMMIT_COUNT=$(git rev-list --count "$FULL_HASH".."$BRANCH")
+if test "$COMMIT_COUNT" -eq 0
+then
+  echo "No commits found after $COMMIT_HASH"
+  exit 0
+fi
+
+echo "Found $COMMIT_COUNT commits to rewrite"
+
+# Show commits that will be affected
+echo "Commits that will be rewritten:"
+git log --oneline "$FULL_HASH".."$BRANCH" | head -10
+if test "$COMMIT_COUNT" -gt 10
+then
+  echo "... and $((COMMIT_COUNT - 10)) more"
+fi
+
+# Confirmation prompt
+if test "$FORCE" = false
+then
+  echo "This operation will REWRITE Git history!"
+  echo "You will need to force push after this operation."
+  echo -n "Are you sure you want to continue? (yes/no): "
+  read -r confirmation
+  if test "$confirmation" != "yes"
+  then
+    echo "Operation cancelled"
+    exit 0
+  fi
+fi
+
+# Get current timestamp
+CURRENT_DATE=$(date -R)
+echo "Setting all dates to: $CURRENT_DATE"
+
+# Perform the rewrite using filter-branch
+echo "Starting history rewrite..."
+
+# Use git filter-branch to rewrite history
+FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch \
+  --env-filter "
+    if test \"\$GIT_COMMIT\" != \"$FULL_HASH\" ]
+      && git merge-base --is-ancestor \"$FULL_HASH\" \"\$GIT_COMMIT
+    then
+      export GIT_AUTHOR_DATE='$CURRENT_DATE'
+      export GIT_COMMITTER_DATE='$CURRENT_DATE'
+    fi
+  " \
+  --tag-name-filter cat \
+  -- "$FULL_HASH".."$BRANCH"
+
+if test $? -eq 0
+then
+  echo "Successfully rewrote history!"
+
+  # Show the new commits
+  echo "New commit dates:"
+  git log --format="%h %ad %cd %s" --date=short -5 "$FULL_HASH".."$BRANCH"
+
+  echo ""
+  echo "IMPORTANT: Your local history has been rewritten!"
+  echo "To push these changes, you'll need to force push:"
+  echo "  git push --force-with-lease origin $BRANCH"
+else
+  echo "Failed to rewrite history"
+  exit 1
+fi

@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+search_term="$1"
+
+if test -z "$search_term"
+then
+  echo "Usage: $0 <search-term>"
+  exit 1
+fi
+
+tasks=$(
+  sqlite3 /Users/adrian/Dropbox/TaskLite/main.db "
+    SELECT ulid, body || ' https://' || json_extract(metadata, '\$.link') AS body
+    FROM tasks_view
+    WHERE tags
+    LIKE '$search_term'
+    ORDER BY ulid DESC
+    LIMIT 100
+  "
+)
+
+if test -z "$tasks"
+then
+  echo "No tasks found for search term '$search_term'."
+  exit 0
+fi
+
+echo "$tasks" \
+| while read -r task
+  do
+    ulid=$(echo "$task" | cut -d '|' -f '1')
+    # echo "ULID: $ulid"
+
+    body=$(echo "$task" | cut -d '|' -f '2-')
+    echo "✅ $body"
+
+    tags=$(cai --raw gpt41 \
+"Give me 1-5 tags (kebap-case, space separated - no commas, no explanation) for following task.
+Try to keep them generic so that they can be used for a broad classification.
+E.g. when using the tag 'online-education' it should also have a tag 'education'.
+Task:
+$body
+" < /dev/null)
+
+    # Ensure the tags are not empty and a list of kebab-case tags
+    if [[ -z "$tags" ]]
+    then
+      echo "❌ No tags generated for task '$ulid'"
+      continue
+    fi
+
+    if [[ ! "$tags" =~ ^[a-z0-9-]+( [a-z0-9-]+)*$ ]]
+    then
+      echo "❌ Invalid tags format for task '$ulid': $tags"
+      continue
+    fi
+
+    # echo "Tags: $tags"
+
+    # Run `tl tag <tag> <ulid>` for each tag
+    for tag in $tags; do
+      tl tag "$tag" "$ulid"
+    done
+
+    echo "---"
+  done <<< "$tasks"

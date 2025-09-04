@@ -3,12 +3,8 @@
 set -euf
 
 eza \
-  --all \
   --classify \
-  --long \
+  --git-ignore \
   --git \
-  --time created \
-  --time-style long-iso \
-  --ignore-glob="node_modules|.git|.stack-work" \
   --tree \
   "$@"

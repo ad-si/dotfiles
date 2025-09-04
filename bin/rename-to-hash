@@ -1,0 +1,67 @@
+#!/usr/bin/env dash
+
+# Rename files in current directory to their SHA256 hash.
+# Preserves file extensions and handles errors gracefully.
+
+# Check if required commands are available
+if ! command -v openssl >/dev/null 2>&1
+then
+  echo "ERROR: 'openssl' command not found" >&2
+  exit 1
+fi
+
+# Function to calculate SHA256 hash as Base58
+get_sha256() {
+  openssl dgst -sha256 -binary "$1" | bs58
+}
+
+# Function to get file extension
+get_extension() {
+  case "$1" in
+    *.*.*)  echo "${1##*.}" ;;
+    *.*)  echo "${1##*.}" ;;
+    *)  echo "" ;;
+  esac
+}
+
+# Process files
+find . -maxdepth 1 -type f \
+  ! -name '.DS_Store' \
+  ! -name '.gitkeep' \
+  ! -name '.*' \
+| while IFS= read -r file
+  do
+    # Skip if file doesn't exist (race condition protection)
+    test -f "$file" || continue
+
+    # Calculate SHA256 hash
+    if ! sha256=$(get_sha256 "$file")
+    then
+      echo "ERROR: Failed to calculate SHA256 hash for '$file'" >&2
+      continue
+    fi
+
+    # Determine new filename
+    extension=$(get_extension "$file")
+    if test -n "$extension"
+    then new_name="${sha256}.${extension}"
+    else new_name="$sha256"
+    fi
+
+    # Skip if file would be renamed to itself
+    if test "$file" = "./$new_name"
+    then
+      echo "Skipping '$file' (already has hash name)"
+      continue
+    fi
+
+    # Check if new name already exists
+    if test -e "$new_name"
+    then
+      echo "ERROR: '$new_name' already exists, skipping '$file'" >&2
+      continue
+    fi
+
+    # Rename the file
+    mv --verbose --no-clobber "$file" "$new_name"
+  done

@@ -1,0 +1,8 @@
+#!/bin/dash
+
+set -euf
+
+pandoc \
+  --pdf-engine tectonic \
+  --output $2 \
+  $1
