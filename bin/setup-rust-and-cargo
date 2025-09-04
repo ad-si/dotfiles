@@ -13,6 +13,7 @@ cargo install cargo-update
 packages=(
   # av1an  # AV1 codec analysis tool
   # binstall  # Install binaries from a GitHub release
+  bs58-cli  # Base58 codec implementation
   cai  # CLI tool for prompting LLMs
   # cargo-release  # Tool for releasing git-managed cargo project
   # cargo-update  # Update outdated Rust dependencies

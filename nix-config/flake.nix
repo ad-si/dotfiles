@@ -18,12 +18,14 @@
             # aichat
             # asciinema
             # atuin
-            # awscli
+            awscli2  # aws management tool | FIXME: Still needed globally to generate aws RDS password
             bash
             bat  # `cat` clone with additional features
             bun  # JavaScript engine
             # cargo  # Rust package manager | TODO: Causes problems in cosuz
+            llvmPackages_20.clang-tools  # Includes `clang-format`: Code formatter for C, C++, …
             # colordiff
+            comma  # Run software without installing it
             coreutils
             # csvkit  # Utilities for converting to and working with CSV
             delta  # Diff viewer
@@ -36,11 +38,12 @@
             dos2unix  # Convert text files from DOS to Unix format
             exiftool  # Manage meta information of vaious files
             eza
-            f3d  # 3D viewer
+            # f3d  # 3D viewer | TODO: CLI tool is not in path
             fastfetch  # Display system information in the terminal
             fclones  # Find duplicate files
             fd
             fdupes  # Find duplicate files (Use fclones instead)
+            ffmpeg  # Video and audio processing
             findutils  # GNU find utilities
             fish
             flac  # Tools for encoding & decoding FLAC lossless audio files
@@ -63,17 +66,21 @@
             # goaccess  # Web log analyzer
             gopass
             graphviz
-            # gum  # Utilities to write shell scripts
+            gum  # Utilities to write shell scripts
+            harper  # Grammar checking LSP server
             hexyl  # Hex viewer
             # heynote  # Note-taking app
             htop
             httpie
-            # hunspell
+            hunspell  # Spell checker
+            hunspellDicts.de_DE  # German dictionary for hunspell
+            hunspellDicts.en_US  # English dictionary for hunspell
             # hurl  # HTTP client and testing tool
             # hyperfine  # Benchmarking tool
             imagemagick
             jo  # JSON output from a shell
             jq  # JSON processor
+            jujutsu   # Version control system
             just  # Command runner
             kalker  # CLI calculator
             kondo  # Clean dependencies and build artifacts
@@ -87,17 +94,19 @@
             # mdbook  # Create books from markdown files
             # micro
             miniserve  # CLI tool to serve files and directories over HTTP
-            # mitmproxy  # Intercept, modify, replay, or save HTTP traffic
+            mitmproxy  # Intercept, modify, replay, or save HTTP traffic
             # mongodb
             # mosh  # Mobile shell
             mpv  # Media player
             neovide  # Neovim GUI
             neovim  # Text editor
-            # node
+            ngrok  # Reverse proxy from public endpoint to locally running app
+            nix-index  # Files database for nixpkgs
+            nodejs_22
             nodePackages.svgo  # SVG optimizer
             numbat  # Calculator with support for units
             # ocrmypdf  # Add an OCR text layer to scanned PDF files
-            ollama
+            # ollama  TODO: Use again if has latest version
             # optipng
             openjdk  # Java development kit (Necessary for many programs)
             optipng  # PNG optimizer
@@ -117,6 +126,7 @@
             sd  # Intuitive find & replace CLI
             # shellcheck  # Linter for bash scripts
             silicon  # Create beautiful images of your source code
+            socat  # Multipurpose relay CLI tool
             sqlite  # SQLite database
             stylua  # Lua code formatter
             tealdeer  # Fast implementation of tldr in Rust
@@ -137,6 +147,8 @@
             watchexec  # Executes commands in response to file modifications
             # wolfram-engine  # Execute Wolfram Language code | TODO: Not available via Nix yet
             xan  # CLI tool to process CSV files
+            yq  # jq wrapper for YAML, XML, TOML documents
+            zig  # Zig programming language
             # zola  # Static site generator
             zoxide  # Jump to directories
           ];

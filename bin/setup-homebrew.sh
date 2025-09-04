@@ -94,6 +94,7 @@ casks=(
   firefox
   # flux
   # fman  # Dual pane file manager
+  focusrite-control  # Control software for Focusrite audio interfaces
   # forklift  # Better file manager than Finder
   # franz
   # fritzing
@@ -156,6 +157,7 @@ casks=(
   sublime-merge
   sublime-text
   # sweet-home3d  # Interior design software
+  tablecruncher  # Lightweight CSV editor
   tableplus  # Database management app
   # table-tool
   # tad
