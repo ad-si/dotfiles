@@ -1,6 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-set -e
+set -eufo pipefail
 
 echo 'Enter new hostname of the machine (e.g. macbook-name)'
 read -r hostname

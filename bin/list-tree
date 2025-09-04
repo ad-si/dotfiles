@@ -9,6 +9,6 @@ eza \
   --git \
   --time created \
   --time-style long-iso \
-  --ignore-glob="node_modules|.git" \
+  --ignore-glob="node_modules|.git|.stack-work" \
   --tree \
   "$@"

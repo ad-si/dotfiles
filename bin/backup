@@ -21,6 +21,7 @@ today="$(date -u "+%Y-%m-%d")"
 backupdir="/Volumes/4_tb_red_src/backups/${today}_macbook_2021"
 
 paths=(
+  .aws
   .electron-cash/wallets
   .electrum/wallets
   .gnupg  # Alternatively: https://askubuntu.com/q/514534

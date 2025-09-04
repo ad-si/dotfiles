@@ -1,6 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-set -e
+set -eufo pipefail
 
 echo "Generate SSH key if it does not exist."
 [[ -f "$HOME/.ssh/id_rsa.pub" ]] || ssh-keygen

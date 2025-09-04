@@ -1,5 +1,5 @@
 #!/bin/dash
 
-yq -o json
 set -euf
 
+yq . "$@"

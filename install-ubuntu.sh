@@ -1,6 +1,6 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
-set -e
+set -eufo pipefail
 
 aptPackages=(
   autojump

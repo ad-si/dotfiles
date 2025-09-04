@@ -6,8 +6,11 @@ topgrade \
   --no-retry \
   --disable bun \
   --disable cargo \
+  --disable containers \
   --disable go \
+  --disable nix \
+  --disable node \
   --disable pnpm \
   --disable uv
 
-nix profile upgrade nix-config
+NIXPKGS_ALLOW_UNFREE=1 nix profile upgrade --impure nix-config

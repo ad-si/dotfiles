@@ -1,8 +1,47 @@
 #!/bin/dash
 
-directory="$(cd "$(dirname "$0")" && pwd)"
-dicFile="$(realpath "$directory/../dictionaries/English (American).dic")"
-dicName=${dicFile%.*}
 set -euf
+# spellcheck - Check spelling using Hunspell
 
-hunspell -d "$dicName" "$*"
+cmd=$(basename "$0")
+
+if test $# -lt 1
+then
+  echo "Usage: $cmd [--en|--de|--lang <language>] <file1> [<file2> ...]"
+  echo "Examples:"
+  echo "  $cmd --en file.txt"
+  echo "  $cmd --de file.txt"
+  echo "  $cmd --lang fr_FR file.txt"
+  exit 1
+fi
+
+LANG="en_US" # Default language
+
+case "$1" in
+  --en)
+    LANG="en_US"
+    shift
+    ;;
+  --de)
+    LANG="de_DE"
+    shift
+    ;;
+  --lang)
+    if test -n "$2"; then
+      LANG="$2"
+      shift 2
+    else
+      echo "Error: --lang requires an argument."
+      exit 1
+    fi
+    ;;
+esac
+
+if test $# -lt 1
+then
+  echo "Error: No files specified."
+  exit 1
+fi
+
+DICPATH=$HOME/.nix-profile/share/hunspell \
+hunspell -d "$LANG" "$@"

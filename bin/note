@@ -18,3 +18,5 @@ tags: []
 END
 
 edit "$filepath"
+
+echo "Created note $filepath"

@@ -5,8 +5,8 @@ set -euf
 # Trim PNGs in parallel
 
 gum confirm "Recursively trim all PNGs in working directory?" \
-&& gfind . -name "*.png" -print0 \
-| gxargs -0 --replace=% -P 0 \
+&& find . -name "*.png" -print0 \
+| xargs -0 --replace=% -P 0 \
     bash -c '
       echo "Trim %" && mogrify -trim "%" &&
       echo "Optimize %" && optipng -silent "%"
