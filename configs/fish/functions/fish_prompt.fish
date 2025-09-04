@@ -61,8 +61,8 @@ function fish_prompt --description 'Write out the prompt'
     set -l last_status $status
 
     if test -n "$IN_NIX_SHELL"
-        set_color --background=005fe7 white
-        printf ' ❄️ '
+        set_color --background=00c3ff white
+        printf ' ❆ '
         set_color normal
     end
 
@@ -80,11 +80,29 @@ function fish_prompt --description 'Write out the prompt'
 
     # Disable path shortening
     set -g fish_prompt_pwd_dir_length 0
+    set -l pwd_txt (prompt_pwd)
+    set -l git_txt (fish_git_prompt)
 
     set_color --background "$bgColor" $fish_color_cwd
-    printf ' %s%s ' (prompt_pwd) (__fish_git_prompt)
+    printf " $pwd_txt"
 
-    set_color --background "$bgColorMuted" "$bgColor"
+    # If length of prompt_pwd > 80 print newline
+    if test (string length "$pwd_txt $git_txt") -gt 80
+        printf ' '
+        set_color --background=normal normal
+        printf '\n'
+    else
+        # Light Gray End Arrow
+        set_color --background="$bgColorMuted" "$bgColor"
+        printf '\ue0b0'
+    end
+
+    set_color --background="$bgColorMuted" magenta
+
+    printf $git_txt
+
+    # Dark Gray End Arrow
+    set_color --background="$bgColor" "$bgColorMuted"
     printf '\ue0b0'
 
     printUser
@@ -92,9 +110,9 @@ function fish_prompt --description 'Write out the prompt'
     printHostname
 
     # Gray Arrow End
-    set_color --background "$bgColor" "$bgColorMuted"
+    set_color --background="$bgColor" "$bgColorMuted"
     printf '\ue0b0'
-    set_color --background "$bgColor" normal
+    set_color --background="$bgColor" normal
 
     # Show datetime
     # set_color white
@@ -109,14 +127,13 @@ function fish_prompt --description 'Write out the prompt'
     # printPagesPerDay
 
     # Gray Arrow End
-    # set_color --background normal "$bgColorMuted"
+    # set_color --background=normal "$bgColorMuted"
     # printf '\ue0b0'
     # set_color normal
 
-    # Black Arrow End
-    set_color --background normal "$bgColor"
+    # Light Gray Arrow End
+    set_color "$bgColor" --background=normal
     printf '\ue0b0'
-    set_color normal
 
     printf '\n'
 
