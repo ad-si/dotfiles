@@ -1,3 +1,0 @@
-#! /bin/dash
-
-gmake --jobs --output-sync "$@"

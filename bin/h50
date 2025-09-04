@@ -1,0 +1,5 @@
+#!/bin/dash
+
+set -euf
+
+head -n 50

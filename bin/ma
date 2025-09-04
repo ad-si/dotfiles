@@ -1,0 +1,8 @@
+#!/bin/dash
+
+set -euf
+
+if test -f ./justfile
+then just "$@"
+else make "$@"
+fi
