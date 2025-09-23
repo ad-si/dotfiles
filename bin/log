@@ -10,7 +10,8 @@ git log \
   --pretty="format:%C(yellow)%h%C(reset) %ad%C(red)%d%C(reset) %C(bold normal)%s%C(reset) %C(cyan)[%aN]%C(reset)" \
   "$@" \
 | sed 's/ N / /g' \
-| sed 's/ G / 🔑  /g'
+| sed 's/ G / 🔑  /g' \
+| sed 's/\[Adrian Sieber\]//g'
 
 # Limit number of entries with
 # --max-count 20

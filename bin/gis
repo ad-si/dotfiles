@@ -21,7 +21,7 @@ color () {
   printf "\033[%sm%s\033[0m\n" "$colorCode" "$1"
 }
 
-gitDirs=$(find . -maxdepth 2 -type d -name '.git' | sort)
+gitDirs="$(find . -maxdepth 2 -type d -name '.git' | sort)"
 
 # If only one git repository is found, run `git status` directly
 if test "$(echo "$gitDirs" | wc -l)" -eq 1
@@ -33,21 +33,26 @@ fi
 echo "$gitDirs" \
 | while read -r gitdir
   do
-    gitdir=$(dirname "$gitdir")
-    gitdirBasename=$(basename "$gitdir")
-    gitStatus=$(git -C "$gitdir" status --porcelain)
-    numMod=$(echo "$gitStatus" | grep -c '^ M ')
-    numDel=$(echo "$gitStatus" | grep -c '^ D ')
-    numUntrack=$(echo "$gitStatus" | grep -c '^?? ')
-    hasFlakeFile=$(find "$gitdir" -maxdepth 1 -name 'flake.nix')
+    gitdir="$(dirname "$gitdir")"
+    gitdirBasename="$(basename "$gitdir")"
+    gitStatus="$(git -C "$gitdir" status --porcelain)"
+    dateLastCommit="$(git -C "$gitdir" log -1 --format=%cs 2>/dev/null || color red "NO COMMITS")"
+    numMod="$(echo "$gitStatus" | grep -c '^ M ' || true)"
+    numDel="$(echo "$gitStatus" | grep -c '^ D ' || true)"
+    numUntrack="$(echo "$gitStatus" | grep -c '^?? ' || true)"
+    hasFlakeFile="$(find "$gitdir" -maxdepth 1 -name 'flake.nix')"
 
     # If changes, print stats about repo
     if test -z "$gitStatus"
     then
-      echo "$gitdirBasename"
+      printf \
+        "%s %s\n" \
+        "$dateLastCommit" \
+        "$gitdirBasename"
     else
       printf \
-        "%s (%s,%s,%s)%s\n" \
+        "%s %-40s (%3s,%3s,%3s)%3s\n" \
+        "$dateLastCommit" \
         "$(color yellow "$gitdirBasename")" \
         "$(if test "$numMod" != "0"; then color red "$numMod M"; fi)" \
         "$(if test "$numDel" != "0"; then color blue " $numDel D"; fi)" \

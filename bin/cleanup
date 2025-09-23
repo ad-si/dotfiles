@@ -13,7 +13,7 @@ npm cache clean --force
 echo "$separator"
 
 echo '===== Clean Yarn Cache ====='
-yarn cache clean
+which yarn >/dev/null 2>&1 && yarn cache clean
 echo "$separator"
 
 echo '===== Clean Docker ====='
@@ -21,8 +21,9 @@ echo '===== Clean Docker ====='
 docker system prune
 echo "$separator"
 
-echo '===== Clean Nix Store ====='
+echo '===== Clean and Optimize Nix Store ====='
 nix store gc
+nix store optimise
 echo "$separator"
 
 # echo '===== Clean Xcode ====='

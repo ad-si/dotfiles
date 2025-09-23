@@ -56,6 +56,7 @@ com.sublimetext.4              public.x509-certificate  all
 
 ################################# SOURCE CODE ##################################
 
+com.microsoft.VSCode           dhall                    all
 com.microsoft.VSCode           elm                      all
 com.microsoft.VSCode           hs                       all
 com.microsoft.VSCode           js                       all

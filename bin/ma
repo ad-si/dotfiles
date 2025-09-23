@@ -2,7 +2,16 @@
 
 set -euf
 
-if test -f ./justfile
+if test -f ./makefile
+then make "$@"
+
+elif test -f ./justfile
 then just "$@"
-else make "$@"
+
+elif test -f ./package.json
+then npm run "$@"
+
+else
+  echo "No makefile, justfile, or package.json found" >&2
+  exit 1
 fi

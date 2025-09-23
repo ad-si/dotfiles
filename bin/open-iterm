@@ -13,12 +13,14 @@ check_url_prefix() {
 }
 
 
-if test -f "$1/$2"; then
-  open "$1/$2"
-elif test -d "$1/$2"; then
-  open "$1/$2"
-elif check_url_prefix "$2"; then
-  open "$2"
+if test "${2#"/"}" != "$2"  # $2 starts with "/"
+then open "$2"
+elif test -f "$1/$2"
+then open "$1/$2"
+elif test -d "$1/$2"
+then open "$1/$2"
+elif check_url_prefix "$2"
+then open "$2"
 else
   search_query="\\" # With leading backslash DuckDuckGo opens first result
   shift  # Skip the first argument (pwd)

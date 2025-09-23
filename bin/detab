@@ -18,8 +18,11 @@ files=$(\
     --hidden \
     --no-ignore \
     \
-    --exclude node_modules \
     --exclude .next \
+    --exclude .spago \
+    --exclude node_modules \
+    --exclude output \
+    --exclude output-es \
     \
     --extension babelrc \
     --extension cabal \
@@ -29,6 +32,7 @@ files=$(\
     --extension htm \
     --extension html \
     --extension ignore \
+    --extension input \
     --extension jade \
     --extension js \
     --extension json \
@@ -36,6 +40,7 @@ files=$(\
     --extension lua \
     --extension md \
     --extension mustache \
+    --extension output \
     --extension php \
     --extension pug \
     --extension sass \

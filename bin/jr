@@ -1,0 +1,6 @@
+#!/bin/dash
+# jump in repo - cd to a directory in the current git repo
+
+set -euf
+
+zoxide --basedir $(git rev-parse --show-toplevel) "$@"
