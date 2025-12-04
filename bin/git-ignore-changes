@@ -1,0 +1,5 @@
+#!/bin/dash
+
+set -euf
+
+git update-index --skip-worktree "$@"
