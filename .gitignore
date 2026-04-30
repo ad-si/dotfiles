@@ -3,7 +3,8 @@
 /configs/yarn/link
 /dictionaries
 # Ignore all except for the already added files for stack
-/home/stack
+/home/stack/*
+!/home/stack/config.yaml
 /home/w3m/history
 /node_modules
 /os.html
