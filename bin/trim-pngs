@@ -1,13 +1,32 @@
 #!/bin/dash
+# Trims provided PNGs or all PNGs in current directory in parallel
 
 set -euf
 
-# Trim PNGs in parallel
+process_png() {
+  f=$1
+  echo "Trim $f"
+  mogrify -trim "$f"
+  echo "Optimize $f"
+  optipng -silent "$f"
+}
 
-gum confirm "Recursively trim all PNGs in working directory?" \
-&& find . -name "*.png" -print0 \
-| xargs -0 --replace=% -P 0 \
-    bash -c '
-      echo "Trim %" && mogrify -trim "%" &&
-      echo "Optimize %" && optipng -silent "%"
-    '
+# Internal: process a single file (used by xargs)
+if test "${1-}" = "--process"
+then
+  shift
+  for f do
+    process_png "$f"
+  done
+  exit 0
+fi
+
+if test "$#" -gt 0
+then
+  printf '%s\0' "$@" \
+    | xargs -0 -n 1 -P 0 "$0" --process
+else
+  gum confirm "Recursively trim all PNGs in working directory?" \
+    && find . -type f -name '*.png' -print0 \
+    | xargs -0 -n 1 -P 0 "$0" --process
+fi

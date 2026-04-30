@@ -2,4 +2,5 @@
 
 set -euf
 
-gdu -s -h ./* | gsort -h -r
+gdu --summarize --human-readable $(ls) \
+| gsort -h -r

@@ -8,10 +8,13 @@ then make "$@"
 elif test -f ./justfile
 then just "$@"
 
+elif test -f ./Cargo.toml
+then cargo "$@"
+
 elif test -f ./package.json
 then npm run "$@"
 
 else
-  echo "No makefile, justfile, or package.json found" >&2
+  echo "No makefile, justfile, Cargo.toml, or package.json found" >&2
   exit 1
 fi

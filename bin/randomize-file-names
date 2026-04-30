@@ -1,9 +1,13 @@
 #!/bin/dash
+# Rename all files in current directory to a random 8 character name.
 
 set -euf
 
-for NAME in $(du ./*.eml | awk '{print $2}')
+for fileName in $(find . -maxdepth 1 -type f)
 do
-	mv "${NAME}" "$(base32 /dev/urandom | head -c 10)${NAME}"
-done
+	extension="${fileName##*.}"
+	newName="$(base64 /dev/urandom | tr -dc 'a-z0-9' | head -c 8).${extension}"
 
+	echo "${fileName} -> ${newName}"
+	mv --interactive "${fileName}" "${newName}"
+done

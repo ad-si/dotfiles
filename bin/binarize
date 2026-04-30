@@ -12,7 +12,7 @@ set -euf
 
 for file in "$@"
 do
-  magick convert \
+  magick \
     -verbose \
     "$file" \
     -alpha off \

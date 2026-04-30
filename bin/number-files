@@ -1,9 +1,9 @@
 #!/bin/dash
 
-set -euf
+set -eu
 
 counter="${1:-1}"
-numberOfFiles="$(printf "%d" "$(find . -depth 1 | wc -l)")"
+numberOfFiles="$(printf "%d" "$(find . -mindepth 1 -maxdepth 1 | wc -l)")"
 numberOfDigits="${#numberOfFiles}"
 
 # Give them temporary names to avoid collisions

@@ -2,7 +2,21 @@
 
 # TODO: Check if `rename -c *.txt` is better suited
 
-for i in *[A-Z]*
-do
-  mv "$i" "$(echo "$i" | tr '[:upper:]' '[:lower:]')"
-done
+set -eufo pipefail
+
+tmpdir="$(mktemp --directory)"
+
+find . -maxdepth 1 -mindepth 1 -print0 \
+| while IFS= read -r -d '' i
+  do
+    name="$(basename "$i")"
+    lower="$(printf '%s\n' "$name" | tr '[:upper:]' '[:lower:]')"
+
+    if test "$name" != "$lower"
+    then
+      mv -- "$i" "$tmpdir/$name"
+      mv -- "$tmpdir/$name" "$lower"
+    fi
+  done
+
+rmdir "$tmpdir"
