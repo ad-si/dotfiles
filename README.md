@@ -307,7 +307,9 @@ Especially `Settings`, which is needed for Sublime Text/Merge sync.
 
 1. Make sure GPG is set up correctly.
 1. Clone https://github.com/ad-si/password-store with GitHub CLI:
-    `gh repo clone ad-si/password-store` and move to `~/.password-store`.
+    ```sh
+    gh repo clone ad-si/password-store ~/.password-store
+    ```
 1. `gopass fsck`
 
 
