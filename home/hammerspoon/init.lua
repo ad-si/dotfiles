@@ -15,8 +15,8 @@ spoon.ShiftIt:bindHotkeys({
 
 --[[-------------------------- Time Tracking ---------------------------------]]
 -- Inspired by https://github.com/Hammerspoon/Spoons/tree/master/Source/Cherry.spoon
-hs.loadSpoon("HammerTime")
-spoon.HammerTime:start()
+-- hs.loadSpoon("HammerTime")
+-- spoon.HammerTime:start()
 
 
 --[[-------------------------- MicMute ---------------------------------------]]
