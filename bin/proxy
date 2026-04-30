@@ -1,0 +1,8 @@
+#!/bin/dash
+
+set -euf
+
+echo "open x-apple.systempreferences:com.apple.preference.network"
+echo "-> Set SOCKS5 proxy to localhost:1080"
+
+ssh -N -D 1080 cloud.feram.io

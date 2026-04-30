@@ -1,0 +1,68 @@
+#!/usr/bin/env node
+const { spawn } = require("child_process")
+const readline = require("readline")
+
+// Author and date on first line, body follows
+const git = spawn("git", [
+  "log",
+  "--use-mailmap",
+  "--pretty=format:%aN|%ad%n%B",
+  "--date=iso-strict"
+])
+
+const rl = readline.createInterface({
+  input: git.stdout,
+  crlfDelay: Infinity
+})
+
+const committers = {}
+let buffer = []
+
+rl.on("line", line => {
+  // Accumulate lines for each commit; empty line separates commits
+  if (line === "" && buffer.length) {
+    processCommit(buffer)
+    buffer = []
+  } else {
+    buffer.push(line)
+  }
+})
+
+rl.on("close", () => {
+  if (buffer.length) processCommit(buffer)
+  outputResults()
+})
+
+function processCommit(lines) {
+  const header = lines[0]; // first line = author|date
+  const bodyLines = lines.slice(1)
+
+  const [author, dateStr] = header.split("|")
+  if (!author || !dateStr) return; // skip malformed entries
+
+  const day = dateStr.slice(0, 10)
+
+  // Count bullet points in body (squash merge heuristic)
+  const bulletCommits = bodyLines.filter(l => l.trim().startsWith("* ")).length
+  const attributedCommits = bulletCommits > 0 ? bulletCommits : 1
+
+  if (!committers[author]) {
+    committers[author] = { count: 0, activeDays: new Set() }
+  }
+
+  committers[author].count += attributedCommits
+  committers[author].activeDays.add(day)
+}
+
+function outputResults() {
+  const results = Object.entries(committers)
+    .map(([author, c]) => ({
+      Author: author,
+      Commits: c.count,
+      ActiveDays: c.activeDays.size,
+      AvgCommitsPerDay: (c.count / c.activeDays.size).toFixed(2)
+    }))
+    .sort((a, b) => b.AvgCommitsPerDay - a.AvgCommitsPerDay);
+
+  console.table(results);
+}

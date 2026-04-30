@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+if test $# -ne 2
+then
+  echo "Usage: $0 <number_of_commits> <new_date YYYY-MM-DD>"
+  exit 1
+fi
+
+NUM_COMMITS="$1"
+NEW_DATE="$2"
+
+# Validate NUM_COMMITS
+if ! [[ "$NUM_COMMITS" =~ ^[0-9]+$ ]]
+then
+  echo "Error: number_of_commits must be an integer."
+  exit 1
+fi
+
+# Validate date format (basic check)
+if ! [[ "$NEW_DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]
+then
+  echo "Error: date must be in YYYY-MM-DD format."
+  exit 1
+fi
+
+# Create a temporary script to handle each commit during rebase
+REWRITE_SCRIPT=".git/set-commit-date-rewrite.sh"
+
+cat > "$REWRITE_SCRIPT" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Read original author timestamp (YYYY-MM-DD HH:MM:SS ±ZZZZ)
+orig_date=$(git show -s --format=%ai HEAD)
+
+# Extract "HH:MM:SS ±ZZZZ"
+time_and_tz="${orig_date#* }"
+
+# Use NEW_DATE from the environment
+new_date="$NEW_DATE"
+
+export GIT_AUTHOR_DATE="$new_date $time_and_tz"
+export GIT_COMMITTER_DATE="$new_date $time_and_tz"
+
+git commit --amend --no-edit --date="$GIT_AUTHOR_DATE"
+EOF
+
+chmod +x "$REWRITE_SCRIPT"
+
+# Export NEW_DATE so the temporary script can read it
+export NEW_DATE
+
+# Build the rebase instruction list (mark commits as edit)
+REBASE_TODO=$(mktemp)
+git log --reverse --pretty=format:"edit %h" HEAD~"$NUM_COMMITS"..HEAD > "$REBASE_TODO"
+
+SEQUENCE_EDITOR_SCRIPT=$(mktemp)
+cat > "$SEQUENCE_EDITOR_SCRIPT" <<EOF
+#!/usr/bin/env bash
+set -euo pipefail
+todo_file="\$1"
+cat "$REBASE_TODO" > "\$todo_file"
+EOF
+chmod +x "$SEQUENCE_EDITOR_SCRIPT"
+
+# Run the rebase with custom instructions (it may exit non-zero when stopping for edits)
+GIT_SEQUENCE_EDITOR="$SEQUENCE_EDITOR_SCRIPT" git rebase -i HEAD~"$NUM_COMMITS" || true
+
+# Process each stop automatically until the rebase finishes
+while test -d .git/rebase-merge || test -d .git/rebase-apply; do
+  "$REWRITE_SCRIPT"
+  git rebase --continue
+done
+
+rm -f "$REWRITE_SCRIPT" "$REBASE_TODO" "$SEQUENCE_EDITOR_SCRIPT"
+
+echo "Successfully rewrote the last $NUM_COMMITS commits to date $NEW_DATE (time preserved)."
