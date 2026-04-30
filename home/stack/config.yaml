@@ -16,3 +16,5 @@ templates:
 allow-newer: true
 
 notify-if-nix-on-path: false
+
+recommend-stack-upgrade: false
