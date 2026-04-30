@@ -23,6 +23,7 @@
             bat  # `cat` clone with additional features
             bun  # JavaScript engine
             # cargo  # Rust package manager | TODO: Causes problems in cosuz
+            litecli  # CLI for SQLite with auto-completion and syntax highlighting
             llvmPackages_20.clang-tools  # Includes `clang-format`: Code formatter for C, C++, …
             # colordiff
             comma  # Run software without installing it
@@ -34,7 +35,7 @@
             diskus
             dockutil
             # doggo  # DNS lookup utility
-            # duckdb  # In-memory SQL database system
+            duckdb  # In-memory SQL database system
             dos2unix  # Convert text files from DOS to Unix format
             exiftool  # Manage meta information of vaious files
             eza
@@ -45,7 +46,7 @@
             fdupes  # Find duplicate files (Use fclones instead)
             ffmpeg  # Video and audio processing
             findutils  # GNU find utilities
-            fish
+            # fish # Fish shell | TODO: Currently installed with brew for unknown reasons
             flac  # Tools for encoding & decoding FLAC lossless audio files
             flyctl  # Fly.io CLI
             # fnm  # Fast Node.js version manager
@@ -65,6 +66,8 @@
             # go  # Go programming language
             # goaccess  # Web log analyzer
             gopass
+            gping  # Ping, but with a graph
+            # gramps  # Genealogy software | Better installed with Brew
             graphviz
             gum  # Utilities to write shell scripts
             harper  # Grammar checking LSP server
@@ -81,6 +84,7 @@
             jo  # JSON output from a shell
             jq  # JSON processor
             jujutsu   # Version control system
+            jupyter  # Interactive computing environment
             just  # Command runner
             kalker  # CLI calculator
             kondo  # Clean dependencies and build artifacts
@@ -100,7 +104,7 @@
             mpv  # Media player
             neovide  # Neovim GUI
             neovim  # Text editor
-            ngrok  # Reverse proxy from public endpoint to locally running app
+            # ngrok  # Reverse proxy from public endpoint to locally running app
             nix-index  # Files database for nixpkgs
             nodejs_22
             nodePackages.svgo  # SVG optimizer
@@ -116,21 +120,23 @@
             # perspec  # Extract and perspectively correct document images
             pkg-config  # Necessary for stack
             # platypus  # CLI tool only (GUI gets installed with brew cask)
-            poppler  # PDF rendering library (Necessary for `rga`)
+            # poppler  # PDF rendering library (Necessary for `rga`)
+            poppler-utils  # PDF utilities
             rclone  # Rsync for cloud storage
             ripgrep
             ripgrep-all  # Ripgrep wrapper for PDFs, E-Books, Office documents, zip, tar.gz, etc.
             # ruby  # Programming language
             # rustc | TODO: Causes problems in cosuz
             # s3cmd  # Command-line tool for the Amazon S3 service
+            # scribus  # Desktop publishing app | TODO: Currently broken for macOS
             sd  # Intuitive find & replace CLI
             # shellcheck  # Linter for bash scripts
             silicon  # Create beautiful images of your source code
             socat  # Multipurpose relay CLI tool
             sqlite  # SQLite database
             stylua  # Lua code formatter
-            tealdeer  # Fast implementation of tldr in Rust
             tectonic # LaTeX engine
+            tlrc  # Collaborative cheatsheets for console commands
             tokei  # Display statistics about code
             topgrade
             translate-shell
