@@ -39,6 +39,7 @@ brew install bash
 # Miscellaneous
 brews=(
   hammerspoon  # Desktop automation
+  mole  # Deep clean and optimize your Mac
   pinentry-mac  # Needed for gopass
   tcl-tk  # Tcl/Tk needed for pdfCropMargins
   wolfram-engine  # Execute Wolfram Language code
@@ -91,6 +92,7 @@ casks=(
   element
   # emacs
   # filezilla
+  finicky  # Utility for customizing which browser to start
   firefox
   # flux
   # fman  # Dual pane file manager
@@ -125,9 +127,9 @@ casks=(
   # libreoffice
   # lm-studio
   logitech-options
+  maccy  # Clipboard manager
   # microsoft-remote-desktop
   modern-csv  # Desktop app for viewing and editing CSVs
-  # mongodb-compass
   # musescore
   nightfall  # Menu bar app to switch between light and dark mode
   notion
@@ -135,6 +137,7 @@ casks=(
   # onyx
   openscad  # 3D CAD software
   # opera
+  orbstack  # Docker alternative for Apple Silicon
   # platypus
   qlstephen  # Preview plain text files without a file extension
   # quicksilver
@@ -168,6 +171,7 @@ casks=(
   # textmate
   thunderbird@esr  # Email client (Extended Support Release)
   # tor-browser
+  trex  # Text extraction tool
   # tunnelblick BUGGY
   # universal-control FIXME: missing
   # vienna
