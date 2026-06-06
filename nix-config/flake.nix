@@ -21,6 +21,7 @@
             awscli2  # aws management tool | FIXME: Still needed globally to generate aws RDS password
             bash
             bat  # `cat` clone with additional features
+            borgbackup  # Deduplicating backup program
             bun  # JavaScript engine
             # cargo  # Rust package manager | TODO: Causes problems in cosuz
             litecli  # CLI for SQLite with auto-completion and syntax highlighting
