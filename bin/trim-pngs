@@ -16,6 +16,9 @@ if test "${1-}" = "--process"
 then
   shift
   for f do
+    case "$(basename "$f")" in
+      ._*) echo "Skip $f"; continue ;;
+    esac
     process_png "$f"
   done
   exit 0
@@ -26,7 +29,7 @@ then
   for arg do
     if test -d "$arg"
     then
-      find "$arg" -type f -name '*.png' -print0
+      find "$arg" -type f -name '*.png' ! -name '._*' -print0
     else
       printf '%s\0' "$arg"
     fi
@@ -34,6 +37,6 @@ then
     | xargs -0 -n 1 -P 0 "$0" --process
 else
   gum confirm "Recursively trim all PNGs in working directory?" \
-    && find . -type f -name '*.png' -print0 \
+    && find . -type f -name '*.png' ! -name '._*' -print0 \
     | xargs -0 -n 1 -P 0 "$0" --process
 fi
