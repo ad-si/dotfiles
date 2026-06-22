@@ -1,6 +1,6 @@
 #!/bin/dash
 
-set -euf
+set -eu
 
-gdu --summarize --human-readable $(ls) \
+gdu --summarize --human-readable -- * \
 | gsort -h -r
