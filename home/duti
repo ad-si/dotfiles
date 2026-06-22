@@ -30,8 +30,8 @@ com.sublimetext.4              md                       all
 
 ################################## DATA FILES ##################################
 
-net.galliumdigital.Modern-CSV  csv                      all
-net.galliumdigital.Modern-CSV  tsv                      all
+com.airsequel.AirCSV           csv                      all
+com.airsequel.AirCSV           tsv                      all
 
 com.sublimetext.4              log                      all
 com.sublimetext.4              xml                      all
