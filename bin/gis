@@ -30,33 +30,62 @@ then
   exit 0
 fi
 
+# Determine the widest repo name so the flake/stats columns line up
+nameWidth="$(
+  echo "$gitDirs" \
+  | while read -r gitdir
+    do
+      basename "$(dirname "$gitdir")" | awk '{ print length }'
+    done \
+  | sort -rn \
+  | head -1
+)"
+
 echo "$gitDirs" \
 | while read -r gitdir
   do
     gitdir="$(dirname "$gitdir")"
     gitdirBasename="$(basename "$gitdir")"
-    gitStatus="$(git -C "$gitdir" status --porcelain)"
+
+    # Skip directories that aren't valid git repos instead of aborting
+    if ! gitStatus="$(git -C "$gitdir" status --porcelain 2>/dev/null)"
+    then
+      printf "%s %s\n" "$(color red "NOT A REPO")" "$gitdirBasename"
+      continue
+    fi
+
     dateLastCommit="$(git -C "$gitdir" log -1 --format=%cs 2>/dev/null || color red "NO COMMITS")"
     numMod="$(echo "$gitStatus" | grep -c '^ M ' || true)"
     numDel="$(echo "$gitStatus" | grep -c '^ D ' || true)"
     numUntrack="$(echo "$gitStatus" | grep -c '^?? ' || true)"
     hasFlakeFile="$(find "$gitdir" -maxdepth 1 -name 'flake.nix')"
 
+    # Pad the name to a fixed visible width before coloring so the flake
+    # column lines up regardless of color codes or repo state
+    namePadded="$(printf "%-${nameWidth}s" "$gitdirBasename")"
+    if test ! -z "$hasFlakeFile"
+    then
+      flake="$(color blue "❄️")"
+    else
+      flake="  "
+    fi
+
     # If changes, print stats about repo
     if test -z "$gitStatus"
     then
       printf \
-        "%s %s\n" \
+        "%s %s %s\n" \
         "$dateLastCommit" \
-        "$gitdirBasename"
+        "$namePadded" \
+        "$flake"
     else
       printf \
-        "%s %-40s (%3s,%3s,%3s)%3s\n" \
+        "%s %s %s (%3s,%3s,%3s)\n" \
         "$dateLastCommit" \
-        "$(color yellow "$gitdirBasename")" \
+        "$(color yellow "$namePadded")" \
+        "$flake" \
         "$(if test "$numMod" != "0"; then color red "$numMod M"; fi)" \
         "$(if test "$numDel" != "0"; then color blue " $numDel D"; fi)" \
-        "$(if test "$numUntrack" != "0"; then color green " $numUntrack U"; fi)" \
-        "$(if test ! -z "$hasFlakeFile"; then color blue " ❄️"; fi)"
+        "$(if test "$numUntrack" != "0"; then color green " $numUntrack U"; fi)"
     fi
   done
