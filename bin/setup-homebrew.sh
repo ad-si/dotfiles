@@ -131,6 +131,7 @@ casks=(
   # microsoft-remote-desktop
   modern-csv  # Desktop app for viewing and editing CSVs
   # musescore
+  music-decoy  # Stop the Music app from launching
   nightfall  # Menu bar app to switch between light and dark mode
   notion
   # nvidia-geforce-now
