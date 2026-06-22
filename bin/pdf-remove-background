@@ -1,0 +1,204 @@
+#!/usr/bin/env -S uv run --with pikepdf python
+"""
+Remove full-page background images from a PDF.
+
+This deletes the operator that paints any image covering (nearly) the whole
+page, leaving the foreground text and vector graphics untouched.
+
+Usage:
+  pdf-remove-background INPUT.pdf [-o OUTPUT.pdf] [--coverage FRACTION]
+
+By default the input file is rewritten in place.
+Pass -o to write to a different file.
+
+An image counts as a "background" when its placed width and height each
+cover at least FRACTION (default 0.9) of the page. Lower the threshold for
+backgrounds that don't quite fill the page; raise it to be stricter.
+
+Handles:
+  - Images drawn directly on the page (/Im Do)
+  - Images drawn through one or more Form XObjects (watermark wrappers)
+  - Arbitrary CTM transforms, including rotation, via the current matrix
+"""
+
+import sys
+from pathlib import Path
+
+import pikepdf
+
+
+IDENT = (1.0, 0.0, 0.0, 1.0, 0.0, 0.0)
+
+
+def mat_mul(m, n):
+    """Combine affine matrices: apply m first, then n (row-vector convention)."""
+    a1, b1, c1, d1, e1, f1 = m
+    a2, b2, c2, d2, e2, f2 = n
+    return (
+        a1 * a2 + b1 * c2,
+        a1 * b2 + b1 * d2,
+        c1 * a2 + d1 * c2,
+        c1 * b2 + d1 * d2,
+        e1 * a2 + f1 * c2 + e2,
+        e1 * b2 + f1 * d2 + f2,
+    )
+
+
+def unit_square_bbox(ctm):
+    """Bounding box of the image unit square [0,1]x[0,1] under ctm."""
+    a, b, c, d, e, f = ctm
+    xs = []
+    ys = []
+    for x, y in ((0, 0), (1, 0), (1, 1), (0, 1)):
+        xs.append(a * x + c * y + e)
+        ys.append(b * x + d * y + f)
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def to_matrix(ops):
+    return tuple(float(x) for x in ops)
+
+
+def collect_image_bboxes(xobj, parent_res, ctm, depth=0):
+    """Page-space bounding boxes of every image drawn by xobj under ctm."""
+    if depth > 8:
+        return []
+    subtype = str(xobj.get("/Subtype", ""))
+    if subtype == "/Image":
+        return [unit_square_bbox(ctm)]
+    if subtype != "/Form":
+        return []
+
+    matrix = xobj.get("/Matrix")
+    fmat = to_matrix(matrix) if matrix is not None else IDENT
+    inner_ctm = mat_mul(fmat, ctm)
+    res = xobj.get("/Resources")
+    if res is None:
+        res = parent_res
+    return walk_images(xobj, res, inner_ctm, depth + 1)
+
+
+def walk_images(owner, resources, ctm, depth):
+    xobjs = resources.get("/XObject") if resources is not None else None
+    bboxes: list[tuple[float, float, float, float]] = []
+    stack: list[tuple] = []
+    cur = ctm
+    for ops, op in pikepdf.parse_content_stream(owner):
+        s = str(op)
+        if s == "q":
+            stack.append(cur)
+        elif s == "Q":
+            cur = stack.pop() if stack else cur
+        elif s == "cm":
+            cur = mat_mul(to_matrix(ops), cur)
+        elif s == "Do" and xobjs is not None:
+            name = str(ops[0])
+            if name in xobjs:
+                bboxes += collect_image_bboxes(xobjs[name], resources, cur, depth)
+    return bboxes
+
+
+def page_size(page) -> tuple[float, float]:
+    box = page.get("/CropBox") or page.get("/MediaBox") or [0, 0, 612, 792]
+    vals = [float(v) for v in box]
+    return vals[2] - vals[0], vals[3] - vals[1]
+
+
+def process_page(page, pdf, coverage: float) -> int:
+    resources = page.get("/Resources")
+    xobjs = resources.get("/XObject") if resources is not None else None
+    if xobjs is None:
+        return 0
+
+    page_w, page_h = page_size(page)
+    instructions = list(pikepdf.parse_content_stream(page))
+
+    stack: list[tuple] = []
+    cur = IDENT
+    to_remove: set[int] = set()
+
+    for i, (ops, op) in enumerate(instructions):
+        s = str(op)
+        if s == "q":
+            stack.append(cur)
+        elif s == "Q":
+            cur = stack.pop() if stack else cur
+        elif s == "cm":
+            cur = mat_mul(to_matrix(ops), cur)
+        elif s == "Do":
+            name = str(ops[0])
+            if name not in xobjs:
+                continue
+            for minx, miny, maxx, maxy in collect_image_bboxes(xobjs[name], resources, cur):
+                w = maxx - minx
+                h = maxy - miny
+                if w >= coverage * page_w and h >= coverage * page_h:
+                    to_remove.add(i)
+                    break
+
+    if not to_remove:
+        return 0
+
+    kept = [inst for i, inst in enumerate(instructions) if i not in to_remove]
+    page.Contents = pdf.make_stream(pikepdf.unparse_content_stream(kept))
+    return len(to_remove)
+
+
+def parse_args(argv: list[str]) -> tuple[Path, Path, float]:
+    args = argv[1:]
+    out_path: Path | None = None
+    coverage = 0.9
+
+    for flag, attr in (("-o", "out"), ("--coverage", "cov")):
+        while flag in args:
+            i = args.index(flag)
+            if i + 1 >= len(args):
+                raise SystemExit(f"error: {flag} requires an argument")
+            value = args[i + 1]
+            if attr == "out":
+                out_path = Path(value)
+            else:
+                coverage = float(value)
+            args = args[:i] + args[i + 2:]
+
+    if len(args) != 1:
+        print(__doc__, file=sys.stderr)
+        raise SystemExit(1)
+
+    in_path = Path(args[0])
+    return in_path, out_path or in_path, coverage
+
+
+def main() -> int:
+    in_path, out_path, coverage = parse_args(sys.argv)
+
+    with pikepdf.open(in_path) as pdf:
+        total = 0
+        per_page: list[int] = []
+        for page in pdf.pages:
+            n = process_page(page, pdf, coverage)
+            per_page.append(n)
+            total += n
+
+        if total == 0:
+            print("No full-page background images found.", file=sys.stderr)
+            return 2
+
+        # Drop the now-unused XObject entries so the image data isn't written.
+        pdf.remove_unreferenced_resources()
+
+        if out_path == in_path:
+            tmp = in_path.with_suffix(".tmp.pdf")
+            pdf.save(tmp)
+            tmp.replace(in_path)
+        else:
+            pdf.save(out_path)
+
+    removed_pages = sum(1 for n in per_page if n)
+    print(f"removed {total} background draw(s) across {removed_pages} page(s)")
+    print(f"wrote {out_path}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

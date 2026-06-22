@@ -1,0 +1,259 @@
+#!/usr/bin/env -S uv run --with pikepdf python
+"""
+Remove literal text from a PDF by deleting only the text-showing
+operators that draw the matching characters.
+No rectangle redaction: Other text behind it stays untouched.
+
+Usage:
+  pdf-remove-text NEEDLE [NEEDLE ...] INPUT.pdf [-o OUTPUT.pdf]
+
+By default the input file is rewritten in place.
+Pass -o to write to a different file.
+
+Handles:
+  - Page content streams and Form XObjects (watermarks often live there)
+  - Fonts with /ToUnicode CMaps
+  - Fonts with /Encoding /Differences arrays (glyph-name based)
+  - Plain WinAnsiEncoding
+  - Needles split across multiple Tj operators within one BT/ET block
+"""
+
+import re
+import sys
+from pathlib import Path
+
+import pikepdf
+
+
+GLYPH_NAMES: dict[str, str] = {
+    "space": " ", "exclam": "!", "quotedbl": '"', "numbersign": "#",
+    "dollar": "$", "percent": "%", "ampersand": "&", "quoteright": "'",
+    "quotesingle": "'", "parenleft": "(", "parenright": ")",
+    "asterisk": "*", "plus": "+", "comma": ",", "hyphen": "-",
+    "period": ".", "slash": "/", "zero": "0", "one": "1", "two": "2",
+    "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7",
+    "eight": "8", "nine": "9", "colon": ":", "semicolon": ";",
+    "less": "<", "equal": "=", "greater": ">", "question": "?", "at": "@",
+    "bracketleft": "[", "backslash": "\\", "bracketright": "]",
+    "asciicircum": "^", "underscore": "_", "quoteleft": "`",
+    "braceleft": "{", "bar": "|", "braceright": "}", "asciitilde": "~",
+    "ring": "°", "copyright": "©", "atilde": "ã",
+}
+for _c in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz":
+    GLYPH_NAMES[_c] = _c
+
+WIN_ANSI = bytes(range(256)).decode("cp1252", errors="replace")
+
+
+def parse_to_unicode(stream) -> dict[bytes, str]:
+    data = stream.read_bytes().decode("latin-1", errors="replace")
+    out: dict[bytes, str] = {}
+
+    def hex_to_str(h: str) -> str:
+        return "".join(chr(int(h[i:i + 4], 16)) for i in range(0, len(h), 4))
+
+    for body in re.findall(r"beginbfchar(.*?)endbfchar", data, re.DOTALL):
+        for src, dst in re.findall(r"<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>", body):
+            out[bytes.fromhex(src)] = hex_to_str(dst)
+
+    for body in re.findall(r"beginbfrange(.*?)endbfrange", data, re.DOTALL):
+        for m in re.finditer(
+            r"<([0-9A-Fa-f]+)>\s*<([0-9A-Fa-f]+)>\s*(<[0-9A-Fa-f]+>|\[[^\]]*\])",
+            body,
+        ):
+            src_start, src_end, dst = m.group(1), m.group(2), m.group(3)
+            start = int(src_start, 16)
+            end = int(src_end, 16)
+            width = len(src_start) // 2
+            if dst.startswith("<"):
+                base_hex = dst[1:-1]
+                base_val = int(base_hex, 16)
+                for offset, code in enumerate(range(start, end + 1)):
+                    key = code.to_bytes(width, "big")
+                    out[key] = hex_to_str(f"{base_val + offset:0{len(base_hex)}x}")
+            else:
+                items = re.findall(r"<([0-9A-Fa-f]+)>", dst)
+                for offset, code in enumerate(range(start, end + 1)):
+                    if offset < len(items):
+                        key = code.to_bytes(width, "big")
+                        out[key] = hex_to_str(items[offset])
+    return out
+
+
+def make_decoder(font_obj):
+    if "/ToUnicode" in font_obj:
+        cmap = parse_to_unicode(font_obj["/ToUnicode"])
+        widths = {len(k) for k in cmap} or {1}
+        w = next(iter(widths)) if len(widths) == 1 else 1
+
+        def decode(data: bytes) -> str:
+            out = []
+            i = 0
+            while i < len(data):
+                chunk = data[i:i + w]
+                out.append(cmap.get(chunk, "?"))
+                i += w
+            return "".join(out)
+        return decode
+
+    enc = font_obj.get("/Encoding")
+    if enc is None or isinstance(enc, pikepdf.Name):
+        return lambda data: "".join(WIN_ANSI[b] for b in data)
+
+    mapping = list(WIN_ANSI)
+    if "/Differences" in enc:
+        code = 0
+        for item in enc["/Differences"]:
+            if isinstance(item, int):
+                code = item
+            else:
+                name = str(item).lstrip("/")
+                char = GLYPH_NAMES.get(name, "?")
+                if 0 <= code < 256:
+                    mapping[code] = char
+                code += 1
+    return lambda data: "".join(mapping[b] if 0 <= b < 256 else "?" for b in data)
+
+
+def collect_decoders(resources):
+    decoders: dict[str, callable] = {}
+    if resources is None:
+        return decoders
+    fonts = resources.get("/Font")
+    if fonts is None:
+        return decoders
+    for name in fonts.keys():
+        decoders[str(name)] = make_decoder(fonts[name])
+    return decoders
+
+
+def filter_instructions(instructions, decoders, needles: list[str]):
+    current_font: str | None = None
+    char_seq: list[tuple[int, str]] = []
+
+    for i, (ops, op) in enumerate(instructions):
+        s = str(op)
+        if s == "Tf":
+            current_font = str(ops[0])
+        elif s == "BT" or s == "ET":
+            char_seq.append((-1, "\n"))  # break to prevent cross-block matches
+        elif s in ("Tj", "'", '"'):
+            dec = decoders.get(current_font or "")
+            if dec is None:
+                continue
+            b = bytes(ops[0] if s == "Tj" else ops[-1])
+            for c in dec(b):
+                char_seq.append((i, c))
+        elif s == "TJ":
+            dec = decoders.get(current_font or "")
+            if dec is None:
+                continue
+            for item in ops[0]:
+                if isinstance(item, pikepdf.String):
+                    for c in dec(bytes(item)):
+                        char_seq.append((i, c))
+
+    rendered = "".join(c for _, c in char_seq)
+    to_remove: set[int] = set()
+    counts: dict[str, int] = {n: 0 for n in needles}
+    for needle in needles:
+        pos = 0
+        while True:
+            idx = rendered.find(needle, pos)
+            if idx == -1:
+                break
+            counts[needle] += 1
+            for k in range(idx, idx + len(needle)):
+                inst_idx = char_seq[k][0]
+                if inst_idx >= 0:
+                    to_remove.add(inst_idx)
+            pos = idx + len(needle)
+
+    return to_remove, counts
+
+
+def process_stream_owner(owner, resources, needles: list[str], pdf):
+    instructions = list(pikepdf.parse_content_stream(owner))
+    decoders = collect_decoders(resources)
+    to_remove, counts = filter_instructions(instructions, decoders, needles)
+    if not to_remove:
+        return counts
+
+    kept = [inst for i, inst in enumerate(instructions) if i not in to_remove]
+    new_data = pikepdf.unparse_content_stream(kept)
+
+    if isinstance(owner, pikepdf.Stream):
+        owner.write(new_data)
+    else:
+        owner.Contents = pdf.make_stream(new_data)
+    return counts
+
+
+def process_page(page, needles: list[str], pdf) -> dict[str, int]:
+    totals: dict[str, int] = {n: 0 for n in needles}
+
+    def merge(counts: dict[str, int]) -> None:
+        for k, v in counts.items():
+            totals[k] += v
+
+    resources = page.get("/Resources")
+    merge(process_stream_owner(page, resources, needles, pdf))
+
+    if resources is not None and "/XObject" in resources:
+        for name in list(resources.XObject.keys()):
+            xo = resources.XObject[name]
+            if str(xo.get("/Subtype", "")) == "/Form":
+                xo_resources = xo.get("/Resources")
+                merge(process_stream_owner(xo, xo_resources, needles, pdf))
+    return totals
+
+
+def parse_args(argv: list[str]) -> tuple[list[str], Path, Path]:
+    args = argv[1:]
+    out_path: Path | None = None
+    if "-o" in args:
+        i = args.index("-o")
+        if i + 1 >= len(args):
+            raise SystemExit("error: -o requires a path argument")
+        out_path = Path(args[i + 1])
+        args = args[:i] + args[i + 2:]
+
+    if len(args) < 2:
+        print(__doc__, file=sys.stderr)
+        raise SystemExit(1)
+
+    *needles, in_str = args
+    in_path = Path(in_str)
+    return needles, in_path, out_path or in_path
+
+
+def main() -> int:
+    needles, in_path, out_path = parse_args(sys.argv)
+
+    with pikepdf.open(in_path) as pdf:
+        totals: dict[str, int] = {n: 0 for n in needles}
+        for page in pdf.pages:
+            for k, v in process_page(page, needles, pdf).items():
+                totals[k] += v
+
+        if sum(totals.values()) == 0:
+            print("No occurrences found.", file=sys.stderr)
+            for n in needles:
+                print(f"  {n!r}: 0", file=sys.stderr)
+            return 2
+
+        if out_path == in_path:
+            tmp = in_path.with_suffix(".tmp.pdf")
+            pdf.save(tmp)
+            tmp.replace(in_path)
+        else:
+            pdf.save(out_path)
+
+    for n in needles:
+        print(f"{n!r}: {totals[n]} match(es)")
+    print(f"wrote {out_path}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
