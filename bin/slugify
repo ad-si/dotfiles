@@ -1,0 +1,48 @@
+#!/usr/bin/env -S uv run --script
+
+"""
+Lowercase file names, transliterate them to ASCII,
+replace spaces with underscores.
+"""
+
+import os
+import unicodedata
+
+# Characters that need an explicit ASCII equivalent: German umlauts spell out
+# with a trailing "e", and others don't decompose under NFKD at all.
+SPECIAL = {
+  "ä": "ae", "ö": "oe", "ü": "ue",
+  "Ä": "Ae", "Ö": "Oe", "Ü": "Ue",
+  "ß": "ss", "æ": "ae", "œ": "oe", "ø": "o", "đ": "d", "ł": "l",
+  "Æ": "AE", "Œ": "OE", "Ø": "O", "Đ": "D", "Ł": "L",
+}
+
+
+def slugify(name):
+  # Compose first so decomposed umlauts (e.g. "a" + combining diaeresis on
+  # macOS) match the precomposed keys in SPECIAL.
+  text = unicodedata.normalize("NFC", name)
+  text = "".join(SPECIAL.get(char, char) for char in text)
+  text = unicodedata.normalize("NFKD", text)
+  text = "".join(char for char in text if not unicodedata.combining(char))
+  text = text.encode("ascii", "ignore").decode("ascii")
+  return text.lower().replace(" ", "_")
+
+
+for name in os.listdir("."):
+  slug = slugify(name)
+
+  # Skip files whose name is unchanged or transliterates to nothing.
+  if not slug or slug == name:
+    continue
+
+  # Don't turn a visible file into a hidden one when transliteration
+  # strips the whole base name (e.g. a CJK name leaving only ".txt").
+  if slug.startswith(".") and not name.startswith("."):
+    continue
+
+  # Rename via a temporary name so case-only changes work on
+  # case-insensitive filesystems.
+  tmp = name + ".slugify_tmp"
+  os.rename(name, tmp)
+  os.rename(tmp, slug)
