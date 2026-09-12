@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#
+# tidyhtml — normalize HTML by round-tripping it through Markdown.
+#
+# Strips presentational div/span wrappers, raw HTML and raw attributes,
+# leaving only the markup that Markdown can express.
+#
+# Usage:
+#   tidyhtml < input.html > output.html
+#   cat input.html | tidyhtml
+#
+# Deps: pandoc
+
+set -euo pipefail
+
+pandoc -f html-native_divs-native_spans -t markdown-raw_html-raw_attribute \
+  | pandoc -f markdown -t html
