@@ -1,0 +1,16 @@
+#!/bin/dash
+
+# borg init --encryption=none storage-box:/borg-backup
+
+borg create \
+  --list \
+  --verbose \
+  --stats \
+  --compression auto,zstd,6 \
+  --exclude '**/._*' \
+  --exclude '**/.DS_Store' \
+  storage-box:./borg-backup::'{utcnow:%Y-%m-%dt%H%M}' \
+  /Volumes/512microSD/Samples \
+  /Volumes/512microSD/SheetMusic \
+  /Volumes/512microSD/Songs \
+  /Volumes/512microSD/Things
