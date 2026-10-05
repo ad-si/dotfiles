@@ -15,3 +15,5 @@ selenium-debug.log
 
 # VS Code
 .vscode
+
+**/.claude/settings.local.json
