@@ -3,6 +3,11 @@ help: makefile
 	@tail -n +4 makefile | grep ".PHONY"
 
 
+.PHONY: format
+format:
+	echo "TODO"
+
+
 .PHONY: test
 test:
 	shelltest tests
