@@ -2,3 +2,8 @@ source ~/.bashrc
 
 export PATH="$HOME/.elan/bin:$PATH"
 source "$HOME/.cargo/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/adrian/.lmstudio/bin"
+# End of LM Studio CLI section
+
