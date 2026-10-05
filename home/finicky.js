@@ -1,14 +1,6 @@
 export default {
   defaultBrowser: "Brave Browser",
-  rewrite: [
-    {
-      match: "x.com/*",
-      url: (url) => {
-        url.host = "xcancel.com"
-        return url
-      },
-    },
-  ],
+  rewrite: [],
   handlers: [
     {
       match: [
@@ -25,6 +17,13 @@ export default {
       browser: {
         name: "Brave Browser",
         profile: "Feram",
+      },
+    },
+    {
+      match: /worldset/i,
+      browser: {
+        name: "Brave Browser",
+        profile: "Worldset",
       },
     },
   ],
