@@ -1,8 +1,107 @@
 #!/bin/dash
 
+# Tunnel all traffic through an SSH SOCKS5 proxy.
+#
+# Opens the tunnel, points macOS' SOCKS proxy setting at it, and restores the
+# previous proxy configuration on exit (including Ctrl-C and SIGTERM).
+
 set -euf
 
-echo "open x-apple.systempreferences:com.apple.preference.network"
-echo "-> Set SOCKS5 proxy to localhost:1080"
+HOST=${PROXY_HOST:-cloud.feram.io}
+PORT=${PROXY_PORT:-1080}
 
-ssh -N -D 1080 cloud.feram.io
+# The proxy is only applied to the service carrying the default route,
+# as that's the one macOS actually uses for outbound traffic.
+device=$(route -n get default 2>/dev/null | awk '/interface:/ {print $2}')
+
+if [ -z "$device" ]
+then
+  echo "ERROR: No default route — is the machine online?" >&2
+  exit 1
+fi
+
+# `-listnetworkserviceorder` alternates between a name line
+# "(1) Wi-Fi" and a hardware line "(Hardware Port: Wi-Fi, Device: en0)".
+service=$(networksetup -listnetworkserviceorder |
+  awk -v dev="$device" '
+    /^\([0-9*]+\) / { name = substr($0, index($0, ") ") + 2) }
+    index($0, "Device: " dev ")") { print name; exit }
+  ')
+
+if [ -z "$service" ]
+then
+  echo "ERROR: No network service found for device $device" >&2
+  exit 1
+fi
+
+prev=$(networksetup -getsocksfirewallproxy "$service")
+prev_enabled=$(echo "$prev" | awk '/^Enabled:/ {print $2}')
+prev_server=$(echo "$prev" | awk '/^Server:/ {print $2}')
+prev_port=$(echo "$prev" | awk '/^Port:/ {print $2}')
+
+ssh_pid=
+
+cleanup() {
+  if [ -n "$ssh_pid" ]
+  then
+    kill "$ssh_pid" 2>/dev/null || true
+  fi
+
+  if [ -n "$prev_server" ]
+  then
+    networksetup -setsocksfirewallproxy \
+      "$service" "$prev_server" "$prev_port" || true
+  fi
+
+  if [ "$prev_enabled" = "Yes" ]
+  then
+    networksetup -setsocksfirewallproxystate "$service" on || true
+  else
+    networksetup -setsocksfirewallproxystate "$service" off || true
+  fi
+
+  echo "Disabled SOCKS5 proxy for \"$service\""
+}
+
+trap cleanup EXIT
+trap 'exit 130' INT
+trap 'exit 143' TERM
+
+echo "Opening SSH tunnel to $HOST …"
+
+ssh -N -D "127.0.0.1:$PORT" \
+  -o ExitOnForwardFailure=yes \
+  -o ServerAliveInterval=30 \
+  -o ServerAliveCountMax=3 \
+  "$HOST" &
+ssh_pid=$!
+
+# Only enable the proxy once the tunnel actually accepts connections,
+# otherwise the machine is briefly cut off from the network.
+waited=0
+while ! nc -z 127.0.0.1 "$PORT" 2>/dev/null
+do
+  if ! kill -0 "$ssh_pid" 2>/dev/null
+  then
+    echo "ERROR: SSH tunnel to $HOST failed" >&2
+    exit 1
+  fi
+
+  if [ "$waited" -ge 300 ]
+  then
+    echo "ERROR: Timed out waiting for tunnel on port $PORT" >&2
+    exit 1
+  fi
+
+  waited=$((waited + 1))
+  sleep 0.1
+done
+
+# Setting the server does not enable the proxy, so flip the state separately
+networksetup -setsocksfirewallproxy "$service" 127.0.0.1 "$PORT"
+networksetup -setsocksfirewallproxystate "$service" on
+
+echo "Enabled SOCKS5 proxy 127.0.0.1:$PORT for \"$service\""
+echo "Press Ctrl-C to close the tunnel and restore the previous settings"
+
+wait "$ssh_pid"
