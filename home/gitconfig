@@ -23,6 +23,7 @@
 
 [push]
   default = simple
+  autoSetupRemote = true
 
 [gui]
   fontdiff = -family \"Source Code Pro\" -size 11 -weight normal -slant roman -underline 0 -overstrike 0
