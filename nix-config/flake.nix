@@ -108,7 +108,7 @@
             # ngrok  # Reverse proxy from public endpoint to locally running app
             nix-index  # Files database for nixpkgs
             nodejs_22
-            nodePackages.svgo  # SVG optimizer
+            svgo  # SVG optimizer
             numbat  # Calculator with support for units
             # ocrmypdf  # Add an OCR text layer to scanned PDF files
             # ollama  TODO: Use again if has latest version
