@@ -1,35 +1,301 @@
 #! /usr/bin/env dash
 
-# Run a command, retrying on exit code 139 (segfault). The WolframKernel
-# occasionally crashes on cold-start under high-volume sequential
-# invocation (e.g. a full `scrut test tests/cli` sweep). stdout/stderr are
-# captured per attempt so a crashed attempt's partial output is discarded
-# and only the final attempt's streams are emitted.
+# Dispatch a Wolfram Language expression to Woxi (default) or, when the
+# matching WOXI_USE_* variable is set, to a reference implementation.
+#
+# The wolframscript branch is wrapped in three layers of protection, because
+# under high-volume sequential invocation (e.g. a full `scrut test tests/cli`
+# sweep) a single bad run can wedge the whole suite:
+#
+#   1. MUTEX      Only one wolframscript may run at a time. Concurrent
+#                 invocations fight over the same license slot; the loser
+#                 reports the bogus "Your Wolfram Engine installation is not
+#                 activated" error.
+#   2. TIMEOUT    A hung evaluation (e.g. SocketReadMessage on a dead port)
+#                 is killed together with its WolframKernel. Without this the
+#                 test runner's own timeout reaps only the runner's shell,
+#                 leaving wolframscript alive and holding the license — every
+#                 later invocation then fails "not activated", which is how
+#                 one stuck testcase turns into thirty failed documents.
+#   3. RETRY      Transient cold-start failures (exit 139 segfault, exit 255
+#                 kernel-connection/licensing hiccup) are retried with a
+#                 backoff, and any orphaned WolframKernel left behind by a
+#                 failed attempt is reaped before the next one.
+#
+# stdout/stderr are captured per attempt, so a crashed attempt's partial
+# output is discarded and only the final attempt's streams are emitted.
+# Retries never wrap the Woxi path, so genuine Woxi errors are unaffected.
+#
+# Tunables (all optional):
+#   WO_ATTEMPTS   max wolframscript attempts            (default 4)
+#   WO_TIMEOUT    seconds per attempt, 0 = unlimited    (default 300)
+#   WO_LOCK       mutex directory                       (default $TMPDIR/…)
+#   WO_LOCK_WAIT  seconds before a stuck holder's lock
+#                 is stolen                             (default TIMEOUT+60)
+#   WO_NO_LOCK    set to disable the mutex
+#   WO_STALE      age in seconds past which a leftover wolframscript from an
+#                 earlier run is killed                (default TIMEOUT*2)
+#   WO_NO_REAP    set to never kill leftover processes
+#   WO_REAP_LOG   where kills are recorded    (default $TMPDIR/wo-reaped.log)
+#   WO_DEBUG      set to trace attempts on stderr
+
+WO_ATTEMPTS=${WO_ATTEMPTS:-4}
+WO_TIMEOUT=${WO_TIMEOUT:-300}
+# Deliberately not under $TMPDIR: a test runner gives each testcase its own
+# temporary directory, and a per-testcase lock would guard nothing.
+WO_LOCK=${WO_LOCK:-/tmp/wolframscript-$(id -u).lock}
+WO_LOCK_WAIT=${WO_LOCK_WAIT:-$((WO_TIMEOUT + 60))}
+WO_REAP_LOG=${WO_REAP_LOG:-/tmp/wo-reaped-$(id -u).log}
+if test "$WO_TIMEOUT" -gt 0
+then WO_STALE=${WO_STALE:-$((WO_TIMEOUT * 2))}
+else WO_STALE=${WO_STALE:-1800}
+fi
+
+debug() {
+  test -n "$WO_DEBUG" && echo "wo: $*" >&2
+  return 0
+}
+
+# Drop a leading zero so `08` is not read as an invalid octal constant.
+strip0() {
+  case "$1" in
+    0?*) echo "${1#0}" ;;
+    *) echo "$1" ;;
+  esac
+}
+
+
+# --- Process handling -------------------------------------------------------
+
+# Kill a process and everything below it, children first, so that a
+# WolframKernel can never outlive the wolframscript that owns its link.
+kill_tree() {
+  for kid in $(pgrep -P "$1" 2>/dev/null)
+  do kill_tree "$kid"
+  done
+  kill -9 "$1" 2>/dev/null
+  return 0
+}
+
+kernel_pids() {
+  pgrep -x WolframKernel 2>/dev/null | tr '\n' ' '
+}
+
+# Elapsed seconds of a pid. macOS ps has no `etimes`, so parse `etime`
+# ([[DD-]HH:]MM:SS). Leading zeros are stripped: `08` is not valid octal.
+etime_seconds() {
+  et=$(ps -o etime= -p "$1" 2>/dev/null | tr -d ' ')
+  if test -z "$et"
+  then echo 0; return 0
+  fi
+  days=0
+  case "$et" in
+    *-*) days=${et%%-*}; et=${et#*-} ;;
+  esac
+  secs=${et##*:}
+  rest=${et%:*}
+  mins=${rest##*:}
+  hours=0
+  case "$rest" in
+    *:*) hours=${rest%:*} ;;
+  esac
+  echo $(( ((days * 24 + $(strip0 "$hours")) * 60 + $(strip0 "$mins")) * 60 \
+    + $(strip0 "$secs") ))
+}
+
+# Kill leftovers from an earlier run that are old enough that nothing can
+# still be waiting on them. This is the case the mutex alone cannot fix: when
+# a test runner times out it reaps only its own shell, so a stuck
+# `wolframscript` keeps running — with its kernel and its parent shell still
+# attached, so it is not even reparented to init — and holds the license
+# until killed. Every later invocation then fails "not activated".
+#
+# Only script-mode kernels (the `$EvaluationEnvironment="Script"` runfirst
+# that wolframscript passes) are eligible, so a notebook or editor session's
+# kernel is never touched.
+sweep_stale_wolfram() {
+  test -n "$WO_NO_REAP" && return 0
+  for pid in $(pgrep -f '(^|/)wolframscript ' 2>/dev/null) \
+    $(pgrep -f 'runfirst.*EvaluationEnvironment.*Script' 2>/dev/null)
+  do
+    test "$pid" = "$$" && continue
+    test -n "$child_pid" && test "$pid" = "$child_pid" && continue
+    kill -0 "$pid" 2>/dev/null || continue
+    age=$(etime_seconds "$pid")
+    test "$age" -ge "$WO_STALE" || continue
+    debug "reaping stale wolframscript process $pid (${age}s old)"
+    printf '%s wo[%s]: killed stale wolfram pid %s (%ss old): %s\n' \
+      "$(date '+%Y-%m-%dT%H:%M:%S')" "$$" "$pid" "$age" \
+      "$(ps -o command= -p "$pid" 2>/dev/null | cut -c 1-120)" \
+      >> "$WO_REAP_LOG" 2>/dev/null
+    kill_tree "$pid"
+  done
+  return 0
+}
+
+# Kill every WolframKernel that appeared during a failed attempt and is still
+# alive. The attempt is over, so nothing can legitimately still be using it;
+# kernels that predate the attempt are left alone.
+reap_attempt_kernels() {
+  before=" $1 "
+  for pid in $(pgrep -x WolframKernel 2>/dev/null)
+  do
+    case "$before" in
+      *" $pid "*) continue ;;
+    esac
+    debug "reaping WolframKernel $pid left by the failed attempt"
+    kill -9 "$pid" 2>/dev/null
+  done
+  return 0
+}
+
+
+# --- Mutex ------------------------------------------------------------------
+
+lock_held=
+child_pid=
+out=
+err=
+
+lock_acquire() {
+  test -n "$WO_NO_LOCK" && return 0
+  waited=0
+  unowned=0
+  while ! mkdir "$WO_LOCK" 2>/dev/null
+  do
+    holder=$(cat "$WO_LOCK/pid" 2>/dev/null)
+    if test -z "$holder"
+    then
+      # The holder may just not have written its pid yet; only treat a
+      # persistently pid-less lock as debris.
+      unowned=$((unowned + 1))
+      test "$unowned" -ge 3 && rm -rf "$WO_LOCK"
+    elif ! kill -0 "$holder" 2>/dev/null
+    then
+      debug "clearing lock of dead holder $holder"
+      rm -rf "$WO_LOCK"
+      unowned=0
+    else
+      unowned=0
+      if test "$waited" -ge "$WO_LOCK_WAIT"
+      then
+        # The holder outlived its own timeout, so it is stuck rather than
+        # working. Take the lock from it.
+        debug "stealing lock from stuck holder $holder"
+        rm -rf "$WO_LOCK"
+        waited=0
+      fi
+    fi
+    sleep 1
+    waited=$((waited + 1))
+  done
+  echo "$$" > "$WO_LOCK/pid"
+  lock_held=1
+  return 0
+}
+
+lock_release() {
+  test -n "$lock_held" || return 0
+  rm -rf "$WO_LOCK"
+  lock_held=
+  return 0
+}
+
+# When the caller (or its test runner) kills us, take the in-flight kernel
+# and the lock down with us instead of leaking both.
+cleanup() {
+  test -n "$child_pid" && kill_tree "$child_pid"
+  lock_release
+  test -n "$out" && rm -f "$out"
+  test -n "$err" && rm -f "$err"
+  return 0
+}
+
+trap 'cleanup' EXIT
+trap 'cleanup; exit 130' INT
+trap 'cleanup; exit 143' TERM
+trap 'cleanup; exit 129' HUP
+
+
+# --- Retry loop -------------------------------------------------------------
+
+# wolframscript reports user-level Wolfram errors on stderr and still exits 0,
+# so any non-zero exit is infrastructure trouble and worth another attempt.
+# The exception is a timeout: an evaluation that blocks (a socket read with
+# nothing coming, say) blocks again on the next attempt, so retrying it only
+# multiplies the wait.
 run_with_retry() {
   out=$(mktemp)
   err=$(mktemp)
-  i=0
+
+  timeout_bin=
+  if test "$WO_TIMEOUT" -gt 0
+  then
+    if command -v timeout > /dev/null 2>&1
+    then timeout_bin=timeout
+    elif command -v gtimeout > /dev/null 2>&1
+    then timeout_bin=gtimeout
+    fi
+  fi
+
+  sweep_stale_wolfram
+
+  attempt=1
   while :
   do
-    "$@" >"$out" 2>"$err"
-    code=$?
-    if test "$code" -ne 139 || test "$i" -ge 3
-    then break
+    kernels_before=$(kernel_pids)
+
+    if test -n "$timeout_bin"
+    then "$timeout_bin" -k 10s "$WO_TIMEOUT"s "$@" > "$out" 2> "$err" &
+    else "$@" > "$out" 2> "$err" &
     fi
-    i=$((i + 1))
+    child_pid=$!
+    started=$(date +%s)
+    # The braces keep the shell's own "Killed: 9" job notification out of
+    # stderr; the command's stderr is in "$err" and unaffected.
+    { wait "$child_pid"; code=$?; } 2>/dev/null
+    elapsed=$(($(date +%s) - started))
+    child_pid=
+
+    test "$code" -eq 0 && break
+    debug "attempt $attempt exited $code after ${elapsed}s"
+    # The attempt is over, so anything it left running is debris.
+    reap_attempt_kernels "$kernels_before"
+    test "$attempt" -ge "$WO_ATTEMPTS" && break
+    # Decide "timed out" by the clock, not by the exit code: wolframscript
+    # exits 124 when it honours the timeout's TERM but 137 when it has to be
+    # KILLed (mid-`Pause`, say), and 137 on its own means nothing.
+    if test -n "$timeout_bin" && test "$elapsed" -ge "$WO_TIMEOUT"
+    then
+      debug "attempt $attempt hit the ${WO_TIMEOUT}s timeout; not retrying"
+      break
+    fi
+
+    # Give a wedged license slot or a dying kernel time to settle.
+    case "$attempt" in
+      1) sleep 2 ;;
+      2) sleep 5 ;;
+      *) sleep 10 ;;
+    esac
+    attempt=$((attempt + 1))
   done
+
   cat "$out"
   cat "$err" >&2
   rm -f "$out" "$err"
   return "$code"
 }
 
+
+# --- Dispatch ---------------------------------------------------------------
+
 if test -n "$WOXI_USE_WOLFRAM"
 then
-  if test "$(printf "%s" "$1" | grep -q '^FullForm'; echo $?)" -eq 0
-  then run_with_retry wolframscript -charset UTF-8 -format OutputForm -c "$*"
-  else run_with_retry wolframscript -charset UTF-8 -c "$*"
-  fi
+  lock_acquire
+  run_with_retry wolframscript -charset UTF-8 -c "$*"
+  code=$?
+  lock_release
+  exit "$code"
 
 elif test -n "$WOXI_USE_MATHICS"
 then
