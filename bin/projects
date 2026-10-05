@@ -1,26 +1,37 @@
 #!/usr/bin/env bash
 
+# Lists the tasklite projects with the most open tasks.
+#
+# Projects to include are read from (first match wins):
+# 1. `$PROJECTS` (separated by whitespace or commas)
+# 2. `$PROJECTS_FILE` (one per line, `#` starts a comment),
+#    defaults to `${XDG_CONFIG_HOME:-~/.config}/projects/include.txt`
+#
+# If neither is set, all projects are listed.
+
+set -euo pipefail
+
+projects_file="${PROJECTS_FILE:-${XDG_CONFIG_HOME:-$HOME/.config}/projects/include.txt}"
+
+if [[ -n "${PROJECTS:-}" ]]
+then
+  projects="$PROJECTS"
+elif [[ -f "$projects_file" ]]
+then
+  projects="$(sed 's/#.*//' "$projects_file")"
+else
+  projects=""
+fi
+
+# Build a regex alternation like `aircms|airdms|…`
+pattern="$(echo "$projects" | tr ',' ' ' | xargs | tr ' ' '|')"
+
 # Print header
 tasklite projects | head -n 1
 
-# List of projects to include
-projects=(
-  airsequel
-  cosuz
-  educatopia
-  feram
-  lamda
-  perspec
-  schifferpatent
-  syvis
-  tasklite
-  textnet
-  transity
-  write
-)
-
 # Print tasks sorted descending by number of open tasks
 tasklite projects \
+  | tail -n +2 \
   | sort -k2 -n -r \
-  | rg "^($(echo "${projects[@]}" | tr ' ' '|'))" \
+  | rg "^(${pattern:-\S+})\s" \
   | head -n 50
