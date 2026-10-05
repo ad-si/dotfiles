@@ -1,12 +1,14 @@
 // Documentation: https://zed.dev/docs/configuring-zed
 // Run `open default settings` to see the default settings file
 {
-  "assistant": {
+  "word_diff_enabled": true,
+  "autosave": "on_focus_change",
+  "cli_default_open_behavior": "new_window",
+  "agent": {
     "default_model": {
       "provider": "anthropic",
-      "model": "claude-3-5-sonnet-20240620"
+      "model": "claude-3-5-sonnet-20240620",
     },
-    "version": "2"
   },
   "ui_font_size": 14,
   "buffer_font_size": 12,
@@ -15,9 +17,22 @@
   "theme": {
     "mode": "system",
     "dark": "One Dark",
-    "light": "One Light"
+    "light": "One Light",
   },
   "project_panel": {
-    "dock": "right"
-  }
+    "dock": "right",
+  },
+  "lsp": {
+    "elm-language-server": {
+      "initialization_options": {
+        "elmFormatPath": "/Users/adrian/.cargo/bin/elmfmt",
+      },
+    },
+  },
+  "command_aliases": {
+    "ts": "task::Spawn",
+  },
+  "show_wrap_guides": true,
+  "wrap_guides": [80],
+  "preferred_line_length": 80,
 }
