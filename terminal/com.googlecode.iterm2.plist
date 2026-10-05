@@ -6,8 +6,30 @@
 	<string>Return commands suitable for copy/pasting into \(shell) on \(uname). Do NOT include commentary NOR Markdown triple-backtick code blocks as your whole response will be copied into my terminal automatically.
 
 The script should do this: \(ai.prompt)</string>
+	<key>AIFeatureFunctionCalling</key>
+	<true/>
+	<key>AIFeatureHostedCodeInterpeter</key>
+	<true/>
+	<key>AIFeatureHostedFileSearch</key>
+	<true/>
+	<key>AIFeatureHostedWebSearch</key>
+	<true/>
+	<key>AIFeatureStreamingResponses</key>
+	<true/>
+	<key>AITermAPI</key>
+	<integer>2</integer>
+	<key>AIVectorStore</key>
+	<integer>0</integer>
 	<key>AdjustWindowForFontSizeChange</key>
 	<false/>
+	<key>AiMaxTokens</key>
+	<integer>1050000</integer>
+	<key>AiModel</key>
+	<string>gpt-5.5</string>
+	<key>AiResponseMaxTokens</key>
+	<integer>128000</integer>
+	<key>AitermURL</key>
+	<string>https://api.openai.com/v1/responses</string>
 	<key>AllowClipboardAccess</key>
 	<true/>
 	<key>AlternateMouseScroll</key>
@@ -20,8 +42,37 @@ The script should do this: \(ai.prompt)</string>
 	<false/>
 	<key>CheckTestRelease</key>
 	<true/>
+	<key>ClaudeCodeTriggersInstalled</key>
+	<true/>
 	<key>ClosingHotkeySwitchesSpaces</key>
 	<false/>
+	<key>CodeReviewSavedPrompts</key>
+	<data>
+	W3sidGV4dCI6IlJldmlldyB0aGUgcGVuZGluZyBjaGFuZ2VzIGluIHRoaXMgcmVwby4g
+	RmxhZyBpc3N1ZXMgYSBjYXJlZnVsIG1haW50YWluZXIgd291bGQgYmxvY2sgb24gYmVm
+	b3JlIG1lcmdlLCBpbiByb3VnaGx5IHRoaXMgb3JkZXI6XG4gIDEuIENvcnJlY3RuZXNz
+	IOKAlCBsb2dpYyBlcnJvcnMsIGJyb2tlbiBpbnZhcmlhbnRzLCBtaXNzZWQgZWRnZSBj
+	YXNlcywgb2ZmLWJ5LW9uZSwgcmFjZXMsIGxpZmV0aW1lXC9tZW1vcnkgYnVncywgZXJy
+	b3IgcGF0aHMgdGhhdCBzd2FsbG93IGZhaWx1cmVzLlxuICAyLiBTZWN1cml0eSDigJQg
+	aW5qZWN0aW9uLCBhdXRoblwvYXV0aHogbWlzdGFrZXMsIHNlY3JldCBoYW5kbGluZywg
+	dW5zYWZlIGRlc2VyaWFsaXphdGlvbiwgdW5zYWZlIGRlZmF1bHRzLCBUT0NUT1UuXG4g
+	IDMuIFJlbGlhYmlsaXR5ICYgcGVyZm9ybWFuY2Ug4oCUIGJsb2NraW5nIHRoZSB3cm9u
+	ZyB0aHJlYWQsIHVuYm91bmRlZCByZXNvdXJjZSB1c2UsIGFjY2lkZW50YWwgTyhOwrIp
+	LCByZXRyaWVzIHdpdGhvdXQgYmFja29mZiwgc2lsZW50IGZhaWx1cmUgcGF0aHMuXG4g
+	IDQuIENvbnRyYWN0IHJpc2sg4oCUIGJlaGF2aW9yIGNoYW5nZXMgY2FsbGVycyByZWx5
+	IG9uLCBzaWxlbnRseSBjaGFuZ2VkIGRlZmF1bHRzLCBicm9rZW4gYmFja3dhcmQgY29t
+	cGF0aWJpbGl0eSwgbWlzc2luZyBtaWdyYXRpb25zLlxuXG5Gb3IgZWFjaCBmaW5kaW5n
+	IGNpdGUgYGZpbGU6bGluZWAsIGV4cGxhaW4gKndoeSogaXQgaXMgd3JvbmcgKG5vdCB3
+	aGF0IHRoZSBjb2RlIGRvZXMpLCBhbmQgcHJvcG9zZSBhIGNvbmNyZXRlIGZpeCB3aGVu
+	IG9uZSBpcyBvYnZpb3VzLiBCZSBjYWxpYnJhdGVkOiBpZiBhIGZpbmRpbmcgaXMgbm90
+	IGhpZ2gtY29uZmlkZW5jZSwgc2F5IHNvIG9yIHNraXAgaXQuIFZlcmlmeSBjbGFpbXMg
+	YWdhaW5zdCB0aGUgYWN0dWFsIGNvZGUgcmF0aGVyIHRoYW4gaW5mZXJyaW5nIGZyb20g
+	bmFtZXMuXG5cblNraXAgcHVyZSBzdHlsZSwgZm9ybWF0dGluZywgbmFtaW5nLCBhbmQg
+	YW55dGhpbmcgYSBsaW50ZXIgb3IgQ0kgYWxyZWFkeSBlbmZvcmNlcy5cblxuSWYgeW91
+	IGZpbmQgbm90aGluZyB3b3J0aCBmaXhpbmcsIHNheSBzbyBwbGFpbmx5LiIsInV1aWQi
+	OiJBRTFFNEM4Mi03REY5LTRGNDEtQTQwNC1FNjkyNDUwREEyNjQiLCJuYW1lIjoiRGVm
+	YXVsdCJ9XQ==
+	</data>
 	<key>CommandSelection</key>
 	<true/>
 	<key>Control</key>
@@ -3803,7 +3854,7 @@ The script should do this: \(ai.prompt)</string>
 	<key>DisableFullscreenTransparency</key>
 	<true/>
 	<key>EnableAPIServer</key>
-	<false/>
+	<true/>
 	<key>EnableRendezvous</key>
 	<false/>
 	<key>EscapeShellCharsWithBackslash</key>
@@ -4887,7 +4938,7 @@ The script should do this: \(ai.prompt)</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Disable Printing</key>
-			<false/>
+			<true/>
 			<key>Disable Smcup Rmcup</key>
 			<false/>
 			<key>Disable Window Resizing</key>
@@ -5311,11 +5362,13 @@ The script should do this: \(ai.prompt)</string>
 			<key>Normal Font</key>
 			<string>HasklugNFM 11</string>
 			<key>Option Key Sends</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
 			<integer>0</integer>
+			<key>Right Option Key Changeable</key>
+			<true/>
 			<key>Right Option Key Sends</key>
-			<integer>1</integer>
+			<integer>2</integer>
 			<key>Rows</key>
 			<integer>25</integer>
 			<key>Screen</key>
@@ -5413,7 +5466,13 @@ The script should do this: \(ai.prompt)</string>
 				<key>text</key>
 				<string></string>
 			</dict>
+			<key>Send Bell Alert</key>
+			<true/>
 			<key>Send Code When Idle</key>
+			<false/>
+			<key>Send Idle Alert</key>
+			<false/>
+			<key>Send Terminal Generated Alerts</key>
 			<false/>
 			<key>Set Local Environment Vars</key>
 			<true/>
@@ -5692,7 +5751,52 @@ The script should do this: \(ai.prompt)</string>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
-			<array/>
+			<array>
+				<dict>
+					<key>action</key>
+					<string>iTermEnterWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+					</dict>
+					<key>matchType</key>
+					<integer>113</integer>
+					<key>parameter</key>
+					<string>builtin.claudeCode</string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermExitWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+						<key>leaderOnly</key>
+						<true/>
+					</dict>
+					<key>matchType</key>
+					<integer>114</integer>
+					<key>parameter</key>
+					<string></string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+			</array>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
 			<key>Unicode Version</key>
@@ -6607,7 +6711,52 @@ The script should do this: \(ai.prompt)</string>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
-			<array/>
+			<array>
+				<dict>
+					<key>action</key>
+					<string>iTermEnterWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+					</dict>
+					<key>matchType</key>
+					<integer>113</integer>
+					<key>parameter</key>
+					<string>builtin.claudeCode</string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermExitWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+						<key>leaderOnly</key>
+						<true/>
+					</dict>
+					<key>matchType</key>
+					<integer>114</integer>
+					<key>parameter</key>
+					<string></string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+			</array>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
 			<key>Unlimited Scrollback</key>
@@ -8260,6 +8409,50 @@ The script should do this: \(ai.prompt)</string>
 					<key>regex</key>
 					<string></string>
 				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermEnterWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+					</dict>
+					<key>matchType</key>
+					<integer>113</integer>
+					<key>parameter</key>
+					<string>builtin.claudeCode</string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermExitWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+						<key>leaderOnly</key>
+						<true/>
+					</dict>
+					<key>matchType</key>
+					<integer>114</integer>
+					<key>parameter</key>
+					<string></string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
 			</array>
 			<key>Unicode Normalization</key>
 			<integer>0</integer>
@@ -9151,7 +9344,52 @@ The script should do this: \(ai.prompt)</string>
 			<key>Transparency</key>
 			<real>0.0</real>
 			<key>Triggers</key>
-			<array/>
+			<array>
+				<dict>
+					<key>action</key>
+					<string>iTermEnterWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+					</dict>
+					<key>matchType</key>
+					<integer>113</integer>
+					<key>parameter</key>
+					<string>builtin.claudeCode</string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+				<dict>
+					<key>action</key>
+					<string>iTermExitWorkgroupTrigger</string>
+					<key>contentregex</key>
+					<string></string>
+					<key>disabled</key>
+					<false/>
+					<key>eventParams</key>
+					<dict>
+						<key>jobName</key>
+						<string>claude</string>
+						<key>leaderOnly</key>
+						<true/>
+					</dict>
+					<key>matchType</key>
+					<integer>114</integer>
+					<key>parameter</key>
+					<string></string>
+					<key>partial</key>
+					<false/>
+					<key>regex</key>
+					<string></string>
+				</dict>
+			</array>
 			<key>Unlimited Scrollback</key>
 			<false/>
 			<key>Use Bold Font</key>
@@ -9177,7 +9415,7 @@ The script should do this: \(ai.prompt)</string>
 	<key>OpenArrangementAtStartup</key>
 	<true/>
 	<key>OpenBookmark</key>
-	<false/>
+	<true/>
 	<key>OpenNoWindowsAtStartup</key>
 	<false/>
 	<key>OpenTmuxWindowsIn</key>
@@ -9252,7 +9490,7 @@ The script should do this: \(ai.prompt)</string>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SmartPlacement</key>
@@ -21710,6 +21948,37 @@ The script should do this: \(ai.prompt)</string>
 	<integer>0</integer>
 	<key>WordCharacters</key>
 	<string>-_</string>
+	<key>Workgroups</key>
+	<data>
+	W3sic2Vzc2lvbnMiOlt7ImtpbmQiOnsia2luZCI6InJvb3QifSwiZGlzcGxheU5hbWUi
+	OiJDaGF0IiwibW9kZSI6InJlZ3VsYXIiLCJ1bmlxdWVJZGVudGlmaWVyIjoiYnVpbHRp
+	bi5jbGF1ZGVDb2RlLm1haW4iLCJ0b29sYmFySXRlbXMiOlt7ImtpbmQiOiJtb2RlU3dp
+	dGNoZXIifSx7ImtpbmQiOiJnaXRTdGF0dXMifSx7ImtpbmQiOiJhdXRvUmVxdWVzdFJl
+	dmlld1doZW5JZGxlIn1dLCJ1cmxTdHJpbmciOiIiLCJjb21tYW5kIjoiIiwicGVyRmls
+	ZUNvbW1hbmQiOiIifSx7ImtpbmQiOnsia2luZCI6InBlZXIifSwiZGlzcGxheU5hbWUi
+	OiJEaWZmIiwibW9kZSI6ImRpZmYiLCJ1bmlxdWVJZGVudGlmaWVyIjoiYnVpbHRpbi5j
+	bGF1ZGVDb2RlLmRpZmYiLCJ0b29sYmFySXRlbXMiOlt7ImtpbmQiOiJtb2RlU3dpdGNo
+	ZXIifSx7ImtpbmQiOiJjaGFuZ2VkRmlsZVNlbGVjdG9yIn0seyJraW5kIjoiZ2l0QmFz
+	ZVNlbGVjdG9yIn0seyJraW5kIjoibmF2aWdhdGlvbiIsImJhY2tTaG9ydGN1dCI6eyJz
+	ZXJpYWxpemVkIjoiMHhmNzAyLTB4MzQwMDAwLTB4N2IifSwicmVsb2FkU2hvcnRjdXQi
+	Onsic2VyaWFsaXplZCI6IjB4NzItMHgxMDAwMDAtMHhmIn0sImZvcndhcmRTaG9ydGN1
+	dCI6eyJzZXJpYWxpemVkIjoiMHhmNzAzLTB4MzQwMDAwLTB4N2MifX1dLCJ1cmxTdHJp
+	bmciOiIiLCJjb21tYW5kIjoiZ2l0IGRpZmZ0b29sIC15IC14IHZpbWRpZmYgXFwoZ2l0
+	QmFzZSkiLCJwYXJlbnRJRCI6ImJ1aWx0aW4uY2xhdWRlQ29kZS5tYWluIiwicGVyRmls
+	ZUNvbW1hbmQiOiJnaXQgZGlmZnRvb2wgLXkgLXggdmltZGlmZiBcXChnaXRCYXNlKSAt
+	LSBcXChmaWxlKSJ9LHsia2luZCI6eyJraW5kIjoicGVlciJ9LCJkaXNwbGF5TmFtZSI6
+	IkNvZGUgUmV2aWV3IiwibW9kZSI6ImNvZGVSZXZpZXciLCJ1bmlxdWVJZGVudGlmaWVy
+	IjoiYnVpbHRpbi5jbGF1ZGVDb2RlLnJldmlldyIsInRvb2xiYXJJdGVtcyI6W3sia2lu
+	ZCI6Im1vZGVTd2l0Y2hlciJ9LHsia2luZCI6InJlbG9hZCIsInNob3J0Y3V0Ijp7InNl
+	cmlhbGl6ZWQiOiIweDcyLTB4MTAwMDAwLTB4ZiJ9fSx7ImtpbmQiOiJhdXRvU2VuZENs
+	aXBwaW5nc1doZW5JZGxlIn1dLCJ1cmxTdHJpbmciOiIiLCJjb21tYW5kIjoiY2xhdWRl
+	IFxcKGNvZGVSZXZpZXdQcm9tcHQpIC0tYXBwZW5kLXN5c3RlbS1wcm9tcHQtZmlsZSAn
+	XFwoY29kZVJldmlld1N5c3RlbVByb21wdEZpbGUpJyAtLXNldHRpbmdzICdcXChpdGVy
+	bTIuYXBwQnVuZGxlUGF0aClcL0NvbnRlbnRzXC9SZXNvdXJjZXNcL2NvZGUtcmV2aWV3
+	LXNldHRpbmdzLnR4dCciLCJwYXJlbnRJRCI6ImJ1aWx0aW4uY2xhdWRlQ29kZS5tYWlu
+	IiwicGVyRmlsZUNvbW1hbmQiOiIifV0sInVuaXF1ZUlkZW50aWZpZXIiOiJidWlsdGlu
+	LmNsYXVkZUNvZGUiLCJuYW1lIjoiQ2xhdWRlIENvZGUifV0=
+	</data>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
 	<key>findMode_iTerm</key>
