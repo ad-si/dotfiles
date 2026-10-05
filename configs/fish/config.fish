@@ -54,10 +54,6 @@ if status --is-login
   ## Homebrew
   set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
 
-  ### Token allows reading public repos, creating gists)
-  if test $systemType = Darwin
-  end
-
   set -x HOMEBREW_CASK_OPTS --no-quarantine
   set -x HOMEBREW_NO_AUTO_UPDATE 1
 
@@ -150,6 +146,14 @@ if status --is-login
   # Set ripgrep config path
   set -x RIPGREP_CONFIG_PATH /Users/adrian/dotfiles/configs/ripgrep/ripgrep.txt
 
+  # Secrets live outside the repo. Defines:
+  # - HOMEBREW_GITHUB_API_TOKEN (reading public repos, creating gists)
+  # - OPENAI_API_KEY
+  # - GEMINI_API_KEY (commented out)
+  # - AIRSEQUEL_API_TOKEN
+  if test -f ~/.config/secrets.fish
+    source ~/.config/secrets.fish
+  end
 end
 
 
