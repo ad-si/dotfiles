@@ -405,8 +405,6 @@ Log in
 - iterm settings
 - Setup git (via `gh`?)
 - Use https://github.com/Homebrew/homebrew-bundle
-- Backup fish history
 - Backup ngrok config
 - Install Stack and HLS with ghcup
 - Backup "$HOME/Library/Application Support/harper-ls/dictionary.txt"
-- `.aws` directory

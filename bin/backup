@@ -22,12 +22,20 @@ backupdir="/Volumes/4_tb_red_src/backups/${today}_macbook_2021"
 
 paths=(
   .aws
+  .claude
+  .claude.json
+  .dbgate  # Saved database connections
+  .docker/config.json
   .electron-cash/wallets
   .electrum/wallets
   .gnupg  # Alternatively: https://askubuntu.com/q/514534
+  .ipython
   .local/bin  # All programs built with stack
   .local/share/fish
+  .mitmproxy  # CA certificate
+  .npmrc
   .password-store
+  .pgadmin  # Saved database connections
   .rclone.conf
   .s3cfg
   .serverlessrc
