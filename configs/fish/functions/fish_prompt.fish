@@ -35,7 +35,9 @@ function printTasksStatus
             "select count(*) from tasks_view where closed_utc is null and tags is null" \
             | tail -n 1)
 
-        if test $inboxCount -ne 0
+        # Guard against tasklite failing (e.g. /nix not mounted yet at boot),
+        # which leaves inboxCount empty and breaks `test`
+        if string match -qr '^\d+$' -- "$inboxCount"; and test "$inboxCount" -ne 0
             printf ' 📥 %s ' $inboxCount
         end
 
