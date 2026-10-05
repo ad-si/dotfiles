@@ -110,7 +110,15 @@ if status --is-login
   # Fish
 
   ## Zoxide
-  zoxide init fish --cmd j | source
+  if type -q zoxide
+    # Fish 4 dropped $__fish_data_dir/functions/cd.fish (`cd` is a builtin now),
+    # which zoxide 0.9.8's init still tries to read. Pre-define the helper so
+    # zoxide's `functions --query` guard skips that broken block.
+    function __zoxide_cd_internal
+      builtin cd $argv
+    end
+    zoxide init fish --cmd j | source
+  end
 
   ## iTerm
   test -e {$HOME}/.iterm2_shell_integration.fish
