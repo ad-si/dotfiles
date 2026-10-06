@@ -3,10 +3,8 @@ export default {
   rewrite: [],
   handlers: [
     {
-      match: [
-        "lobste.rs/*",
-        "*.lobste.rs/*",
-      ],
+      match: (url) =>
+        url.hostname === "lobste.rs" || url.hostname.endsWith(".lobste.rs"),
       browser: "Firefox",
     },
     {
