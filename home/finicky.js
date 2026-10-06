@@ -8,6 +8,16 @@ export default {
       browser: "Firefox",
     },
     {
+      match: (url) =>
+        url.hostname === "news.ycombinator.com" ||
+        url.hostname === "f5bot.com" ||
+        url.hostname.endsWith(".f5bot.com"),
+      browser: {
+        name: "Brave Browser",
+        profile: "Adrian Sieber",
+      },
+    },
+    {
       match: [
         "*.dropscan.de*",
         "*.mbs.de*",
