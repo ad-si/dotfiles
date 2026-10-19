@@ -1,0 +1,247 @@
+#!/usr/bin/env bash
+# Create a Hetzner Cloud server and install NixOS on it, unattended.
+# Instead of mounting the NixOS ISO (which needs the web console), it boots
+# the server with Ubuntu and an SSH key, kexecs into the NixOS installer over
+# SSH, and installs from there.
+#
+# Usage: set_up_hetzner_nixos [options] <server-name>
+#   --type <type>          Server type (default: cpx32)
+#   --location <location>  Location (default: nbg1)
+#   --ssh-key <path>       Use this existing public key for root instead of
+#                          generating ~/.ssh/hetzner-<hostname>
+#   --release <version>    NixOS release, also used as stateVersion (default: 26.05)
+#   --swap <MiB>           Swap file size, 0 to disable (default: 4096)
+#   --hostname <name>      NixOS hostname (default: server name with dots as hyphens)
+#
+# Authentication: an active `hcloud context` for the project, or HCLOUD_TOKEN.
+
+set -euo pipefail
+
+server_type=cpx32
+location=nbg1
+pubkey_path=
+release=26.05
+swap_mib=4096
+name=
+hostname=
+
+while (($#)); do
+  case $1 in
+    --type) server_type=$2; shift 2 ;;
+    --location) location=$2; shift 2 ;;
+    --ssh-key) pubkey_path=$2; shift 2 ;;
+    --release) release=$2; shift 2 ;;
+    --swap) swap_mib=$2; shift 2 ;;
+    --hostname) hostname=$2; shift 2 ;;
+    -h|--help) sed -n '2,17p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -*) echo "Unknown option: $1" >&2; exit 1 ;;
+    *) name=$1; shift ;;
+  esac
+done
+
+if [[ -z $name ]]; then
+  echo "Usage: $0 [options] <server-name>" >&2
+  exit 1
+fi
+
+hostname=${hostname:-${name//./-}}
+if [[ ! $name =~ ^[a-zA-Z0-9]([a-zA-Z0-9.-]{0,61}[a-zA-Z0-9])?$ ]]; then
+  echo "Invalid server name '$name': use letters, digits, '-' and '.'" >&2
+  exit 1
+fi
+if [[ ! $hostname =~ ^[a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?$ ]]; then
+  echo "Invalid hostname '$hostname': use letters, digits and '-'" >&2
+  exit 1
+fi
+if hcloud server describe "$name" >/dev/null 2>&1; then
+  echo "Server '$name' already exists" >&2
+  exit 1
+fi
+
+log() { printf '\n==> %s\n' "$*" >&2; }
+
+if [[ -z $pubkey_path ]]; then
+  pubkey_path="$HOME/.ssh/hetzner-$hostname.pub"
+  if [[ -e ${pubkey_path%.pub} || -e $pubkey_path ]]; then
+    echo "${pubkey_path%.pub} already exists; delete it or pass --ssh-key" >&2
+    exit 1
+  fi
+fi
+privkey_path=${pubkey_path%.pub}
+ssh_opts=(
+  -i "$privkey_path" -o IdentitiesOnly=yes
+  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+  -o LogLevel=ERROR -o ConnectTimeout=5
+)
+
+curl -fsI "https://channels.nixos.org/nixos-$release" >/dev/null \
+  || { echo "NixOS channel nixos-$release does not exist" >&2; exit 1; }
+
+wait_for_ssh() {
+  local ip=$1
+  for _ in $(seq 120); do
+    if ssh "${ssh_opts[@]}" "root@$ip" true 2>/dev/null; then return 0; fi
+    sleep 5
+  done
+  echo "Timed out waiting for SSH on $ip" >&2
+  return 1
+}
+
+if [[ ! -e $pubkey_path ]]; then
+  log "Generating SSH key $privkey_path"
+  ssh-keygen -q -t ed25519 -N '' -C "root@$hostname" -f "$privkey_path"
+fi
+pubkey=$(cat "$pubkey_path")
+
+# Upload the SSH key to the project unless a key with the same fingerprint exists.
+fingerprint=$(ssh-keygen -E md5 -lf "$pubkey_path" | awk '{print $2}' | sed 's/^MD5://')
+hcloud_key=$(hcloud ssh-key list -o noheader -o columns=name,fingerprint \
+  | awk -v fp="$fingerprint" '$2 == fp {print $1; exit}')
+if [[ -z $hcloud_key ]]; then
+  hcloud_key=$name
+  log "Uploading SSH key $hcloud_key"
+  hcloud ssh-key create --name "$hcloud_key" --public-key-from-file "$pubkey_path" >/dev/null
+fi
+
+log "Creating $server_type server $name in $location"
+hcloud server create \
+  --name "$name" --type "$server_type" --location "$location" \
+  --image ubuntu-24.04 --ssh-key "$hcloud_key" >/dev/null
+ip=$(hcloud server ip "$name")
+echo "IPv4: $ip" >&2
+
+log "Waiting for Ubuntu"
+wait_for_ssh "$ip"
+
+log "Booting the NixOS installer via kexec"
+ssh "${ssh_opts[@]}" "root@$ip" bash -s <<'EOF'
+set -euo pipefail
+curl -fsSL https://github.com/nix-community/nixos-images/releases/latest/download/nixos-kexec-installer-noninteractive-x86_64-linux.tar.gz \
+  | tar -xzf - -C /root
+/root/kexec/run
+EOF
+sleep 15
+
+log "Waiting for the NixOS installer"
+wait_for_ssh "$ip"
+ssh "${ssh_opts[@]}" "root@$ip" 'grep -q "^ID=nixos" /etc/os-release' \
+  || { echo "Server did not boot into the NixOS installer" >&2; exit 1; }
+
+root_password=$(openssl rand -base64 24)
+
+log "Partitioning, formatting and installing NixOS $release"
+ssh "${ssh_opts[@]}" "root@$ip" \
+  HOSTNAME="$hostname" RELEASE="$release" SWAP_MIB="$swap_mib" \
+  PUBKEY="'$pubkey'" ROOT_PASSWORD="'$root_password'" bash -s <<'EOF'
+set -euo pipefail
+export NIX_CONFIG='experimental-features = nix-command flakes'
+nixpkgs="https://channels.nixos.org/nixos-$RELEASE/nixexprs.tar.xz"
+run() { nix shell "nixpkgs/nixos-$RELEASE#$1" -c "${@:2}"; }
+
+wipefs -a /dev/sda
+if [[ -d /sys/firmware/efi ]]; then
+  echo "UEFI firmware: systemd-boot"
+  run parted parted -s /dev/sda -- mklabel gpt \
+    mkpart ESP fat32 1MB 512MB mkpart primary 512MB 100% set 1 esp on
+  root_part=/dev/sda2
+  bootloader='
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;'
+else
+  echo "BIOS firmware: GRUB"
+  run parted parted -s /dev/sda -- mklabel gpt \
+    mkpart bios 1MB 2MB set 1 bios_grub on mkpart primary 2MB 100%
+  root_part=/dev/sda2
+  bootloader='
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sda";'
+fi
+udevadm settle
+
+if [[ -d /sys/firmware/efi ]]; then
+  run dosfstools mkfs.fat -F 32 -n boot /dev/sda1
+fi
+run e2fsprogs mkfs.ext4 -F -L nixos "$root_part"
+udevadm settle
+mount /dev/disk/by-label/nixos /mnt
+if [[ -d /sys/firmware/efi ]]; then
+  mkdir -p /mnt/boot
+  mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
+fi
+lsblk
+
+nixos-generate-config --root /mnt
+
+swap=
+if ((SWAP_MIB > 0)); then
+  swap="
+  swapDevices = [ { device = \"/var/lib/swapfile\"; size = $SWAP_MIB; } ];
+"
+fi
+
+cat > /mnt/etc/nixos/configuration.nix <<NIX
+{ config, lib, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
+$bootloader
+
+  networking.hostName = "$HOSTNAME";
+
+  # Configure network connections interactively with nmcli or nmtui.
+  networking.networkmanager.enable = true;
+
+  # Enable the OpenSSH daemon so you can connect after reboot.
+  services.openssh.enable = true;
+  services.openssh.settings.PermitRootLogin = "prohibit-password";
+
+  # Allow SSH through the firewall.
+  networking.firewall.allowedTCPPorts = [ 22 ];
+
+  # Your SSH public key for root login.
+  users.users.root.openssh.authorizedKeys.keys = [
+    "$PUBKEY"
+  ];
+$swap
+  system.stateVersion = "$RELEASE";
+}
+NIX
+
+nixos-install --no-root-passwd --no-channel-copy -I "nixpkgs=$nixpkgs"
+
+# Give the installed system the channel nixos-rebuild expects.
+nixos-enter --root /mnt -c "
+  nix-channel --add https://nixos.org/channels/nixos-$RELEASE nixos
+  nix-channel --update
+"
+echo "root:$ROOT_PASSWORD" | nixos-enter --root /mnt -c chpasswd
+EOF
+
+log "Rebooting into the installed system"
+ssh "${ssh_opts[@]}" "root@$ip" 'umount -R /mnt; reboot' || true
+sleep 15
+wait_for_ssh "$ip"
+ssh "${ssh_opts[@]}" "root@$ip" \
+  'grep PRETTY_NAME /etc/os-release; hostname; swapon --show; df -h /'
+
+cat >&2 <<EOF
+
+==> Done: $name ($ip)
+
+Fallback root password (store it in your password manager):
+  $root_password
+
+Add to ~/.ssh/config:
+
+Host $hostname
+  HostName $ip
+  User root
+  IdentityFile ${privkey_path/#$HOME/\~}
+  IdentitiesOnly yes
+
+Note: the host key changed during installation. If you connected before,
+remove the old entry with: ssh-keygen -R $ip
+EOF
