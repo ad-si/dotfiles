@@ -11,7 +11,9 @@ export default {
       match: (url) =>
         url.hostname === "news.ycombinator.com" ||
         url.hostname === "f5bot.com" ||
-        url.hostname.endsWith(".f5bot.com"),
+        url.hostname.endsWith(".f5bot.com") ||
+        url.hostname === "meetup.com" ||
+        url.hostname.endsWith(".meetup.com"),
       browser: {
         name: "Brave Browser",
         profile: "Adrian Sieber",
