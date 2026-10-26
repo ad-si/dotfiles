@@ -3,7 +3,6 @@
 set -euf
 
 filepath="$1"
-filetype=$(file -bI "$filepath")
 pdfMime="application/pdf; charset=binary"
 
 if ! test -e "$filepath"
@@ -11,6 +10,8 @@ then
   echo "File does not exist"
   exit 1
 fi
+
+filetype=$(file -b --mime "$filepath")
 
 if ! test "$filetype" = "$pdfMime"
 then
