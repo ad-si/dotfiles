@@ -10,7 +10,9 @@ borg create \
   --exclude '**/._*' \
   --exclude '**/.DS_Store' \
   storage-box:./borg-backup::'{utcnow:%Y-%m-%dt%H%M}' \
+  /Volumes/512microSD/Games \
   /Volumes/512microSD/Samples \
   /Volumes/512microSD/SheetMusic \
   /Volumes/512microSD/Songs \
-  /Volumes/512microSD/Things
+  /Volumes/512microSD/Things \
+  /Volumes/512microSD/WolframNotebooks
