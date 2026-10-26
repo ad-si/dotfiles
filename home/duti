@@ -26,6 +26,7 @@
 com.sublimetext.4              public.plain-text        all
 com.sublimetext.4              public.rtf               all
 com.sublimetext.4              md                       all
+com.sublimetext.4              net.daringfireball.markdown  all
 
 
 ################################## DATA FILES ##################################
@@ -61,7 +62,6 @@ com.microsoft.VSCode           elm                      all
 com.microsoft.VSCode           hs                       all
 com.microsoft.VSCode           js                       all
 com.microsoft.VSCode           jsx                      all
-com.microsoft.VSCode           md                       all
 com.microsoft.VSCode           ncl                      all
 com.microsoft.VSCode           purs                     all
 com.microsoft.VSCode           rs                       all
