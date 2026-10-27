@@ -312,7 +312,7 @@ then
 
 else
   # Check if we are in the Woxi project directory
-  if test "$(pwd | grep -E "^$HOME/Dropbox/Projects/Woxi(/|$)")"
+  if test "$(pwd | grep -E "^($HOME/Dropbox|/Volumes/VERBATIM_SSD_1TB)/Projects/Woxi(/|$)")"
   then cargo run --quiet -- eval "$*"
   else woxi eval "$*"
   fi
