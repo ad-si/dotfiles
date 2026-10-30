@@ -157,6 +157,16 @@ if status --is-login
 end
 
 
+# Only use the external SSD if it's mounted.
+# Otherwise models would be downloaded to the internal disk below /Volumes.
+if mount | string match -q '* on /Volumes/VERBATIM_SSD_1TB *'
+  set -gx OLLAMA_MODELS /Volumes/VERBATIM_SSD_1TB/LLMs
+  set -gx HF_HUB_CACHE /Volumes/VERBATIM_SSD_1TB/LLMs/huggingface
+  set -gx MFLUX_CACHE_DIR /Volumes/VERBATIM_SSD_1TB/LLMs/mflux
+  set -gx MFLUX_MODELS_DIR /Volumes/VERBATIM_SSD_1TB/LLMs/mflux/models
+end
+
+
 # Added by LM Studio CLI (lms)
 set -gx PATH $PATH /Users/adrian/.lmstudio/bin
 # End of LM Studio CLI section
