@@ -2,6 +2,10 @@
 
 # borg init --encryption=none storage-box:/borg-backup
 
+projects=/Volumes/VERBATIM_SSD_1TB/Projects
+
+# --exclude-caches skips directories containing a CACHEDIR.TAG
+# (e.g. Rust's target, uv's .venv)
 borg create \
   --list \
   --verbose \
@@ -9,10 +13,29 @@ borg create \
   --compression auto,zstd,6 \
   --exclude '**/._*' \
   --exclude '**/.DS_Store' \
+  --exclude-caches \
+  --exclude "$projects/**/node_modules" \
+  --exclude "$projects/**/.venv" \
+  --exclude "$projects/**/venv" \
+  --exclude "$projects/**/__pycache__" \
+  --exclude "$projects/**/.pytest_cache" \
+  --exclude "$projects/**/.mypy_cache" \
+  --exclude "$projects/**/.ruff_cache" \
+  --exclude "$projects/**/.stack-work" \
+  --exclude "$projects/**/dist-newstyle" \
+  --exclude "$projects/**/.spago" \
+  --exclude "$projects/**/elm-stuff" \
+  --exclude "$projects/**/.next" \
+  --exclude "$projects/**/.gradle" \
+  --exclude "$projects/**/.zig-cache" \
+  --exclude "$projects/**/zig-out" \
+  --exclude "$projects/**/.direnv" \
+  --exclude "$projects/**/.cache" \
   storage-box:./borg-backup::'{utcnow:%Y-%m-%dt%H%M}' \
   /Volumes/512microSD/Games \
   /Volumes/512microSD/Samples \
   /Volumes/512microSD/SheetMusic \
   /Volumes/512microSD/Songs \
   /Volumes/512microSD/Things \
-  /Volumes/VERBATIM_SSD_1TB/WolframNotebooks
+  /Volumes/VERBATIM_SSD_1TB/WolframNotebooks \
+  "$projects"
