@@ -1,0 +1,72 @@
+[
+  {"id": "side-bar-files-open-with",
+    "children":[
+      {
+        "caption": "Preview",
+        "id": "side-bar-files-open-with-preview",
+        "command": "side_bar_files_open_with",
+        "args": {
+          "paths": [],
+          "application": "Preview.app",
+          "extensions": ".pdf|.png|.jpg|.jpeg",
+          "args":[]
+        },
+        "open_automatically" : true,
+      },
+
+      {
+        "caption": "Chrome",
+        "id": "side-bar-files-open-with-chrome",
+        "command": "side_bar_files_open_with",
+        "args": {
+          "paths": [],
+          "application": "Google Chrome.app",
+          "extensions": ".*",
+          "args":[]
+        },
+        "open_automatically" : false,
+      },
+
+      {
+        "caption": "Table Tool",
+        "id": "side-bar-files-open-with-table-tool",
+        "command": "side_bar_files_open_with",
+        "args": {
+          "paths": [],
+          "application": "Table Tool.app",
+          "extensions": ".*sv$",
+          "args":[]
+        },
+        "open_automatically" : false,
+      },
+
+      {
+        "caption": "Excel",
+        "id": "side-bar-files-open-with-excel",
+        "command": "side_bar_files_open_with",
+        "args": {
+          "paths": [],
+          "application": "Microsoft Excel.app",
+          "extensions": "xlsx",
+          "args":[]
+        },
+        "open_automatically" : true,
+      },
+
+      {
+        "caption": "Affinity Photo",
+        "id": "side-bar-files-open-with-affinity-photo",
+        "command": "side_bar_files_open_with",
+        "args": {
+          "paths": [],
+          "application": "Affinity Photo.app",
+          "extensions": "afphoto|jpeg|jpg|png",
+          "args":[]
+        },
+        "open_automatically" : false,
+      },
+
+      {"caption": "-"}
+    ]
+  }
+]

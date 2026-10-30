@@ -1,0 +1,27 @@
+{
+	"clients":
+	{
+		"haskell-language-server":
+		{
+			"command":
+			[
+				"haskell-language-server-wrapper",
+				"--lsp"
+			],
+			"enabled": true,
+			"languageId": "haskell",
+			"scopes":
+			[
+				"source.haskell"
+			],
+			"syntaxes":
+			[
+				"Packages/Haskell/Haskell.sublime-syntax"
+			]
+		},
+		"lsp-elm":
+		{
+			"enabled": false
+		}
+	}
+}

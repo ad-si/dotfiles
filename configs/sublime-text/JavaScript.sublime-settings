@@ -1,0 +1,8 @@
+{
+	"extensions":
+	[
+		"cjs",
+		"mjs",
+		"json",
+	],
+}

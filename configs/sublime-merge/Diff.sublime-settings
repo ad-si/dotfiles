@@ -1,0 +1,7 @@
+{
+	"extensions":
+	[
+		"ldiff"
+	],
+	"draw_white_space": "selection",
+}

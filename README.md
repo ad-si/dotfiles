@@ -288,7 +288,6 @@ Midnight Lizard, Automatic Metric Conversion, …
 ### Dropbox
 
 Sign in and enable sync for important directories.
-Especially `Settings`, which is needed for Sublime Text/Merge sync.
 
 
 ### GPG
@@ -318,9 +317,14 @@ Especially `Settings`, which is needed for Sublime Text/Merge sync.
 - Activate installation
   - Get license key with `gopass sublimetext.com/license-key`
   - Apply under Help > Enter License
+- Link the `User` package to [configs/sublime-text](./configs/sublime-text):
+    ```sh
+    cd ~/Library/Application\ Support/Sublime\ Text/Packages/
+    rm -rf User
+    ln -s ~/dotfiles/configs/sublime-text User
+    ```
 - Install Package Control
     (will then automatically install all packages from the synced list)
-- Sync via Dropbox as described in https://packagecontrol.io/docs/syncing
 - Set up GitHub Copilot: https://packagecontrol.io/packages/LSP-copilot#Setup
 - Install additional dictionaries for spell checking:
     ```sh
@@ -334,7 +338,12 @@ Especially `Settings`, which is needed for Sublime Text/Merge sync.
 - Activate installation
   - Get license key from Passwords app
   - Apply under Help > Enter License
-- Sync via Dropbox as described in https://packagecontrol.io/docs/syncing
+- Link the `User` package to [configs/sublime-merge](./configs/sublime-merge):
+    ```sh
+    cd ~/Library/Application\ Support/Sublime\ Merge/Packages/
+    rm -rf User
+    ln -s ~/dotfiles/configs/sublime-merge User
+    ```
 
 
 ### Visual Studio Code

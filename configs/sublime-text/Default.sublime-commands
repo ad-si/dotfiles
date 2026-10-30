@@ -1,0 +1,23 @@
+[
+  {
+    "caption": "Toggle Spell Checker",
+    "command": "toggle_setting",
+    "args": {"setting": "spell_check"}
+  },
+  {
+    "caption": "Dictionary: German",
+    "command": "set_setting",
+    "args": {
+      "setting": "dictionary",
+      "value": "Packages/Dictionaries/German_de_DE.dic"
+    }
+  },
+  {
+    "caption": "Dictionary: English (US)",
+    "command": "set_setting",
+    "args": {
+      "setting": "dictionary",
+      "value": "Packages/Language - English/en_US.dic"
+    }
+  }
+]

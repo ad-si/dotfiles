@@ -1,0 +1,39 @@
+[
+  {
+    "keys": ["super+p"],
+    "command": "show_overlay",
+    "args": {
+      "overlay": "command_palette",
+    },
+  },
+  {
+    "keys": ["`"],
+    "command": "insert_snippet",
+    "args": {
+      "contents": "`${0:$SELECTION}`",
+    },
+    "context": [{
+      "key": "setting.auto_match_enabled",
+      "operator": "equal",
+      "operand": true,
+    },
+    {
+      "key": "selection_empty",
+      "operator": "equal",
+      "operand": false,
+      "match_all": true,
+    }]
+  },
+  {
+    "keys": ["ctrl+w"],
+    "command": "delete_word",
+    "args": {
+      "forward": false,
+      "sub_words": true,
+    }
+  },
+  {
+    "keys": ["ctrl+j"],
+    "command": "join_lines",
+  },
+]
